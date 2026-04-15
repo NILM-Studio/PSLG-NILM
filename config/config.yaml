@@ -1,0 +1,35 @@
+# Workflow Configuration
+
+# General workflow settings
+workflow:
+  name: "MachineLearningWorkflow"
+  description: "Standard ML workflow for processing and training on input data."
+
+# Step-specific configurations
+steps:
+  data_loader:
+    enabled: true
+    input_folder: "input"
+    supported_formats: [".npy", ".txt"]
+    
+  data_processor:
+    enabled: true
+    normalization: true
+    save_figures: true
+    
+  model_training:
+    enabled: true
+    model_name: "DummyModel"
+    task: "train"
+    
+  model_prediction:
+    enabled: true
+    model_name: "DummyModel"
+    task: "predict"
+
+# Model hyperparameters
+models:
+  DummyModel:
+    learning_rate: 0.01
+    epochs: 10
+    batch_size: 32
