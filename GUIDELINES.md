@@ -67,7 +67,7 @@
 - **最终结果**: 
   - 数据结果存入 `os.path.join(context['output_root'], 'output')`。
   - 可视化图表存入 `os.path.join(context['output_root'], 'figure')`。
-- **命名规范**: 文件名应包含关键参数或模型标识符，便于追踪和调试。
+- **命名规范**: 文件名应包含关键参数或模型标识符，便于追踪 and 调试。
 
 ---
 
@@ -82,3 +82,12 @@
 1. 在 `models/` 下创建新文件，定义继承自 `BaseModel` 的类。
 2. 实现 `train`, `save`, `load` 接口。
 3. 在 `src/steps/` 中创建一个包装该模型的 Step 类（或复用现有的 `ModelStep`），并在其中调用模型接口。
+
+---
+
+## 6. 环境与依赖要求
+
+为了确保框架及其模型的正常运行，必须维护 `requirements.txt` 文件：
+
+- **依赖维护**: 在引入包含新依赖的新模型或步骤时，必须同步更新 `requirements.txt`。
+- **安装方法**: 建议使用 `pip install -r requirements.txt` 进行环境初始化。
