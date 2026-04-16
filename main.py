@@ -1,11 +1,22 @@
 import yaml
 import os
 import argparse
+import sys
 import numpy as np
+
+# Add project root and models to sys.path
+project_root = os.path.dirname(os.path.abspath(__file__))
+models_dir = os.path.join(project_root, "models")
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+if models_dir not in sys.path:
+    sys.path.insert(0, models_dir)
+
 from src.framework.workflow import Workflow
 from src.steps.data_loader import DataLoaderStep
 from src.steps.data_processor import DataProcessorStep
 from src.steps.model_step import ModelStep
+from src.steps.wavelet_separation import WaveletSeparationStep
 
 def run_workflow(config_path: str):
     """
@@ -26,11 +37,12 @@ def run_workflow(config_path: str):
     if config['steps']['data_processor'].get('enabled', True):
         wf.add_step(DataProcessorStep("DataProcessor"))
 
-    if config['steps']['model_training'].get('enabled', True):
-        wf.add_step(ModelStep("ModelTraining", model_type="train"))
+    if config['steps'].get('wavelet_separation', {}).get('enabled', True):
+        is_shape_dtw = config['steps']['wavelet_separation'].get('is_shape_dtw', False)
+        wf.add_step(WaveletSeparationStep("WaveletSeparation", is_shape_dtw=is_shape_dtw))
 
-    if config['steps']['model_prediction'].get('enabled', True):
-        wf.add_step(ModelStep("ModelPrediction", model_type="predict"))
+    if config['steps']['model_training'].get('enabled', True):
+        wf.add_step(ModelStep("ModelStep"))
 
     # Run the workflow
     wf.run()
@@ -40,13 +52,13 @@ def create_sample_data():
     input_dir = 'input'
     os.makedirs(input_dir, exist_ok=True)
     
-    # Create sample .npy file
-    sample_npy = np.random.randn(100)
-    np.save(os.path.join(input_dir, 'sample_data.npy'), sample_npy)
-    
-    # Create sample .txt file
-    with open(os.path.join(input_dir, 'sample_data.txt'), 'w') as f:
-        f.write("This is some sample text data for the workflow.")
+    # Create sample .csv file for wavelet separation
+    import pandas as pd
+    sample_csv_data = {
+        'timestamp': range(100),
+        'power': np.random.randn(100).cumsum() # Random walk to simulate power signal
+    }
+    pd.DataFrame(sample_csv_data).to_csv(os.path.join(input_dir, 'Kettle_sample.csv'), index=False)
     
     print(f"Sample data created in {input_dir}")
 

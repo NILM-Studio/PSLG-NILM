@@ -16,16 +16,15 @@ steps:
     enabled: true
     normalization: true
     save_figures: true
+
+  wavelet_separation:
+    enabled: true
+    is_shape_dtw: false
     
   model_training:
     enabled: true
     model_name: "DummyModel"
-    task: "train"
-    
-  model_prediction:
-    enabled: true
-    model_name: "DummyModel"
-    task: "predict"
+    task: "train_and_predict"
 
 # Model hyperparameters
 models:

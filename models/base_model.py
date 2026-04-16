@@ -14,11 +14,6 @@ class BaseModel(ABC):
         pass
 
     @abstractmethod
-    def predict(self, data):
-        """Makes predictions with the model."""
-        pass
-
-    @abstractmethod
     def save(self, path: str):
         """Saves the model state to disk."""
         pass

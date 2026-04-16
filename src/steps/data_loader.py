@@ -1,5 +1,5 @@
 import os
-import numpy as np
+import pandas as pd
 import shutil
 from src.framework.step import Step
 
@@ -23,8 +23,8 @@ class DataLoaderStep(Step):
             print(f"Warning: Input directory '{input_dir}' was missing and has been created. Please place data there.")
             return context
 
-        # Support .npy and .txt formats
-        supported_extensions = ['.npy', '.txt']
+        # Support only .csv format
+        supported_extensions = ['.csv']
         files_found = []
         
         for file in os.listdir(input_dir):
@@ -37,11 +37,7 @@ class DataLoaderStep(Step):
                 shutil.copy2(source_path, dest_path)
                 
                 # Load data into context
-                if ext == '.npy':
-                    data = np.load(source_path)
-                elif ext == '.txt':
-                    with open(source_path, 'r') as f:
-                        data = f.read()
+                data = pd.read_csv(source_path)
                 
                 context['data'][file] = data
                 files_found.append(file)

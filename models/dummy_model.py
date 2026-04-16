@@ -17,13 +17,6 @@ class DummyModel(BaseModel):
         self.weights = np.mean(data)
         return self.weights
 
-    def predict(self, data):
-        """Simple 'prediction': multiply data by weights (mean)."""
-        print(f"[{self.name}] Making predictions...")
-        if self.weights is None:
-            raise ValueError("Model must be trained before predicting.")
-        return data * self.weights
-
     def save(self, path: str):
         """Saves model weights using pickle."""
         print(f"[{self.name}] Saving model to {path}")
