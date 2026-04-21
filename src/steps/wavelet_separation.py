@@ -267,10 +267,14 @@ class WaveletSeparationStep(Step):
                 if end <= start:
                     continue
                 
-                # Slice and stack: (length, 2)
+                # Slice and stack: (length, 4)
+                # 0: Original, 1: Cleaned, 2: Low-freq, 3: High-freq
+                s_orig = signal[start:end]
+                s_cleaned = signal_cleaned[start:end]
                 s_low = low_freq[start:end]
                 s_high = high_freq[start:end]
-                sample = np.stack([s_low, s_high], axis=1)
+                
+                sample = np.stack([s_orig, s_cleaned, s_low, s_high], axis=1)
                 
                 all_samples.append(sample)
                 all_lengths.append(len(sample))
@@ -286,7 +290,7 @@ class WaveletSeparationStep(Step):
         if all_samples:
             max_len = max(all_lengths)
             n_samples = len(all_samples)
-            X = np.zeros((n_samples, max_len, 2), dtype=np.float32)
+            X = np.zeros((n_samples, max_len, 4), dtype=np.float32)
             L = np.array(all_lengths, dtype=np.int32).reshape(-1, 1)
             
             for idx, sample in enumerate(all_samples):

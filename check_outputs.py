@@ -34,7 +34,7 @@ def check_outputs(log_dir):
         print(f"  Actual Length: {actual_len}")
         # Show a slice of the first 5 timestamps of the sample
         preview_len = min(5, actual_len)
-        print(f"  First {preview_len} timestamps (Channel 0, Channel 1):")
+        print(f"  First {preview_len} timestamps (Original, Cleaned, Low-freq, High-freq):")
         print(X[i, :preview_len, :])
         
         # Verify padding (check the last timestamp if max_len > actual_len)
@@ -44,5 +44,5 @@ def check_outputs(log_dir):
     print("-" * 30)
 
 if __name__ == "__main__":
-    target_log_dir = r'f:\B__ProfessionProject\PSLG-NILM\log\20260421_134643\WaveletSeparation'
+    target_log_dir = r'f:\B__ProfessionProject\PSLG-NILM\log\20260421_164708\WaveletSeparation'
     check_outputs(target_log_dir)
