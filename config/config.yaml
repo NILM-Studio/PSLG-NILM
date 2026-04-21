@@ -20,6 +20,7 @@ steps:
   wavelet_separation:
     enabled: true
     is_shape_dtw: false
+    plot_count: 0
     
   model_training:
     enabled: true

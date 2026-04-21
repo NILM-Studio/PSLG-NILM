@@ -14,9 +14,10 @@ class WaveletSeparationStep(Step):
     Step for wavelet separation and segmentation of power signals.
     Inherits from Step base class.
     """
-    def __init__(self, name="WaveletSeparation", is_shape_dtw=False):
+    def __init__(self, name="WaveletSeparation", is_shape_dtw=False, plot_count=0):
         super().__init__(name)
         self.is_shape_dtw = is_shape_dtw
+        self.plot_count = plot_count
 
     def medfilt_outlier_removal(self, series):
         """Perform outlier removal using median filter."""
@@ -231,6 +232,9 @@ class WaveletSeparationStep(Step):
         target_files = [f for f in os.listdir(input_dir) if f.lower().endswith('.csv')]
         print(f"Found {len(target_files)} CSV files for wavelet analysis.")
 
+        all_samples = []
+        all_lengths = []
+
         for i, file_name in enumerate(target_files):
             print(f"Processing ({i+1}/{len(target_files)}): {file_name}")
             
@@ -252,14 +256,54 @@ class WaveletSeparationStep(Step):
             # 3. Wavelet analysis (test db4 as best choice as per original logic)
             res = self.run_wavelet_analysis(signal_cleaned, 'db4', orig_cp)
             
-            # 4. Export
-            self.export_data(df, res, log_dir, file_name)
+            # 4. Extract segments for tensor output
+            low_freq = res['low_freq_signal']
+            high_freq = res['high_freq_combined']
+            cps = sorted(list(set([int(round(cp)) for cp in res['synthesized_cp']])))
             
-            # 5. Plot (first 10 files)
-            if i < 10:
+            # Define segment boundaries
+            boundaries = [0] + cps + [len(signal_cleaned)]
+            for start, end in zip(boundaries[:-1], boundaries[1:]):
+                if end <= start:
+                    continue
+                
+                # Slice and stack: (length, 2)
+                s_low = low_freq[start:end]
+                s_high = high_freq[start:end]
+                sample = np.stack([s_low, s_high], axis=1)
+                
+                all_samples.append(sample)
+                all_lengths.append(len(sample))
+
+            # 5. Plot
+            if i < self.plot_count:
                 self.plot_results(signal, signal_cleaned, orig_cp, res, log_dir, file_name)
                 
             del df, signal, signal_cleaned, res
             gc.collect()
+
+        # Final tensorization and persistence
+        if all_samples:
+            max_len = max(all_lengths)
+            n_samples = len(all_samples)
+            X = np.zeros((n_samples, max_len, 2), dtype=np.float32)
+            L = np.array(all_lengths, dtype=np.int32).reshape(-1, 1)
+            
+            for idx, sample in enumerate(all_samples):
+                length = all_lengths[idx]
+                X[idx, :length, :] = sample
+            
+            # Persistence
+            np.save(os.path.join(log_dir, 'X.npy'), X)
+            np.save(os.path.join(log_dir, 'lengths.npy'), L)
+            
+            # Context delivery
+            if 'data' not in context:
+                context['data'] = {}
+            context['data']['X'] = X
+            context['data']['lengths'] = L
+            
+            print(f"Tensorization complete: {n_samples} samples, max_length={max_len}")
+            print(f"Saved to {log_dir} and updated context['data']")
 
         return context
