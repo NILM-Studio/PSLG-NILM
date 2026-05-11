@@ -5,11 +5,21 @@ workflow:
   name: "Primitive State Segmentation and Clustering"
   description: "Standard ML workflow for processing and training on input data."
   appliance_name: "dishwasher" 
+  resume: true
+  sequence_id: "114514"
 
 # Step-specific configurations
 steps:
+  extract_active_data:
+    enabled: true
+    input_file: "/home/scnu2023024258/data/datasets/ukdale_extracted/house1/washing_machine.csv"
+    power_threshold: 1.0
+    min_duration_seconds: 30
+    context_seconds: 120
+    set_input_root: true
+
   data_loader:
-    enabled: false
+    enabled: true
     input_folder: "input"
     supported_formats: [".npy", ".txt"]
     
@@ -19,14 +29,14 @@ steps:
     save_figures: true
 
   wavelet_separation:
-    enabled: false
+    enabled: true
     is_shape_dtw: false
     plot_count: 0
 
   feature_extract:
-    enabled: false
-    data_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\data\\fridge\\data_fusion.npy"
-    seq_len_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\data\\fridge\\seq_length_fusion.npy"
+    enabled: true
+    data_path: ""
+    seq_len_path: ""
     model_name: "bilstm_ae"
     latent_dim: 64
     epochs: 50
@@ -37,9 +47,9 @@ steps:
   
   time_clustering:
     enabled: true
-    data_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\data\\fridge\\data_fusion.npy"
-    feature_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\log\\dishwasher_20260507_023549\\FeatureExtract\\extracted_features\\bilstm_ae_file_64dim.npy"
-    seq_len_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\data\\fridge\\seq_length_fusion.npy"
+    data_path: ""
+    feature_path: ""
+    seq_len_path: ""
     eps: 1.0
     min_pts: 20
     metric: "euclidean"

@@ -4,7 +4,7 @@
 
 ## 目录结构说明
 
-- `input/`: 原始输入数据文件夹（支持 `.npy` 和 `.txt` 格式）。
+- `input/`: 原始输入数据文件夹（支持 `.csv` / `.npy` / `.txt` 格式，实际读取格式以 `DataLoaderStep` 为准）。
 - `doc/`: 项目文档目录，包含各 Step 的详细输入输出说明。
 - `log/`: 存储工作流执行过程中的缓存文件和日志。
   - 每个执行序列号（时间戳标识）创建独立子文件夹。
@@ -28,7 +28,7 @@
 1. **唯一标识符**: 每个工作流进程会自动生成一个唯一的时间戳作为序列号（例如：`20260415_221145`）。
 2. **顺序执行**: 每个步骤必须按预定顺序执行，上下文（Context）在步骤之间共享。
 3. **流程**:
-   - 从 `input` 读取数据（`.npy` 或 `.txt`）。
+   - 从 `input`（或上游 Step 生成的缓存目录）读取数据（常见为 `.csv`）。
    - 处理数据并生成中间缓存文件到 `log` 文件夹。
    - 调用模型进行训练并直接生成结果。
    - 将最终结果和图表保存到 `output` 文件夹。
@@ -37,15 +37,32 @@
 
 ### 1. 安装依赖项
 
-确保已安装必要的 Python 库（如 `numpy`, `matplotlib`, `pyyaml`）：
+确保已安装必要的 Python 库：
 
 ```bash
-pip install numpy matplotlib pyyaml
+pip install -r requirements.txt
 ```
 
 ### 2. 准备数据
 
-将原始数据文件放置在 `input` 文件夹中。支持 `.npy` 和 `.txt` 格式。
+本框架支持两种常见的数据输入方式（推荐使用配置文件控制）：
+
+#### 方式 A：直接把 CSV 放入 input/（最简单）
+
+1. 将一个或多个电器的 CSV 文件放到 `input/` 目录下（每个文件至少包含 `timestamp,power` 两列）。
+2. 在 `config/config.yaml` 中开启 `steps.data_loader.enabled: true`。
+
+`DataLoaderStep` 会把 `input/` 下的 CSV 拷贝到本次运行的缓存目录，并加载到 `context['data']`。
+
+#### 方式 B：用 ExtractActiveDataStep 从外部大 CSV 切割工作区间（UKDALE 场景）
+
+适用于输入是 UKDALE 预提取目录（例如 `/home/scnu2023024258/data/datasets/ukdale_extracted/house1`）中某个电器的整段 CSV。
+
+1. 在 `config/config.yaml` 中开启 `steps.extract_active_data.enabled: true`。
+2. 设置 `steps.extract_active_data.input_file` 为目标电器的 `.csv` 文件路径（必须是文件路径，不是目录）。
+3. 建议同时开启 `steps.data_loader.enabled: true`，并保持 `steps.extract_active_data.set_input_root: true`（默认值）。
+
+这样会先在 `log/.../ExtractActiveData/segments/` 生成切割后的多个 CSV，再由 `DataLoaderStep` 直接加载这些切割结果供后续步骤使用。
 
 ### 3. 配置工作流
 
@@ -64,6 +81,16 @@ python main.py --sample  # 创建示例数据并运行
 ```bash
 python main.py --config config/config.yaml
 ```
+
+### 5. 断点续跑（切断后继续）
+
+工作流执行过程中每个 Step 会在自己的缓存目录下写入完成标记文件：`log/{sequence_id}/{step_name}/.done`。
+
+- 方式 1（推荐，命令行）：用同一个 sequence_id 恢复
+  - `python main.py --resume --sequence-id <原sequence_id>`
+  - 参数入口在 [main.py](file:///home/scnu2023024258/data/code/PSLG-NILM/main.py)
+- 方式 2（YAML）：在 `workflow` 下配置 `resume: true` 和 `sequence_id: ...`，`main.py` 会读取并恢复执行
+- 想强制重跑某一步：删除该 step 目录下的 `.done` 文件即可（例如 `log/<id>/FeatureExtract/.done`）
 
 ## 扩展说明
 
