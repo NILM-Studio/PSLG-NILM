@@ -82,6 +82,14 @@ python main.py --sample  # 创建示例数据并运行
 python main.py --config config/config.yaml
 ```
 
+### 4.1 使用 Slurm 提交训练（run_train.sh）
+
+仓库提供了示例 Slurm 脚本 [run_train.sh](file:///home/scnu2023024258/data/code/PSLG-NILM/run_train.sh) 用于在集群上提交训练任务，其中：
+
+- `#SBATCH -p A1000`：指定提交到名为 `A1000` 的分区（partition/queue）。不同集群会把不同 GPU 资源划分到不同分区，因此该字段需要按实际可用分区名修改。
+  - 使用 A1000 节点：保持为 `A1000`
+  - 使用 RTX3090 节点：将其改为 `RTX3090`（前提是集群存在该分区名）
+
 ### 5. 断点续跑（切断后继续）
 
 工作流执行过程中每个 Step 会在自己的缓存目录下写入完成标记文件：`log/{sequence_id}/{step_name}/.done`。
