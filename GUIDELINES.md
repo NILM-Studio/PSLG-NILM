@@ -54,6 +54,19 @@
 - **参数传递**: 在 `steps` 下定义的参数可在 `main.py` 中解析并传递给对应的 Step 构造函数。
 - **动态控制**: 工作流的执行顺序由 `main.py` 中的 `wf.add_step()` 调用顺序决定，通常与 YAML 中的顺序一致。
 
+### 3.1 断点续跑（切断后继续）
+
+为支持中断后继续执行，每个 Step 在执行完成后会在自己的缓存目录写入完成标记文件：
+
+- `log/{sequence_id}/{step_name}/.done`
+
+当启用恢复模式时，工作流会跳过已存在 `.done` 的步骤，并从已完成步骤的下一个步骤继续执行。
+
+- 方式 1（推荐，命令行）：用同一个 sequence_id 恢复
+  - `python main.py --resume --sequence-id <原sequence_id>`
+- 方式 2（YAML）：在 `workflow` 下配置 `resume: true` 和 `sequence_id: ...`，`main.py` 会读取并恢复执行
+- 想强制重跑某一步：删除该 step 目录下的 `.done` 文件即可（例如 `log/<id>/FeatureExtract/.done`）
+
 ---
 
 ## 4. 数据读取与输出规范
@@ -77,6 +90,7 @@
 1. 在 `src/steps/` 下创建新文件，定义继承自 `Step` 的类。
 2. 实现 `run` 方法，利用 `context` 进行输入输出。
 3. 在 `main.py` 中导入新类，并根据 `config.yaml` 的配置调用 `wf.add_step()`。
+4. 在 `doc/` 下添加对应的使用说明文档（`*.md`），用于说明该 Step 的功能、输入输出契约、配置方法、产物结构与运行建议，并与现有文档风格保持一致。
 
 ### 添加一个新 Model
 1. 在 `models/` 下创建新文件，定义继承自 `BaseModel` 的类。

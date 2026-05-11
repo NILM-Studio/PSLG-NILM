@@ -1,4 +1,6 @@
-numpy>=1.21.0,<2.3.0
+# Recommended Python: 3.12.x (supported range: >=3.11,<3.13)
+# Note: tensorflow wheels are typically unavailable for Python 3.13, so use Python 3.11/3.12 for FeatureExtractStep.
+numpy>=1.21.0,<2.0.0
 numba>=0.55,<0.62.0
 pandas>=2.0.0,<2.4.0
 scikit-learn>=1.0.0,<1.8.0
@@ -10,7 +12,8 @@ statsmodels>=0.12.1
 matplotlib>=3.3.2
 daproli>=0.22
 PyWavelets==1.8.0
-claspy==0.2.7
 joblib==1.5.3
 stumpy>=1.0.0,<2.0.0
 PyYAML>=6.0
+tensorflow>=2.16.1,<2.17; python_version < "3.13"
+tslearn>=0.6.3,<0.7; python_version < "3.13"
