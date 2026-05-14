@@ -72,8 +72,8 @@
 ## 4. 数据读取与输出规范
 
 ### 读取 Log (缓存)
-- 后续步骤应从 `context['log_root']` 对应的文件夹中读取前序步骤生成的中间数据（如 `log/{sequence_id}/DataLoader/xxx.csv`）。
-- 严禁直接访问 `input/` 文件夹，除非是 `DataLoader` 步骤。
+- 后续步骤应从 `context['log_root']` 对应的文件夹中读取前序步骤生成的中间数据（如 `log/{sequence_id}/ExtractActiveData/segments/xxx.csv`）。
+- 严禁直接访问 `input/` 文件夹，除非是 `ExtractActiveData` 步骤。
 
 ### 输出结果
 - **中间结果**: 保存到 `self.get_log_dir(context)`（即 `log/` 下的步骤目录）。

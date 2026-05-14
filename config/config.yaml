@@ -5,16 +5,11 @@ workflow:
   name: "Primitive State Segmentation and Clustering"
   description: "Standard ML workflow for processing and training on input data."
   appliance_name: "dishwasher" 
-  resume: false
-  sequence_id: "114514"
+  resume: true #有done会跳过已执行的step
+  sequence_id: "20260513_220235"
 
 # Step-specific configurations
 steps:
-  data_loader:
-    enabled: true
-    input_folder: "input"
-    supported_formats: [".npy", ".txt", ".csv"]
-    
   data_processor:
     enabled: false
     normalization: true
@@ -26,7 +21,7 @@ steps:
     plot_count: 0
 
   feature_extract:
-    enabled: false
+    enabled: true
     data_path: ""
     seq_len_path: ""
     model_name: "bilstm_ae"
@@ -38,7 +33,7 @@ steps:
     attention_size: 32
   
   time_clustering:
-    enabled: false
+    enabled: true
     data_path: ""
     feature_path: ""
     seq_len_path: ""
