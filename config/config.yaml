@@ -10,6 +10,14 @@ workflow:
 
 # Step-specific configurations
 steps:
+  extract_active_data:
+    enabled: true
+    input_file: "input/dishwasher.csv"
+    power_threshold: 1.0
+    min_duration_seconds: 30
+    context_seconds: 120
+    set_input_root: true
+
   data_processor:
     enabled: false
     normalization: true
