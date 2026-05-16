@@ -49,6 +49,10 @@ class TimeClusteringStep(Step):
         visualize_noise=True,
         visualization_language='zh',
         cluster_stack_count=50,
+        few_shot_enabled=False,
+        few_shot_method='avg_percent',
+        few_shot_n_percent=50.0,
+        few_shot_threshold=5,
         appliance_name=""
     ):
         super().__init__(name)
@@ -75,6 +79,10 @@ class TimeClusteringStep(Step):
         self.visualize_noise = bool(visualize_noise)
         self.visualization_language = str(visualization_language).lower()
         self.cluster_stack_count = max(1, int(cluster_stack_count))
+        self.few_shot_enabled = bool(few_shot_enabled)
+        self.few_shot_method = str(few_shot_method).lower()
+        self.few_shot_n_percent = float(few_shot_n_percent)
+        self.few_shot_threshold = int(few_shot_threshold)
         self.selected_scan_eps = None
         self.appliance_name = appliance_name
 
@@ -322,6 +330,7 @@ class TimeClusteringStep(Step):
         best_score = -np.inf
         best_k = None
         best_labels = None
+        dist_matrix = cdist(feature_matrix, feature_matrix, metric='euclidean')
 
         print(f"[TimeClustering] Running KMeans scan from k={min_k} to k={max_k}")
 
@@ -341,18 +350,21 @@ class TimeClusteringStep(Step):
             sci = silhouette_score(feature_matrix, labels, metric='euclidean')
             dbi = davies_bouldin_score(feature_matrix, labels)
             chi = calinski_harabasz_score(feature_matrix, labels)
+            dbcv = clustering_utils.calculate_dbcv_score(dist_matrix=dist_matrix, cluster_labels=labels)
 
             record = {
                 'n_clusters': int(k),
                 'sci': float(sci),
                 'dbi': float(dbi),
                 'chi': float(chi),
+                'dbcv': (None if dbcv is None else float(dbcv)),
             }
             scan_records.append(record)
 
             print(
                 f"[TimeClustering] k={k} -> "
                 f"SCI={record['sci']:.6f}, DBI={record['dbi']:.6f}, CHI={record['chi']:.6f}"
+                f", DBCV={record['dbcv']}"
             )
 
             # Choose best k by SCI (higher is better)
@@ -364,14 +376,14 @@ class TimeClusteringStep(Step):
         if best_labels is None:
             raise ValueError("[TimeClustering] KMeans scan failed: no valid k in scan range.")
 
-        clustering_utils.save_kmeans_scan_artifacts(
+        scan_payload = clustering_utils.save_kmeans_scan_artifacts(
             scan_records,
             best_k,
             save_dir,
             data_path=self.data_path,
             appliance_name=self.appliance_name,
         )
-        return best_labels, best_k, scan_records
+        return best_labels, best_k, scan_records, scan_payload
 
     def run_dbscan_scan(self, dist_matrix: np.ndarray, feature_matrix: np.ndarray, save_dir: str) -> tuple:
         """Scan eps in [min_eps, max_eps] with step eps_gap for DBSCAN while keeping min_pts fixed."""
@@ -408,6 +420,7 @@ class TimeClusteringStep(Step):
             sci = None
             dbi = None
             chi = None
+            dbcv = None
             if n_clusters >= 2:
                 valid_idx = labels != -1
                 valid_labels = labels[valid_idx]
@@ -417,6 +430,7 @@ class TimeClusteringStep(Step):
                     sci = float(silhouette_score(valid_dist, valid_labels, metric='precomputed'))
                     dbi = float(davies_bouldin_score(valid_feature, valid_labels))
                     chi = float(calinski_harabasz_score(valid_feature, valid_labels))
+                    dbcv = clustering_utils.calculate_dbcv_score(dist_matrix=dist_matrix, cluster_labels=labels)
 
             record = {
                 'eps': eps_val,
@@ -424,6 +438,7 @@ class TimeClusteringStep(Step):
                 'sci': sci,
                 'dbi': dbi,
                 'chi': chi,
+                'dbcv': dbcv,
                 'n_noise': n_noise,
                 'n_clusters': n_clusters,
             }
@@ -431,7 +446,7 @@ class TimeClusteringStep(Step):
             print(
                 f"[TimeClustering] eps={eps_val} -> "
                 f"SCI={record['sci']}, DBI={record['dbi']}, CHI={record['chi']}, "
-                f"n_noise={record['n_noise']}, n_clusters={record['n_clusters']}"
+                f"DBCV={record['dbcv']}, n_noise={record['n_noise']}, n_clusters={record['n_clusters']}"
             )
 
             current_score = float(record['sci']) if record['sci'] is not None else -np.inf
@@ -446,14 +461,14 @@ class TimeClusteringStep(Step):
             best_eps = float(first['eps'])
             best_labels = self.run_dbscan(dist_matrix, best_eps, min_pts)
 
-        clustering_utils.save_dbscan_scan_artifacts(
+        scan_payload = clustering_utils.save_dbscan_scan_artifacts(
             scan_records,
             best_eps,
             save_dir,
             data_path=self.data_path,
             appliance_name=self.appliance_name,
         )
-        return best_labels, best_eps, scan_records
+        return best_labels, best_eps, scan_records, scan_payload
 
     def evaluate_clustering(self, labels: np.ndarray, dist_matrix: np.ndarray,
                            org_data: np.ndarray, feature_matrix: np.ndarray,
@@ -461,6 +476,7 @@ class TimeClusteringStep(Step):
                            enable_visualization: bool = False) -> dict:
         """Thin wrapper: forward to clustering_utils and assemble a lightweight metrics dict."""
         metrics = {}
+        metrics_payload = None
 
         try:
             quant_dist_method = 'euclidean'
@@ -501,7 +517,7 @@ class TimeClusteringStep(Step):
             else:
                 clustering_hyperparams = {}
 
-            sil_score, db_score, ch_score = clustering_utils.cluster_result_quantification(
+            sil_score, db_score, ch_score, dbcv_score, metrics_payload = clustering_utils.cluster_result_quantification(
                 cluster_labels=labels,
                 dist_matrix=dist_matrix,
                 org_data=org_data,
@@ -519,6 +535,11 @@ class TimeClusteringStep(Step):
                 sampling_threshold=200,
                 data_path=self.data_path,
                 appliance_name=self.appliance_name,
+                few_shot_enabled=self.few_shot_enabled,
+                few_shot_method=self.few_shot_method,
+                few_shot_n_percent=self.few_shot_n_percent,
+                few_shot_threshold=self.few_shot_threshold,
+                return_metrics_payload=True,
             )
 
             if sil_score is not None:
@@ -530,16 +551,22 @@ class TimeClusteringStep(Step):
             if ch_score is not None:
                 metrics['calinski_harabasz_score'] = float(ch_score)
                 print(f"[TimeClustering] Calinski-Harabasz Score: {ch_score:.4f}")
+            if dbcv_score is not None:
+                metrics['dbcv_score'] = float(dbcv_score)
+                print(f"[TimeClustering] DBCV Score: {dbcv_score:.4f}")
         except Exception as e:
             print(f"[TimeClustering] Quantification warning: {e}")
 
-        unique_labels, counts = np.unique(labels, return_counts=True)
-        metrics['cluster_distribution'] = {
-            "noise" if label == -1 else f"cluster_{label}": int(count)
-            for label, count in zip(unique_labels, counts)
-        }
-        metrics['n_clusters'] = len(set(labels)) - (1 if -1 in labels else 0)
-        metrics['n_noise'] = int(np.sum(labels == -1))
+        if isinstance(metrics_payload, dict):
+            metrics = metrics_payload
+        else:
+            unique_labels, counts = np.unique(labels, return_counts=True)
+            metrics['cluster_distribution'] = {
+                "noise" if label == -1 else f"cluster_{label}": int(count)
+                for label, count in zip(unique_labels, counts)
+            }
+            metrics['n_clusters'] = len(set(labels)) - (1 if -1 in labels else 0)
+            metrics['n_noise'] = int(np.sum(labels == -1))
         return metrics
 
     def save_clustering_results(self, data_np: np.ndarray, seq_len: np.ndarray,
@@ -635,7 +662,7 @@ class TimeClusteringStep(Step):
                 metric=self.metric,
                 cache_dir=save_dir
             )
-            _labels, best_eps, scan_records = self.run_dbscan_scan(
+            _labels, best_eps, scan_records, scan_payload = self.run_dbscan_scan(
                 dist_matrix=dist_matrix,
                 feature_matrix=normalized_feature_matrix,
                 save_dir=save_dir,
@@ -648,6 +675,8 @@ class TimeClusteringStep(Step):
             context['cluster_save_dir'] = save_dir
             context['dbscan_scan_best_eps'] = float(best_eps)
             context['dbscan_scan_records'] = scan_records
+            if isinstance(scan_payload, dict):
+                context['dbscan_scan_metrics'] = scan_payload
             print("[TimeClustering] DBSCAN scan mode completed (scan artifacts only)")
             return context
         elif self.cluster_method == 'kmeans':
@@ -655,7 +684,7 @@ class TimeClusteringStep(Step):
             # Keep quantification path unified by building a precomputed distance matrix.
             dist_matrix = cdist(normalized_feature_matrix, normalized_feature_matrix, metric='euclidean')
         elif self.cluster_method in ('kmeans-scan', 'kmeans_scan'):
-            _labels, best_k, scan_records = self.run_kmeans_scan(normalized_feature_matrix, save_dir)
+            _labels, best_k, scan_records, scan_payload = self.run_kmeans_scan(normalized_feature_matrix, save_dir)
             self.kmeans_n_clusters = int(best_k)
 
             # In scan mode, only export scan artifacts (JSON + line chart),
@@ -663,6 +692,8 @@ class TimeClusteringStep(Step):
             context['cluster_save_dir'] = save_dir
             context['kmeans_scan_best_k'] = int(best_k)
             context['kmeans_scan_records'] = scan_records
+            if isinstance(scan_payload, dict):
+                context['kmeans_scan_metrics'] = scan_payload
             print("[TimeClustering] KMeans scan mode completed (scan artifacts only)")
             return context
         else:
@@ -671,7 +702,7 @@ class TimeClusteringStep(Step):
                 "Supported methods: dbscan, dbscan-scan, kmeans, kmeans-scan"
             )
 
-        self.evaluate_clustering(
+        quant_metrics = self.evaluate_clustering(
             labels,
             dist_matrix,
             data_np,
@@ -687,6 +718,8 @@ class TimeClusteringStep(Step):
         context['cluster_save_dir'] = save_dir
         context['n_clusters'] = len(set(labels)) - (1 if -1 in labels else 0)
         context['n_noise'] = int(np.sum(labels == -1))
+        context['evaluation_metrics'] = quant_metrics
+        context['clustering_metrics'] = quant_metrics
 
         print(f"[TimeClustering] Clustering workflow complete")
         return context

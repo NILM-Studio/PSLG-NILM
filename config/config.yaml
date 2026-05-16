@@ -75,6 +75,41 @@ steps:
       visualize_noise: true
       language: "en"  # zh / en
       cluster_stack_count: 50
+    few_shot_detection:
+      enabled: false
+      method: "avg_percent"  # avg_percent / threshold
+      n_percent: 20           # used when method=avg_percent
+      threshold: 50            # used when method=threshold
+
+  primitive_activity_mapping:
+    enabled: false
+    # Folder containing activity CSV files. Each CSV uses column 0 as timestamp.
+    activity_sequence_dir: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\input\\dishwasher\\fluss_data"
+    # Folder containing primitive npy files (e.g., Cluster_*.npy from previous step).
+    primitive_sequence_dir: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\log\\your_run\\TimeClustering"
+    # Strategy 1 (default): strict contain only. Strategy 2: tolerant contain with timestamp_tolerance.
+    enable_tolerant_match: false
+    timestamp_tolerance: 12.0
+
+  dataset_split:
+    enabled: false
+    # Appliance branch raw long-horizon time series file (.dat or .npy), shape (len, 2): [timestamp, power]
+    raw_series_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\input\\microwave\\raw_series.npy"
+    # Mains raw long-horizon time series file (.dat or .npy), shape (len, 2): [timestamp, power]
+    mains_series_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\input\\microwave\\mains_series.npy"
+    # If primitive_activity_mapping has run, these can be omitted and resolved from context.
+    few_shot_tensor_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\log\\your_run\\PrimitiveActivityMapping\\few_shot_activity_tensor.npy"
+    non_few_shot_tensor_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\log\\your_run\\PrimitiveActivityMapping\\non_few_shot_activity_tensor.npy"
+    # Event metadata with start/end timestamps. If omitted, resolve from context.
+    few_shot_activity_json_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\log\\your_run\\PrimitiveActivityMapping\\few_shot_activity_sequences.json"
+    non_few_shot_activity_json_path: "D:\\KnowledgeDatabase\\ComputerSecience\\PROJ_NILM\\PSLG-NILM\\log\\your_run\\PrimitiveActivityMapping\\non_few_shot_activity_sequences.json"
+
+    # Tunable composition hyper-parameters.
+    few_train_ratio: 0.5
+    non_few_train_ratio: 0.8
+    random_seed: 42
+    timestamp_tolerance_seconds: 0.0
+    clip_negative_mains_to_zero: true
   
 
 # Model hyperparameters

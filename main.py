@@ -17,6 +17,8 @@ from src.steps.extract_active_data_step import ExtractActiveDataStep
 from src.steps.wavelet_separation import WaveletSeparationStep
 from src.steps.feature_extract_step import FeatureExtractStep
 from src.steps.time_clustering_step import TimeClusteringStep
+from src.steps.primitive_activity_mapping_step import PrimitiveActivityMappingStep
+from src.steps.dataset_split_step import DatasetSplitStep
 
 
 def run_workflow(config_path: str, resume: bool = False, sequence_id: str | None = None):
@@ -110,6 +112,12 @@ def run_workflow(config_path: str, resume: bool = False, sequence_id: str | None
         )
         cluster_stack_count = visualization_specific.get('cluster_stack_count', 50)
 
+        few_shot_config = cluster_config.get('few_shot_detection', {}) or {}
+        few_shot_enabled = bool(few_shot_config.get('enabled', False))
+        few_shot_method = str(few_shot_config.get('method', 'avg_percent')).lower()
+        few_shot_n_percent = float(few_shot_config.get('n_percent', few_shot_config.get('n', 50.0)))
+        few_shot_threshold = int(few_shot_config.get('threshold', 5))
+
         if cluster_method in ('dbscan-scan', 'dbscan_scan'):
             if dbscan_min_eps is None or dbscan_max_eps is None:
                 raise ValueError(
@@ -140,7 +148,40 @@ def run_workflow(config_path: str, resume: bool = False, sequence_id: str | None
             visualize_noise=visualize_noise,
             visualization_language=visualization_language,
             cluster_stack_count=cluster_stack_count,
+            few_shot_enabled=few_shot_enabled,
+            few_shot_method=few_shot_method,
+            few_shot_n_percent=few_shot_n_percent,
+            few_shot_threshold=few_shot_threshold,
             appliance_name=appliance_name
+        ))
+
+    if config['steps'].get('primitive_activity_mapping', {}).get('enabled', False):
+        mapping_config = config['steps']['primitive_activity_mapping']
+        wf.add_step(PrimitiveActivityMappingStep(
+            name="PrimitiveActivityMapping",
+            activity_sequence_dir=mapping_config.get('activity_sequence_dir'),
+            primitive_sequence_dir=mapping_config.get('primitive_sequence_dir'),
+            enable_tolerant_match=bool(mapping_config.get('enable_tolerant_match', False)),
+            timestamp_tolerance=float(mapping_config.get('timestamp_tolerance', 0.0)),
+            appliance_name=appliance_name,
+        ))
+
+    if config['steps'].get('dataset_split', {}).get('enabled', False):
+        split_config = config['steps']['dataset_split']
+        wf.add_step(DatasetSplitStep(
+            name="DatasetSplit",
+            raw_series_path=split_config.get('raw_series_path'),
+            mains_series_path=split_config.get('mains_series_path'),
+            few_shot_tensor_path=split_config.get('few_shot_tensor_path'),
+            non_few_shot_tensor_path=split_config.get('non_few_shot_tensor_path'),
+            few_shot_activity_json_path=split_config.get('few_shot_activity_json_path'),
+            non_few_shot_activity_json_path=split_config.get('non_few_shot_activity_json_path'),
+            few_train_ratio=float(split_config.get('few_train_ratio', 0.5)),
+            non_few_train_ratio=float(split_config.get('non_few_train_ratio', 0.8)),
+            random_seed=int(split_config.get('random_seed', 42)),
+            timestamp_tolerance_seconds=float(split_config.get('timestamp_tolerance_seconds', 0.0)),
+            clip_negative_mains_to_zero=bool(split_config.get('clip_negative_mains_to_zero', True)),
+            appliance_name=appliance_name,
         ))
 
     # Run the workflow

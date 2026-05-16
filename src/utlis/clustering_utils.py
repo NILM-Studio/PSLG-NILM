@@ -1,4 +1,5 @@
 import datetime
+import importlib
 import json
 import os
 import warnings
@@ -316,6 +317,47 @@ def preprocess_cluster_data(cluster_labels: np.ndarray, dist_matrix: np.ndarray,
 	return valid_idx, valid_dist_matrix, valid_labels, valid_org_data, valid_feature_matrix, n_clusters
 
 
+@lru_cache(maxsize=1)
+def _get_hdbscan_validity_index():
+	"""Lazily import hdbscan validity_index to avoid hard dependency at import time."""
+	try:
+		module = importlib.import_module('hdbscan.validity')
+		return getattr(module, 'validity_index', None)
+	except Exception:
+		return None
+
+
+def calculate_dbcv_score(dist_matrix: np.ndarray, cluster_labels: np.ndarray):
+	"""Compute DBCV score using hdbscan.validity.validity_index on precomputed distances."""
+	labels = np.asarray(cluster_labels)
+	if labels.size == 0:
+		return None
+
+	valid_labels = labels[labels != -1]
+	if len(np.unique(valid_labels)) < 2:
+		return None
+
+	if dist_matrix.shape != (labels.size, labels.size):
+		raise ValueError(
+			f'dist_matrix shape {dist_matrix.shape} does not match labels length {labels.size}'
+		)
+
+	validity_index = _get_hdbscan_validity_index()
+	if validity_index is None:
+		print('[TimeClustering][WARN] hdbscan is not installed; DBCV is skipped. Install hdbscan to enable DBCV.')
+		return None
+
+	try:
+		score = validity_index(dist_matrix, labels, metric='precomputed')
+		score = float(score)
+		if not np.isfinite(score):
+			return None
+		return score
+	except Exception as e:
+		print(f'[TimeClustering][WARN] Failed to compute DBCV: {e}')
+		return None
+
+
 def calculate_cluster_metrics(valid_dist_matrix: np.ndarray, valid_labels: np.ndarray, valid_feature_matrix: np.ndarray, cluster_labels: np.ndarray):
 	"""Compute silhouette, DB, and CH metrics."""
 	n_clusters = len(np.unique(valid_labels))
@@ -332,6 +374,67 @@ def _tsne_perplexity(n_samples: int) -> int:
 	if n_samples < 5:
 		return 2
 	return max(2, min(30, n_samples // 10))
+
+
+def detect_few_shot_clusters(
+	cluster_labels: np.ndarray,
+	method: str = 'avg_percent',
+	n_percent: float = 50.0,
+	threshold: int = 5,
+) -> dict:
+	"""Detect few-shot clusters from cluster size statistics (excluding noise cluster -1)."""
+	labels = np.asarray(cluster_labels)
+	if labels.size == 0:
+		return {
+			'method': method,
+			'n_percent': float(n_percent),
+			'threshold': int(threshold),
+			'average_cluster_size': None,
+			'few_shot_clusters': [],
+		}
+
+	unique_labels, counts = np.unique(labels, return_counts=True)
+	valid_pairs = [(int(l), int(c)) for l, c in zip(unique_labels, counts) if int(l) != -1]
+	if len(valid_pairs) == 0:
+		return {
+			'method': method,
+			'n_percent': float(n_percent),
+			'threshold': int(threshold),
+			'average_cluster_size': None,
+			'few_shot_clusters': [],
+		}
+
+	cluster_sizes = np.array([c for _, c in valid_pairs], dtype=np.float64)
+	avg_cluster_size = float(np.mean(cluster_sizes))
+	method_norm = str(method).lower()
+
+	if method_norm in ('avg_percent', 'percent_avg', 'avg_ratio', 'ratio'):
+		if n_percent < 0:
+			raise ValueError(f'n_percent must be >= 0, got {n_percent}')
+		cutoff = avg_cluster_size * (float(n_percent) / 100.0)
+		few_shot_pairs = [(cid, cnt) for cid, cnt in valid_pairs if float(cnt) < cutoff]
+	elif method_norm == 'threshold':
+		if threshold < 0:
+			raise ValueError(f'threshold must be >= 0, got {threshold}')
+		few_shot_pairs = [(cid, cnt) for cid, cnt in valid_pairs if int(cnt) < int(threshold)]
+	else:
+		raise ValueError(
+			f"Unsupported few_shot_detection method: {method}. "
+			"Supported methods: avg_percent, threshold"
+		)
+
+	few_shot_clusters = [
+		{'cluster_id': int(cid), 'sample_count': int(cnt)}
+		for cid, cnt in sorted(few_shot_pairs, key=lambda x: (x[1], x[0]))
+	]
+
+	return {
+		'method': method_norm,
+		'n_percent': float(n_percent),
+		'threshold': int(threshold),
+		'average_cluster_size': avg_cluster_size,
+		'few_shot_clusters': few_shot_clusters,
+	}
 
 
 def save_kmeans_scan_artifacts(
@@ -362,8 +465,9 @@ def save_kmeans_scan_artifacts(
 	sci_vals = [r['sci'] for r in scan_records]
 	dbi_vals = [r['dbi'] for r in scan_records]
 	chi_vals = [r['chi'] for r in scan_records]
+	dbcv_vals = [np.nan if r.get('dbcv') is None else float(r['dbcv']) for r in scan_records]
 
-	fig, axes = plt.subplots(3, 1, figsize=(10, 12), dpi=150)
+	fig, axes = plt.subplots(4, 1, figsize=(10, 15), dpi=150)
 	fig.suptitle('KMeans Scan Metrics', fontsize=14, fontweight='bold')
 
 	axes[0].plot(ks, sci_vals, marker='o', color='tab:blue')
@@ -384,11 +488,18 @@ def save_kmeans_scan_artifacts(
 	axes[2].set_ylabel('CHI (higher is better)')
 	axes[2].grid(alpha=0.3)
 
+	axes[3].plot(ks, dbcv_vals, marker='o', color='tab:red')
+	axes[3].set_title('DBCV vs n_clusters')
+	axes[3].set_xlabel('n_clusters')
+	axes[3].set_ylabel('DBCV (higher is better)')
+	axes[3].grid(alpha=0.3)
+
 	plt.tight_layout()
 	fig_path = os.path.join(save_dir, 'kmeans_scan_metrics.png')
 	plt.savefig(fig_path, dpi=300, bbox_inches='tight')
 	plt.close(fig)
 	print(f"[TimeClustering] KMeans scan plot saved to {fig_path}")
+	return payload
 
 
 def save_dbscan_scan_artifacts(
@@ -419,10 +530,11 @@ def save_dbscan_scan_artifacts(
 	sci_vals = [np.nan if r['sci'] is None else float(r['sci']) for r in scan_records]
 	dbi_vals = [np.nan if r['dbi'] is None else float(r['dbi']) for r in scan_records]
 	chi_vals = [np.nan if r['chi'] is None else float(r['chi']) for r in scan_records]
+	dbcv_vals = [np.nan if r.get('dbcv') is None else float(r['dbcv']) for r in scan_records]
 	n_noise_vals = [int(r['n_noise']) for r in scan_records]
 	n_cluster_vals = [int(r['n_clusters']) for r in scan_records]
 
-	fig, axes = plt.subplots(5, 1, figsize=(10, 18), dpi=150)
+	fig, axes = plt.subplots(6, 1, figsize=(10, 22), dpi=150)
 	fig.suptitle('DBSCAN Scan Metrics', fontsize=14, fontweight='bold')
 
 	axes[0].plot(x_vals, sci_vals, marker='o', color='tab:blue')
@@ -455,11 +567,18 @@ def save_dbscan_scan_artifacts(
 	axes[4].set_ylabel('n_clusters')
 	axes[4].grid(alpha=0.3)
 
+	axes[5].plot(x_vals, dbcv_vals, marker='o', color='tab:brown')
+	axes[5].set_title('DBCV vs eps')
+	axes[5].set_xlabel('eps')
+	axes[5].set_ylabel('DBCV (higher is better)')
+	axes[5].grid(alpha=0.3)
+
 	plt.tight_layout()
 	fig_path = os.path.join(save_dir, 'dbscan_scan_metrics.png')
 	plt.savefig(fig_path, dpi=300, bbox_inches='tight')
 	plt.close(fig)
 	print(f"[TimeClustering] DBSCAN scan plot saved to {fig_path}")
+	return payload
 
 
 def visualize_cluster_results(
@@ -634,6 +753,11 @@ def cluster_result_quantification(
 	sampling_threshold: int = 200,
 	data_path: Optional[str] = None,
 	appliance_name: Optional[str] = None,
+	few_shot_enabled: bool = False,
+	few_shot_method: str = 'avg_percent',
+	few_shot_n_percent: float = 50.0,
+	few_shot_threshold: int = 5,
+	return_metrics_payload: bool = False,
 ):
 	"""Unified entry for clustering quantification, metrics persistence and visualization."""
 	(
@@ -656,6 +780,7 @@ def cluster_result_quantification(
 		valid_feature_matrix=valid_feature_matrix,
 		cluster_labels=cluster_labels,
 	)
+	dbcv_score = calculate_dbcv_score(dist_matrix=dist_matrix, cluster_labels=cluster_labels)
 
 	metrics = {
 		'clustering_method': str(cluster_method),
@@ -678,6 +803,33 @@ def cluster_result_quantification(
 		metrics['davies_bouldin_score'] = float(db_score)
 	if ch_score is not None:
 		metrics['calinski_harabasz_score'] = float(ch_score)
+	if dbcv_score is not None:
+		metrics['dbcv_score'] = float(dbcv_score)
+
+	if few_shot_enabled:
+		few_shot_result = detect_few_shot_clusters(
+			cluster_labels=cluster_labels,
+			method=few_shot_method,
+			n_percent=few_shot_n_percent,
+			threshold=few_shot_threshold,
+		)
+	else:
+		few_shot_result = {
+			'method': str(few_shot_method).lower(),
+			'n_percent': float(few_shot_n_percent),
+			'threshold': int(few_shot_threshold),
+			'average_cluster_size': None,
+			'few_shot_clusters': [],
+		}
+
+	metrics['few_shot_detection'] = {
+		'enabled': bool(few_shot_enabled),
+		'method': few_shot_result['method'],
+		'n_percent': few_shot_result['n_percent'],
+		'threshold': few_shot_result['threshold'],
+		'average_cluster_size': few_shot_result['average_cluster_size'],
+		'few_shot_clusters': few_shot_result['few_shot_clusters'],
+	}
 
 	if save_dir:
 		os.makedirs(save_dir, exist_ok=True)
@@ -714,5 +866,8 @@ def cluster_result_quantification(
 			language=language,
 			show=False,
 		)
+
+	if return_metrics_payload:
+		return sil_score, db_score, ch_score, dbcv_score, metrics
 
 	return sil_score, db_score, ch_score
