@@ -87,7 +87,7 @@ graph LR
         %% 关系连线
         EAD -->|写入| CTX_IR
         CTX_IR -->|读取| WS
-        CTX_IR -.->|兜底读取<br/>(活动序列)| PAM
+        CTX_IR -.->|"兜底读取<br/>(活动序列)"| PAM
         
         WS -->|写入| CTX_X
         WS -->|写入| CTX_LEN
@@ -96,7 +96,7 @@ graph LR
         FE -->|写入| CTX_FEAT
         
         CTX_FEAT -->|读取| TC
-        CTX_X -.->|可选读取<br/>(DTW聚类)| TC
+        CTX_X -.->|"可选读取<br/>(DTW聚类)"| TC
         CTX_LEN -->|读取| TC
         TC -->|写入| CTX_LBL
         TC -->|写入| CTX_CSD
