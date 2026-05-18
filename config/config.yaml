@@ -5,8 +5,8 @@ workflow:
   name: "Primitive State Segmentation and Clustering"
   description: "Standard ML workflow for processing and training on input data."
   appliance_name: "kettle" 
-  resume: true #有done会跳过已执行的step
-  sequence_id: "20260513_220235"
+  resume: true #设置为true有done会跳过已执行的step
+  sequence_id: ""
 
 # Step-specific configurations
 steps:
@@ -16,9 +16,6 @@ steps:
     power_threshold: 1.0
     min_duration_seconds: 30
     context_seconds: 120
-    alpha: 0.2
-    min_stop_time: 5
-    sample_rate: 10
     set_input_root: true
 
   data_processor:
