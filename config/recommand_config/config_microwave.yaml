@@ -38,9 +38,9 @@ steps:
   time_clustering:
     enabled: true
     data_path: "input/microwave/data_fusion.npy"
-    feature_path: "input/microwave/autoencoder_features_cleaned_power_64_dim.npy"
+    feature_path: "input/microwave/lstm_ae_features_cleaned_power_64_dim.npy"
     seq_len_path: "input/microwave/seq_length_fusion.npy"
-    cluster_method: "hdbscan"  # dbscan / dbscan-scan / kmeans / kmeans-scan / hdbscan
+    cluster_method: "kmeans-scan"  # dbscan / dbscan-scan / kmeans / kmeans-scan / hdbscan
     method_specific:
       dbscan:
         eps: 1.2
@@ -72,7 +72,7 @@ steps:
         cluster_selection_epsilon: 0.0
         metric: "euclidean"
     normalization_method: "zscore"
-    col_index: 3  # the index of the feature column to be used for clustering (0-based)
+    col_index: 2  # the index of the feature column to be used for clustering (0-based)
     visualization_specific:
       enabled: true
       visualize_noise: true

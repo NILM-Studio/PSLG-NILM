@@ -73,6 +73,7 @@
 ```python
 import numpy as np
 from models.feature_extract.lstm_ae import lstm_ae
+from models.feature_extract.cnn_ae import cnn_ae
 from models.feature_extract.bilstm_ae import bilstm_ae
 from models.feature_extract.bilstm_ae_attention import bilstm_ae_attention
 
@@ -91,6 +92,10 @@ config = {
 # 使用 LSTM 自编码器
 features_lstm, history_lstm = lstm_ae(data, config)
 print(f"LSTM 特征形状: {features_lstm.shape}")
+
+# 使用 CNN 自编码器
+features_cnn, history_cnn = cnn_ae(data, config)
+print(f"CNN 特征形状: {features_cnn.shape}")
 
 # 使用 BiLSTM 自编码器
 features_bilstm, history_bilstm = bilstm_ae(data, config)
@@ -127,6 +132,7 @@ wf.add_step(feature_step)
 | 场景 | 推荐模型 | 理由 |
 |------|---------|------|
 | 计算资源有限，需要快速训练 | `lstm_ae.py` | 结构简单，计算效率高 |
+| 希望增强局部模式建模 | `cnn_ae.py` | 卷积对局部波形/短期模式更敏感 |
 | 需要捕捉双向时序依赖 | `bilstm_ae.py` | 双向 LSTM 能够同时考虑过去和未来信息 |
 | 复杂负载识别，需要关注关键时间点 | `bilstm_ae_attention.py` | 注意力机制能够自动学习时间步的重要性 |
 
@@ -135,6 +141,7 @@ wf.add_step(feature_step)
 | 模型 | 计算复杂度 | 特征表达能力 | 训练时间 | 适用场景 |
 |------|-----------|-------------|----------|----------|
 | LSTM | 低 | 中 | 快 | 简单时序模式 |
+| CNN | 低-中 | 中 | 快 | 局部形状模式明显的序列 |
 | BiLSTM | 中 | 高 | 中 | 一般时序模式 |
 | BiLSTM + 注意力 | 高 | 很高 | 慢 | 复杂时序模式 |
 

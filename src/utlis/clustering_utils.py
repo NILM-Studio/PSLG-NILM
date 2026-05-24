@@ -599,6 +599,7 @@ def visualize_cluster_results(
 	valid_org_data: np.ndarray,
 	feature_matrix: np.ndarray,
 	org_data: np.ndarray,
+	seq_length: Optional[np.ndarray] = None,
 	save_dir: Optional[str] = None,
 	dist_method: str = 'dtw',
 	col_index: int = 1,
@@ -609,8 +610,38 @@ def visualize_cluster_results(
 	show: bool = True,
 ) -> None:
 	"""Render cluster center, stacked series, and tSNE visualizations."""
-	valid_org_data = valid_org_data[:, :, col_index]
-	org_data = org_data[:, :, col_index]
+	def _extract_series(sample: np.ndarray, eff_len: int, cidx: int) -> np.ndarray:
+		arr = np.asarray(sample)
+		if arr.ndim == 1:
+			max_len = arr.shape[0]
+			eff_len = max(1, min(int(eff_len), max_len))
+			return np.asarray(arr[:eff_len], dtype=np.float64).reshape(-1)
+
+		if arr.ndim >= 2:
+			max_len = arr.shape[0]
+			eff_len = max(1, min(int(eff_len), max_len))
+			safe_col = int(cidx)
+			if safe_col < 0 or safe_col >= arr.shape[1]:
+				safe_col = 0
+			return np.asarray(arr[:eff_len, safe_col], dtype=np.float64).reshape(-1)
+
+		raise ValueError(f'Unsupported sample ndim={arr.ndim} for visualization')
+
+	n_samples = len(org_data)
+	if seq_length is None:
+		seq_length = np.full((n_samples,), org_data.shape[1], dtype=np.int32)
+
+	series_list = []
+	for i in range(n_samples):
+		raw_len = seq_length[i] if i < len(seq_length) else org_data[i].shape[0]
+		try:
+			eff_len = int(np.asarray(raw_len).reshape(-1)[0])
+		except Exception:
+			eff_len = int(org_data[i].shape[0])
+		if eff_len <= 0:
+			eff_len = int(org_data[i].shape[0])
+		series_list.append(_extract_series(org_data[i], eff_len, col_index))
+
 	n_clusters = len(np.unique(valid_labels))
 	texts = _i18n(language)
 
@@ -629,24 +660,28 @@ def visualize_cluster_results(
 	axes = [axes] if n_clusters == 1 else axes.flatten()
 
 	for i, cluster_id in enumerate(np.unique(valid_labels)):
-		cluster_seq = valid_org_data[valid_labels == cluster_id]
+		cluster_indices = np.where(cluster_labels == cluster_id)[0]
+		cluster_seq = [series_list[idx] for idx in cluster_indices]
 		if len(cluster_seq) > sampling_threshold:
 			np.random.seed(42)
 			sampled_indices = np.random.choice(len(cluster_seq), size=sampling_threshold, replace=False)
-			cluster_seq = cluster_seq[sampled_indices]
+			cluster_seq = [cluster_seq[idx] for idx in sampled_indices]
 
 		if len(cluster_seq) > 0:
+			min_len = min(len(s) for s in cluster_seq)
+			if min_len <= 0:
+				continue
+			cluster_seq_aligned = np.asarray([s[:min_len] for s in cluster_seq], dtype=np.float64)
 			if dist_method == 'dtw':
-				cluster_center = dtw_barycenter_averaging(cluster_seq)
+				cluster_center = dtw_barycenter_averaging(cluster_seq_aligned)
 			else:
-				min_len = min(len(s) for s in cluster_seq)
-				cluster_center = np.mean([s[:min_len] for s in cluster_seq], axis=0)
+				cluster_center = np.mean(cluster_seq_aligned, axis=0)
 
 			axes[i].plot(
 				cluster_center,
 				color=cluster_colors[cluster_id % 10],
 				linewidth=2.5,
-				label=f"{texts['cluster_prefix']} {cluster_id} ({texts['sample_count']}: {len(valid_org_data[valid_labels == cluster_id])})",
+				label=f"{texts['cluster_prefix']} {cluster_id} ({texts['sample_count']}: {len(cluster_indices)})",
 			)
 			axes[i].set_title(f"{texts['cluster_prefix']} {cluster_id} {texts['cluster_center_suffix']}", fontsize=12)
 			axes[i].set_xlabel(texts['time_step'], fontsize=10)
@@ -673,7 +708,8 @@ def visualize_cluster_results(
 	axes = [axes] if total_plots == 1 else axes.flatten()
 
 	for i, cluster_id in enumerate(np.unique(valid_labels)):
-		cluster_seq = valid_org_data[valid_labels == cluster_id]
+		cluster_indices = np.where(cluster_labels == cluster_id)[0]
+		cluster_seq = [series_list[idx] for idx in cluster_indices]
 		cluster_seq_subset = cluster_seq[:stack_count]
 		for j, series in enumerate(cluster_seq_subset):
 			axes[i].plot(series, alpha=0.6, label=f"{texts['series']} {j}" if j < 3 else '')
@@ -686,7 +722,7 @@ def visualize_cluster_results(
 	if show_noise:
 		noise_idx = cluster_labels == -1
 		noise_ax = axes[n_clusters]
-		noise_seq = org_data[noise_idx]
+		noise_seq = [series_list[idx] for idx in np.where(noise_idx)[0]]
 		noise_seq_subset = noise_seq[:stack_count]
 		if len(noise_seq_subset) > 0:
 			for j, series in enumerate(noise_seq_subset):
@@ -882,6 +918,7 @@ def cluster_result_quantification(
 			valid_org_data=valid_org_data,
 			feature_matrix=feature_matrix,
 			org_data=org_data,
+			seq_length=seq_length,
 			save_dir=save_dir,
 			dist_method=dist_method,
 			col_index=col_index,

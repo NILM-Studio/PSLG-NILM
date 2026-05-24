@@ -2,7 +2,7 @@ import os
 
 import numpy as np
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense, Masking, Bidirectional, Concatenate
+from tensorflow.keras.layers import Input, LSTM, RepeatVector, TimeDistributed, Dense, Bidirectional, Concatenate
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
 import tensorflow as tf
@@ -62,6 +62,7 @@ def bilstm_ae(data: np.ndarray, config: dict):
     batch_size = config["batch_size"]  # 批量大小
     learning_rate = config["learning_rate"]  # 学习率
     patience = config["patience"]      # 早停耐心值
+    lengths = config.get("lengths", None)
 
     # ===================== 2. 提取数据维度信息 =====================
     timesteps = data.shape[1]  # 时间步长度
@@ -77,18 +78,23 @@ def bilstm_ae(data: np.ndarray, config: dict):
     X_max = X.max()
     X = (X - X_min) / (X_max - X_min + 1e-7)  # 加上小常数防止除零
     
-    # 计算归一化后的 Mask 值（原始填充值 0.0 对应的新值）
-    # Masking 层会忽略这个值，避免填充值对模型训练的影响
-    scaled_mask_value = (0.0 - X_min) / (X_max - X_min + 1e-7)
-    print(f"数据归一化完成 | 范围: {X.min():.2f} ~ {X.max():.2f} | 修正后的 Mask 值: {scaled_mask_value:.4f}")
+    print(f"数据归一化完成 | 范围: {X.min():.2f} ~ {X.max():.2f}")
+
+    # ===================== 3.1 构建逐时间步损失权重 =====================
+    # 通过 sample_weight 仅在有效时间步计算重构损失，避免 padding 区域主导训练。
+    sample_weight = np.ones((X.shape[0], timesteps), dtype=np.float32)
+    if lengths is not None:
+        lengths_arr = np.asarray(lengths).reshape(-1)
+        if lengths_arr.shape[0] != X.shape[0]:
+            raise ValueError(
+                f"Invalid lengths size: {lengths_arr.shape[0]}, expected {X.shape[0]}"
+            )
+        clipped_lengths = np.clip(lengths_arr.astype(np.int32), 0, timesteps)
+        sample_weight = (np.arange(timesteps)[None, :] < clipped_lengths[:, None]).astype(np.float32)
 
     # ===================== 4. 构建 BiLSTM 自编码器模型 =====================
     # 输入层：适配单特征的时序形状 (timesteps, n_features)
     input_layer = Input(shape=(timesteps, n_features))
-
-    # Masking 层：忽略填充值，适配不等长数据
-    # 对于填充为 0.0 的位置，Masking 层会将其在计算中忽略
-    masking_layer = Masking(mask_value=scaled_mask_value)(input_layer)
 
     # ===================== 编码器部分 =====================
     # BiLSTM 编码器：双向 LSTM，捕捉时序数据的前向+后向依赖
@@ -103,7 +109,7 @@ def bilstm_ae(data: np.ndarray, config: dict):
     # - forward_c: 前向 LSTM 的最终细胞状态
     # - backward_h: 后向 LSTM 的最终隐藏状态
     # - backward_c: 后向 LSTM 的最终细胞状态
-    encoder_outputs, f_h, f_c, b_h, b_c = encoder_bilstm(masking_layer)
+    encoder_outputs, f_h, f_c, b_h, b_c = encoder_bilstm(input_layer)
     
     # 合并双向 LSTM 的隐藏状态（前向 h + 后向 h）
     # Concatenate 在最后一个维度拼接，形状从 (batch_size, 16) 变为 (batch_size, 32)
@@ -169,7 +175,8 @@ def bilstm_ae(data: np.ndarray, config: dict):
         batch_size=batch_size,
         shuffle=True,             # 每个 epoch 打乱数据顺序
         validation_split=current_val_split,
-        callbacks=current_callbacks
+        callbacks=current_callbacks,
+        sample_weight=sample_weight,
     )
 
     # ===================== 9. 提取特征 =====================

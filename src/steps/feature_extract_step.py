@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 from src.framework.step import Step
+from models.feature_extract.cnn_ae import cnn_ae
 from models.feature_extract.lstm_ae import lstm_ae
 from models.feature_extract.bilstm_ae import bilstm_ae
 from models.feature_extract.bilstm_ae_attention import bilstm_ae_attention
@@ -18,7 +19,8 @@ class FeatureExtractStep(Step):
     Supports three feature extraction methods:
     1. LSTM Autoencoder (lstm_ae): Extracts global latent space features
     2. BiLSTM Autoencoder (bilstm_ae): Extracts global latent space features (bidirectional)
-    3. BiLSTM + Attention Autoencoder (bilstm_ae_attention): Extracts time-step level features
+    3. CNN Autoencoder (cnn_ae): Extracts global latent space features via Conv1D encoder
+    4. BiLSTM + Attention Autoencoder (bilstm_ae_attention): Extracts time-step level features
     
     Data input priority:
     1. data_path / seq_len_path (if specified)
@@ -257,6 +259,9 @@ class FeatureExtractStep(Step):
         np_data = data['X']
         lengths = data.get('lengths', None)
 
+        if lengths is not None:
+            model_config['lengths'] = lengths
+
         if not isinstance(np_data, np.ndarray) or np_data.ndim != 3:
             raise ValueError(
                 f"[FeatureExtract] Invalid tensor shape: {getattr(np_data, 'shape', None)}. "
@@ -276,6 +281,10 @@ class FeatureExtractStep(Step):
                 print(f"[FeatureExtract] Using BiLSTM Autoencoder - Output shape: (n_samples, {self.latent_dim})")
                 extracted_features, training_history = bilstm_ae(np_data, model_config)
 
+            elif self.model_name == "cnn_ae":
+                print(f"[FeatureExtract] Using CNN Autoencoder - Output shape: (n_samples, {self.latent_dim})")
+                extracted_features, training_history = cnn_ae(np_data, model_config)
+
             elif self.model_name == "bilstm_ae_attention":
                 print(f"[FeatureExtract] Using BiLSTM + Attention Autoencoder")
                 print(f"[FeatureExtract] Output shape: (n_samples, {self.latent_dim})")
@@ -283,7 +292,6 @@ class FeatureExtractStep(Step):
 
             elif self.model_name == "detsec":
                 print(f"[FeatureExtract] Using DETSEC Model")
-                model_config['lengths'] = lengths
                 extracted_features, training_history = detsec_ae(np_data, model_config)
 
             else:

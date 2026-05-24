@@ -369,21 +369,26 @@ class TimeClusteringStep(Step):
 
         return labels
 
-    def run_kmeans_dtw(self, dist_matrix: np.ndarray) -> np.ndarray:
-        """Execute KMeans on DTW-distance representation (rows of precomputed distance matrix)."""
+    def run_kmeans_dtw(self, ts_list: list) -> np.ndarray:
+        """Execute direct DTW KMeans clustering on raw sequences."""
+        from tslearn.clustering import TimeSeriesKMeans
+        from tslearn.utils import to_time_series_dataset
+
         print(
-            "[TimeClustering] Running KMeans on precomputed DTW-distance representation with "
+            "[TimeClustering] Running TimeSeriesKMeans(metric=dtw) with "
             f"n_clusters={self.kmeans_n_clusters}, random_state={self.kmeans_random_state}, "
             f"n_init={self.kmeans_n_init}, max_iter={self.kmeans_max_iter}"
         )
 
-        kmeans_model = KMeans(
+        X = to_time_series_dataset(ts_list)
+        kmeans_model = TimeSeriesKMeans(
             n_clusters=self.kmeans_n_clusters,
+            metric='dtw',
             random_state=self.kmeans_random_state,
             n_init=self.kmeans_n_init,
             max_iter=self.kmeans_max_iter,
         )
-        labels = kmeans_model.fit_predict(dist_matrix)
+        labels = kmeans_model.fit_predict(X)
 
         n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
         n_noise = int(np.sum(labels == -1))
@@ -515,12 +520,14 @@ class TimeClusteringStep(Step):
         )
         return best_labels, best_k, scan_records, scan_payload
 
-    def run_kmeans_scan_dtw(self, dist_matrix: np.ndarray, eval_feature_matrix: np.ndarray, save_dir: str) -> tuple:
-        """Scan KMeans on precomputed DTW-distance representation in [min_cluster, max_cluster]."""
+    def run_kmeans_scan_dtw(self, ts_list: list, eval_feature_matrix: np.ndarray, save_dir: str) -> tuple:
+        """Scan direct TimeSeriesKMeans(metric=dtw) in [min_cluster, max_cluster]."""
+        from tslearn.clustering import TimeSeriesKMeans
+        from tslearn.utils import to_time_series_dataset
 
         min_k = int(self.min_cluster)
         max_k = int(self.max_cluster)
-        n_samples = int(dist_matrix.shape[0])
+        n_samples = int(len(ts_list))
 
         if min_k < 2:
             raise ValueError(f"[TimeClustering] min_cluster must be >= 2, got {min_k}")
@@ -532,26 +539,42 @@ class TimeClusteringStep(Step):
                 "min_cluster must be less than number of samples."
             )
 
+        # Auto mini-batch fallback for large datasets to keep DTW scan tractable.
+        max_scan_samples = 1000
+        if n_samples > max_scan_samples:
+            rng = np.random.default_rng(int(self.kmeans_random_state))
+            sample_idx = np.sort(rng.choice(n_samples, size=max_scan_samples, replace=False))
+            ts_list = [ts_list[i] for i in sample_idx]
+            eval_feature_matrix = eval_feature_matrix[sample_idx]
+            n_samples = max_scan_samples
+            print(
+                "[TimeClustering] DTW scan mini-batch enabled: "
+                f"sampling {n_samples} sequences from original dataset."
+            )
+
         scan_records = []
         best_score = -np.inf
         best_k = None
         best_labels = None
-        print(f"[TimeClustering] Running DTW KMeans scan from k={min_k} to k={max_k}")
+        print(f"[TimeClustering] Running DTW TimeSeriesKMeans scan from k={min_k} to k={max_k}")
+
+        X = to_time_series_dataset(ts_list)
 
         for k in range(min_k, max_k + 1):
             if k >= n_samples:
                 print(f"[TimeClustering] Skip k={k}: requires k < n_samples ({n_samples})")
                 continue
 
-            kmeans_model = KMeans(
+            kmeans_model = TimeSeriesKMeans(
                 n_clusters=k,
+                metric='dtw',
                 random_state=self.kmeans_random_state,
                 n_init=self.kmeans_n_init,
                 max_iter=self.kmeans_max_iter,
             )
-            labels = kmeans_model.fit_predict(dist_matrix)
+            labels = kmeans_model.fit_predict(X)
 
-            sci = float(silhouette_score(dist_matrix, labels, metric='precomputed'))
+            sci = float(silhouette_score(eval_feature_matrix, labels, metric='euclidean'))
             dbi = float(davies_bouldin_score(eval_feature_matrix, labels))
             chi = float(calinski_harabasz_score(eval_feature_matrix, labels))
 
@@ -959,8 +982,9 @@ class TimeClusteringStep(Step):
             return context
         elif self.cluster_method == 'kmeans':
             if use_dtw_data:
+                labels = self.run_kmeans_dtw(ts_list)
+                # Build DTW matrix only for post-clustering quantification.
                 dist_matrix = self.get_distance_matrix(ts_list, metric='dtw', cache_dir=save_dir)
-                labels = self.run_kmeans_dtw(dist_matrix)
             else:
                 labels = self.run_kmeans(normalized_feature_matrix)
                 # Keep quantification path unified by building a precomputed distance matrix.
@@ -982,9 +1006,8 @@ class TimeClusteringStep(Step):
                 )
         elif self.cluster_method in ('kmeans-scan', 'kmeans_scan'):
             if use_dtw_data:
-                dist_matrix = self.get_distance_matrix(ts_list, metric='dtw', cache_dir=save_dir)
                 _labels, best_k, scan_records, scan_payload = self.run_kmeans_scan_dtw(
-                    dist_matrix,
+                    ts_list,
                     eval_feature_matrix,
                     save_dir,
                 )
