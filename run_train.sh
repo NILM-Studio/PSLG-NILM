@@ -36,7 +36,7 @@ echo "Conda environment activated: $CONDA_DEFAULT_ENV"
 echo "Starting main.py..."
 cd /home/scnu2023024258/data/code/PSLG-NILM
 
-python main.py --config config/config.yaml
+python main.py --config config/recommand_config/config_dishwasher.yaml
 
 if [ $? -eq 0 ]; then
     echo "Workflow executed successfully!"

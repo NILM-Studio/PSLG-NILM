@@ -8,7 +8,7 @@ import os
 import gc
 import sys
 from scipy.signal import medfilt
-from models.time_segmentation.claspy.segmentation import BinaryClaSPSegmentation
+from claspy.segmentation import BinaryClaSPSegmentation
 from src.framework.step import Step
 from src.steps.dataset_split_step import DatasetSplitStep
 
@@ -44,7 +44,7 @@ class TimeSegmentationStep(Step):
     def get_segmentation_points(self, time_series, distance="znormed_euclidean_distance"):
         """Segmentation logic using BinaryClaSPSegmentation or FLUSS."""
         if self.segment_method == "fluss":
-            from models.time_segmentation.fluss import fluss
+            from fluss import fluss
             try:
                 # Ensure input is 1D for FLUSS
                 ts_1d = time_series.flatten()
@@ -66,7 +66,7 @@ class TimeSegmentationStep(Step):
                 print(f"[TimeSegmentation] FLUSS error: {e}")
                 return []
         elif self.segment_method == "espresso":
-            from models.time_segmentation.espresso import espresso_minimize
+            from espresso import espresso_minimize
             try:
                 # ESPRESSO is a logic minimizer, its integration here is experimental
                 # and currently returns empty change points as a placeholder.

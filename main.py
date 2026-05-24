@@ -7,10 +7,17 @@ import numpy as np
 # Add project root and models to sys.path
 project_root = os.path.dirname(os.path.abspath(__file__))
 models_dir = os.path.join(project_root, "models")
+time_seg_dir = os.path.join(models_dir, "time_segmentation")
+feature_ext_dir = os.path.join(models_dir, "feature_extract")
+
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 if models_dir not in sys.path:
     sys.path.insert(0, models_dir)
+if time_seg_dir not in sys.path:
+    sys.path.insert(0, time_seg_dir)
+if feature_ext_dir not in sys.path:
+    sys.path.insert(0, feature_ext_dir)
 
 from src.framework.workflow import Workflow
 from src.steps.extract_active_data_step import ExtractActiveDataStep
@@ -53,6 +60,19 @@ def run_workflow(config_path: str, resume: bool = False, sequence_id: str | None
                 min_duration_seconds=extract_active_cfg.get("min_duration_seconds", 30),
                 context_seconds=extract_active_cfg.get("context_seconds", 120),
                 set_input_root=extract_active_cfg.get("set_input_root", True),
+            )
+        )
+    
+    time_segmentation_cfg = config["steps"].get("time_segmentation", {})
+    if time_segmentation_cfg.get("enabled", False):
+        wf.add_step(
+            TimeSegmentationStep(
+                name="TimeSegmentation",
+                segment_method=time_segmentation_cfg.get("segment_method", "clasp"),
+                appliance_name=appliance_name,
+                window_size=time_segmentation_cfg.get("window_size", 100),
+                n_regimes=time_segmentation_cfg.get("n_regimes", 3),
+                excl_factor=time_segmentation_cfg.get("excl_factor", 5),
             )
         )
     

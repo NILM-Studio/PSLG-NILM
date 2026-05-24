@@ -4,7 +4,7 @@
 workflow:
   name: "Primitive State Segmentation and Clustering"
   description: "Standard ML workflow for processing and training on input data."
-  appliance_name: "microwave" 
+  appliance_name: "washing_machine" 
   resume: true #设置为true有done会跳过已执行的step
   sequence_id: ""
 
@@ -12,7 +12,7 @@ workflow:
 steps:
   extract_active_data:
     enabled: true
-    input_file: "input/microwave.csv"
+    input_file: "input/washing_machine.csv"
     power_threshold: 1.0
     min_duration_seconds: 30
     context_seconds: 60
@@ -27,7 +27,7 @@ steps:
     excl_factor: 5
 
   feature_extract:
-    enabled: false
+    enabled: true
     data_path: ""
     seq_len_path: ""
     model_name: "detsec"  # lstm_ae / bilstm_ae / bilstm_ae_attention / detsec
@@ -39,7 +39,7 @@ steps:
     attention_size: 32
   
   time_clustering:
-    enabled: false
+    enabled: true
     data_path: "" 
     feature_path: "" 
     seq_len_path: "" 

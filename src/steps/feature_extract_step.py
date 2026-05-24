@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 from src.framework.step import Step
-from models.feature_extract.lstm_ae import lstm_ae
-from models.feature_extract.bilstm_ae import bilstm_ae
-from models.feature_extract.bilstm_ae_attention import bilstm_ae_attention
-from models.feature_extract.detsec_model import detsec_ae
+from lstm_ae import lstm_ae
+from bilstm_ae import bilstm_ae
+from bilstm_ae_attention import bilstm_ae_attention
+from detsec_model import detsec_ae
 
 
 class FeatureExtractStep(Step):

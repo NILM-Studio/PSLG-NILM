@@ -24,7 +24,7 @@ steps:
     plot_count: 0
 
   feature_extract:
-    enabled: false
+    enabled: true
     data_path: "input/dishwasher/data_fusion.npy"
     seq_len_path: "input/dishwasher/seq_length_fusion.npy"
     model_name: "bilstm_ae" # bilstm_ae / lstm_ae / ae
@@ -36,11 +36,11 @@ steps:
     attention_size: 32
   
   time_clustering:
-    enabled: true
+    enabled: false
     data_path: "input/dishwasher/data_fusion.npy"
     feature_path: "input/dishwasher/autoencoder_features_cleaned_power_64_dim.npy"
     seq_len_path: "input/dishwasher/seq_length_fusion.npy"
-    cluster_method: "kmeans"  # dbscan / dbscan-scan / kmeans / kmeans-scan / hdbscan
+    cluster_method: "dbscan-scan"  # dbscan / dbscan-scan / kmeans / kmeans-scan / hdbscan
     method_specific:
       dbscan:
         eps: 1.25
@@ -53,7 +53,7 @@ steps:
         min_pts: 20
         metric: "euclidean"
       kmeans:
-        n_clusters: 6
+        n_clusters: 7
         random_state: 42
         n_init: 30
         max_iter: 300
