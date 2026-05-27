@@ -15,11 +15,11 @@ def bilstm_ae(data: np.ndarray, config: dict):
     该函数使用双向 LSTM（BiLSTM）自编码器从时序数据中提取全局潜空间特征。
     BiLSTM 能够同时捕捉时序数据的前向和后向依赖关系，相比单向 LSTM 能更好地理解时序上下文。
     
-    模型结构：
-    - 编码器：BiLSTM(16+16) + Concatenate + Dense(latent_dim)，提取时序的全局特征
-      - BiLSTM 每个方向 16 个单元，总共 32 个单元（与单向 LSTM 32 单元参数量相当）
-      - 合并前向和后向的隐藏状态，捕捉双向时序依赖
-    - 解码器：RepeatVector + LSTM(32) + TimeDistributed(Dense)，重构原始时序
+        模型结构：
+        - 编码器：BiLSTM(32+32) + Concatenate + Dense(latent_dim)，提取时序的全局特征
+            - BiLSTM 每个方向 32 个单元，总共 64 个单元（较原配置有更强表达能力）
+            - 合并前向和后向的隐藏状态，捕捉双向时序依赖
+        - 解码器：RepeatVector + BiLSTM(32+32) + TimeDistributed(Dense)，重构原始时序
     
     Args:
         data (np.ndarray): 输入数据，形状为 (n_samples, timesteps, n_features)
@@ -54,7 +54,7 @@ def bilstm_ae(data: np.ndarray, config: dict):
         BiLSTM 相比 LSTM 的优势：
         - 能够同时考虑过去和未来的信息
         - 对于需要理解完整时序上下文的任务效果更好
-        - 参数量与单向 LSTM 相当（16+16 vs 32），但表达能力更强
+        - 在相近深度下通常具备更强的上下文建模能力
     """
     # ===================== 1. 解析配置参数 =====================
     latent_dim = config["latent_dim"]  # 潜空间特征维度
@@ -98,10 +98,10 @@ def bilstm_ae(data: np.ndarray, config: dict):
 
     # ===================== 编码器部分 =====================
     # BiLSTM 编码器：双向 LSTM，捕捉时序数据的前向+后向依赖
-    # - 每个方向 16 个单元，总共 32 个单元（与单向 LSTM 32 单元参数量相当）
+    # - 每个方向 32 个单元，总共 64 个单元
     # - return_state=True: 返回前向和后向的隐藏状态和细胞状态
     # - activation='tanh': 使用 tanh 激活函数，比 relu 更稳定
-    encoder_bilstm = Bidirectional(LSTM(16, activation='tanh', return_state=True))
+    encoder_bilstm = Bidirectional(LSTM(32, activation='tanh', return_state=True))
     
     # BiLSTM 返回值：output, forward_h, forward_c, backward_h, backward_c
     # - output: 双向 LSTM 的输出序列
@@ -112,11 +112,11 @@ def bilstm_ae(data: np.ndarray, config: dict):
     encoder_outputs, f_h, f_c, b_h, b_c = encoder_bilstm(input_layer)
     
     # 合并双向 LSTM 的隐藏状态（前向 h + 后向 h）
-    # Concatenate 在最后一个维度拼接，形状从 (batch_size, 16) 变为 (batch_size, 32)
+    # Concatenate 在最后一个维度拼接，形状从 (batch_size, 32) 变为 (batch_size, 64)
     combined_h = Concatenate(axis=-1)([f_h, b_h])
     
     # 全连接层：将合并后的隐藏状态映射到潜空间
-    # combined_h 的形状为 (batch_size, 32)，经过 Dense 层后变为 (batch_size, latent_dim)
+    # combined_h 的形状为 (batch_size, 64)，经过 Dense 层后变为 (batch_size, latent_dim)
     latent_features = Dense(latent_dim, activation='relu')(combined_h)
 
     # ===================== 解码器部分 =====================
@@ -124,11 +124,11 @@ def bilstm_ae(data: np.ndarray, config: dict):
     # 输入形状: (batch_size, latent_dim) -> 输出形状: (batch_size, timesteps, latent_dim)
     decoder_input = RepeatVector(timesteps)(latent_features)
     
-    # LSTM 解码器：从潜空间特征重构时序数据
-    # - 使用单向 LSTM（单向足以重构，编码器已经提取了双向特征）
+    # BiLSTM 解码器：从潜空间特征重构时序数据
+    # - 每个方向 32 个单元，总共 64 个单元
     # - return_sequences=True: 返回每个时间步的输出
-    decoder_lstm = LSTM(32, activation='tanh', return_sequences=True)
-    decoder_outputs = decoder_lstm(decoder_input)
+    decoder_bilstm = Bidirectional(LSTM(32, activation='tanh', return_sequences=True))
+    decoder_outputs = decoder_bilstm(decoder_input)
     
     # TimeDistributed + Dense: 对每个时间步独立应用全连接层
     # 将解码器的输出映射到原始特征空间

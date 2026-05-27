@@ -3,6 +3,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import (
     Input,
     Conv1D,
+    BatchNormalization,
     MaxPooling1D,
     UpSampling1D,
     Dense,
@@ -81,12 +82,15 @@ def cnn_ae(data: np.ndarray, config: dict):
     input_layer = Input(shape=(timesteps, n_features), name="cnn_input")
 
     x = Conv1D(32, kernel_size=5, padding="same", activation="relu", name="enc_conv1")(input_layer)
+    x = BatchNormalization(name="enc_bn1")(x)
     x = MaxPooling1D(pool_size=2, padding="same", name="enc_pool1")(x)
     x = Conv1D(64, kernel_size=3, padding="same", activation="relu", name="enc_conv2")(x)
+    x = BatchNormalization(name="enc_bn2")(x)
     x = MaxPooling1D(pool_size=2, padding="same", name="enc_pool2")(x)
 
     x = GlobalAveragePooling1D(name="enc_gap")(x)
-    latent_features = Dense(latent_dim, activation="relu", name="embedding")(x)
+    # Use linear embedding to reduce dead dimensions caused by ReLU saturation.
+    latent_features = Dense(latent_dim, activation="linear", name="embedding")(x)
 
     # 解码器：Dense -> Reshape -> UpSample -> Conv -> UpSample -> Conv -> 输出
     reduced_steps = _downsample_steps(timesteps, times=2)
@@ -94,8 +98,10 @@ def cnn_ae(data: np.ndarray, config: dict):
     dec = Reshape((reduced_steps, 64), name="dec_reshape")(dec)
     dec = UpSampling1D(size=2, name="dec_up1")(dec)
     dec = Conv1D(64, kernel_size=3, padding="same", activation="relu", name="dec_conv1")(dec)
+    dec = BatchNormalization(name="dec_bn1")(dec)
     dec = UpSampling1D(size=2, name="dec_up2")(dec)
     dec = Conv1D(32, kernel_size=3, padding="same", activation="relu", name="dec_conv2")(dec)
+    dec = BatchNormalization(name="dec_bn2")(dec)
     dec = Conv1D(n_features, kernel_size=3, padding="same", activation="linear", name="reconstruct_raw")(dec)
 
     # 由于池化/上采样对奇数长度会产生偏差，统一裁剪回原始 timesteps。
