@@ -8,6 +8,7 @@ os.environ['MKL_NUM_THREADS'] = '1'
 os.environ['OPENBLAS_NUM_THREADS'] = '1'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Reduce TensorFlow logging
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'  # Prevent TensorFlow from pre-allocating all GPU memory
+os.environ['NUMBA_THREADING_LAYER'] = 'workqueue' # Use the most stable threading layer for Numba
 
 import yaml
 import argparse

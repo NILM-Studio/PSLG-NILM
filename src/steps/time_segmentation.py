@@ -9,6 +9,7 @@ import gc
 import sys
 from scipy.signal import medfilt
 from claspy.segmentation import BinaryClaSPSegmentation
+from models.time_segmentation.clasp_origin import ClaspOriginModel
 from src.framework.step import Step
 from src.steps.dataset_split_step import DatasetSplitStep
 
@@ -93,6 +94,15 @@ class TimeSegmentationStep(Step):
                 return []
             except Exception as e:
                 print(f"[TimeSegmentation] ESPRESSO error: {e}")
+                return []
+        elif self.segment_method == "clasp-origin":
+            try:
+                # Use ClaspOriginModel as defined in models/time_segmentation/clasp_origin.py
+                model = ClaspOriginModel(config={"distance": "euclidean_distance"}) # No mean preprocessing (z-norm)
+                change_points = model.train(time_series)
+                return change_points
+            except Exception as e:
+                print(f"[TimeSegmentation] Clasp-origin error: {e}")
                 return []
         else:  # Default: clasp
             try:
@@ -228,14 +238,34 @@ class TimeSegmentationStep(Step):
             
             signal = df['power'].values
             
-            # 1. Outlier removal
-            signal_cleaned, _ = self.medfilt_outlier_removal(signal)
-            
-            # 2. Initial segmentation
-            orig_cp = self.get_segmentation_points(signal_cleaned, distance="znormed_euclidean_distance")
-            
-            # 3. Wavelet analysis
-            res = self.run_wavelet_analysis(signal_cleaned, 'db4', orig_cp)
+            # Segmentation Logic
+            if self.segment_method == "clasp-origin":
+                # 1. Direct segmentation on raw signal (no mean preprocessing/wavelet)
+                orig_cp = self.get_segmentation_points(signal)
+                
+                # 2. Mock result to skip wavelet analysis but maintain compatibility with tensor output
+                res = {
+                    'wavelet': 'none',
+                    'low_freq_signal': signal,
+                    'high_freq_combined': np.zeros_like(signal),
+                    'low_cp': [],
+                    'high_cp': [],
+                    'synthesized_cp': orig_cp,
+                    'ref_name': 'Original',
+                    'num_low_cp': 0,
+                    'num_high_cp': 0,
+                    'cleaned_signal': signal
+                }
+                signal_cleaned = signal # Use raw signal as "cleaned"
+            else:
+                # 1. Outlier removal
+                signal_cleaned, _ = self.medfilt_outlier_removal(signal)
+                
+                # 2. Initial segmentation
+                orig_cp = self.get_segmentation_points(signal_cleaned, distance="znormed_euclidean_distance")
+                
+                # 3. Wavelet analysis
+                res = self.run_wavelet_analysis(signal_cleaned, 'db4', orig_cp)
             
             # 4. Extract segments for tensor output
             low_freq = res['low_freq_signal']
