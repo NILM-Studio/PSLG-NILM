@@ -1,0 +1,38 @@
+# PSLG-NILM-ADVANCED dependencies (Python 3.12, Windows/Linux)
+#
+#   pip install -r requirements.txt
+#
+# NOTE on numpy: keep numpy<2 — pandas 2.2.x wheels are built against numpy 1.x
+# and the vendored segmentation tooling is not numpy-2 ready.
+numpy==1.26.4
+pandas==2.2.2
+scipy>=1.11
+scikit-learn==1.7.2
+pyyaml>=6.0
+matplotlib>=3.8
+
+# ── time segmentation ───────────────────────────────────────────────
+# clasp / fluss / espresso ship as VENDORED packages under
+# models/time_segmentation/ (auto-added to sys.path by main.py) — do NOT
+# pip-install claspy; it would drag in numpy 2.x and break the env.
+pywavelets>=1.4        # pywt: wavelet analysis in the segmentation step
+stumpy>=1.12           # matrix-profile backend used by vendored fluss
+numba>=0.59,<0.62      # required by stumpy / vendored claspy
+
+# ── feature extraction ──────────────────────────────────────────────
+tslearn>=0.6           # DTW feature model + DTW metric in clustering
+# tensorflow>=2.16     # OPTIONAL: only needed for the neural feature models
+                       # (detsec, bilstm_ae, lstm_ae, cnn_ae,
+                       # bilstm_ae_attention, autoencoder). The dtw feature
+                       # model works without it.
+# WARNING: tslearn probes for torch at import; a BROKEN torch install
+# (DLL load failure) raises OSError outside tslearn's ImportError guard and
+# kills the import. Either install a working torch or none at all.
+
+# ── datasets ────────────────────────────────────────────────────────
+# nilmtk has no py3.12 builds on PyPI — install from source:
+nilmtk @ git+https://github.com/nilmtk/nilmtk.git
+tables>=3.9            # HDF5 backend for nilmtk datasets (ukdale.h5 ...)
+
+# ── optional clustering backends ────────────────────────────────────
+# hdbscan>=0.8         # OPTIONAL: only for --cluster-method hdbscan
