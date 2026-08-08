@@ -1,0 +1,23 @@
+# Determined AI task config — UK-DALE building1 washing machine, extract+segment (clasp-origin).
+# run_id=test_ukdale -> artifacts under log_det_test/test_ukdale/ (persisted best-effort).
+# Uses the pre-built full washing_machine CSV (same file the legacy full runs used).
+# Push:   det task create determined/test_ukdale.yaml
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_dataset_segment.sh
+  - test_ukdale                                      # RUN_ID
+  - /labdata2/lexingruan/pslg-nilm/input/ukdale_washing_machine_full.csv   # RAW_SERIES
+  - washing_machine                                  # APPLIANCE
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

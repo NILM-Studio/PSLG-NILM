@@ -1,0 +1,25 @@
+# Probe: /labdata2 visible + shared env imports + TF sees the GPU.
+entrypoint:
+  - bash
+  - -c
+  - |
+    set -e
+    ENV=/labdata2/lexingruan/miniconda3/envs/PSLG-NILM
+    PY=$ENV/bin/python
+    export NUMBA_DISABLE_CUDA=1
+    NVIDIA_LIBS=$(ls -d $ENV/lib/python3.12/site-packages/nvidia/*/lib 2>/dev/null | tr '\n' ':')
+    export LD_LIBRARY_PATH=$NVIDIA_LIBS$LD_LIBRARY_PATH
+    export TF_CPP_MIN_LOG_LEVEL=2 TF_FORCE_GPU_ALLOW_GROWTH=true
+    nvidia-smi -L
+    test -f /labdata2/lexingruan/pslg-nilm/main.py && echo "READ /labdata2 OK"
+    $PY -c "import importlib as I; [I.import_module(m) for m in ['numpy','pandas','scipy','sklearn','stumpy','numba','tslearn','pywt','tables','nilmtk']]; print('CORE IMPORTS OK'); import tensorflow as tf; gpus=tf.config.list_physical_devices('GPU'); print('TF', tf.__version__, 'GPUs:', gpus); assert gpus, 'NO GPU VISIBLE'; print('PROBE PASS')"
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: true

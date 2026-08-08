@@ -1,0 +1,38 @@
+# Determined AI task config — PSLG-NILM-ADVANCED washing_machine smoke test.
+#
+# Push to the "LINs" cluster:   det task create determined/test.yaml
+#
+# The Determined generic-task API (0.38) takes no `name`/`description` in config,
+# so the task is labelled "test" by its pipeline run-id (artifacts under log/test/)
+# and by its entrypoint script name (run_test.sh).
+#
+# Runtime is GPU-adapted: 1 GPU is reserved and TF 2.16 + its CUDA-12 libs live in
+# the shared PSLG-NILM conda env on /labdata2. Every neural feature model
+# (detsec/bilstm_ae/lstm_ae/cnn_ae/bilstm_ae_attention/autoencoder) then runs on
+# GPU; clasp/fluss/dtw/kmeans stay CPU. See determined/run_test.sh for env wiring.
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_test.sh
+  - fluss         # SEGMENT_METHOD
+  - dtw           # FEATURE_MODEL
+  - kmeans        # CLUSTER_METHOD
+  - "2"           # N_CLUSTERS
+  - test          # RUN_ID
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1                      # 1 GPU slot => 1 RTX 4090 (runtime is GPU-adapted)
+  shm_size: 4000000000          # 4 GB /dev/shm for numba / multiprocessing
+  resource_pool: 64c128t_512_4090   # RTX 4090 pool (lins-node03/04/05)
+
+# Shared lab NFS: conda env + 6.3 GB ukdale.h5 + this repo. RW so the task can
+# persist artifacts back to log_det_test/ (run_test.sh); the repo dir is owned by
+# uid 1067, so writes succeed only if the container runs as that uid — otherwise
+# NFS root-squash blocks them and run_test.sh falls back to logging the manifest.
+# Code is copied from here into a writable /tmp/pslg_test at task start.
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

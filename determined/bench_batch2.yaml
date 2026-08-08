@@ -1,0 +1,27 @@
+# Benchmark: BiLSTM-AE batch_size sweep on the real tensor shape (3769,1500,4).
+# Short (~3-4 min): finds the overhead-bound knee and peak GPU memory per batch.
+entrypoint:
+  - bash
+  - -c
+  - |
+    set -e
+    ENV=/labdata2/lexingruan/miniconda3/envs/PSLG-NILM
+    PY=$ENV/bin/python
+    export HOME=/tmp/bench
+    mkdir -p $HOME
+    export TF_CPP_MIN_LOG_LEVEL=2 TF_FORCE_GPU_ALLOW_GROWTH=true
+    NVIDIA_LIBS=$(ls -d $ENV/lib/python3.12/site-packages/nvidia/*/lib 2>/dev/null | tr '\n' ':')
+    export LD_LIBRARY_PATH=$NVIDIA_LIBS$ENV/lib:$LD_LIBRARY_PATH
+    nvidia-smi --query-gpu=name,memory.total --format=csv
+    cd /labdata2/lexingruan/pslg-nilm
+    $PY determined/bench_batch2.py
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: true

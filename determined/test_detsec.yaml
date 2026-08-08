@@ -1,0 +1,26 @@
+# FULL UK-DALE washing_machine — clasp-origin + detsec (REFACTORED) feature model.
+# run_id=test_detsec → artifacts under log_det_test/test_detsec/
+# bs=8 via config_ukdale_full_detsec.yaml (refactored detsec caps at bs=8 on 4090); 4090 pool.
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_test.sh
+  - clasp-origin                                   # SEGMENT_METHOD
+  - detsec                                         # FEATURE_MODEL
+  - kmeans                                         # CLUSTER_METHOD
+  - "2"                                            # N_CLUSTERS
+  - test_detsec                                    # RUN_ID
+  - /labdata2/lexingruan/pslg-nilm/input/ukdale_washing_machine_full.csv   # RAW_SERIES
+  - config/config_ukdale_full_detsec.yaml          # CONFIG (batch_size=8: detsec memory cliff)
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

@@ -1,0 +1,33 @@
+# Determined AI task config — FULL UK-DALE washing_machine run.
+#
+#   segment = clasp-origin  (full ClaSP, auto segment count)
+#   feature = bilstm_ae     (neural → trains on the reserved RTX 4090)
+#   cluster = kmeans k=2
+#
+# Covers ALL washing_machine data: 19.5M-row series → ~1,424 work cycles →
+# ~3,700 segmented samples. The full-series CSV (282 MB) was pre-built at
+# input/ukdale_washing_machine_full.csv and is read by absolute path.
+#
+# Push:   det task create determined/test_full_clasp.yaml
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_test.sh
+  - clasp-origin                                   # SEGMENT_METHOD
+  - bilstm_ae                                      # FEATURE_MODEL  (GPU)
+  - kmeans                                         # CLUSTER_METHOD
+  - "2"                                            # N_CLUSTERS
+  - test_full_clasp                                # RUN_ID
+  - /labdata2/lexingruan/pslg-nilm/input/ukdale_washing_machine_full.csv   # RAW_SERIES (full)
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1                      # 1 RTX 4090 — bilstm_ae trains on GPU
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

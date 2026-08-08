@@ -1,0 +1,29 @@
+# Determined AI task config — PSLG-NILM washing_machine with the BiLSTM-AE
+# feature model (a real neural model → trains on the reserved GPU).
+#
+# Push:   det task create determined/test_bilstm.yaml
+#
+# Same GPU-adapted runtime as test.yaml; only the feature model differs
+# (dtw → bilstm_ae) and the run-id labels the artifacts separately so the two
+# runs don't clobber each other under log_det_test/.
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_test.sh
+  - fluss         # SEGMENT_METHOD
+  - bilstm_ae     # FEATURE_MODEL  (neural → trains on GPU)
+  - kmeans        # CLUSTER_METHOD
+  - "2"           # N_CLUSTERS
+  - test_bilstm   # RUN_ID
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1                      # 1 GPU slot => 1 RTX 4090 (bilstm_ae trains on GPU)
+  shm_size: 4000000000          # 4 GB /dev/shm for numba / multiprocessing
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

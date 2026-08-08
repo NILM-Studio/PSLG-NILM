@@ -4,6 +4,7 @@ datasets/
 
 # ── 运行产物（中间数据 + manifest）─────────────────────
 log/
+log_det_test/
 
 # ── 输出（图表 + fewshot 导出等）───────────────────────
 output/

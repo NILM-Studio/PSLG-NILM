@@ -1,0 +1,17 @@
+# Benchmark the refactored detsec model on the 4090 pool (correctness + CuDNN + timing).
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/bench_detsec.sh
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false
