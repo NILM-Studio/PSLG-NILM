@@ -48,7 +48,9 @@ class TimeClusteringStep(Step):
                  dbscan_eps: float = 1.25, dbscan_min_pts: int = 20,
                  hdbscan_min_cluster_size: int = 20, hdbscan_min_samples=None,
                  hdbscan_cluster_selection_method: str = "eom",
-                 hdbscan_cluster_selection_epsilon: float = 0.0):
+                 hdbscan_cluster_selection_epsilon: float = 0.0,
+                 dpc_percent: float = 2.0, dpc_min_dist_tau=None,
+                 dpc_random_state: int = 0, dpc_k_nn: int = 5):
         self.cluster_method = str(cluster_method).lower()
         self.feature_model = feature_model
         self.segment_method = segment_method
@@ -66,6 +68,10 @@ class TimeClusteringStep(Step):
         self.hdbscan_min_samples = None if hdbscan_min_samples is None else int(hdbscan_min_samples)
         self.hdbscan_cluster_selection_method = str(hdbscan_cluster_selection_method).lower()
         self.hdbscan_cluster_selection_epsilon = float(hdbscan_cluster_selection_epsilon)
+        self.dpc_percent = float(dpc_percent)
+        self.dpc_min_dist_tau = None if dpc_min_dist_tau is None else float(dpc_min_dist_tau)
+        self.dpc_random_state = int(dpc_random_state)
+        self.dpc_k_nn = int(dpc_k_nn)
 
     def log_subdir(self) -> str:
         return f"TimeClustering_{self.variant}"
@@ -135,6 +141,19 @@ class TimeClusteringStep(Step):
                         ).fit_predict(feats)
         self._print_distribution(f"kmeans k={k}", labels)
         return labels
+
+    def _dpc_kmeans(self, feats: np.ndarray, k: int) -> np.ndarray:
+        """Density-peak-initialized K-Means (DPC-init, models/clustering)."""
+        from models.clustering.dpc_kmeans import dpc_kmeans
+        if k >= len(feats):
+            raise ValueError(f"[time_clustering] k={k} needs k < n_samples ({len(feats)})")
+        labels, _, init_idx = dpc_kmeans(
+            feats, k, percent=self.dpc_percent,
+            min_dist_tau=self.dpc_min_dist_tau,
+            random_state=self.dpc_random_state)
+        self._print_distribution(f"dpc-kmeans k={k} (dpc init, γ order)",
+                                 labels)
+        return labels, init_idx
 
     def _dist_matrix(self, feats: np.ndarray, X, lengths) -> np.ndarray:
         if self.metric in ("dtw", "fastdtw"):
@@ -251,6 +270,20 @@ class TimeClusteringStep(Step):
                 self._save_result(context, tag, labels, indices, metrics, shared)
                 tags.append(tag)
 
+        elif self.cluster_method == "dpc-kmeans":
+            # all-candidate-k density-peak-initialized K-Means (per-k tagged)
+            for k in self.n_clusters:
+                labels, init_idx = self._dpc_kmeans(norm, k)
+                metrics = compute_cluster_metrics(norm, labels)
+                metrics.update({"cluster_method": "dpc-kmeans",
+                                "n_clusters_requested": k,
+                                "dpc_init_indices": [int(i) for i in init_idx],
+                                "feature_model": self.feature_model,
+                                "segment_method": self.segment_method})
+                tag = f"dpc_kmeans_k{k}"
+                self._save_result(context, tag, labels, indices, metrics, shared)
+                tags.append(tag)
+
         elif self.cluster_method == "kmeans-scan":
             # optional diagnostic: metrics per k + max-SCI recommendation, no results
             records = []
@@ -276,6 +309,33 @@ class TimeClusteringStep(Step):
                 "time_clustering", "kmeans_scan", self.rel(context, scan_path))
             print(f"[time_clustering] kmeans-scan diagnostic -> {scan_path} "
                   f"(recommended k={best_k}); no cluster results registered")
+
+        elif self.cluster_method == "dpc-kmeans-scan":
+            # optional diagnostic: sweep K, rank DBI/SCI/DBCV, recommend best K
+            from models.clustering.dpc_kmeans import sweep_k
+            best, table = sweep_k(norm, k_range=self.n_clusters,
+                                  percent=self.dpc_percent,
+                                  min_dist_tau=self.dpc_min_dist_tau,
+                                  random_state=self.dpc_random_state,
+                                  verbose=True)
+            records = [{"n_clusters": r["K"], "sci": r["SCI"], "dbi": r["DBI"],
+                        "dbcv": r["DBCV"], "rank_sum": r["rank_sum"]}
+                       for r in table]
+            scan = {"scan_method": "dpc-kmeans-scan",
+                    "selection_rule": "rank_sum(DBI↑/SCI↑/DBCV↑) < best",
+                    "recommended_n_clusters": best["K"],
+                    "feature_model": self.feature_model,
+                    "segment_method": self.segment_method,
+                    "dpc_percent": self.dpc_percent,
+                    "dpc_min_dist_tau": self.dpc_min_dist_tau,
+                    "records": records}
+            scan_path = os.path.join(log_dir, "dpc_scan.json")
+            with open(scan_path, "w", encoding="utf-8") as f:
+                json.dump(scan, f, indent=2, ensure_ascii=False)
+            context["manifest"].add_step_artifact(
+                "time_clustering", "dpc_scan", self.rel(context, scan_path))
+            print(f"[time_clustering] dpc-kmeans-scan diagnostic -> {scan_path} "
+                  f"(recommended k={best['K']}); no cluster results registered")
 
         elif self.cluster_method == "dbscan":
             labels = self._dbscan(dist)
@@ -303,7 +363,8 @@ class TimeClusteringStep(Step):
         else:
             raise ValueError(
                 f"[time_clustering] unknown cluster_method '{self.cluster_method}'. "
-                "Supported: kmeans, kmeans-scan, dbscan, hdbscan")
+                "Supported: kmeans, kmeans-scan, dpc-kmeans, dpc-kmeans-scan, "
+                "dbscan, hdbscan")
 
         context.setdefault("data", {})["cluster_tags"] = tags
         # big objects no longer needed downstream

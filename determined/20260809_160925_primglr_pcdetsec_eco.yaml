@@ -1,0 +1,30 @@
+# Determined AI task config — eco washing_machine, FULL pipeline:
+#   extract+segment (prim-glr) + feature (detsec_pc) + cluster (dpc-kmeans k=2..8).
+# run_id=20260809_160925_primglr_pcdetsec_eco  submitted 2026-08-09 16:09:25 — timestamp precise to HH:MM:SS.
+# All datasets resampled to the UK-DALE 6s grid (fs=0.1666667).
+# Artifacts under log_det_test/20260809_160925_primglr_pcdetsec_eco/.
+# Push: det command run --config-file determined/20260809_160925_primglr_pcdetsec_eco.yaml --detach
+description: 20260809_160925_primglr_pcdetsec_eco
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_test.sh
+  - prim-glr                                       # SEGMENT_METHOD
+  - detsec_pc                                      # FEATURE_MODEL
+  - dpc-kmeans                                     # CLUSTER_METHOD
+  - "2,3,4,5,6,7,8"                                # N_CLUSTERS (each k gets a tagged result)
+  - 20260809_160925_primglr_pcdetsec_eco                                      # RUN_ID
+  - /labdata2/lexingruan/pslg-nilm/input/eco_washing_machine.csv     # RAW_SERIES
+  - config/config_eco_pc_detsec.yaml             # CONFIG
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

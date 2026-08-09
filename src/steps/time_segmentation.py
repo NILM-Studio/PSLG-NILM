@@ -30,7 +30,8 @@ class TimeSegmentationStep(Step):
 
     def __init__(self, segment_method: str = "clasp", appliance_name: str = "",
                  window_size: int = 100, n_regimes: int = 3, excl_factor: int = 5,
-                 clasp_n_jobs: int = 1, clasp_n_segments: str = "learn"):
+                 clasp_n_jobs: int = 1, clasp_n_segments: str = "learn",
+                 max_seg_len: int = 0):
         super().__init__(variant=segment_method)
         self.segment_method = segment_method
         self.appliance_name = appliance_name
@@ -39,6 +40,7 @@ class TimeSegmentationStep(Step):
         self.excl_factor = excl_factor
         self.clasp_n_jobs = int(clasp_n_jobs)
         self.clasp_n_segments = str(clasp_n_segments)
+        self.max_seg_len = int(max_seg_len or 0)
 
     # ── input resolution ─────────────────────────────────────────
 
@@ -225,6 +227,17 @@ class TimeSegmentationStep(Step):
         if not all_samples:
             print("[time_segmentation] no segments produced.")
             return context
+
+        # Optional hard cap on primitive length (max_seg_len>0). Guard against
+        # pathological longest-primitive tensors: very long BiGRU sequences can
+        # hang TF/CuDNN training (observed at 1765 steps on 4090 while <=1536
+        # trains). Truncating the tail keeps indices/coverage intact; only the
+        # longest few primitives are affected.
+        if self.max_seg_len > 0:
+            for idx, sample in enumerate(all_samples):
+                if len(sample) > self.max_seg_len:
+                    all_samples[idx] = sample[: self.max_seg_len]
+                    all_lengths[idx] = self.max_seg_len
 
         max_len = max(all_lengths)
         n_samples = len(all_samples)

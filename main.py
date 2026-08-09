@@ -45,8 +45,8 @@ for _p in (project_root, models_dir,
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-# Canonical step order — all seven steps are implemented.
-ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "fewshot", "pam", "split"]
+# Canonical step order — all steps are implemented.
+ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge", "fewshot", "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
 
@@ -103,6 +103,7 @@ def _build_segment(cfg, sel):
         excl_factor=c.get("excl_factor", 4),
         clasp_n_jobs=c.get("clasp_n_jobs", -1),
         clasp_n_segments=c.get("clasp_n_segments", "learn"),
+        max_seg_len=c.get("max_seg_len", 0),
     )
 
 
@@ -119,6 +120,9 @@ def _build_feature(cfg, sel):
         patience=c.get("patience", 5),
         attention_size=c.get("attention_size", 32),
         cache_enabled=bool(c.get("cache", True)),
+        embed_dim=c.get("embed_dim", 32),
+        lambda_phy=c.get("lambda_phy", 0.1),
+        nonneg_channels=c.get("nonneg_channels", [0, 1, 2, 3]),
     )
 
 
@@ -127,6 +131,7 @@ def _build_cluster(cfg, sel):
     c = cfg.get("time_clustering", {})
     ms = c.get("method_specific", {}) or {}
     km, db, hd = ms.get("kmeans", {}), ms.get("dbscan", {}), ms.get("hdbscan", {})
+    dk = ms.get("dpc_kmeans", {}) or {}
     return TimeClusteringStep(
         cluster_method=sel["cluster_method"],
         feature_model=sel["feature_model"],
@@ -144,6 +149,26 @@ def _build_cluster(cfg, sel):
         hdbscan_min_samples=hd.get("min_samples"),
         hdbscan_cluster_selection_method=hd.get("cluster_selection_method", "eom"),
         hdbscan_cluster_selection_epsilon=hd.get("cluster_selection_epsilon", 0.0),
+        dpc_percent=dk.get("percent", 2.0),
+        dpc_min_dist_tau=dk.get("min_dist_tau"),
+        dpc_random_state=dk.get("random_state", 0),
+        dpc_k_nn=dk.get("k_nn", 5),
+    )
+
+
+def _build_state_merge(cfg, sel):
+    from src.steps.temporal_state_merge_step import TemporalStateMergeStep
+    c = cfg.get("temporal_state_merge", {}) or {}
+    ex = cfg.get("extract_active_data", {}) or {}
+    return TemporalStateMergeStep(
+        cluster_method=sel["cluster_method"],
+        feature_model=sel["feature_model"],
+        segment_method=sel["segment_method"],
+        merge_mode=c.get("merge_mode", "same_label_plus_similar"),
+        enable_similar_merge=c.get("enable_similar_merge", True),
+        similar_feature_tol=c.get("similar_feature_tol", 0.5),
+        min_block_seconds=c.get("min_block_seconds", 30.0),
+        fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
     )
 
 
@@ -185,6 +210,7 @@ STEP_BUILDERS = {
     "segment": _build_segment,
     "feature": _build_feature,
     "cluster": _build_cluster,
+    "state_merge": _build_state_merge,
     "fewshot": _build_fewshot,
     "pam": _build_pam,
     "split": _build_split,
@@ -247,9 +273,9 @@ def main():
     p.add_argument("--segment-method", default=None,
                    help="clasp | fluss | espresso | clasp-origin | none (default: clasp)")
     p.add_argument("--feature-model", default=None,
-                   help="detsec | bilstm_ae | lstm_ae | cnn_ae | bilstm_ae_attention | autoencoder | dtw (default: detsec)")
+                   help="detsec | detsec_pc | bilstm_ae | lstm_ae | cnn_ae | bilstm_ae_attention | autoencoder | dtw (default: detsec)")
     p.add_argument("--cluster-method", default=None,
-                   help="kmeans | kmeans-scan | dbscan | hdbscan (default: kmeans)")
+                   help="kmeans | kmeans-scan | dpc-kmeans | dpc-kmeans-scan | dbscan | hdbscan (default: kmeans)")
     p.add_argument("--n-clusters", default=None,
                    help="Candidate cluster counts, e.g. '3,4,5'. Every k gets its own tagged result.")
     p.add_argument("--cluster-tag", default=None,

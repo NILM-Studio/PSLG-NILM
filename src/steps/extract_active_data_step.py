@@ -173,6 +173,14 @@ class ExtractActiveDataStep(Step):
                      f"{end_dt.strftime('%Y%m%d_%H%M%S')}_{int(interval['duration_sec'])}s.csv")
             df = interval["data"]
             df["datetime"] = pd.to_datetime(df["timestamp"], unit="s")
+            # Resampling deliberately keeps NaN at long recording holes and at
+            # series edges (so inactive gaps still separate work cycles). If such
+            # a NaN lands inside an active window's context, it would be written
+            # to the segment CSV and poison downstream feature extraction (e.g.
+            # detsec's MSE loss becomes NaN). Carry the last known reading across
+            # the hole; a fully-empty column falls back to 0.
+            if df["power"].isna().any():
+                df["power"] = df["power"].ffill().bfill().fillna(0.0)
             df.to_csv(os.path.join(segments_dir, fname), index=False)
             output_files.append(fname)
             if len(output_files) % 50 == 0:

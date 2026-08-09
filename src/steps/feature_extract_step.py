@@ -54,6 +54,7 @@ class FeatureExtractStep(Step):
         "cnn_ae": ["models/feature_extract/cnn_ae.py"],
         "bilstm_ae_attention": ["models/feature_extract/bilstm_ae_attention.py"],
         "detsec": ["models/feature_extract/detsec_model.py"],
+        "detsec_pc": ["models/feature_extract/detsec_pc.py"],
         "autoencoder": ["models/feature_extract/autoencoder.py"],
         "dtw": ["models/feature_extract/dtw.py"],
     }
@@ -62,7 +63,9 @@ class FeatureExtractStep(Step):
     def __init__(self, model_name: str = "detsec", segment_method: str = "clasp",
                  latent_dim: int = 16, epochs: int = 50, batch_size: int = 32,
                  learning_rate: float = 0.0001, patience: int = 5,
-                 attention_size: int = 32, cache_enabled: bool = True):
+                 attention_size: int = 32, cache_enabled: bool = True,
+                 embed_dim: int = 32, lambda_phy: float = 0.1,
+                 nonneg_channels=None):
         super().__init__(variant=f"{model_name}_on_{segment_method}")
         self.model_name = model_name
         self.segment_method = segment_method
@@ -73,6 +76,11 @@ class FeatureExtractStep(Step):
         self.patience = patience
         self.attention_size = attention_size
         self.cache_enabled = bool(cache_enabled)
+        self.embed_dim = int(embed_dim)
+        self.lambda_phy = float(lambda_phy)
+        self.nonneg_channels = sorted(
+            int(c) for c in (nonneg_channels if nonneg_channels is not None
+                             else [0, 1, 2, 3]))
 
     def log_subdir(self) -> str:
         return f"FeatureExtract_{self.model_name}_on_{self.segment_method}"
@@ -112,6 +120,10 @@ class FeatureExtractStep(Step):
         }
         if self.model_name == "bilstm_ae_attention":
             cfg["attention_size"] = self.attention_size
+        if self.model_name == "detsec_pc":
+            cfg["embed_dim"] = self.embed_dim
+            cfg["lambda_phy"] = self.lambda_phy
+            cfg["nonneg_channels"] = self.nonneg_channels
         return cfg
 
     def _code_id(self) -> str:
@@ -138,6 +150,8 @@ class FeatureExtractStep(Step):
             from models.feature_extract.bilstm_ae_attention import bilstm_ae_attention as fn
         elif name == "detsec":
             from models.feature_extract.detsec_model import detsec_ae as fn
+        elif name == "detsec_pc":
+            from models.feature_extract.detsec_pc import detsec_pc as fn
         elif name == "autoencoder":
             from models.feature_extract.autoencoder import autoencoder as fn
         elif name == "dtw":

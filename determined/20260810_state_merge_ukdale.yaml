@@ -1,0 +1,28 @@
+# Determined AI task config — UK-DALE building1 washing machine, temporal
+# functional restoration (state merge) on the existing run_id
+# 20260809_primglr_detsec_ukdale (feature + kmeans k2..k8 already on disk).
+# Reuses the run's manifest and adds <tag>_merged tagged results per k.
+# CPU-only, single-threaded (run_state_merge.sh pins OMP/MKL/OPENBLAS/NUMBA=1).
+# Push:   det command run --config-file determined/20260810_state_merge_ukdale.yaml --detach
+description: 20260810_state_merge_ukdale
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_state_merge.sh
+  - prim-glr                                       # SEGMENT_METHOD
+  - detsec                                         # FEATURE_MODEL
+  - kmeans                                         # CLUSTER_METHOD
+  - 20260809_primglr_detsec_ukdale                 # RUN_ID (reuse existing run)
+  - config/config_ukdale_detsec.yaml               # CONFIG
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

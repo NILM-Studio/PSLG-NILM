@@ -20,7 +20,11 @@
     "noise_points_with_n": "噪声点 (-1) ({first_n})",
     "tsne_title": "时序聚类-tSNE降维分布图 (特征矩阵)",
     "tsne_dim1": "tSNE维度1",
-    "tsne_dim2": "tSNE维度2"
+    "tsne_dim2": "tSNE维度2",
+    "power_signal": "功率信号",
+    "state_merge_raw": "段级簇标签（过切分）",
+    "state_merge_states": "合并后的功能状态",
+    "state_merge_title": "功能状态还原"
   },
   "en": {
     "default_title": "Layered Visualization",
@@ -43,6 +47,10 @@
     "noise_points_with_n": "Noise Points (-1) ({first_n})",
     "tsne_title": "Time Series Clustering - tSNE Projection (Feature Matrix)",
     "tsne_dim1": "tSNE Dim 1",
-    "tsne_dim2": "tSNE Dim 2"
+    "tsne_dim2": "tSNE Dim 2",
+    "power_signal": "Power Signal",
+    "state_merge_raw": "Segment Cluster Labels (over-segmented)",
+    "state_merge_states": "Merged Functional States",
+    "state_merge_title": "Functional State Reconstruction"
   }
 }
