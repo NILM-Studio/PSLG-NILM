@@ -111,6 +111,15 @@ class TimeSegmentationStep(Step):
                 print(f"[time_segmentation] clasp-origin error: {e}")
                 return []
 
+        if method == "prim-glr":
+            from models.time_segmentation.prim_glr import PrimGLRModel
+            try:
+                model = PrimGLRModel()
+                return model.train(time_series)
+            except Exception as e:
+                print(f"[time_segmentation] prim-glr error: {e}")
+                return []
+
         # default: clasp
         from claspy.segmentation import BinaryClaSPSegmentation
         try:

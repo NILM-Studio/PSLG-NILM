@@ -1,14 +1,15 @@
 # Determined AI task config — UK-DALE building1 washing machine, extract+segment (clasp-origin).
-# run_id=test_ukdale -> artifacts under log_det_test/test_ukdale/ (persisted best-effort).
+# run_id=20260808_clasp_ukdale -> artifacts under log_det_test/20260808_clasp_ukdale/ + output/20260808_clasp_ukdale/.
 # Uses the pre-built full washing_machine CSV (same file the legacy full runs used).
-# Push:   det task create determined/test_ukdale.yaml
+# Push:   det command run --config-file determined/20260808_clasp_ukdale.yaml --detach
+description: 20260808_clasp_ukdale
 entrypoint:
   - bash
   - /labdata2/lexingruan/pslg-nilm/determined/run_dataset_segment.sh
-  - test_ukdale                                      # RUN_ID
+  - 20260808_clasp_ukdale                            # RUN_ID
   - /labdata2/lexingruan/pslg-nilm/input/ukdale_washing_machine_full.csv   # RAW_SERIES
-  - washing_machine                                  # APPLIANCE
-  - config/config_ukdale.yaml                        # CONFIG (threshold=10W, fs=0.1666667)
+  - washing_machine                                 # APPLIANCE
+  - config/config_ukdale.yaml                       # CONFIG (threshold=10W, fs=0.1666667)
 
 environment:
   image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1

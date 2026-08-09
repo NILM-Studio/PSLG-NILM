@@ -23,11 +23,12 @@ class ExtractActiveDataStep(Step):
     step_type = "extract_active_data"
 
     def __init__(self, method: str = "simple", appliance_name: str = "",
-                 input_file: str = "", **method_kwargs):
+                 input_file: str = "", resample_fs: float = 0, **method_kwargs):
         super().__init__(variant=method.lower())
         self.method = method.lower()
         self.appliance_name = appliance_name
         self.input_file = input_file
+        self.resample_fs = float(resample_fs or 0)
         self.method_kwargs = method_kwargs
 
     # ── helpers ──────────────────────────────────────────────────
@@ -41,6 +42,84 @@ class ExtractActiveDataStep(Step):
         if self.method == "adaptive":
             return AdaptiveClusteringDetector("AdaptiveDetector", config)
         return SimpleThresholdDetector("SimpleDetector", config)
+
+    def _resample_to_fs(self, timestamps: np.ndarray, powers: np.ndarray
+                        ) -> Tuple[np.ndarray, np.ndarray]:
+        """Resample (timestamp, power) onto a uniform grid at ``self.resample_fs``.
+
+        Datasets have heterogeneous native sampling rates (ECO/GREEND/IAWE=1s,
+        REDD=4s, REFIT=7s, UK-DALE=6s). To make activity-state extraction
+        comparable, the series is first resampled to the UK-DALE 6s grid
+        (fs=0.1666667). ``origin="epoch"`` anchors the grid to epoch multiples of
+        the bin width so every dataset lands on the same aligned timeline.
+
+        Two kinds of "empty" bins are treated differently:
+          - short gaps (<= t_drop, e.g. native 7s -> 6s bins): linearly
+            interpolated so the resampled series stays gapless within a work
+            cycle;
+          - long data-absence gaps (> t_drop, real holes in the recording): left
+            as NaN. The detector compares ``power >= threshold``, which is False
+            for NaN, so long holes keep separating independent work cycles just
+            as they did on the native timeline.
+        """
+        import pandas as pd
+
+        if len(timestamps) < 2:
+            return timestamps, powers
+        dt = 1.0 / self.resample_fs
+        rule = f"{int(round(dt))}s"
+        t_drop = float(self.method_kwargs.get("t_drop", 0) or 0)
+        df = pd.DataFrame({"timestamp": timestamps, "power": powers})
+        df.index = pd.to_datetime(df["timestamp"], unit="s")
+        out = df["power"].resample(rule, origin="epoch").mean()
+        out = out.astype(np.float64)
+        if out.isna().any():
+            keep_nan = (self._null_long_gaps(out, t_drop)
+                        if t_drop > 0 else None)
+            # interpolate only the short holes; long holes stay NaN so work
+            # cycles are not bridged across recording gaps. Edge NaN (series
+            # starting/ending mid-recording) is left as-is: NaN is inactive.
+            out = out.interpolate(method="time", limit_area="inside")
+            if keep_nan is not None:
+                out[np.asarray(keep_nan)] = np.nan
+        new_t = np.asarray(out.index.view(np.int64) // 10**9)
+        new_p = np.asarray(out.to_numpy(dtype=np.float64))
+        n_nan = int(np.isnan(new_p).sum())
+        print(f"[{self.step_type}] resampled to {self.resample_fs} Hz ({rule}) "
+              f"-> {len(new_t):,} samples ({n_nan:,} NaN holes)")
+        return new_t, new_p
+
+    @staticmethod
+    def _null_long_gaps(out: pd.Series, t_drop: float) -> np.ndarray:
+        """Mark resampled bins inside a recording hole > t_drop as keep-NaN.
+
+        On the native timeline, ``t_drop`` separates independent work cycles, so
+        any data-absence hole wider than ``t_drop`` must NOT be interpolated —
+        otherwise independent cycles get bridged. Returns a bool array (same
+        length as ``out``) where True means the bin is inside such a long hole
+        and must remain NaN. Edge holes (recording starts/ends mid-series) are
+        also kept NaN.
+        """
+        secs = np.asarray(out.index.view(np.int64) // 10**9)
+        vals = out.to_numpy(dtype=np.float64)
+        n = len(vals)
+        nan = np.isnan(vals)
+        keep = np.zeros(n, dtype=bool)
+        i = 0
+        while i < n:
+            if not nan[i]:
+                i += 1
+                continue
+            j = i
+            while j < n and nan[j]:
+                j += 1
+            # NaN run is [i:j)
+            if i == 0 or j == n:
+                keep[i:j] = True      # edge hole: no neighbours to bridge
+            elif secs[j] - secs[i - 1] > t_drop:
+                keep[i:j] = True      # long recording hole: keep as NaN
+            i = j
+        return keep
 
     def _read_data(self, input_file: str) -> Tuple[np.ndarray, np.ndarray]:
         ext = os.path.splitext(input_file)[1].lower()
@@ -71,6 +150,12 @@ class ExtractActiveDataStep(Step):
         # 1. load
         print(f"[{self.step_type}] loading {self.input_file}")
         timestamps, powers = self._read_data(self.input_file)
+
+        # 1b. align sampling frequency to the target grid (UK-DALE 6s) BEFORE
+        #     activity-state detection — datasets natively sample at 1/4/6/7s.
+        if self.resample_fs > 0:
+            timestamps, powers = self._resample_to_fs(timestamps, powers)
+            self.method_kwargs["fs"] = self.resample_fs
 
         # 2. detect
         detector = self._get_detector(context)

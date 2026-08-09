@@ -83,6 +83,7 @@ def _build_extract(cfg, sel):
         method=c.get("method", "simple"),
         appliance_name=sel["appliance"],
         input_file=sel["raw_series"],
+        resample_fs=c.get("resample_fs", 0),
         threshold=c.get("threshold", 5),
         t_drop=c.get("t_drop", 150),
         t_min_work=c.get("t_min_work", 180),

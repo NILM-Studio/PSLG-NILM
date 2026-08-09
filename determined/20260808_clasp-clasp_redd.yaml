@@ -1,0 +1,25 @@
+# Determined AI task config — REDD building1 washer_dryer (washing machine), extract+segment (clasp = BinaryClaSP + wavelet) for comparison vs clasp-origin.
+# run_id=20260808_clasp-clasp_redd -> artifacts under log_det_test/20260808_clasp-clasp_redd/ + output/20260808_clasp-clasp_redd/.
+# Push:   det command run --config-file determined/20260808_clasp-clasp_redd.yaml --detach
+description: 20260808_clasp-clasp_redd
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_dataset_segment.sh
+  - 20260808_clasp-clasp_redd                              # RUN_ID
+  - /labdata2/lexingruan/pslg-nilm/input/redd_washing_machine.csv   # RAW_SERIES
+  - washing_machine                                 # APPLIANCE
+  - config/config_redd.yaml                         # CONFIG (threshold=5W, fs=0.25)
+  - clasp
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

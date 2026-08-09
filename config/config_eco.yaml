@@ -1,0 +1,89 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# PSLG-NILM-ADVANCED — configuration (FIXED parameters only).
+#
+# What goes here: thresholds, model hyperparameters, file paths, visualization
+# defaults — things that are stable for an appliance/experiment.
+#
+# What does NOT go here: *which steps to run* and *which model/method variant*.
+# Those are chosen at submission time via main.py CLI arguments, e.g.
+#
+#   python main.py --steps extract,segment,feature \
+#       --segment-method clasp --feature-model detsec \
+#       --cluster-method kmeans --n-clusters 3,4,5 --appliance fridge
+#
+# So slurm scripts are thin loops that only vary CLI args; they never edit this
+# file or generate temporary configs.
+# ─────────────────────────────────────────────────────────────────────────────
+
+run:
+  appliance: fridge          # default; overridable by --appliance
+  # run_id: <set explicitly> # default: auto timestamp; overridable by --run-id
+
+paths:
+  raw_series: input/fridge.csv   # input to extract_active_data; overridable by --raw-series
+  cache_dir: .cache              # feature-extract content-addressed cache (M2)
+
+extract_active_data:
+  method: simple             # simple | adaptive  (upstream of all variant axes)
+  threshold: 20              # 功率阈值 (W) - ECO 2-10W 为待机/噪声，真实信号 50W+
+  t_drop: 150                # 跌落容忍时间 (s)
+  t_min_work: 180            # 最小工作时长 (s)
+  context_seconds: 90        # 上下文时间窗口 (s)
+  fs: 0.1666667              # 采样频率 (Hz) - 重采样对齐 UK-DALE 6s 采样
+  resample_fs: 0.1666667     # 对齐目标采样频率 (Hz) - 活动提取前重采样到 UK-DALE 6s 网格
+
+time_segmentation:
+  # segment_method is a CLI choice: clasp | fluss | espresso | clasp-origin | none
+  window_size: 30
+  n_regimes: 2
+  excl_factor: 4
+  clasp_n_jobs: -1           # -1 = all cores
+  clasp_n_segments: learn    # "learn" = auto-detect, or a fixed integer
+
+feature_extract:
+  # model_name is a CLI choice: detsec | bilstm_ae | lstm_ae | cnn_ae | bilstm_ae_attention | autoencoder | dtw
+  latent_dim: 16
+  epochs: 50
+  batch_size: 32
+  learning_rate: 0.0001
+  patience: 5
+  attention_size: 32
+  cache: true                # the ONLY cached step (M2)
+
+time_clustering:
+  # cluster_method is a CLI choice: kmeans | dbscan | hdbscan ; n_clusters via --n-clusters
+  normalization_method: zscore
+  col_index: 2
+  metric: euclidean
+  method_specific:
+    kmeans:   { n_init: 30, max_iter: 300, random_state: 42 }
+    dbscan:   { eps: 1.25, min_pts: 20 }
+    hdbscan:  { min_cluster_size: 20, min_samples: 10, cluster_selection_method: eom, cluster_selection_epsilon: 0.0 }
+
+few_shot_cluster_extract:
+  # which tagged clustering result to consume via --cluster-tag (e.g. kmeans_k4)
+  n_percent: 50
+  adj_threshold: 0.6
+  center_margin: 0.1
+  center_support_threshold: 0.6
+  export_format: csv         # csv | npy
+
+# primitive_activity_mapping has NO fixed parameters: it consumes the manifest
+# (extract segments + segmentation indices + the --cluster-tag clustering result
+# + the few_shot summary).
+
+dataset_split:
+  mains_series: input/fridge_mains.npy  # mains long series (.npy/.dat), (len,2) [timestamp, power]
+  few_train_ratio: 0.5
+  non_few_train_ratio: 0.8
+  random_seed: 42
+  timestamp_tolerance_seconds: 0.0
+  clip_negative_mains_to_zero: true
+
+# Consumed ONLY by the standalone visualize_* scripts (charts are decoupled from
+# the workflow). Compute steps read nothing from this block.
+visualization:
+  language: en               # zh | en
+  visualize_noise: true
+  cluster_stack_count: 50
+  max_per_chart: 20
