@@ -32,9 +32,15 @@ Adapter contract (used by ``FeatureExtractStep``)::
     features, history = detsec_pc(np_data, model_config)
         np_data      : (n, timesteps, F) float32 padded tensor
         model_config : latent_dim / embed_dim / lambda_phy / nonneg_channels /
-                       epochs / batch_size / learning_rate / patience / lengths
+                       norm_mode ("znorm" | "minmax") / embed_proj ("relu" |
+                       "none") / epochs / batch_size / learning_rate / patience
+                       / lengths
         features     : (n, embed_dim)   <- encoder embeddings
         history      : dict with loss / val_loss / l_ae / l_phy / epochs_trained
+
+``norm_mode="minmax"`` is the power-level-preserving per-channel percentile-
+clipped (1%/99%) global MinMax; ``embed_proj="relu"`` adds the sparse
+low-rank embedding projection (directions 1A + 3 of the v2 analysis).
 """
 
 from __future__ import annotations
@@ -96,21 +102,44 @@ class NonNegTeacherForcingDecoder(Layer):
     Training input at each step is the previous true sample concatenated with
     the embedding (``[x_{t-1}; z]``), so the decoder focuses on waveform
     dynamics (steps / surges / ripple). The GRU is seeded with ``h_0 = z``.
-    Nonnegative physical channels f∈C+ use softplus(·); the rest stay identity.
+
+    ``keep_mask`` (B, T, 1) implements scheduled-sampling-style decoder input
+    mixing (direction 3 ablation): keep=1 feeds the true x_{t-1}, keep=0 feeds
+    a zero vector, so with a low keep ratio the decoder is forced to rely on
+    the embedding z alone (z-only conditioning, like the detsec baseline).
+
+    Nonnegative physical channels f∈C+ use the configured activation:
+      - softplus       : ln(1+e^x)  (vanilla, x=0 maps to ln2≈0.693)
+      - softplus_offset: softplus(x)-ln2  (zero-point calibrated, 0 maps to 0)
+      - relu           : max(x, 0)  (hard, no offset bias)
     """
 
-    def __init__(self, embed_dim, n_features, nonneg_channels, **kwargs):
+    def __init__(self, embed_dim, n_features, nonneg_channels,
+                 nonneg_activation="softplus", **kwargs):
         super().__init__(**kwargs)
         self.embed_dim = int(embed_dim)
         self.n_features = int(n_features)
         self.nonneg_channels = sorted(int(c) for c in (nonneg_channels or []))
+        self.nonneg_activation = str(nonneg_activation).lower()
+        if self.nonneg_activation == "softplus":
+            self._nn_act = ops.softplus
+        elif self.nonneg_activation == "softplus_offset":
+            self._nn_act = lambda v: ops.softplus(v) - 0.6931471805599453
+        elif self.nonneg_activation == "relu":
+            self._nn_act = ops.relu
+        else:
+            raise ValueError(f"[detsec_pc] unknown nonneg_activation "
+                             f"'{nonneg_activation}' (softplus | "
+                             "softplus_offset | relu)")
         self.rnn = GRU(
             self.embed_dim, activation="tanh", recurrent_activation="sigmoid",
             recurrent_dropout=0.0, use_bias=True, return_sequences=True)
         self.head = Dense(self.n_features, name="dec_head")
 
-    def call(self, z, x_shift):
-        # z: (B, l) ; x_shift: (B, T, F)
+    def call(self, z, x_shift, keep_mask=None):
+        # z: (B, l) ; x_shift: (B, T, F) ; keep_mask: (B, T, 1) or None
+        if keep_mask is not None:
+            x_shift = x_shift * keep_mask            # scheduled-sampling mixing
         T = tf.shape(x_shift)[1]
         z_t = tf.tile(z[:, None, :], [1, T, 1])                             # (B, T, l)
         inp = ops.concatenate([x_shift, z_t], axis=-1)                      # (B, T, F+l)
@@ -121,7 +150,7 @@ class NonNegTeacherForcingDecoder(Layer):
         chan = tf.reduce_sum(tf.one_hot(self.nonneg_channels, self.n_features,
                                         dtype=x_tilde.dtype), axis=0)        # (F,)
         chan_mask = chan[None, None, :]                                      # (1,1,F)
-        x_hat = x_tilde * (1.0 - chan_mask) + ops.softplus(x_tilde) * chan_mask
+        x_hat = x_tilde * (1.0 - chan_mask) + self._nn_act(x_tilde) * chan_mask
         return x_hat
 
 
@@ -131,9 +160,15 @@ class NonNegTeacherForcingDecoder(Layer):
 
 
 class PhyConstrainedDeTSEC(Layer):
-    """Physical-constraint DeTSEC stage-1 feature extractor (no clustering)."""
+    """Physical-constraint DeTSEC stage-1 feature extractor (no clustering).
 
-    def __init__(self, n_features, embed_dim, nonneg_channels, **kwargs):
+    embed_proj: "relu" adds a Dense(embed_dim, relu) projection on top of the
+    gated fusion (sparse, low-rank embedding geometry — direction 3), "none"
+    uses the gated fusion output directly.
+    """
+
+    def __init__(self, n_features, embed_dim, nonneg_channels,
+                 embed_proj="none", nonneg_activation="softplus", **kwargs):
         super().__init__(**kwargs)
         self.encoder = Bidirectional(
             GRU(embed_dim, activation="tanh", recurrent_activation="sigmoid",
@@ -143,24 +178,36 @@ class PhyConstrainedDeTSEC(Layer):
         self.att_back = MaskedTemporalAttention(embed_dim, name="attn_bw")
         self.fusion = GatedFusion(embed_dim, name="gated_fuse")
         self.dec_forw = NonNegTeacherForcingDecoder(
-            embed_dim, n_features, nonneg_channels, name="dec_forw")
+            embed_dim, n_features, nonneg_channels,
+            nonneg_activation=nonneg_activation, name="dec_forw")
         self.dec_back = NonNegTeacherForcingDecoder(
-            embed_dim, n_features, nonneg_channels, name="dec_back")
+            embed_dim, n_features, nonneg_channels,
+            nonneg_activation=nonneg_activation, name="dec_back")
+        if str(embed_proj).lower() == "relu":
+            self.embed_proj = Dense(embed_dim, activation="relu", name="embedding")
+        elif str(embed_proj).lower() in ("none", ""):
+            self.embed_proj = None
+        else:
+            raise ValueError(f"[detsec_pc] unknown embed_proj '{embed_proj}' "
+                             "(relu | none)")
 
     def encode(self, x, mask):
         """(B, T, F) x (B, T) -> embedding (B, l)."""
         H_fw, H_bw = self.encoder(x)            # 各 (B, T, l)
         h_fw, _ = self.att_forw(H_fw, mask)
         h_bw, _ = self.att_back(H_bw, mask)
-        return self.fusion(h_fw, h_bw)          # (B, l)
+        z = self.fusion(h_fw, h_bw)             # (B, l)
+        if self.embed_proj is not None:
+            z = self.embed_proj(z)              # 稀疏非负投影 -> 低秩几何
+        return z
 
-    def call(self, x, mask, lengths):
+    def call(self, x, mask, lengths, keep_mask=None):
         z = self.encode(x, mask)
         x_rev = reverse_sequences(x, lengths)
         x_shift_f = ops.concatenate([ops.zeros_like(x[:, :1]), x[:, :-1]], axis=1)
         x_shift_b = ops.concatenate([ops.zeros_like(x_rev[:, :1]), x_rev[:, :-1]], axis=1)
-        x_hat_f = self.dec_forw(z, x_shift_f)   # 非负通道 ≥ 0
-        x_hat_b = self.dec_back(z, x_shift_b)   # 对应反转序列
+        x_hat_f = self.dec_forw(z, x_shift_f, keep_mask)   # 非负通道 ≥ 0
+        x_hat_b = self.dec_back(z, x_shift_b, keep_mask)   # 对应反转序列
         return z, x_hat_f, x_hat_b
 
 
@@ -232,6 +279,41 @@ def _per_sequence_znorm(X, lengths):
     return Xn
 
 
+def _per_channel_minmax(X, lengths, q_low=1.0, q_high=99.0):
+    """Per-channel global MinMax with percentile clipping (direction 1A).
+
+    Quantiles are computed over VALID positions only (padding excluded), so
+    rare surge spikes cannot stretch the scale: values are clipped to the
+    [q_low, q_high] percentiles then mapped to [0, 1] per channel. Absolute
+    power levels are preserved, which is the strongest state-separation
+    signal for real NILM primitives.
+    """
+    X = np.asarray(X, dtype=np.float32)
+    lengths = np.asarray(lengths).reshape(-1).astype(np.int32)
+    n, T, F = X.shape
+    mask = np.zeros((n, T), dtype=bool)
+    for i in range(n):
+        mask[i, :min(int(lengths[i]), T)] = True
+    Xn = X.copy()
+    for f in range(F):
+        vals = Xn[mask, f]
+        lo, hi = np.percentile(vals, [q_low, q_high])
+        scale = float(hi - lo)
+        Xn[mask, f] = (np.clip(Xn[mask, f], lo, hi) - lo) / (scale + 1e-7)
+    Xn[~mask] = 0.0
+    return Xn
+
+
+def _normalize(X, lengths, mode="znorm"):
+    """Config-driven input normalization (znorm | minmax)."""
+    mode = str(mode).lower()
+    if mode == "znorm":
+        return _per_sequence_znorm(X, lengths)
+    if mode == "minmax":
+        return _per_channel_minmax(X, lengths)
+    raise ValueError(f"[detsec_pc] unknown norm_mode '{mode}' (znorm | minmax)")
+
+
 def _make_batches(Xn, lengths, batch_size, shuffle=True, random_state=0):
     # NOTE: always emit the global padded width so the tf.function train/eval
     # steps trace exactly ONE graph (per-batch T would retrace per length).
@@ -250,9 +332,10 @@ def _make_batches(Xn, lengths, batch_size, shuffle=True, random_state=0):
 
 
 @tf.function
-def _train_step(model, optimizer, x, mask, lens, nonneg_channels, lambda_phy):
+def _train_step(model, optimizer, x, mask, lens, keep_mask,
+                nonneg_channels, lambda_phy):
     with tf.GradientTape() as tape:
-        _, x_hat_f, x_hat_b = model(x, mask, lens)
+        _, x_hat_f, x_hat_b = model(x, mask, lens, keep_mask)
         loss, l_ae, l_phy = total_loss(x, x_hat_f, x_hat_b, mask, lens,
                                        nonneg_channels, lambda_phy)
     grads = tape.gradient(loss, model.trainable_variables)
@@ -263,20 +346,35 @@ def _train_step(model, optimizer, x, mask, lens, nonneg_channels, lambda_phy):
 
 
 @tf.function
-def _eval_step(model, x, mask, lens, nonneg_channels, lambda_phy):
-    _, x_hat_f, x_hat_b = model(x, mask, lens)
+def _eval_step(model, x, mask, lens, keep_mask, nonneg_channels, lambda_phy):
+    _, x_hat_f, x_hat_b = model(x, mask, lens, keep_mask)
     loss, _, _ = total_loss(x, x_hat_f, x_hat_b, mask, lens,
                             nonneg_channels, lambda_phy)
     return loss
 
 
+def _ones_mask(x, mask):
+    """Full teacher-forcing keep mask (all ones) for eval/extract."""
+    return tf.ones_like(x[:, :, :1]) * mask[:, :, None]
+
+
+def _sampling_mask(x, ratio, seed):
+    """Bernoulli keep mask (B, T, 1) for scheduled-sampling input mixing."""
+    if ratio >= 1.0:
+        return None  # full teacher forcing: no mixing ops at all
+    B, T = tf.shape(x)[0], tf.shape(x)[1]
+    rnd = tf.random.uniform((B, T, 1), seed=seed)
+    return tf.cast(rnd < ratio, dtype=tf.float32)
+
+
 def _train_epoch(model, optimizer, Xn, lengths, nonneg_channels, lambda_phy,
-                 batch_size, seed):
+                 batch_size, seed, tf_ratio=1.0):
     tot = tot_ae = tot_phy = 0.0
     nb = 0
     for x, mask, lens in _make_batches(Xn, lengths, batch_size, True, seed):
+        keep = _sampling_mask(x, tf_ratio, seed + nb)
         loss, l_ae, l_phy = _train_step(model, optimizer, x, mask, lens,
-                                        nonneg_channels, lambda_phy)
+                                        keep, nonneg_channels, lambda_phy)
         tot += float(loss); tot_ae += float(l_ae); tot_phy += float(l_phy)
         nb += 1
     return tot / max(nb, 1), tot_ae / max(nb, 1), tot_phy / max(nb, 1)
@@ -286,7 +384,9 @@ def _eval_loss(model, Xn, lengths, nonneg_channels, lambda_phy, batch_size):
     tot = 0.0
     nb = 0
     for x, mask, lens in _make_batches(Xn, lengths, batch_size, False):
-        loss = _eval_step(model, x, mask, lens, nonneg_channels, lambda_phy)
+        keep = _ones_mask(x, mask)  # full teacher forcing for validation
+        loss = _eval_step(model, x, mask, lens, keep,
+                          nonneg_channels, lambda_phy)
         tot += float(loss); nb += 1
     return tot / max(nb, 1)
 
@@ -294,7 +394,8 @@ def _eval_loss(model, Xn, lengths, nonneg_channels, lambda_phy, batch_size):
 def _extract(model, Xn, lengths, batch_size):
     zs = []
     for x, mask, lens in _make_batches(Xn, lengths, batch_size, False):
-        z, _, _ = model(x, mask, lens)
+        keep = _ones_mask(x, mask)
+        z, _, _ = model(x, mask, lens, keep)
         zs.append(z.numpy())
     return np.concatenate(zs, axis=0)
 
@@ -302,17 +403,31 @@ def _extract(model, Xn, lengths, batch_size):
 def train_feature_extractor(X, lengths, n_features, nonneg_channels,
                             embed_dim=32, lambda_phy=0.1, lr=1e-4,
                             batch_size=16, epochs=50, patience=5,
-                            random_state=0, verbose=True):
+                            random_state=0, verbose=True,
+                            norm_mode="znorm", embed_proj="none",
+                            nonneg_activation="softplus", tf_ratio=1.0,
+                            tf_schedule="constant"):
     """Train the physical-constraint DeTSEC stage-1 feature extractor.
 
     X       : (n, timesteps, F) padded tensor
     lengths : (n,) / (n,1) true lengths
+    norm_mode : "znorm" (per-sequence z-score) | "minmax" (per-channel
+                percentile-clipped global MinMax — preserves power levels)
+    embed_proj : "relu" (sparse low-rank embedding projection) | "none"
+    nonneg_activation : "softplus" | "softplus_offset" (zero-point
+                calibrated) | "relu"
+    tf_ratio : teacher-forcing keep ratio in [0,1]; 1.0 = full teacher
+                forcing, 0.0 = decoder input is z-only (no x_{t-1})
+    tf_schedule : "constant" (use tf_ratio every epoch) | "linear"
+                (ratio decays 1.0 -> tf_ratio across epochs)
     Returns (model, Xn, training_history).
     """
-    Xn = _per_sequence_znorm(X, lengths)
+    Xn = _normalize(X, lengths, norm_mode)
     lengths = np.asarray(lengths).reshape(-1).astype(np.int32)
     n = Xn.shape[0]
-    model = PhyConstrainedDeTSEC(n_features, embed_dim, nonneg_channels)
+    model = PhyConstrainedDeTSEC(n_features, embed_dim, nonneg_channels,
+                                 embed_proj=embed_proj,
+                                 nonneg_activation=nonneg_activation)
     optimizer = tf.keras.optimizers.Adam(learning_rate=lr, clipnorm=1.0)
 
     # validation split + early stopping (mirror detsec_model)
@@ -327,25 +442,37 @@ def train_feature_extractor(X, lengths, n_features, nonneg_channels,
     X_va, len_va = (Xn[val_ids], lengths[val_ids]) if val_ids is not None \
         else (None, None)
 
+    tf_ratio = float(tf_ratio)
+    tf_schedule = str(tf_schedule).lower()
+
+    def _ratio_for_epoch(epoch):
+        if tf_schedule == "linear":
+            frac = (epoch - 1) / max(epochs - 1, 1)   # 0 -> 1 across epochs
+            return max(0.0, tf_ratio + (1.0 - tf_ratio) * (1.0 - frac))
+        return tf_ratio
+
     history = {"loss": [], "val_loss": [], "l_ae": [], "l_phy": [],
-               "epochs_trained": 0, "model_name": "detsec_pc"}
+               "tf_ratio_used": [], "epochs_trained": 0, "model_name": "detsec_pc"}
     best_val, best_weights, best_epoch = float("inf"), None, 0
     for epoch in range(1, epochs + 1):
+        ratio = _ratio_for_epoch(epoch)
         l, l_ae, l_phy = _train_epoch(model, optimizer, X_tr, len_tr,
                                       nonneg_channels, lambda_phy, batch_size,
-                                      random_state + epoch)
+                                      random_state + epoch, tf_ratio=ratio)
         val = (_eval_loss(model, X_va, len_va, nonneg_channels, lambda_phy,
                           batch_size) if X_va is not None else l)
         history["loss"].append(l)
         history["val_loss"].append(val)
         history["l_ae"].append(l_ae)
         history["l_phy"].append(l_phy)
+        history["tf_ratio_used"].append(ratio)
         history["epochs_trained"] = epoch
         if val < best_val:
             best_val, best_weights, best_epoch = val, model.get_weights(), epoch
         if verbose and (epoch == 1 or epoch % max(1, epochs // 5) == 0):
             print(f"[detsec_pc] Epoch {epoch:3d}/{epochs}  L={l:.4f}  "
-                  f"L_ae={l_ae:.4f}  L_phy={l_phy:.4f}  val={val:.4f}")
+                  f"L_ae={l_ae:.4f}  L_phy={l_phy:.4f}  val={val:.4f}  "
+                  f"tf={ratio:.2f}")
         if patience > 0 and epoch - best_epoch >= patience:
             if verbose:
                 print(f"[detsec_pc] early stop @ epoch {epoch} (best val "
@@ -372,17 +499,27 @@ def detsec_pc(data, model_config):
     embed_dim = int(model_config.get("embed_dim", 32))
     lambda_phy = float(model_config.get("lambda_phy", 0.1))
     nonneg_channels = model_config.get("nonneg_channels", [0, 1, 2, 3])
+    norm_mode = str(model_config.get("norm_mode", "znorm"))
+    embed_proj = str(model_config.get("embed_proj", "none"))
+    nonneg_activation = str(model_config.get("nonneg_activation", "softplus"))
+    tf_ratio = float(model_config.get("tf_ratio", 1.0))
+    tf_schedule = str(model_config.get("tf_schedule", "constant"))
     lr = float(model_config.get("learning_rate", 1e-4))
     batch_size = int(model_config.get("batch_size", 16))
     epochs = int(model_config.get("epochs", 50))
     patience = int(model_config.get("patience", 5))
 
     print(f"[detsec_pc] training embed_dim={embed_dim} lambda_phy={lambda_phy} "
-          f"nonneg_channels={nonneg_channels} input={X.shape}")
+          f"nonneg_channels={nonneg_channels} norm_mode={norm_mode} "
+          f"embed_proj={embed_proj} nonneg_activation={nonneg_activation} "
+          f"tf_ratio={tf_ratio} tf_schedule={tf_schedule} input={X.shape}")
     model, Xn, history = train_feature_extractor(
         X, lengths, n_features, nonneg_channels,
         embed_dim=embed_dim, lambda_phy=lambda_phy, lr=lr,
-        batch_size=batch_size, epochs=epochs, patience=patience)
+        batch_size=batch_size, epochs=epochs, patience=patience,
+        norm_mode=norm_mode, embed_proj=embed_proj,
+        nonneg_activation=nonneg_activation, tf_ratio=tf_ratio,
+        tf_schedule=tf_schedule)
 
     features = _extract(model, Xn, lengths, batch_size)
     print(f"[detsec_pc] features: {features.shape}")

@@ -1,0 +1,28 @@
+# Determined AI task config — R2 final validation, refit washing_machine:
+#   prim-glr + detsec_pc (S3 scheduled sampling) + dpc-kmeans k=2..8.
+# run_id=20260810_120812_pcdetsec_s3_refit  submitted 2026-08-10 12:08:13.
+# Artifacts under log_det_test/20260810_120812_pcdetsec_s3_refit/.
+description: 20260810_120812_pcdetsec_s3_refit
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_test.sh
+  - prim-glr                                       # SEGMENT_METHOD
+  - detsec_pc                                      # FEATURE_MODEL
+  - dpc-kmeans                                     # CLUSTER_METHOD
+  - "2,3,4,5,6,7,8"                                # N_CLUSTERS
+  - 20260810_120812_pcdetsec_s3_refit                                      # RUN_ID
+  - /labdata2/lexingruan/pslg-nilm/input/refit_washing_machine.csv   # RAW_SERIES
+  - config/config_refit_pcdetsec_s3.yaml           # CONFIG
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

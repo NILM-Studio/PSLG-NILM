@@ -123,6 +123,11 @@ def _build_feature(cfg, sel):
         embed_dim=c.get("embed_dim", 32),
         lambda_phy=c.get("lambda_phy", 0.1),
         nonneg_channels=c.get("nonneg_channels", [0, 1, 2, 3]),
+        norm_mode=c.get("norm_mode", "znorm"),
+        embed_proj=c.get("embed_proj", "none"),
+        nonneg_activation=c.get("nonneg_activation", "softplus"),
+        tf_ratio=c.get("tf_ratio", 1.0),
+        tf_schedule=c.get("tf_schedule", "constant"),
     )
 
 

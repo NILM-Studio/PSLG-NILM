@@ -1,0 +1,22 @@
+# Determined AI task config — per-K clustering charts (k=2..8) for the R1-S3
+# scheduled-sampling variant on ukdale (run 20260810_090804_abl_s3_tf_sampling_ukdale).
+# CPU-only, few threads. Figures land under output/<run_id>/ on shared FS.
+description: 20260810_114151_viz_s3_ukdale
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_viz_clustering.sh
+  - 20260810_090804_abl_s3_tf_sampling_ukdale       # RUN_ID (charts source)
+  - config/config_ukdale_abl_s3_tf_sampling.yaml    # CONFIG (visualization block)
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

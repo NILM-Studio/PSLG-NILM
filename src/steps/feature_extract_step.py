@@ -65,7 +65,9 @@ class FeatureExtractStep(Step):
                  learning_rate: float = 0.0001, patience: int = 5,
                  attention_size: int = 32, cache_enabled: bool = True,
                  embed_dim: int = 32, lambda_phy: float = 0.1,
-                 nonneg_channels=None):
+                 nonneg_channels=None, norm_mode: str = "znorm",
+                 embed_proj: str = "none", nonneg_activation: str = "softplus",
+                 tf_ratio: float = 1.0, tf_schedule: str = "constant"):
         super().__init__(variant=f"{model_name}_on_{segment_method}")
         self.model_name = model_name
         self.segment_method = segment_method
@@ -81,6 +83,11 @@ class FeatureExtractStep(Step):
         self.nonneg_channels = sorted(
             int(c) for c in (nonneg_channels if nonneg_channels is not None
                              else [0, 1, 2, 3]))
+        self.norm_mode = str(norm_mode).lower()
+        self.embed_proj = str(embed_proj).lower()
+        self.nonneg_activation = str(nonneg_activation).lower()
+        self.tf_ratio = float(tf_ratio)
+        self.tf_schedule = str(tf_schedule).lower()
 
     def log_subdir(self) -> str:
         return f"FeatureExtract_{self.model_name}_on_{self.segment_method}"
@@ -124,6 +131,11 @@ class FeatureExtractStep(Step):
             cfg["embed_dim"] = self.embed_dim
             cfg["lambda_phy"] = self.lambda_phy
             cfg["nonneg_channels"] = self.nonneg_channels
+            cfg["norm_mode"] = self.norm_mode
+            cfg["embed_proj"] = self.embed_proj
+            cfg["nonneg_activation"] = self.nonneg_activation
+            cfg["tf_ratio"] = self.tf_ratio
+            cfg["tf_schedule"] = self.tf_schedule
         return cfg
 
     def _code_id(self) -> str:

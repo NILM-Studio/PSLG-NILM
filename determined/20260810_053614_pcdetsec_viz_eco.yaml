@@ -1,0 +1,23 @@
+# Determined AI task config — eco: per-K clustering charts from run
+# 20260809_160925_primglr_pcdetsec_eco (dpc-kmeans k=2..8 on detsec_pc features, prim-glr segments).
+# CPU-only, few threads. Figures land under output/20260810_053614_pcdetsec_viz_eco/.
+# Push: det command run --config-file determined/20260810_053614_pcdetsec_viz_eco.yaml --detach
+description: 20260810_053614_pcdetsec_viz_eco
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_viz_clustering.sh
+  - 20260809_160925_primglr_pcdetsec_eco                                    # RUN_ID (charts source)
+  - config/config_eco_pc_detsec.yaml            # CONFIG (visualization block)
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

@@ -1,0 +1,23 @@
+# R1-S1: clustering fairness — kmeans(n_init=30) on the existing detsec_pc v2
+# ukdale features (run 20260810_061444_primglr_pcdetsecv2_ukdale). No training. CPU-light.
+description: 20260810_090804_abl_s1_kmeans_v2feat_ukdale
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_cluster_reuse.sh
+  - 20260810_061444_primglr_pcdetsecv2_ukdale                                     # RUN_ID (reuse features)
+  - kmeans                                        # CLUSTER_METHOD
+  - config/config_ukdale_pc_detsec_v2.yaml        # CONFIG
+  - "2,3,4,5,6,7,8"                               # N_CLUSTERS
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false

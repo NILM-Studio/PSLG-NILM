@@ -163,9 +163,21 @@ def center_stacked_tsne(labels, org_data, feature_matrix, seq_length, save_dir,
 
     # ── 3. tSNE ──────────────────────────────────────────────────
     feature_matrix = np.asarray(feature_matrix)
+    fstd = float(feature_matrix.std()) if feature_matrix.size else 0.0
+    if not np.isfinite(fstd) or fstd < 1e-9:
+        print("[cluster_charts] tSNE skipped: degenerate/near-constant "
+              "feature matrix (std={:.2e})".format(fstd))
+        return
     perplexity = 2 if len(feature_matrix) < 5 else max(2, min(30, len(feature_matrix) // 10))
+    # exact for small n (fast, no Barnes-Hut degeneracy with duplicate rows);
+    # barnes_hut for the large embedding matrices (e.g. ukdale 9k+ samples).
+    method = "exact" if len(feature_matrix) <= 5000 else "barnes_hut"
+    import time as _time
+    _t0 = _time.time()
     tsne_2d = TSNE(n_components=2, perplexity=perplexity, random_state=42,
-                   init="pca").fit_transform(feature_matrix)
+                   init="pca", method=method).fit_transform(feature_matrix)
+    print(f"[cluster_charts] tSNE({method}) n={len(feature_matrix)} -> "
+          f"{_time.time() - _t0:.1f}s")
     plt.figure(figsize=(10, 8))
     for cluster_id in np.unique(valid_labels):
         idx = labels == cluster_id
