@@ -1,0 +1,20 @@
+# Per-K clustering charts for detsec BASELINE eco (run 20260809_primglr_detsec_eco), all tags.
+description: 20260810_140042_viz_detsec_eco
+entrypoint:
+  - bash
+  - /labdata2/lexingruan/pslg-nilm/determined/run_viz_clustering.sh
+  - 20260809_primglr_detsec_eco                                     # RUN_ID
+  - config/config_eco_detsec.yaml                # CONFIG
+
+environment:
+  image: harbor.lins.lab/determinedai/environments:cuda-11.8-pytorch-2.0-gpu-mpi-0.31.1
+
+resources:
+  slots: 1
+  shm_size: 4000000000
+  resource_pool: 64c128t_512_4090
+
+bind_mounts:
+  - host_path: /labdata2
+    container_path: /labdata2
+    read_only: false
