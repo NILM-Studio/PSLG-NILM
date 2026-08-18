@@ -4,8 +4,8 @@
 #SBATCH --gres=gpu:1
 #SBATCH -c 8
 #SBATCH --mem=32G
-#SBATCH -o /home/scnu2023024258/data/code/PSLG-NILM-ADVANCED/slurm/slurm_log/job-%x-%j.out
-#SBATCH -e /home/scnu2023024258/data/code/PSLG-NILM-ADVANCED/slurm/slurm_log/job-%x-%j.err
+#SBATCH -o /home/scnu2024024563/NILM/PSLG-NILM/slurm/slurm_log/job-%x-%j.out
+#SBATCH -e /home/scnu2024024563/NILM/PSLG-NILM/slurm/slurm_log/job-%x-%j.err
 #SBATCH --time=48:00:00
 
 # 切分方法网格：每种切分方法各跑一条 extract→segment→feature 流水线。
