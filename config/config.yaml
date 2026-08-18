@@ -82,6 +82,16 @@ temporal_state_merge:
   min_block_seconds: 90         # short blocks shorter than this (in seconds) are absorbed
   fs: 0.1666667                 # sampling rate (Hz); overrides extract_active_data if unset
 
+# Primitive-level cycle synthesis. The first implementation is a traceable
+# real-primitive resampling baseline; a learned generator plugs into the same
+# sampler interface in the next stage.
+primitive_synthesis:
+  n_cycles: 100
+  random_seed: 42
+  min_blocks: 3
+  max_blocks: 20
+  fs: 0.1666667
+
 dataset_split:
   mains_series: input/fridge_mains.npy  # mains long series (.npy/.dat), (len,2) [timestamp, power]
   few_train_ratio: 0.5

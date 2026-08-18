@@ -46,7 +46,8 @@ for _p in (project_root, models_dir,
         sys.path.insert(0, _p)
 
 # Canonical step order — all steps are implemented.
-ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge", "fewshot", "pam", "split"]
+ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
+                  "synthesize", "fewshot", "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
 
@@ -177,6 +178,22 @@ def _build_state_merge(cfg, sel):
     )
 
 
+def _build_synthesize(cfg, sel):
+    from src.steps.primitive_synthesis_step import PrimitiveSynthesisStep
+    c = cfg.get("primitive_synthesis", {}) or {}
+    ex = cfg.get("extract_active_data", {}) or {}
+    return PrimitiveSynthesisStep(
+        cluster_tag=sel["cluster_tag"],
+        sampler=sel["primitive_sampler"],
+        sequence_method=sel["sequence_method"],
+        n_cycles=c.get("n_cycles", 100),
+        random_seed=c.get("random_seed", 42),
+        min_blocks=c.get("min_blocks", 3),
+        max_blocks=c.get("max_blocks", 20),
+        fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
+    )
+
+
 def _build_fewshot(cfg, sel):
     from src.steps.few_shot_cluster_extract_step import FewShotClusterExtractStep
     c = cfg.get("few_shot_cluster_extract", {})
@@ -216,6 +233,7 @@ STEP_BUILDERS = {
     "feature": _build_feature,
     "cluster": _build_cluster,
     "state_merge": _build_state_merge,
+    "synthesize": _build_synthesize,
     "fewshot": _build_fewshot,
     "pam": _build_pam,
     "split": _build_split,
@@ -238,6 +256,8 @@ def resolve_selection(args, cfg):
         "cluster_method": args.cluster_method or "kmeans",
         "n_clusters": parse_int_list(args.n_clusters) or [3, 4, 5],
         "cluster_tag": args.cluster_tag,
+        "primitive_sampler": getattr(args, "primitive_sampler", None) or "real_resample",
+        "sequence_method": getattr(args, "sequence_method", None) or "empirical",
     }
 
 
@@ -285,6 +305,10 @@ def main():
                    help="Candidate cluster counts, e.g. '3,4,5'. Every k gets its own tagged result.")
     p.add_argument("--cluster-tag", default=None,
                    help="Which tagged clustering result downstream steps consume, e.g. 'kmeans_k4'.")
+    p.add_argument("--primitive-sampler", default=None,
+                   help="Primitive waveform source for synthesize: real_resample (default).")
+    p.add_argument("--sequence-method", default=None,
+                   help="State-order sampler for synthesize: empirical | markov (default: empirical).")
     p.add_argument("--appliance", default=None, help="Override run.appliance.")
     p.add_argument("--run-id", default=None, help="Reuse a run directory (enables manifest reuse).")
     p.add_argument("--raw-series", default=None, help="Override paths.raw_series.")

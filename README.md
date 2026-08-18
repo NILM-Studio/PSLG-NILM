@@ -34,7 +34,7 @@ output/<run_id>/figure/  # 出图脚本的统一输出
 ## 流水线
 
 ```
-extract → segment → feature → cluster → fewshot → pam → split
+extract → segment → feature → cluster → state_merge → synthesize → fewshot → pam → split
 ```
 
 | 步骤 | step_type | 说明 |
@@ -43,6 +43,8 @@ extract → segment → feature → cluster → fewshot → pam → split
 | segment | `time_segmentation` | 活动段 → 基元（clasp / ggs / window …） |
 | feature | `feature_extract` | 基元 → 潜特征（detsec / bilstm_ae / …），**唯一带缓存的步骤** |
 | cluster | `time_clustering` | kmeans（全候选 k）/ kmeans-scan（诊断）/ dbscan / hdbscan |
+| state_merge | `state_merge` | 按活动恢复连续功能状态，输出状态序列与合并块 |
+| synthesize | `primitive_synthesis` | 按状态基元库和经验/Markov顺序重组完整工作周期 |
 | fewshot | `few_shot_cluster_extract` | 按簇规模识别少样本簇并导出 |
 | pam | `primitive_activity_mapping` | 基元↔活动映射（索引对齐），划分少样本/非少样本活动 |
 | split | `dataset_split` | 生成 train / test_a / test_b（knockout：支路置零、总线扣减） |
@@ -64,9 +66,36 @@ python main.py --steps cluster --run-id <已有run_id> \
 python main.py --steps fewshot,pam,split --run-id <run_id> --cluster-tag kmeans_k4
 ```
 
+### 基元重组基线
+
+状态合并后，可从修正标签的短基元库重采样波形，并使用真实状态序列或一阶
+Markov 模型合成新的完整工作周期：
+
+```bash
+# 保留真实状态顺序，替换每个状态内部的真实基元
+python main.py --steps synthesize --run-id <run_id> \
+    --cluster-tag kmeans_k4_merged \
+    --primitive-sampler real_resample --sequence-method empirical
+
+# 从训练活动学习的转移概率采样新状态顺序
+python main.py --steps synthesize --run-id <run_id> \
+    --cluster-tag kmeans_k4_merged \
+    --primitive-sampler real_resample --sequence-method markov
+```
+
+结果在 `log/<run_id>/primitive_synthesis_*/`，包括逐周期 CSV、转移模型、
+基元库统计与完整来源追踪清单。该实现是生成实验的真实基元重组基线；学习型
+生成器通过相同 sampler 接口接入。
+
+```bash
+# 查看生成的完整工作周期及其状态边界
+python -m visualize.visualize_synthetic_cycles \
+    --run-id <run_id> --max-files 20
+```
+
 CLI 参数一览：`--steps`、`--segment-method`、`--feature-model`、
-`--cluster-method`、`--n-clusters`、`--cluster-tag`、`--appliance`、
-`--run-id`、`--raw-series`、`--config`。
+`--cluster-method`、`--n-clusters`、`--cluster-tag`、`--primitive-sampler`、
+`--sequence-method`、`--appliance`、`--run-id`、`--raw-series`、`--config`。
 
 ## RunManifest：产物的唯一事实来源
 
