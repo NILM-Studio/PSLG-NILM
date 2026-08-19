@@ -74,7 +74,7 @@ cycle_validation:
   max_missing_ratio: 0.01
   robust_z_threshold: 3.5
   max_metric_modes: 3
-  min_mode_support: 15
+  min_mode_support: 10
   mode_bic_min_gain: 10
   mode_random_state: 42
   class_overrides: {}

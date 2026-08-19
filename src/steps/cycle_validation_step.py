@@ -159,6 +159,10 @@ class CycleValidationStep(Step):
         # without being a corrupt or incomplete recording.
         for row in activity_rows.values():
             signature = row.get("signature", [])
+            representative = class_lookup[row["class_id"]].get(
+                "representative_signature", [])
+            row["is_representative_signature"] = (
+                tuple(signature) == tuple(int(value) for value in representative))
             reasons = []
             if row.get("load_error"):
                 reasons.append("load_error")
@@ -171,6 +175,8 @@ class CycleValidationStep(Step):
             if row.get("end_power_median", np.inf) > row.get("boundary_limit", 0.0):
                 reasons.append("active_end_boundary")
             warnings = []
+            if not row["is_representative_signature"]:
+                warnings.append("signature_variant")
             if required_states and not required_states.issubset(set(signature)):
                 warnings.append("missing_common_state")
             if terminal_states and (not signature or signature[-1] not in terminal_states):
@@ -187,6 +193,8 @@ class CycleValidationStep(Step):
             eligible = [str(v) for v in entry.get("member_ids", [])
                         if str(v) in activity_rows
                         and activity_rows[str(v)]["passes_hard_checks"]]
+            eligible = [mid for mid in eligible
+                        if activity_rows[mid]["is_representative_signature"]]
             if not eligible:
                 mode_diagnostics[str(class_id)] = {"selected_modes": 0}
                 continue
@@ -255,7 +263,10 @@ class CycleValidationStep(Step):
 
         for row in activity_rows.values():
             reasons = list(row.pop("_hard_reasons"))
-            if row["passes_hard_checks"]:
+            if row["passes_hard_checks"] and not row["is_representative_signature"]:
+                reasons.append("signature_variant")
+                row["mode_id"] = -2
+            elif row["passes_hard_checks"]:
                 if any(row.get(f"{name}_robust_z", np.inf) > self.robust_z_threshold
                        for name in metric_names):
                     reasons.append("mode_metric_outlier")
@@ -272,6 +283,9 @@ class CycleValidationStep(Step):
                        if str(v) in activity_rows]
             valid_members = [mid for mid in members
                              if activity_rows[mid]["is_valid_member"]]
+            representative_members = [
+                mid for mid in members
+                if activity_rows[mid]["is_representative_signature"]]
             ratio = float(len(valid_members) / max(len(members), 1))
             purity = signature_purity(entry)
             signature = [int(v) for v in entry.get("representative_signature", [])]
@@ -310,6 +324,7 @@ class CycleValidationStep(Step):
                 "class_id": class_id,
                 "status": status,
                 "support": int(entry.get("support", 0)),
+                "representative_members": len(representative_members),
                 "valid_members": len(valid_members),
                 "valid_member_ratio": ratio,
                 "signature_purity": purity,
@@ -359,6 +374,7 @@ class CycleValidationStep(Step):
         self._write_csv(report_path, sorted(activity_rows.values(),
                                             key=lambda row: int(row["activity_id"])), [
             "activity_id", "file", "class_id", "mode_id", "signature",
+            "is_representative_signature",
             "passes_hard_checks", "is_valid_member", "rejection_reasons",
             "structural_warnings", "duration_seconds", "energy_wh", "mean_power",
             "max_power", "missing_ratio", "start_power_median",
@@ -366,7 +382,8 @@ class CycleValidationStep(Step):
             *[f"{name}_robust_z" for name in metric_names],
         ])
         self._write_csv(class_path, class_rows, [
-            "class_id", "status", "support", "valid_members", "valid_member_ratio",
+            "class_id", "status", "support", "representative_members",
+            "valid_members", "valid_member_ratio",
             "signature_purity", "representative_signature", "median_duration_seconds",
             "reasons",
         ])

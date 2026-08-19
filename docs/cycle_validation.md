@@ -14,8 +14,11 @@ within-class metric outliers from entering a primitive generator.
    warnings rather than hard rejection rules, because cold or short programs
    may legitimately omit a common heating state.
 3. Discover one to three physical-program modes within every state-pattern
-   class using a BIC-selected GMM over duration, energy, mean power, and peak
-   power. Apply robust MAD outlier detection inside each mode.
+   class using only members that exactly match its representative signature.
+   Approximate edit-distance assignments remain visible as `signature_variant`
+   records but cannot contaminate a canonical generation library. A
+   BIC-selected GMM uses duration, energy, mean power, and peak power, followed
+   by robust MAD outlier detection inside each mode.
 4. Mark each class `valid_full`, `valid_short`, `uncertain`, or `invalid` using
    support, dominant-signature purity, and valid-member ratio.
 5. Write a filtered cycle catalog. `primitive_synthesis` consumes this catalog

@@ -234,7 +234,7 @@ def _build_cycle_validate(cfg, sel):
         max_missing_ratio=c.get("max_missing_ratio", 0.01),
         robust_z_threshold=c.get("robust_z_threshold", 3.5),
         max_metric_modes=c.get("max_metric_modes", 3),
-        min_mode_support=c.get("min_mode_support", 15),
+        min_mode_support=c.get("min_mode_support", 10),
         mode_bic_min_gain=c.get("mode_bic_min_gain", 10.0),
         mode_random_state=c.get("mode_random_state", 42),
         class_overrides=c.get("class_overrides", {}),
