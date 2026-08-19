@@ -27,7 +27,8 @@ class PrimitiveSynthesisStep(Step):
                  cycle_class: str = "all", class_sampling: str = "balanced",
                  candidate_pool: int = 32,
                  within_state_smooth_samples: int = 3,
-                 boundary_smooth_samples: int = 3):
+                 boundary_smooth_samples: int = 3,
+                 require_cycle_validation: bool = True):
         if not cluster_tag:
             raise ValueError("primitive synthesis requires --cluster-tag")
         super().__init__(
@@ -45,6 +46,7 @@ class PrimitiveSynthesisStep(Step):
         self.candidate_pool = int(candidate_pool)
         self.within_state_smooth_samples = int(within_state_smooth_samples)
         self.boundary_smooth_samples = int(boundary_smooth_samples)
+        self.require_cycle_validation = bool(require_cycle_validation)
         if self.fs <= 0:
             raise ValueError("primitive_synthesis.fs must be positive")
 
@@ -94,6 +96,27 @@ class PrimitiveSynthesisStep(Step):
         return primitives
 
     def _load_catalog(self, context: dict) -> CyclePatternCatalog:
+        validation = context["manifest"].get_step("cycle_validation") or {}
+        validated_tag = (validation.get("extra") or {}).get("cluster_tag")
+        if validated_tag and validated_tag != self.cluster_tag:
+            raise ValueError(
+                f"[primitive_synthesis] validated cycles use {validated_tag}, but "
+                f"synthesis requested {self.cluster_tag}; rerun cycle_validate")
+        validated_path = self.resolve(
+            context, "cycle_validation", "validated_cycle_classes")
+        if validated_path and os.path.exists(validated_path):
+            with open(validated_path, encoding="utf-8") as f:
+                payload = json.load(f)
+            if not payload.get("classes"):
+                raise ValueError(
+                    "[primitive_synthesis] cycle validation accepted no full classes; "
+                    "review class_validity_summary.csv or configure class_overrides")
+            return CyclePatternCatalog(payload)
+        if self.require_cycle_validation:
+            raise FileNotFoundError(
+                "[primitive_synthesis] validated cycle catalog not found; run "
+                "--steps cycle_validate first for the same --run-id and --cluster-tag")
+
         entry = context["manifest"].get_step("cycle_classification") or {}
         classified_tag = (entry.get("extra") or {}).get("cluster_tag")
         if classified_tag and classified_tag != self.cluster_tag:
@@ -261,6 +284,7 @@ class PrimitiveSynthesisStep(Step):
             "generated_cycle_classes": class_ids,
             "class_sampling": self.class_sampling,
             "n_cycles": self.n_cycles,
+            "cycle_validation_required": self.require_cycle_validation,
             "states": sorted({state for library in libraries.values()
                               for state in library.states}),
         })

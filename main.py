@@ -47,7 +47,8 @@ for _p in (project_root, models_dir,
 
 # Canonical step order — all steps are implemented.
 ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
-                  "cycle_classify", "synthesize", "fewshot", "pam", "split"]
+                  "cycle_classify", "cycle_validate", "synthesize", "fewshot",
+                  "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
 
@@ -196,6 +197,7 @@ def _build_synthesize(cfg, sel):
         candidate_pool=c.get("candidate_pool", 32),
         within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
+        require_cycle_validation=c.get("require_cycle_validation", True),
     )
 
 
@@ -209,6 +211,28 @@ def _build_cycle_classify(cfg, sel):
         rare_max_distance=c.get("rare_max_distance", 0.34),
         min_pattern_blocks=c.get("min_pattern_blocks", 3),
         min_unique_states=c.get("min_unique_states", 2),
+    )
+
+
+def _build_cycle_validate(cfg, sel):
+    from src.steps.cycle_validation_step import CycleValidationStep
+    c = cfg.get("cycle_validation", {}) or {}
+    ex = cfg.get("extract_active_data", {}) or {}
+    return CycleValidationStep(
+        cluster_tag=sel["cluster_tag"],
+        fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
+        min_class_support=c.get("min_class_support", 30),
+        min_signature_purity=c.get("min_signature_purity", 0.5),
+        min_valid_member_ratio=c.get("min_valid_member_ratio", 0.7),
+        core_state_min_prevalence=c.get("core_state_min_prevalence", 0.8),
+        terminal_state_min_prevalence=c.get("terminal_state_min_prevalence", 0.7),
+        min_duration_seconds=c.get("min_duration_seconds", 300.0),
+        boundary_window_seconds=c.get("boundary_window_seconds", 60.0),
+        boundary_absolute_watts=c.get("boundary_absolute_watts", 50.0),
+        boundary_peak_ratio=c.get("boundary_peak_ratio", 0.15),
+        max_missing_ratio=c.get("max_missing_ratio", 0.01),
+        robust_z_threshold=c.get("robust_z_threshold", 3.5),
+        class_overrides=c.get("class_overrides", {}),
     )
 
 
@@ -252,6 +276,7 @@ STEP_BUILDERS = {
     "cluster": _build_cluster,
     "state_merge": _build_state_merge,
     "cycle_classify": _build_cycle_classify,
+    "cycle_validate": _build_cycle_validate,
     "synthesize": _build_synthesize,
     "fewshot": _build_fewshot,
     "pam": _build_pam,

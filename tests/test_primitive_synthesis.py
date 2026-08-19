@@ -13,9 +13,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.framework.step import Step
 from src.framework.workflow import Workflow
 from src.generation.cycle_patterns import CyclePatternClassifier
+from src.generation.cycle_validation import infer_cycle_grammar, robust_z_scores
 from src.generation.primitive_library import Primitive, PrimitiveLibrary, RealPrimitiveSampler
 from src.generation.transition_model import StateTransitionModel
 from src.steps.cycle_classification_step import CycleClassificationStep
+from src.steps.cycle_validation_step import CycleValidationStep
 from src.steps.primitive_synthesis_step import PrimitiveSynthesisStep
 
 
@@ -119,6 +121,23 @@ class CyclePatternClassifierTest(unittest.TestCase):
         self.assertEqual(provenance[0]["join_jump_after"], 0.0)
         self.assertEqual(provenance[1]["join_jump_after"], 0.0)
 
+    def test_cycle_grammar_is_inferred_from_supported_class_patterns(self):
+        classes = [
+            {"support": 80, "representative_signature": [1, 0, 2, 1]},
+            {"support": 60, "representative_signature": [3, 0, 2, 1]},
+            {"support": 10, "representative_signature": [3, 1, 3]},
+        ]
+        grammar = infer_cycle_grammar(classes, min_class_support=30,
+                                      core_state_min_prevalence=0.8,
+                                      terminal_state_min_prevalence=0.7)
+        self.assertEqual(grammar["required_core_states"], [0, 1, 2])
+        self.assertEqual(grammar["allowed_terminal_states"], [1])
+
+    def test_robust_z_scores_flag_single_extreme_value(self):
+        scores = robust_z_scores([10, 11, 10, 9, 200])
+        self.assertTrue(np.all(scores[:4] < 3.5))
+        self.assertGreater(scores[-1], 3.5)
+
 
 class PrimitiveSynthesisStepTest(unittest.TestCase):
     def test_real_resampling_emits_traceable_cycles(self):
@@ -130,12 +149,23 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 wf.add(SynthesisUpstreamStub())
                 wf.add(CycleClassificationStep(
                     cluster_tag="kmeans_k2_merged", min_support=1))
+                wf.add(CycleValidationStep(
+                    cluster_tag="kmeans_k2_merged", fs=1.0,
+                    min_class_support=1, min_signature_purity=0.0,
+                    min_valid_member_ratio=0.0,
+                    terminal_state_min_prevalence=0.5,
+                    min_duration_seconds=0.0,
+                    boundary_absolute_watts=200.0,
+                    robust_z_threshold=float("inf")))
                 wf.add(PrimitiveSynthesisStep(
                     cluster_tag="kmeans_k2_merged", n_cycles=4,
                     random_seed=9, sequence_method="empirical", fs=1.0))
                 wf.run()
 
                 manifest = wf.manifest
+                whitelist = manifest.artifact_path("cycle_validation", "whitelist")
+                with open(whitelist, encoding="utf-8") as f:
+                    self.assertEqual(json.load(f)["valid_class_ids"], [0, 1])
                 cycles_dir = manifest.artifact_path("primitive_synthesis", "cycles_dir")
                 cycle_files = sorted(f for f in os.listdir(cycles_dir) if f.endswith(".csv"))
                 self.assertEqual(len(cycle_files), 4)

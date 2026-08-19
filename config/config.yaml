@@ -92,6 +92,25 @@ cycle_classification:
   min_pattern_blocks: 3
   min_unique_states: 2
 
+# Select complete, internally consistent real cycles before synthesis. State
+# grammar is inferred from supported classes, so KMeans label ids are not
+# assigned fixed appliance semantics. class_overrides is the auditable human
+# review hook: valid_full | valid_short | uncertain | invalid.
+cycle_validation:
+  min_class_support: 30
+  min_signature_purity: 0.5
+  min_valid_member_ratio: 0.7
+  core_state_min_prevalence: 0.8
+  terminal_state_min_prevalence: 0.7
+  min_duration_seconds: 300
+  boundary_window_seconds: 60
+  boundary_absolute_watts: 50
+  boundary_peak_ratio: 0.15
+  max_missing_ratio: 0.01
+  robust_z_threshold: 3.5
+  class_overrides: {}
+  fs: 0.1666667
+
 # Primitive-level cycle synthesis. The first implementation is a traceable
 # real-primitive resampling baseline; a learned generator plugs into the same
 # sampler interface in the next stage.
@@ -104,6 +123,7 @@ primitive_synthesis:
   candidate_pool: 32
   within_state_smooth_samples: 3
   boundary_smooth_samples: 3
+  require_cycle_validation: true
   fs: 0.1666667
 
 dataset_split:
