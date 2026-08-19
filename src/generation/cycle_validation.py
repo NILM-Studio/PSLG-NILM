@@ -71,3 +71,71 @@ def signature_purity(entry: dict) -> float:
     support = max(int(entry.get("support", 0)), 1)
     return float(max(counts, default=0) / support)
 
+
+def discover_metric_modes(matrix: np.ndarray, max_modes: int = 3,
+                          min_mode_support: int = 15,
+                          bic_min_gain: float = 10.0,
+                          random_state: int = 42) -> tuple[np.ndarray, dict]:
+    """Discover supported physical-program modes with a BIC-selected GMM.
+
+    Columns are positive cycle metrics (duration, energy, mean and peak power).
+    A log transform limits scale skew, then standardization prevents one metric
+    from dominating. More complex models are accepted only when they improve
+    BIC by ``bic_min_gain`` and every component has enough observations.
+    Returned mode ids are ordered by median duration for stable interpretation.
+    """
+    from sklearn.mixture import GaussianMixture
+    from sklearn.preprocessing import StandardScaler
+
+    values = np.asarray(matrix, dtype=np.float64)
+    if values.ndim != 2 or len(values) == 0:
+        raise ValueError("mode discovery requires a non-empty 2-D metric matrix")
+    if len(values) == 1:
+        return np.zeros(1, dtype=np.int64), {
+            "selected_modes": 1,
+            "candidate_bic": {},
+            "mode_support": {"0": 1},
+        }
+    transformed = np.log1p(np.clip(values, 0.0, None))
+    scaled = StandardScaler().fit_transform(transformed)
+    max_supported = max(1, min(int(max_modes),
+                               len(values) // max(1, int(min_mode_support))))
+
+    candidates = []
+    for n_components in range(1, max_supported + 1):
+        model = GaussianMixture(
+            n_components=n_components, covariance_type="full",
+            reg_covar=1e-5, n_init=5, random_state=int(random_state))
+        labels = model.fit_predict(scaled)
+        counts = np.bincount(labels, minlength=n_components)
+        candidates.append({
+            "n_components": n_components,
+            "bic": float(model.bic(scaled)),
+            "labels": labels,
+            "counts": counts,
+        })
+
+    selected = candidates[0]
+    for candidate in candidates[1:]:
+        if int(candidate["counts"].min()) < int(min_mode_support):
+            continue
+        if float(candidate["bic"]) <= float(selected["bic"]) - float(bic_min_gain):
+            selected = candidate
+
+    raw_labels = np.asarray(selected["labels"], dtype=np.int64)
+    order = sorted(range(int(selected["n_components"])),
+                   key=lambda label: float(np.median(values[raw_labels == label, 0])))
+    remap = {old: new for new, old in enumerate(order)}
+    labels = np.asarray([remap[int(label)] for label in raw_labels], dtype=np.int64)
+    diagnostics = {
+        "selected_modes": int(selected["n_components"]),
+        "candidate_bic": {
+            str(item["n_components"]): float(item["bic"])
+            for item in candidates
+        },
+        "mode_support": {
+            str(mode): int(np.sum(labels == mode))
+            for mode in sorted(set(labels.tolist()))
+        },
+    }
+    return labels, diagnostics

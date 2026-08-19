@@ -194,7 +194,28 @@ class CyclePatternCatalog:
         return [self.activities[str(activity_id)]["blocks"]
                 for activity_id in self.classes[int(class_id)]["member_ids"]]
 
-    def sample_activity(self, class_id: int, rng: np.random.Generator) -> tuple[str, List[dict]]:
-        members = self.classes[int(class_id)]["member_ids"]
+    def mode_ids_for_class(self, class_id: int) -> List[int]:
+        return sorted({
+            int(self.activities[str(activity_id)].get("validation_mode_id", 0))
+            for activity_id in self.classes[int(class_id)]["member_ids"]
+        })
+
+    def member_ids(self, class_id: int, mode_id: int | None = None) -> List[str]:
+        members = [str(value) for value in self.classes[int(class_id)]["member_ids"]]
+        if mode_id is None:
+            return members
+        return [activity_id for activity_id in members
+                if int(self.activities[activity_id].get("validation_mode_id", 0))
+                == int(mode_id)]
+
+    def sequences_for_mode(self, class_id: int, mode_id: int) -> List[List[dict]]:
+        return [self.activities[activity_id]["blocks"]
+                for activity_id in self.member_ids(class_id, mode_id)]
+
+    def sample_activity(self, class_id: int, rng: np.random.Generator,
+                        mode_id: int | None = None) -> tuple[str, List[dict]]:
+        members = self.member_ids(class_id, mode_id)
+        if not members:
+            raise ValueError(f"class {class_id} mode {mode_id} has no activities")
         activity_id = str(members[int(rng.integers(0, len(members)))])
         return activity_id, self.activities[activity_id]["blocks"]

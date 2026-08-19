@@ -9,13 +9,19 @@ within-class metric outliers from entering a primitive generator.
 1. Infer common core states and terminal states from supported class patterns.
    Cluster labels are treated as arbitrary ids; no label is hard-coded as a
    washing-machine function.
-2. Check every source activity for missing samples, minimum duration, inactive
-   start/end context, required states, terminal state, and robust within-class
-   outliers in duration, energy, mean power, and peak power.
-3. Mark each class `valid_full`, `valid_short`, `uncertain`, or `invalid` using
+2. Check every source activity for missing samples, minimum duration, and
+   inactive start/end context. Common states and terminal states are semantic
+   warnings rather than hard rejection rules, because cold or short programs
+   may legitimately omit a common heating state.
+3. Discover one to three physical-program modes within every state-pattern
+   class using a BIC-selected GMM over duration, energy, mean power, and peak
+   power. Apply robust MAD outlier detection inside each mode.
+4. Mark each class `valid_full`, `valid_short`, `uncertain`, or `invalid` using
    support, dominant-signature purity, and valid-member ratio.
-4. Write a filtered cycle catalog. `primitive_synthesis` consumes this catalog
-   and requires it by default.
+5. Write a filtered cycle catalog. `primitive_synthesis` consumes this catalog
+   and requires it by default. Synthesis builds an independent primitive
+   library and transition model for each `(class, mode)` pair, preventing short
+   and long programs from being mixed during resampling.
 
 The robust score is based on median absolute deviation (MAD):
 
@@ -36,13 +42,28 @@ python main.py \
 ```
 
 Review these artifacts under
-`log/<run-id>/cycle_validation_robust_on_<cluster-tag>/`:
+`log/<run-id>/cycle_validation_multimodal_robust_on_<cluster-tag>/`:
 
 - `class_validity_summary.csv`: class decision and reasons.
 - `cycle_validity_report.csv`: one row per real activity.
 - `inferred_cycle_grammar.json`: inferred state constraints.
+- `cycle_mode_summary.csv`: selected short/normal/long modes and their metrics.
+- `mode_representatives.csv`: medoid, near, and far examples for visual review.
+- `mode_diagnostics.json`: BIC values and selected mode counts.
 - `class_whitelist.json`: accepted classes and activity ids.
 - `validated_cycle_classes.json`: filtered catalog used by synthesis.
+
+Render the medoid, a nearby cycle, and the farthest accepted cycle in each
+mode for manual review:
+
+```bash
+python -m visualize.visualize_cycle_validation \
+  --run-id ukdale_wm_primglr_detsec_3789
+```
+
+Figures are written to
+`output/<run-id>/figure/cycle_validation_modes/`. Use `--class-id 1` to render
+only the class currently under review.
 
 After review, a class decision can be explicitly overridden in the config:
 

@@ -25,6 +25,7 @@ class PrimitiveSynthesisStep(Step):
                  random_seed: int = 42, min_blocks: int = 3,
                  max_blocks: int = 20, fs: float = 0.1666667,
                  cycle_class: str = "all", class_sampling: str = "balanced",
+                 mode_sampling: str = "empirical",
                  candidate_pool: int = 32,
                  within_state_smooth_samples: int = 3,
                  boundary_smooth_samples: int = 3,
@@ -43,6 +44,7 @@ class PrimitiveSynthesisStep(Step):
         self.fs = float(fs)
         self.cycle_class = str(cycle_class).lower()
         self.class_sampling = str(class_sampling).lower()
+        self.mode_sampling = str(mode_sampling).lower()
         self.candidate_pool = int(candidate_pool)
         self.within_state_smooth_samples = int(within_state_smooth_samples)
         self.boundary_smooth_samples = int(boundary_smooth_samples)
@@ -149,17 +151,21 @@ class PrimitiveSynthesisStep(Step):
         primitives = self._load_primitives(context)
         catalog = self._load_catalog(context)
         class_ids = catalog.resolve_classes(self.cycle_class)
-        transition_models = {
-            class_id: StateTransitionModel(catalog.sequences_for_class(class_id))
-            for class_id in class_ids
-        }
-        libraries, samplers = {}, {}
+        if self.mode_sampling not in ("balanced", "empirical"):
+            raise ValueError("primitive_synthesis.mode_sampling must be balanced or empirical")
+        mode_ids = {class_id: catalog.mode_ids_for_class(class_id)
+                    for class_id in class_ids}
+        transition_models, libraries, samplers = {}, {}, {}
         for class_id in class_ids:
-            member_ids = {int(activity_id)
-                          for activity_id in catalog.classes[class_id]["member_ids"]}
-            libraries[class_id] = PrimitiveLibrary(
-                p for p in primitives if p.activity_index in member_ids)
-            samplers[class_id] = self._sampler(libraries[class_id])
+            for mode_id in mode_ids[class_id]:
+                key = (class_id, mode_id)
+                transition_models[key] = StateTransitionModel(
+                    catalog.sequences_for_mode(class_id, mode_id))
+                member_ids = {int(activity_id)
+                              for activity_id in catalog.member_ids(class_id, mode_id)}
+                libraries[key] = PrimitiveLibrary(
+                    p for p in primitives if p.activity_index in member_ids)
+                samplers[key] = self._sampler(libraries[key])
         rng = np.random.default_rng(self.random_seed)
 
         if self.class_sampling not in ("balanced", "empirical"):
@@ -175,6 +181,7 @@ class PrimitiveSynthesisStep(Step):
         for old_cycle in glob(os.path.join(cycles_dir, "synthetic_cycle_*.csv")):
             os.unlink(old_cycle)
         records: List[dict] = []
+        mode_counters = {class_id: 0 for class_id in class_ids}
 
         for cycle_id in range(self.n_cycles):
             if len(class_ids) == 1:
@@ -183,15 +190,31 @@ class PrimitiveSynthesisStep(Step):
                 class_id = class_ids[cycle_id % len(class_ids)]
             else:
                 class_id = class_ids[int(rng.choice(len(class_ids), p=class_weights))]
-            sampler = samplers[class_id]
+            available_modes = mode_ids[class_id]
+            if len(available_modes) == 1:
+                mode_id = available_modes[0]
+            elif self.mode_sampling == "balanced":
+                mode_id = available_modes[
+                    mode_counters[class_id] % len(available_modes)]
+                mode_counters[class_id] += 1
+            else:
+                supports = np.asarray([
+                    len(catalog.member_ids(class_id, value))
+                    for value in available_modes
+                ], dtype=np.float64)
+                supports /= supports.sum()
+                mode_id = available_modes[int(rng.choice(len(available_modes), p=supports))]
+            key = (class_id, mode_id)
+            sampler = samplers[key]
 
             source_activity_id = None
             if self.sequence_method == "empirical":
-                source_activity_id, blocks = catalog.sample_activity(class_id, rng)
+                source_activity_id, blocks = catalog.sample_activity(
+                    class_id, rng, mode_id=mode_id)
                 state_blocks = [(int(block["state_label"]), int(block["length_samples"]))
                                 for block in blocks]
             else:
-                state_blocks = transition_models[class_id].sample(
+                state_blocks = transition_models[key].sample(
                     self.sequence_method, rng, self.min_blocks, self.max_blocks)
             powers, states, block_ids, block_records = [], [], [], []
             cursor = 0
@@ -219,6 +242,7 @@ class PrimitiveSynthesisStep(Step):
                 "state_label": state_labels,
                 "block_id": blocks,
                 "cycle_class": np.full(len(power), class_id, dtype=np.int32),
+                "cycle_mode": np.full(len(power), mode_id, dtype=np.int32),
                 "source_activity_id": np.full(
                     len(power), source_activity_id if source_activity_id is not None else ""),
             })
@@ -227,6 +251,7 @@ class PrimitiveSynthesisStep(Step):
             records.append({
                 "cycle_id": int(cycle_id), "file": filename,
                 "cycle_class": int(class_id),
+                "cycle_mode": int(mode_id),
                 "source_activity_id": source_activity_id,
                 "sequence_method": self.sequence_method,
                 "state_sequence": [int(s) for s, _ in state_blocks],
@@ -261,12 +286,12 @@ class PrimitiveSynthesisStep(Step):
             }
 
         model_path = _dump("transition_models.json", {
-            str(class_id): model.to_dict()
-            for class_id, model in transition_models.items()
+            f"class_{class_id}_mode_{mode_id}": model.to_dict()
+            for (class_id, mode_id), model in transition_models.items()
         })
         library_path = _dump("primitive_library_summary.json", {
-            str(class_id): library.summary()
-            for class_id, library in libraries.items()
+            f"class_{class_id}_mode_{mode_id}": library.summary()
+            for (class_id, mode_id), library in libraries.items()
         })
         continuity_path = _dump("continuity_metrics.json", continuity)
         manifest_path = _dump("synthesis_manifest.json", records)
@@ -283,6 +308,10 @@ class PrimitiveSynthesisStep(Step):
             "cycle_class_selector": self.cycle_class,
             "generated_cycle_classes": class_ids,
             "class_sampling": self.class_sampling,
+            "mode_sampling": self.mode_sampling,
+            "generated_cycle_modes": {
+                str(class_id): mode_ids[class_id] for class_id in class_ids
+            },
             "n_cycles": self.n_cycles,
             "cycle_validation_required": self.require_cycle_validation,
             "states": sorted({state for library in libraries.values()

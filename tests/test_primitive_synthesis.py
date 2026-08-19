@@ -13,7 +13,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.framework.step import Step
 from src.framework.workflow import Workflow
 from src.generation.cycle_patterns import CyclePatternClassifier
-from src.generation.cycle_validation import infer_cycle_grammar, robust_z_scores
+from src.generation.cycle_validation import (discover_metric_modes,
+                                             infer_cycle_grammar,
+                                             robust_z_scores)
 from src.generation.primitive_library import Primitive, PrimitiveLibrary, RealPrimitiveSampler
 from src.generation.transition_model import StateTransitionModel
 from src.steps.cycle_classification_step import CycleClassificationStep
@@ -138,6 +140,21 @@ class CyclePatternClassifierTest(unittest.TestCase):
         self.assertTrue(np.all(scores[:4] < 3.5))
         self.assertGreater(scores[-1], 3.5)
 
+    def test_metric_modes_preserve_supported_short_and_long_programs(self):
+        rng = np.random.default_rng(7)
+        short = np.column_stack((
+            rng.normal(3900, 80, 40), rng.normal(500, 20, 40),
+            rng.normal(450, 15, 40), rng.normal(2300, 10, 40)))
+        long = np.column_stack((
+            rng.normal(7800, 120, 40), rng.normal(1300, 30, 40),
+            rng.normal(600, 20, 40), rng.normal(2320, 10, 40)))
+        labels, diagnostics = discover_metric_modes(
+            np.vstack((short, long)), max_modes=3, min_mode_support=15,
+            bic_min_gain=10.0, random_state=3)
+        self.assertEqual(diagnostics["selected_modes"], 2)
+        self.assertEqual(set(labels[:40]), {0})
+        self.assertEqual(set(labels[40:]), {1})
+
 
 class PrimitiveSynthesisStepTest(unittest.TestCase):
     def test_real_resampling_emits_traceable_cycles(self):
@@ -166,6 +183,9 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 whitelist = manifest.artifact_path("cycle_validation", "whitelist")
                 with open(whitelist, encoding="utf-8") as f:
                     self.assertEqual(json.load(f)["valid_class_ids"], [0, 1])
+                mode_summary = manifest.artifact_path(
+                    "cycle_validation", "mode_summary")
+                self.assertTrue(os.path.exists(mode_summary))
                 cycles_dir = manifest.artifact_path("primitive_synthesis", "cycles_dir")
                 cycle_files = sorted(f for f in os.listdir(cycles_dir) if f.endswith(".csv"))
                 self.assertEqual(len(cycle_files), 4)
@@ -173,6 +193,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 self.assertEqual(list(frame.columns),
                                  ["sample_index", "time_seconds", "power",
                                   "state_label", "block_id", "cycle_class",
+                                  "cycle_mode",
                                   "source_activity_id"])
                 self.assertEqual(len(frame), 24)
                 self.assertTrue(set(frame["state_label"]).issubset({0, 1}))
@@ -187,10 +208,10 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 library_path = manifest.artifact_path("primitive_synthesis", "library_summary")
                 with open(library_path, encoding="utf-8") as f:
                     summary = json.load(f)
-                self.assertEqual(summary["0"]["0"]["count"], 2)
-                self.assertEqual(summary["0"]["1"]["count"], 1)
-                self.assertEqual(summary["1"]["0"]["count"], 1)
-                self.assertEqual(summary["1"]["1"]["count"], 2)
+                self.assertEqual(summary["class_0_mode_0"]["0"]["count"], 2)
+                self.assertEqual(summary["class_0_mode_0"]["1"]["count"], 1)
+                self.assertEqual(summary["class_1_mode_0"]["0"]["count"], 1)
+                self.assertEqual(summary["class_1_mode_0"]["1"]["count"], 2)
                 continuity_path = manifest.artifact_path(
                     "primitive_synthesis", "continuity_metrics")
                 with open(continuity_path, encoding="utf-8") as f:

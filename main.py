@@ -194,6 +194,7 @@ def _build_synthesize(cfg, sel):
         fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
         cycle_class=sel["cycle_class"],
         class_sampling=c.get("class_sampling", "balanced"),
+        mode_sampling=c.get("mode_sampling", "empirical"),
         candidate_pool=c.get("candidate_pool", 32),
         within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
@@ -232,6 +233,10 @@ def _build_cycle_validate(cfg, sel):
         boundary_peak_ratio=c.get("boundary_peak_ratio", 0.15),
         max_missing_ratio=c.get("max_missing_ratio", 0.01),
         robust_z_threshold=c.get("robust_z_threshold", 3.5),
+        max_metric_modes=c.get("max_metric_modes", 3),
+        min_mode_support=c.get("min_mode_support", 15),
+        mode_bic_min_gain=c.get("mode_bic_min_gain", 10.0),
+        mode_random_state=c.get("mode_random_state", 42),
         class_overrides=c.get("class_overrides", {}),
     )
 

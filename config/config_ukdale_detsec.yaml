@@ -73,6 +73,10 @@ cycle_validation:
   boundary_peak_ratio: 0.15
   max_missing_ratio: 0.01
   robust_z_threshold: 3.5
+  max_metric_modes: 3
+  min_mode_support: 15
+  mode_bic_min_gain: 10
+  mode_random_state: 42
   class_overrides: {}
   fs: 0.1666667
 primitive_synthesis:
@@ -81,6 +85,7 @@ primitive_synthesis:
   min_blocks: 3
   max_blocks: 20
   class_sampling: balanced
+  mode_sampling: empirical
   candidate_pool: 32
   within_state_smooth_samples: 3
   boundary_smooth_samples: 3

@@ -11,7 +11,8 @@ import numpy as np
 import pandas as pd
 
 from src.framework.step import Step
-from src.generation.cycle_validation import (infer_cycle_grammar,
+from src.generation.cycle_validation import (discover_metric_modes,
+                                             infer_cycle_grammar,
                                              robust_z_scores,
                                              signature_purity)
 
@@ -39,10 +40,14 @@ class CycleValidationStep(Step):
                  boundary_peak_ratio: float = 0.15,
                  max_missing_ratio: float = 0.01,
                  robust_z_threshold: float = 3.5,
+                 max_metric_modes: int = 3,
+                 min_mode_support: int = 15,
+                 mode_bic_min_gain: float = 10.0,
+                 mode_random_state: int = 42,
                  class_overrides: Dict[str, str] | None = None):
         if not cluster_tag:
             raise ValueError("cycle validation requires --cluster-tag")
-        super().__init__(variant=f"robust_on_{cluster_tag}")
+        super().__init__(variant=f"multimodal_robust_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.fs = float(fs)
         self.min_class_support = max(1, int(min_class_support))
@@ -56,6 +61,10 @@ class CycleValidationStep(Step):
         self.boundary_peak_ratio = float(boundary_peak_ratio)
         self.max_missing_ratio = float(max_missing_ratio)
         self.robust_z_threshold = float(robust_z_threshold)
+        self.max_metric_modes = max(1, int(max_metric_modes))
+        self.min_mode_support = max(2, int(min_mode_support))
+        self.mode_bic_min_gain = float(mode_bic_min_gain)
+        self.mode_random_state = int(mode_random_state)
         self.class_overrides = {str(k): str(v).lower()
                                 for k, v in (class_overrides or {}).items()}
         allowed = {"valid_full", "valid_short", "uncertain", "invalid"}
@@ -142,42 +151,119 @@ class CycleValidationStep(Step):
                             "class_id": int(record["class_id"])})
             activity_rows[str(activity_id)] = metrics
 
-        metric_names = ["duration_seconds", "energy_wh", "mean_power", "max_power"]
-        for entry in classes:
-            members = [str(v) for v in entry.get("member_ids", [])
-                       if str(v) in activity_rows]
-            for metric in metric_names:
-                scores = robust_z_scores(activity_rows[mid][metric] for mid in members)
-                for mid, score in zip(members, scores):
-                    activity_rows[mid][f"{metric}_robust_z"] = float(score)
-
         class_lookup = {int(entry["class_id"]): entry for entry in classes}
+        metric_names = ["duration_seconds", "energy_wh", "mean_power", "max_power"]
+
+        # Hard checks describe observable data quality only. State grammar is a
+        # semantic warning: a cold/short wash may omit a common heating state
+        # without being a corrupt or incomplete recording.
         for row in activity_rows.values():
             signature = row.get("signature", [])
             reasons = []
-            override = self.class_overrides.get(str(row["class_id"]))
             if row.get("load_error"):
                 reasons.append("load_error")
             if row.get("missing_ratio", 1.0) > self.max_missing_ratio:
                 reasons.append("missing_data")
             if row.get("duration_seconds", 0.0) < self.min_duration_seconds:
                 reasons.append("too_short")
-            if (override not in {"valid_full", "valid_short"} and required_states
-                    and not required_states.issubset(set(signature))):
-                reasons.append("missing_core_state")
-            if (override not in {"valid_full", "valid_short"} and terminal_states
-                    and (not signature or signature[-1] not in terminal_states)):
-                reasons.append("uncommon_terminal_state")
             if row.get("start_power_median", np.inf) > row.get("boundary_limit", 0.0):
                 reasons.append("active_start_boundary")
             if row.get("end_power_median", np.inf) > row.get("boundary_limit", 0.0):
                 reasons.append("active_end_boundary")
-            if any(row.get(f"{name}_robust_z", np.inf) > self.robust_z_threshold
-                   for name in metric_names):
-                reasons.append("class_metric_outlier")
+            warnings = []
+            if required_states and not required_states.issubset(set(signature)):
+                warnings.append("missing_common_state")
+            if terminal_states and (not signature or signature[-1] not in terminal_states):
+                warnings.append("uncommon_terminal_state")
+            row["passes_hard_checks"] = not reasons
+            row["_hard_reasons"] = reasons
+            row["structural_warnings"] = ";".join(warnings)
+
+        # Discover supported physical modes inside each state-pattern class.
+        # This prevents a legitimate long/energy-intensive program from being
+        # rejected merely because the class's dominant program is shorter.
+        mode_rows, mode_diagnostics, representative_rows = [], {}, []
+        for class_id, entry in sorted(class_lookup.items()):
+            eligible = [str(v) for v in entry.get("member_ids", [])
+                        if str(v) in activity_rows
+                        and activity_rows[str(v)]["passes_hard_checks"]]
+            if not eligible:
+                mode_diagnostics[str(class_id)] = {"selected_modes": 0}
+                continue
+            matrix = np.asarray([
+                [activity_rows[mid][name] for name in metric_names]
+                for mid in eligible
+            ], dtype=np.float64)
+            labels, diagnostics = discover_metric_modes(
+                matrix, max_modes=self.max_metric_modes,
+                min_mode_support=self.min_mode_support,
+                bic_min_gain=self.mode_bic_min_gain,
+                random_state=self.mode_random_state + class_id)
+            mode_diagnostics[str(class_id)] = diagnostics
+            for mid, label in zip(eligible, labels):
+                activity_rows[mid]["mode_id"] = int(label)
+
+            for mode_id in sorted(set(labels.tolist())):
+                mode_members = [mid for mid in eligible
+                                if activity_rows[mid]["mode_id"] == mode_id]
+                for metric in metric_names:
+                    scores = robust_z_scores(
+                        activity_rows[mid][metric] for mid in mode_members)
+                    for mid, score in zip(mode_members, scores):
+                        activity_rows[mid][f"{metric}_robust_z"] = float(score)
+                valid_mode_members = [
+                    mid for mid in mode_members
+                    if not any(activity_rows[mid][f"{name}_robust_z"]
+                               > self.robust_z_threshold for name in metric_names)
+                ]
+                mode_row = {
+                    "class_id": class_id,
+                    "mode_id": int(mode_id),
+                    "support": len(mode_members),
+                    "valid_members": len(valid_mode_members),
+                    "outlier_members": len(mode_members) - len(valid_mode_members),
+                }
+                for name in metric_names:
+                    values = [activity_rows[mid][name] for mid in mode_members]
+                    mode_row[f"median_{name}"] = float(np.median(values))
+                mode_rows.append(mode_row)
+
+                if valid_mode_members:
+                    z_matrix = np.asarray([
+                        [activity_rows[mid][f"{name}_robust_z"] for name in metric_names]
+                        for mid in valid_mode_members
+                    ], dtype=np.float64)
+                    distances = np.linalg.norm(np.nan_to_num(
+                        z_matrix, nan=0.0, posinf=1e6, neginf=1e6), axis=1)
+                    ranked = np.argsort(distances)
+                    choices = [("medoid", int(ranked[0]))]
+                    if len(ranked) > 1:
+                        choices.append(("near", int(ranked[1])))
+                        choices.append(("far", int(ranked[-1])))
+                    seen = set()
+                    for role, position in choices:
+                        mid = valid_mode_members[position]
+                        if mid in seen:
+                            continue
+                        seen.add(mid)
+                        representative_rows.append({
+                            "class_id": class_id, "mode_id": int(mode_id),
+                            "role": role, "activity_id": mid,
+                            "file": activity_rows[mid]["file"],
+                            "distance": float(distances[position]),
+                        })
+
+        for row in activity_rows.values():
+            reasons = list(row.pop("_hard_reasons"))
+            if row["passes_hard_checks"]:
+                if any(row.get(f"{name}_robust_z", np.inf) > self.robust_z_threshold
+                       for name in metric_names):
+                    reasons.append("mode_metric_outlier")
+            else:
+                row["mode_id"] = -1
             row["is_valid_member"] = not reasons
             row["rejection_reasons"] = ";".join(reasons)
-            row["signature"] = "->".join(map(str, signature))
+            row["signature"] = "->".join(map(str, row.get("signature", [])))
 
         class_rows = []
         valid_class_ids, valid_activity_ids = [], []
@@ -193,15 +279,18 @@ class CycleValidationStep(Step):
             if int(entry.get("support", 0)) < self.min_class_support:
                 reasons.append("low_support")
             if required_states and not required_states.issubset(set(signature)):
-                reasons.append("missing_core_state")
+                reasons.append("missing_common_state")
             if terminal_states and (not signature or signature[-1] not in terminal_states):
                 reasons.append("uncommon_terminal_state")
             median_duration = float((entry.get("duration_samples") or {}).get("median", 0.0)) / self.fs
-            if median_duration < self.min_duration_seconds:
-                status = "valid_short" if not reasons else "invalid"
+            if not valid_members:
+                status = "invalid"
+                reasons.append("no_valid_members")
+            elif median_duration < self.min_duration_seconds:
+                status = "valid_short" if not reasons else "uncertain"
                 reasons.append("short_program")
             elif reasons:
-                status = "invalid"
+                status = "uncertain"
             elif purity < self.min_signature_purity or ratio < self.min_valid_member_ratio:
                 status = "uncertain"
                 if purity < self.min_signature_purity:
@@ -233,15 +322,18 @@ class CycleValidationStep(Step):
         filtered = copy.deepcopy(payload)
         filtered["version"] = max(2, int(filtered.get("version", 1)))
         filtered["validation"] = {
-            "method": "grammar_boundary_robust_mad",
+            "method": "grammar_boundary_gmm_mode_robust_mad",
             "valid_class_ids": valid_class_ids,
             "valid_activity_ids": sorted(valid_id_set, key=int),
             "grammar": grammar,
+            "mode_diagnostics": mode_diagnostics,
         }
         filtered["activities"] = {
             key: value for key, value in filtered.get("activities", {}).items()
             if key in valid_id_set
         }
+        for activity_id, record in filtered["activities"].items():
+            record["validation_mode_id"] = int(activity_rows[activity_id]["mode_id"])
         filtered_classes = []
         for entry in filtered.get("classes", []):
             if int(entry["class_id"]) not in valid_class_ids:
@@ -261,18 +353,29 @@ class CycleValidationStep(Step):
         whitelist_path = os.path.join(log_dir, "class_whitelist.json")
         catalog_path = os.path.join(log_dir, "validated_cycle_classes.json")
         grammar_path = os.path.join(log_dir, "inferred_cycle_grammar.json")
+        mode_path = os.path.join(log_dir, "cycle_mode_summary.csv")
+        representatives_path = os.path.join(log_dir, "mode_representatives.csv")
+        diagnostics_path = os.path.join(log_dir, "mode_diagnostics.json")
         self._write_csv(report_path, sorted(activity_rows.values(),
                                             key=lambda row: int(row["activity_id"])), [
-            "activity_id", "file", "class_id", "signature", "is_valid_member",
-            "rejection_reasons", "duration_seconds", "energy_wh", "mean_power",
-            "max_power", "missing_ratio", "start_power_median", "end_power_median",
-            "boundary_limit", "distance_to_representative",
+            "activity_id", "file", "class_id", "mode_id", "signature",
+            "passes_hard_checks", "is_valid_member", "rejection_reasons",
+            "structural_warnings", "duration_seconds", "energy_wh", "mean_power",
+            "max_power", "missing_ratio", "start_power_median",
+            "end_power_median", "boundary_limit", "distance_to_representative",
             *[f"{name}_robust_z" for name in metric_names],
         ])
         self._write_csv(class_path, class_rows, [
             "class_id", "status", "support", "valid_members", "valid_member_ratio",
             "signature_purity", "representative_signature", "median_duration_seconds",
             "reasons",
+        ])
+        self._write_csv(mode_path, mode_rows, [
+            "class_id", "mode_id", "support", "valid_members", "outlier_members",
+            *[f"median_{name}" for name in metric_names],
+        ])
+        self._write_csv(representatives_path, representative_rows, [
+            "class_id", "mode_id", "role", "activity_id", "file", "distance",
         ])
         with open(whitelist_path, "w", encoding="utf-8") as f:
             json.dump({"valid_class_ids": valid_class_ids,
@@ -282,6 +385,8 @@ class CycleValidationStep(Step):
             json.dump(filtered, f, indent=2, ensure_ascii=False)
         with open(grammar_path, "w", encoding="utf-8") as f:
             json.dump(grammar, f, indent=2, ensure_ascii=False)
+        with open(diagnostics_path, "w", encoding="utf-8") as f:
+            json.dump(mode_diagnostics, f, indent=2, ensure_ascii=False)
 
         self.record(context, artifacts={
             "cycle_report": self.rel(context, report_path),
@@ -289,6 +394,9 @@ class CycleValidationStep(Step):
             "whitelist": self.rel(context, whitelist_path),
             "validated_cycle_classes": self.rel(context, catalog_path),
             "grammar": self.rel(context, grammar_path),
+            "mode_summary": self.rel(context, mode_path),
+            "mode_representatives": self.rel(context, representatives_path),
+            "mode_diagnostics": self.rel(context, diagnostics_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
             "valid_class_ids": valid_class_ids,
@@ -300,6 +408,11 @@ class CycleValidationStep(Step):
             print(f"  class_{row['class_id']}: {row['status']} "
                   f"({row['valid_members']}/{row['support']} valid) "
                   f"reasons={row['reasons'] or '-'}")
+        for row in mode_rows:
+            print(f"    class_{row['class_id']}/mode_{row['mode_id']}: "
+                  f"{row['valid_members']}/{row['support']} valid, "
+                  f"median_duration={row['median_duration_seconds']:.0f}s, "
+                  f"median_energy={row['median_energy_wh']:.1f}Wh")
         print(f"[cycle_validation] {len(valid_id_set)} cycles in "
               f"{len(valid_class_ids)} full classes -> {log_dir}")
         return context
