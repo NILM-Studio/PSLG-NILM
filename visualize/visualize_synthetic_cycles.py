@@ -40,6 +40,8 @@ def main():
         if frame.empty:
             continue
 
+        cycle_class = (int(frame["cycle_class"].iloc[0])
+                       if "cycle_class" in frame.columns else None)
         fig, ax = plt.subplots(figsize=(15, 6))
         ax.plot(frame["time_seconds"], frame["power"], color="black",
                 linewidth=1, alpha=0.85, label="Synthetic power")
@@ -58,7 +60,8 @@ def main():
             ax.text((start + end) / 2, y, str(state), ha="center",
                     va="top", fontsize=8, color="darkred")
 
-        ax.set_title(f"Synthetic appliance cycle - {filename}")
+        class_text = f" - Class {cycle_class}" if cycle_class is not None else ""
+        ax.set_title(f"Synthetic appliance cycle{class_text} - {filename}")
         ax.set_xlabel("Time (seconds)")
         ax.set_ylabel("Power")
         ax.grid(True, linestyle=":", alpha=0.6)

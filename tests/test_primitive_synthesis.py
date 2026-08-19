@@ -12,7 +12,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.framework.step import Step
 from src.framework.workflow import Workflow
+from src.generation.cycle_patterns import CyclePatternClassifier
+from src.generation.primitive_library import Primitive, PrimitiveLibrary, RealPrimitiveSampler
 from src.generation.transition_model import StateTransitionModel
+from src.steps.cycle_classification_step import CycleClassificationStep
 from src.steps.primitive_synthesis_step import PrimitiveSynthesisStep
 
 
@@ -82,6 +85,41 @@ class TransitionModelTest(unittest.TestCase):
         self.assertTrue(all(length > 0 for _, length in a))
 
 
+class CyclePatternClassifierTest(unittest.TestCase):
+    @staticmethod
+    def _blocks(labels):
+        return [{"state_label": label, "length_samples": 10} for label in labels]
+
+    def test_frequent_patterns_form_classes_and_distant_sequence_is_outlier(self):
+        sequences = {
+            "0": self._blocks([1, 0, 2, 1]),
+            "1": self._blocks([1, 0, 2, 1]),
+            "2": self._blocks([1, 0, 2, 1]),
+            "3": self._blocks([1, 0, 1]),
+            "4": self._blocks([1, 0, 1]),
+            "5": self._blocks([3]),
+        }
+        result = CyclePatternClassifier(
+            min_support=2, rare_max_distance=0.34).fit(sequences)
+        self.assertEqual(result["n_classes"], 2)
+        self.assertEqual(result["activities"]["5"]["class_id"], -1)
+        self.assertEqual(result["n_outliers"], 1)
+
+    def test_continuity_sampler_removes_artificial_join_jump(self):
+        library = PrimitiveLibrary([
+            Primitive(0, 0, 0, 0, np.array([0.0, 1.0], dtype=np.float32)),
+            Primitive(1, 0, 1, 0, np.array([10.0, 11.0], dtype=np.float32)),
+        ])
+        sampler = RealPrimitiveSampler(
+            library, candidate_pool=2, within_state_smooth_samples=2,
+            boundary_smooth_samples=2)
+        power, provenance = sampler.sample_block(
+            0, 4, np.random.default_rng(2), initial_power=5.0)
+        self.assertAlmostEqual(float(power[0]), 5.0)
+        self.assertEqual(provenance[0]["join_jump_after"], 0.0)
+        self.assertEqual(provenance[1]["join_jump_after"], 0.0)
+
+
 class PrimitiveSynthesisStepTest(unittest.TestCase):
     def test_real_resampling_emits_traceable_cycles(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -90,6 +128,8 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
             try:
                 wf = Workflow("synth", "washing_machine", {"paths": {"cache_dir": ".cache"}})
                 wf.add(SynthesisUpstreamStub())
+                wf.add(CycleClassificationStep(
+                    cluster_tag="kmeans_k2_merged", min_support=1))
                 wf.add(PrimitiveSynthesisStep(
                     cluster_tag="kmeans_k2_merged", n_cycles=4,
                     random_seed=9, sequence_method="empirical", fs=1.0))
@@ -102,7 +142,8 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 frame = pd.read_csv(os.path.join(cycles_dir, cycle_files[0]))
                 self.assertEqual(list(frame.columns),
                                  ["sample_index", "time_seconds", "power",
-                                  "state_label", "block_id"])
+                                  "state_label", "block_id", "cycle_class",
+                                  "source_activity_id"])
                 self.assertEqual(len(frame), 24)
                 self.assertTrue(set(frame["state_label"]).issubset({0, 1}))
 
@@ -116,10 +157,18 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 library_path = manifest.artifact_path("primitive_synthesis", "library_summary")
                 with open(library_path, encoding="utf-8") as f:
                     summary = json.load(f)
-                self.assertEqual(summary["0"]["count"], 3)
-                self.assertEqual(summary["1"]["count"], 3)
+                self.assertEqual(summary["0"]["0"]["count"], 2)
+                self.assertEqual(summary["0"]["1"]["count"], 1)
+                self.assertEqual(summary["1"]["0"]["count"], 1)
+                self.assertEqual(summary["1"]["1"]["count"], 2)
+                continuity_path = manifest.artifact_path(
+                    "primitive_synthesis", "continuity_metrics")
+                with open(continuity_path, encoding="utf-8") as f:
+                    continuity = json.load(f)
+                self.assertEqual(
+                    continuity["state_boundary"]["after"]["max"], 0.0)
                 step = manifest.data["steps"]["primitive_synthesis"]
-                self.assertIn("real_resample_empirical_on_kmeans_k2_merged",
+                self.assertIn("real_resample_empirical_all_on_kmeans_k2_merged",
                               step["subdir"])
             finally:
                 os.chdir(cwd)

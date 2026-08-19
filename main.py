@@ -47,7 +47,7 @@ for _p in (project_root, models_dir,
 
 # Canonical step order — all steps are implemented.
 ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
-                  "synthesize", "fewshot", "pam", "split"]
+                  "cycle_classify", "synthesize", "fewshot", "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
 
@@ -191,6 +191,24 @@ def _build_synthesize(cfg, sel):
         min_blocks=c.get("min_blocks", 3),
         max_blocks=c.get("max_blocks", 20),
         fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
+        cycle_class=sel["cycle_class"],
+        class_sampling=c.get("class_sampling", "balanced"),
+        candidate_pool=c.get("candidate_pool", 32),
+        within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
+        boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
+    )
+
+
+def _build_cycle_classify(cfg, sel):
+    from src.steps.cycle_classification_step import CycleClassificationStep
+    c = cfg.get("cycle_classification", {}) or {}
+    return CycleClassificationStep(
+        cluster_tag=sel["cluster_tag"],
+        min_support=c.get("min_support", 3),
+        max_classes=c.get("max_classes", 12),
+        rare_max_distance=c.get("rare_max_distance", 0.34),
+        min_pattern_blocks=c.get("min_pattern_blocks", 3),
+        min_unique_states=c.get("min_unique_states", 2),
     )
 
 
@@ -233,6 +251,7 @@ STEP_BUILDERS = {
     "feature": _build_feature,
     "cluster": _build_cluster,
     "state_merge": _build_state_merge,
+    "cycle_classify": _build_cycle_classify,
     "synthesize": _build_synthesize,
     "fewshot": _build_fewshot,
     "pam": _build_pam,
@@ -258,6 +277,7 @@ def resolve_selection(args, cfg):
         "cluster_tag": args.cluster_tag,
         "primitive_sampler": getattr(args, "primitive_sampler", None) or "real_resample",
         "sequence_method": getattr(args, "sequence_method", None) or "empirical",
+        "cycle_class": getattr(args, "cycle_class", None) or "all",
     }
 
 
@@ -309,6 +329,8 @@ def main():
                    help="Primitive waveform source for synthesize: real_resample (default).")
     p.add_argument("--sequence-method", default=None,
                    help="State-order sampler for synthesize: empirical | markov (default: empirical).")
+    p.add_argument("--cycle-class", default=None,
+                   help="Cycle class for synthesize: all | majority | class id (default: all).")
     p.add_argument("--appliance", default=None, help="Override run.appliance.")
     p.add_argument("--run-id", default=None, help="Reuse a run directory (enables manifest reuse).")
     p.add_argument("--raw-series", default=None, help="Override paths.raw_series.")

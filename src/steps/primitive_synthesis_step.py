@@ -10,7 +10,8 @@ import numpy as np
 import pandas as pd
 
 from src.framework.step import Step
-from src.generation import PrimitiveLibrary, RealPrimitiveSampler, StateTransitionModel
+from src.generation import (CyclePatternCatalog, PrimitiveLibrary,
+                            RealPrimitiveSampler, StateTransitionModel)
 from src.generation.primitive_library import Primitive
 
 
@@ -22,10 +23,15 @@ class PrimitiveSynthesisStep(Step):
     def __init__(self, cluster_tag: str, sampler: str = "real_resample",
                  sequence_method: str = "empirical", n_cycles: int = 100,
                  random_seed: int = 42, min_blocks: int = 3,
-                 max_blocks: int = 20, fs: float = 0.1666667):
+                 max_blocks: int = 20, fs: float = 0.1666667,
+                 cycle_class: str = "all", class_sampling: str = "balanced",
+                 candidate_pool: int = 32,
+                 within_state_smooth_samples: int = 3,
+                 boundary_smooth_samples: int = 3):
         if not cluster_tag:
             raise ValueError("primitive synthesis requires --cluster-tag")
-        super().__init__(variant=f"{sampler}_{sequence_method}_on_{cluster_tag}")
+        super().__init__(
+            variant=f"{sampler}_{sequence_method}_{cycle_class}_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.sampler_name = str(sampler).lower()
         self.sequence_method = str(sequence_method).lower()
@@ -34,6 +40,11 @@ class PrimitiveSynthesisStep(Step):
         self.min_blocks = int(min_blocks)
         self.max_blocks = int(max_blocks)
         self.fs = float(fs)
+        self.cycle_class = str(cycle_class).lower()
+        self.class_sampling = str(class_sampling).lower()
+        self.candidate_pool = int(candidate_pool)
+        self.within_state_smooth_samples = int(within_state_smooth_samples)
+        self.boundary_smooth_samples = int(boundary_smooth_samples)
         if self.fs <= 0:
             raise ValueError("primitive_synthesis.fs must be positive")
 
@@ -51,7 +62,7 @@ class PrimitiveSynthesisStep(Step):
             raise FileNotFoundError("[primitive_synthesis] activity CSV directory not found")
         return path
 
-    def _load_library(self, context: dict) -> PrimitiveLibrary:
+    def _load_primitives(self, context: dict) -> List[Primitive]:
         labels = np.load(self._cluster_artifact(context, "labels")).reshape(-1)
         indices = np.load(self._cluster_artifact(context, "indices"))
         lengths = np.load(self._cluster_artifact(context, "seq_len")).reshape(-1)
@@ -78,27 +89,62 @@ class PrimitiveSynthesisStep(Step):
                 primitive_id=primitive_id, state_label=int(label),
                 activity_index=activity_index, start=start,
                 power=np.asarray(source[start:end], dtype=np.float32)))
-        return PrimitiveLibrary(primitives)
+        if not primitives:
+            raise ValueError("[primitive_synthesis] primitive library is empty")
+        return primitives
 
-    def _load_transition_model(self, context: dict) -> StateTransitionModel:
-        path = self._cluster_artifact(context, "state_sequences")
+    def _load_catalog(self, context: dict) -> CyclePatternCatalog:
+        entry = context["manifest"].get_step("cycle_classification") or {}
+        classified_tag = (entry.get("extra") or {}).get("cluster_tag")
+        if classified_tag and classified_tag != self.cluster_tag:
+            raise ValueError(
+                f"[primitive_synthesis] cycle classes use {classified_tag}, but "
+                f"synthesis requested {self.cluster_tag}; rerun cycle_classify")
+        path = self.resolve(context, "cycle_classification", "cycle_classes")
+        if not (path and os.path.exists(path)):
+            raise FileNotFoundError(
+                "[primitive_synthesis] cycle classes not found; run "
+                "--steps cycle_classify first for the same --run-id and --cluster-tag")
         with open(path, encoding="utf-8") as f:
             payload = json.load(f)
-        return StateTransitionModel(payload.values())
+        return CyclePatternCatalog(payload)
 
     def _sampler(self, library: PrimitiveLibrary):
         if self.sampler_name == "real_resample":
-            return RealPrimitiveSampler(library)
+            return RealPrimitiveSampler(
+                library,
+                candidate_pool=self.candidate_pool,
+                within_state_smooth_samples=self.within_state_smooth_samples,
+                boundary_smooth_samples=self.boundary_smooth_samples,
+            )
         raise ValueError(
             f"unknown primitive sampler '{self.sampler_name}'; supported: real_resample")
 
     def run(self, context: dict) -> dict:
         if self.n_cycles <= 0:
             raise ValueError("primitive_synthesis.n_cycles must be positive")
-        library = self._load_library(context)
-        transition_model = self._load_transition_model(context)
-        sampler = self._sampler(library)
+        primitives = self._load_primitives(context)
+        catalog = self._load_catalog(context)
+        class_ids = catalog.resolve_classes(self.cycle_class)
+        transition_models = {
+            class_id: StateTransitionModel(catalog.sequences_for_class(class_id))
+            for class_id in class_ids
+        }
+        libraries, samplers = {}, {}
+        for class_id in class_ids:
+            member_ids = {int(activity_id)
+                          for activity_id in catalog.classes[class_id]["member_ids"]}
+            libraries[class_id] = PrimitiveLibrary(
+                p for p in primitives if p.activity_index in member_ids)
+            samplers[class_id] = self._sampler(libraries[class_id])
         rng = np.random.default_rng(self.random_seed)
+
+        if self.class_sampling not in ("balanced", "empirical"):
+            raise ValueError("primitive_synthesis.class_sampling must be balanced or empirical")
+        class_weights = np.asarray(
+            [catalog.classes[class_id]["support"] for class_id in class_ids],
+            dtype=np.float64)
+        class_weights /= class_weights.sum()
 
         log_dir = self.log_dir(context)
         cycles_dir = os.path.join(log_dir, "cycles")
@@ -108,12 +154,28 @@ class PrimitiveSynthesisStep(Step):
         records: List[dict] = []
 
         for cycle_id in range(self.n_cycles):
-            state_blocks = transition_model.sample(
-                self.sequence_method, rng, self.min_blocks, self.max_blocks)
+            if len(class_ids) == 1:
+                class_id = class_ids[0]
+            elif self.class_sampling == "balanced":
+                class_id = class_ids[cycle_id % len(class_ids)]
+            else:
+                class_id = class_ids[int(rng.choice(len(class_ids), p=class_weights))]
+            sampler = samplers[class_id]
+
+            source_activity_id = None
+            if self.sequence_method == "empirical":
+                source_activity_id, blocks = catalog.sample_activity(class_id, rng)
+                state_blocks = [(int(block["state_label"]), int(block["length_samples"]))
+                                for block in blocks]
+            else:
+                state_blocks = transition_models[class_id].sample(
+                    self.sequence_method, rng, self.min_blocks, self.max_blocks)
             powers, states, block_ids, block_records = [], [], [], []
             cursor = 0
             for block_id, (state, target_length) in enumerate(state_blocks):
-                power, provenance = sampler.sample_block(state, target_length, rng)
+                previous_end = float(powers[-1][-1]) if powers else None
+                power, provenance = sampler.sample_block(
+                    state, target_length, rng, initial_power=previous_end)
                 powers.append(power)
                 states.append(np.full(len(power), state, dtype=np.int32))
                 block_ids.append(np.full(len(power), block_id, dtype=np.int32))
@@ -133,11 +195,16 @@ class PrimitiveSynthesisStep(Step):
                 "power": power,
                 "state_label": state_labels,
                 "block_id": blocks,
+                "cycle_class": np.full(len(power), class_id, dtype=np.int32),
+                "source_activity_id": np.full(
+                    len(power), source_activity_id if source_activity_id is not None else ""),
             })
             filename = f"synthetic_cycle_{cycle_id:05d}.csv"
             frame.to_csv(os.path.join(cycles_dir, filename), index=False)
             records.append({
                 "cycle_id": int(cycle_id), "file": filename,
+                "cycle_class": int(class_id),
+                "source_activity_id": source_activity_id,
                 "sequence_method": self.sequence_method,
                 "state_sequence": [int(s) for s, _ in state_blocks],
                 "length_samples": int(len(power)),
@@ -154,20 +221,59 @@ class PrimitiveSynthesisStep(Step):
                 json.dump(payload, f, indent=2, ensure_ascii=False)
             return path
 
-        model_path = _dump("transition_model.json", transition_model.to_dict())
-        library_path = _dump("primitive_library_summary.json", library.summary())
+        continuity = {}
+        for join_type in ("within_state", "state_boundary"):
+            before, after = [], []
+            for record in records:
+                for block in record["blocks"]:
+                    for source in block["sources"]:
+                        if source.get("join_type") != join_type:
+                            continue
+                        before.append(float(source["join_jump_before"]))
+                        after.append(float(source["join_jump_after"]))
+            continuity[join_type] = {
+                "count": int(len(before)),
+                "before": self._jump_summary(before),
+                "after": self._jump_summary(after),
+            }
+
+        model_path = _dump("transition_models.json", {
+            str(class_id): model.to_dict()
+            for class_id, model in transition_models.items()
+        })
+        library_path = _dump("primitive_library_summary.json", {
+            str(class_id): library.summary()
+            for class_id, library in libraries.items()
+        })
+        continuity_path = _dump("continuity_metrics.json", continuity)
         manifest_path = _dump("synthesis_manifest.json", records)
         self.record(context, artifacts={
             "cycles_dir": self.rel(context, cycles_dir),
             "transition_model": self.rel(context, model_path),
             "library_summary": self.rel(context, library_path),
+            "continuity_metrics": self.rel(context, continuity_path),
             "synthesis_manifest": self.rel(context, manifest_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
-            "sampler": sampler.method,
+            "sampler": self.sampler_name,
             "sequence_method": self.sequence_method,
+            "cycle_class_selector": self.cycle_class,
+            "generated_cycle_classes": class_ids,
+            "class_sampling": self.class_sampling,
             "n_cycles": self.n_cycles,
-            "states": library.states,
+            "states": sorted({state for library in libraries.values()
+                              for state in library.states}),
         })
         print(f"[primitive_synthesis] {self.n_cycles} cycles -> {cycles_dir}")
         return context
+
+    @staticmethod
+    def _jump_summary(values: List[float]) -> dict:
+        if not values:
+            return {"mean": None, "p95": None, "max": None}
+        data = np.asarray(values, dtype=np.float64)
+        return {
+            "mean": float(np.mean(data)),
+            "p95": float(np.percentile(data, 95)),
+            "max": float(np.max(data)),
+        }

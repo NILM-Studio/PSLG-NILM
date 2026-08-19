@@ -34,7 +34,7 @@ output/<run_id>/figure/  # 出图脚本的统一输出
 ## 流水线
 
 ```
-extract → segment → feature → cluster → state_merge → synthesize → fewshot → pam → split
+extract → segment → feature → cluster → state_merge → cycle_classify → synthesize → fewshot → pam → split
 ```
 
 | 步骤 | step_type | 说明 |
@@ -44,6 +44,7 @@ extract → segment → feature → cluster → state_merge → synthesize → f
 | feature | `feature_extract` | 基元 → 潜特征（detsec / bilstm_ae / …），**唯一带缓存的步骤** |
 | cluster | `time_clustering` | kmeans（全候选 k）/ kmeans-scan（诊断）/ dbscan / hdbscan |
 | state_merge | `state_merge` | 按活动恢复连续功能状态，输出状态序列与合并块 |
+| cycle_classify | `cycle_classification` | 按完整状态组合发现真实工作周期类别并识别离群周期 |
 | synthesize | `primitive_synthesis` | 按状态基元库和经验/Markov顺序重组完整工作周期 |
 | fewshot | `few_shot_cluster_extract` | 按簇规模识别少样本簇并导出 |
 | pam | `primitive_activity_mapping` | 基元↔活动映射（索引对齐），划分少样本/非少样本活动 |
@@ -68,24 +69,35 @@ python main.py --steps fewshot,pam,split --run-id <run_id> --cluster-tag kmeans_
 
 ### 基元重组基线
 
-状态合并后，可从修正标签的短基元库重采样波形，并使用真实状态序列或一阶
-Markov 模型合成新的完整工作周期：
+状态合并后，先按完整状态组合发现工作周期类别，再从修正标签的短基元库重采样
+波形。生成器只使用有效类别，支持均衡生成各类别或指定一个类别：
 
 ```bash
-# 保留真实状态顺序，替换每个状态内部的真实基元
-python main.py --steps synthesize --run-id <run_id> \
-    --cluster-tag kmeans_k4_merged \
-    --primitive-sampler real_resample --sequence-method empirical
+# 发现周期类别；远离常见组合的异常/不完整周期标记为 outlier
+python main.py --steps cycle_classify --run-id <run_id> \
+    --cluster-tag kmeans_k4_merged
 
-# 从训练活动学习的转移概率采样新状态顺序
+# 查看类别支持度与代表状态组合
+python -m visualize.visualize_cycle_classes --run-id <run_id>
+
+# 均衡生成所有有效类别，保留类内真实状态顺序
 python main.py --steps synthesize --run-id <run_id> \
     --cluster-tag kmeans_k4_merged \
-    --primitive-sampler real_resample --sequence-method markov
+    --primitive-sampler real_resample --sequence-method empirical \
+    --cycle-class all
+
+# 只生成选定类别，例如 Class 0
+python main.py --steps synthesize --run-id <run_id> \
+    --cluster-tag kmeans_k4_merged \
+    --primitive-sampler real_resample --sequence-method empirical \
+    --cycle-class 0
 ```
 
 结果在 `log/<run_id>/primitive_synthesis_*/`，包括逐周期 CSV、转移模型、
-基元库统计与完整来源追踪清单。该实现是生成实验的真实基元重组基线；学习型
-生成器通过相同 sampler 接口接入。
+基元库统计与完整来源追踪清单。真实基元按首尾功率连续性选择，片段连接处使用
+可配置的短窗口平滑。该实现是生成实验的真实基元重组基线；学习型生成器通过
+相同 sampler 接口接入。`continuity_metrics.json` 分别记录状态内部与状态边界
+平滑前后的跳变均值、95 分位数和最大值。
 
 ```bash
 # 查看生成的完整工作周期及其状态边界
@@ -95,7 +107,8 @@ python -m visualize.visualize_synthetic_cycles \
 
 CLI 参数一览：`--steps`、`--segment-method`、`--feature-model`、
 `--cluster-method`、`--n-clusters`、`--cluster-tag`、`--primitive-sampler`、
-`--sequence-method`、`--appliance`、`--run-id`、`--raw-series`、`--config`。
+`--sequence-method`、`--cycle-class`、`--appliance`、`--run-id`、
+`--raw-series`、`--config`。
 
 ## RunManifest：产物的唯一事实来源
 

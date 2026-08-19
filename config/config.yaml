@@ -82,6 +82,16 @@ temporal_state_merge:
   min_block_seconds: 90         # short blocks shorter than this (in seconds) are absorbed
   fs: 0.1666667                 # sampling rate (Hz); overrides extract_active_data if unset
 
+# Discover recurring complete-cycle patterns from merged state combinations.
+# Rare patterns too far from a frequent representative are marked as outliers
+# and are excluded from synthesis.
+cycle_classification:
+  min_support: 3
+  max_classes: 12
+  rare_max_distance: 0.34
+  min_pattern_blocks: 3
+  min_unique_states: 2
+
 # Primitive-level cycle synthesis. The first implementation is a traceable
 # real-primitive resampling baseline; a learned generator plugs into the same
 # sampler interface in the next stage.
@@ -90,6 +100,10 @@ primitive_synthesis:
   random_seed: 42
   min_blocks: 3
   max_blocks: 20
+  class_sampling: balanced
+  candidate_pool: 32
+  within_state_smooth_samples: 3
+  boundary_smooth_samples: 3
   fs: 0.1666667
 
 dataset_split:
