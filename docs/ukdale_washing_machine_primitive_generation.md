@@ -445,7 +445,7 @@ D. 全量真实数据（参考上限）
 mkdir -p slurm/slurm_log
 
 # 先验证数据读取、TensorFlow GPU和模型训练链路，不污染正式结果目录
-sbatch --export=ALL,EXPERIMENTS=05pct:A,EPOCHS=1,FORCE=1,OUTPUT_ROOT=log/ukdale_wm_primglr_detsec_3789/nilm_seq2point_smoke \
+sbatch --export=ALL,EXPERIMENTS=05pct:A,EPOCHS=3,FORCE=1,OUTPUT_ROOT=log/ukdale_wm_primglr_detsec_3789/nilm_seq2point_smoke \
   slurm/run_ukdale_seq2point.sh
 
 # 冒烟测试通过后提交完整10组实验
@@ -467,6 +467,8 @@ log/ukdale_wm_primglr_detsec_3789/nilm_seq2point/
 每个实验目录保存 `best_model.keras`、`history.csv`、`metrics.json` 和 `test_predictions.npz`。种子42验证流程无误后，再使用多个随机种子重复训练并报告均值与标准差。
 
 首次冒烟测试发现ReLU输出层产生全零预测（`SAE=NDE=1，F1=0`）。对照Seq2Point作者公开实现后，将卷积改为 `same` 填充并将末层修正为线性输出；正式训练不得使用该次全零结果。`metrics.json` 同时记录真实值和预测值的均值、最大值及开机比例，用于自动识别模型坍缩。
+
+修正后的3轮冒烟测试得到 `MAE=155.50 W、SAE=0.0442、NDE=0.0875、F1=0.9072`；预测均值478.14 W、真实均值500.23 W，预测开机比例0.8603、真实开机比例0.8693，说明训练与推理链路正常且不再坍缩。该结果只用于工程验收，不作为最终论文结果。当前测试样本由已提取的洗衣机工作周期组成，开机点占比约86.9%，因此F1绝对值可能偏乐观；本阶段首先用于公平比较A/B/C的相对增益，后续还需增加包含长时间关机背景的连续时间线评价。
 
 ### 6.4 后续扩展
 
