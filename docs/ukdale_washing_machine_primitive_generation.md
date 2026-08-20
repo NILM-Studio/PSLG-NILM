@@ -386,6 +386,21 @@ python scripts/summarize_synthesis_ablation.py \
 
 ### 6.3 核心实验：NILM小样本增益
 
+#### 6.3.1 总表与洗衣机支路对齐
+
+UK-DALE House 1 的 `labels.dat` 表明 `channel_1` 为 aggregate、`channel_2` 为 boiler、`channel_5` 为 washing machine，因此总表只使用 `channel_1`，不能将通道1和2相加。总表与洗衣机均约为6秒采样，但原始时间网格约相差3秒。使用洗衣机时间戳作为输出时间轴，在3.1秒容差内选择最近的总表读数；超出容差的长缺失点直接丢弃，不跨缺失区间插值。
+
+```bash
+python scripts/prepare_ukdale_nilm_pair.py \
+  --mains /home/scnu2024024563/dataset/house_1/channel_1.dat \
+  --appliance input/ukdale_washing_machine_full.csv \
+  --out input/ukdale_house1_mains_washing_machine.csv \
+  --tolerance-seconds 3.1
+```
+
+输出列为 `timestamp,mains,appliance`，审计文件为
+`input/ukdale_house1_mains_washing_machine.csv.audit.json`。正式构建训练集之前必须检查匹配率、时间戳偏移、采样间隔和 `appliance > mains` 的比例。
+
 建议训练组：
 
 ```text
