@@ -19,6 +19,7 @@ from src.generation.cycle_validation import (discover_metric_modes,
 from src.generation.primitive_library import Primitive, PrimitiveLibrary, RealPrimitiveSampler
 from src.generation.transition_model import StateTransitionModel
 from src.steps.cycle_classification_step import CycleClassificationStep
+from src.steps.cycle_split_step import CycleSplitStep
 from src.steps.cycle_validation_step import CycleValidationStep
 from src.steps.primitive_synthesis_step import PrimitiveSynthesisStep
 
@@ -157,6 +158,11 @@ class CyclePatternClassifierTest(unittest.TestCase):
 
 
 class PrimitiveSynthesisStepTest(unittest.TestCase):
+    def test_cycle_split_counts_keep_training_member(self):
+        self.assertEqual(CycleSplitStep._counts(1, 0.7, 0.1, 0.2), (1, 0, 0))
+        self.assertEqual(CycleSplitStep._counts(2, 0.7, 0.1, 0.2), (1, 0, 1))
+        self.assertEqual(CycleSplitStep._counts(11, 0.7, 0.1, 0.2), (8, 1, 2))
+
     def test_catalog_audit_uses_collapsed_canonical_signature(self):
         catalog = CyclePatternCatalog({
             "classes": [{
@@ -197,9 +203,13 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     min_duration_seconds=0.0,
                     boundary_absolute_watts=200.0,
                     robust_z_threshold=float("inf")))
+                wf.add(CycleSplitStep(
+                    cluster_tag="kmeans_k2_merged", train_ratio=1.0,
+                    validation_ratio=0.0, test_ratio=0.0))
                 wf.add(PrimitiveSynthesisStep(
                     cluster_tag="kmeans_k2_merged", n_cycles=4,
-                    random_seed=9, sequence_method="empirical", fs=1.0))
+                    random_seed=9, sequence_method="empirical", fs=1.0,
+                    require_cycle_split=True))
                 wf.run()
 
                 manifest = wf.manifest
@@ -209,6 +219,11 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 mode_summary = manifest.artifact_path(
                     "cycle_validation", "mode_summary")
                 self.assertTrue(os.path.exists(mode_summary))
+                split_summary = manifest.artifact_path("cycle_split", "summary")
+                with open(split_summary, encoding="utf-8") as f:
+                    self.assertEqual(
+                        json.load(f)["counts"],
+                        {"train": 2, "validation": 0, "test": 0})
                 cycles_dir = manifest.artifact_path("primitive_synthesis", "cycles_dir")
                 cycle_files = sorted(f for f in os.listdir(cycles_dir) if f.endswith(".csv"))
                 self.assertEqual(len(cycle_files), 4)
@@ -243,7 +258,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     continuity["state_boundary"]["after"]["max"], 0.0)
                 step = manifest.data["steps"]["primitive_synthesis"]
                 self.assertIn(
-                    "real_resample_empirical_all_validated_modes_on_kmeans_k2_merged",
+                    "real_resample_empirical_all_train_split_on_kmeans_k2_merged",
                               step["subdir"])
                 audit_path = manifest.artifact_path(
                     "primitive_synthesis", "input_audit")

@@ -34,7 +34,7 @@ output/<run_id>/figure/  # 出图脚本的统一输出
 ## 流水线
 
 ```
-extract → segment → feature → cluster → state_merge → cycle_classify → synthesize → fewshot → pam → split
+extract → segment → feature → cluster → state_merge → cycle_classify → cycle_validate → cycle_split → synthesize → fewshot → pam → split
 ```
 
 | 步骤 | step_type | 说明 |
@@ -45,6 +45,8 @@ extract → segment → feature → cluster → state_merge → cycle_classify �
 | cluster | `time_clustering` | kmeans（全候选 k）/ kmeans-scan（诊断）/ dbscan / hdbscan |
 | state_merge | `state_merge` | 按活动恢复连续功能状态，输出状态序列与合并块 |
 | cycle_classify | `cycle_classification` | 按完整状态组合发现真实工作周期类别并识别离群周期 |
+| cycle_validate | `cycle_validation` | 筛选完整代表周期并识别类内物理模式 |
+| cycle_split | `cycle_split` | 按类别/模式和时间顺序拆分周期来源，隔离测试波形 |
 | synthesize | `primitive_synthesis` | 按状态基元库和经验/Markov顺序重组完整工作周期 |
 | fewshot | `few_shot_cluster_extract` | 按簇规模识别少样本簇并导出 |
 | pam | `primitive_activity_mapping` | 基元↔活动映射（索引对齐），划分少样本/非少样本活动 |

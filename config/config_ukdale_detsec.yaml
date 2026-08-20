@@ -79,6 +79,10 @@ cycle_validation:
   mode_random_state: 42
   class_overrides: {}
   fs: 0.1666667
+cycle_split:
+  train_ratio: 0.7
+  validation_ratio: 0.1
+  test_ratio: 0.2
 primitive_synthesis:
   n_cycles: 100
   random_seed: 42
@@ -90,6 +94,7 @@ primitive_synthesis:
   within_state_smooth_samples: 3
   boundary_smooth_samples: 3
   require_cycle_validation: true
+  require_cycle_split: true
   fs: 0.1666667
 dataset_split:
   mains_series: input/fridge_mains.npy

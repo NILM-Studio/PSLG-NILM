@@ -47,7 +47,7 @@ for _p in (project_root, models_dir,
 
 # Canonical step order — all steps are implemented.
 ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
-                  "cycle_classify", "cycle_validate", "synthesize", "fewshot",
+                  "cycle_classify", "cycle_validate", "cycle_split", "synthesize", "fewshot",
                   "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
@@ -199,6 +199,7 @@ def _build_synthesize(cfg, sel):
         within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
         require_cycle_validation=c.get("require_cycle_validation", True),
+        require_cycle_split=c.get("require_cycle_split", False),
     )
 
 
@@ -238,6 +239,17 @@ def _build_cycle_validate(cfg, sel):
         mode_bic_min_gain=c.get("mode_bic_min_gain", 10.0),
         mode_random_state=c.get("mode_random_state", 42),
         class_overrides=c.get("class_overrides", {}),
+    )
+
+
+def _build_cycle_split(cfg, sel):
+    from src.steps.cycle_split_step import CycleSplitStep
+    c = cfg.get("cycle_split", {}) or {}
+    return CycleSplitStep(
+        cluster_tag=sel["cluster_tag"],
+        train_ratio=c.get("train_ratio", 0.7),
+        validation_ratio=c.get("validation_ratio", 0.1),
+        test_ratio=c.get("test_ratio", 0.2),
     )
 
 
@@ -282,6 +294,7 @@ STEP_BUILDERS = {
     "state_merge": _build_state_merge,
     "cycle_classify": _build_cycle_classify,
     "cycle_validate": _build_cycle_validate,
+    "cycle_split": _build_cycle_split,
     "synthesize": _build_synthesize,
     "fewshot": _build_fewshot,
     "pam": _build_pam,

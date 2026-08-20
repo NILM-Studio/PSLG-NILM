@@ -78,13 +78,13 @@ cycle_validation:
     "7": invalid
 ```
 
-Rerun `cycle_validate` after changing an override. Then synthesize from only
-the accepted `valid_full` classes:
+Rerun `cycle_validate` after changing an override. Then split the accepted
+`valid_full` classes and synthesize from training members only:
 
 ```bash
 python main.py \
   --config config/config_ukdale_detsec.yaml \
-  --steps synthesize \
+  --steps cycle_split,synthesize \
   --run-id ukdale_wm_primglr_detsec_3789 \
   --cluster-tag kmeans_k4_merged \
   --cycle-class all
@@ -94,8 +94,10 @@ For a paper evaluation, split source activities into train and test before
 fitting final thresholds or generators. The held-out real cycles must not
 contribute primitives, class representatives, or validation statistics.
 
-Validated synthesis is written under
-`primitive_synthesis_real_resample_empirical_all_validated_modes_on_<cluster-tag>/`.
+Split artifacts are written under
+`cycle_split_chronological_stratified_on_<cluster-tag>/`. Train-only synthesis
+is written under
+`primitive_synthesis_real_resample_empirical_all_train_split_on_<cluster-tag>/`.
 Its `synthesis_input_audit.json` records each accepted class, canonical
 signature, physical mode, and source-member count. Older validation catalogs
 are rejected rather than silently reused.

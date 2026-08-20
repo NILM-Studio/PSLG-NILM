@@ -20,6 +20,7 @@
   -> 相邻状态合并
   -> 周期类别发现
   -> 完整周期与物理模式验证
+  -> 周期级训练/验证/测试拆分
   -> 按类别/模式构建基元库
   -> 平滑拼接生成完整周期
   -> 生成质量评估
@@ -116,6 +117,10 @@ kmeans_k4_merged
 
 ### 3.5 条件基元拼接
 
+在拼接前，`cycle_split` 按 `(Class, Mode)` 分层，并在每组内部依据活动时间顺序执行 `70%/10%/20%` 的训练、验证和测试拆分。生成器启用 `require_cycle_split=true` 后只读取 `train_cycle_catalog.json`，测试周期的功率波形和基元不会进入生成库。
+
+当前拆分发生在周期分类与模式验证之后，因此实现的是严格的**波形来源隔离**，但代表签名和GMM模式仍由全部有效周期估计。该方案作为当前可执行基线；最终若要求完全无结构信息泄漏，需要将拆分前移，只在训练集拟合类别和模式，再将测试周期映射到训练模型。
+
 生成器按 `(class_id, mode_id)` 分别建立真实基元库、状态转移模型和采样器。当前基线为 `real_resample + empirical`：周期结构和目标持续时间来自同类别、同模式的有效真实周期；各状态块从对应基元库重采样。候选池选择和短窗口平滑用于降低连接跳变。
 
 该方法不是TimeVAE，也不是复制完整真实周期。当前生成的是来自多个真实工作段的基元重组结果，并保留来源信息。
@@ -185,12 +190,12 @@ git checkout feature/primitive-generation
 git pull origin feature/primitive-generation
 ```
 
-### 5.2 重跑验证与严格生成
+### 5.2 重跑验证、周期拆分与训练集生成
 
 ```bash
 python main.py \
   --config config/config_ukdale_detsec.yaml \
-  --steps cycle_validate,synthesize \
+  --steps cycle_validate,cycle_split,synthesize \
   --run-id ukdale_wm_primglr_detsec_3789 \
   --cluster-tag kmeans_k4_merged \
   --cycle-class all
@@ -200,7 +205,8 @@ python main.py \
 
 ```text
 cycle_validation_canonical_multimodal_robust_on_kmeans_k4_merged/
-primitive_synthesis_real_resample_empirical_all_validated_modes_on_kmeans_k4_merged/
+cycle_split_chronological_stratified_on_kmeans_k4_merged/
+primitive_synthesis_real_resample_empirical_all_train_split_on_kmeans_k4_merged/
 ```
 
 ### 5.3 绘图
@@ -224,6 +230,8 @@ output/ukdale_wm_primglr_detsec_3789/figure/primitive_synthesis/
 ## 6. 论文实验计划
 
 ### 6.1 下一步：生成质量定量评价
+
+先检查 `cycle_split_summary.json`，确认每个 `(Class, Mode)` 均保留训练成员和测试成员，再实现质量评价Step。按照920个有效周期和 `70%/10%/20%` 比例，总量应接近训练644、验证92、测试184；精确数量会因逐组取整略有变化。
 
 按 `(Class, Mode)` 分组比较真实周期与生成周期：
 

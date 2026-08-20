@@ -29,10 +29,15 @@ class PrimitiveSynthesisStep(Step):
                  candidate_pool: int = 32,
                  within_state_smooth_samples: int = 3,
                  boundary_smooth_samples: int = 3,
-                 require_cycle_validation: bool = True):
+                 require_cycle_validation: bool = True,
+                 require_cycle_split: bool = False):
         if not cluster_tag:
             raise ValueError("primitive synthesis requires --cluster-tag")
-        validation_tag = "validated_modes" if require_cycle_validation else "unvalidated"
+        if require_cycle_split:
+            validation_tag = "train_split"
+        else:
+            validation_tag = ("validated_modes" if require_cycle_validation
+                              else "unvalidated")
         super().__init__(
             variant=(f"{sampler}_{sequence_method}_{cycle_class}_{validation_tag}"
                      f"_on_{cluster_tag}"))
@@ -51,6 +56,7 @@ class PrimitiveSynthesisStep(Step):
         self.within_state_smooth_samples = int(within_state_smooth_samples)
         self.boundary_smooth_samples = int(boundary_smooth_samples)
         self.require_cycle_validation = bool(require_cycle_validation)
+        self.require_cycle_split = bool(require_cycle_split)
         if self.fs <= 0:
             raise ValueError("primitive_synthesis.fs must be positive")
 
@@ -100,6 +106,28 @@ class PrimitiveSynthesisStep(Step):
         return primitives
 
     def _load_catalog(self, context: dict) -> CyclePatternCatalog:
+        if self.require_cycle_split:
+            split = context["manifest"].get_step("cycle_split") or {}
+            split_tag = (split.get("extra") or {}).get("cluster_tag")
+            if split_tag and split_tag != self.cluster_tag:
+                raise ValueError(
+                    f"[primitive_synthesis] cycle split uses {split_tag}, but "
+                    f"synthesis requested {self.cluster_tag}")
+            train_path = self.resolve(context, "cycle_split", "train_catalog")
+            if not (train_path and os.path.exists(train_path)):
+                raise FileNotFoundError(
+                    "[primitive_synthesis] training cycle catalog not found; run "
+                    "--steps cycle_split before --steps synthesize")
+            with open(train_path, encoding="utf-8") as f:
+                payload = json.load(f)
+            source_split = payload.get("source_split", {})
+            if (source_split.get("name") != "train"
+                    or not source_split.get("waveform_holdout")):
+                raise ValueError(
+                    "[primitive_synthesis] cycle split catalog is not a valid "
+                    "waveform-held-out training catalog")
+            return self._validated_catalog(payload)
+
         validation = context["manifest"].get_step("cycle_validation") or {}
         validated_tag = (validation.get("extra") or {}).get("cluster_tag")
         if validated_tag and validated_tag != self.cluster_tag:
@@ -111,20 +139,7 @@ class PrimitiveSynthesisStep(Step):
         if validated_path and os.path.exists(validated_path):
             with open(validated_path, encoding="utf-8") as f:
                 payload = json.load(f)
-            metadata = payload.get("validation", {})
-            if (int(payload.get("version", 0)) < 3
-                    or not metadata.get("canonical_signatures_only")
-                    or not metadata.get("physical_modes_required")):
-                raise ValueError(
-                    "[primitive_synthesis] validated cycle catalog is from an "
-                    "older workflow and may contain signature variants or "
-                    "unvalidated modes; rerun --steps cycle_validate before "
-                    "--steps synthesize")
-            if not payload.get("classes"):
-                raise ValueError(
-                    "[primitive_synthesis] cycle validation accepted no full classes; "
-                    "review class_validity_summary.csv or configure class_overrides")
-            return CyclePatternCatalog(payload)
+            return self._validated_catalog(payload)
         if self.require_cycle_validation:
             raise FileNotFoundError(
                 "[primitive_synthesis] validated cycle catalog not found; run "
@@ -143,6 +158,23 @@ class PrimitiveSynthesisStep(Step):
                 "--steps cycle_classify first for the same --run-id and --cluster-tag")
         with open(path, encoding="utf-8") as f:
             payload = json.load(f)
+        return CyclePatternCatalog(payload)
+
+    @staticmethod
+    def _validated_catalog(payload: dict) -> CyclePatternCatalog:
+        metadata = payload.get("validation", {})
+        if (int(payload.get("version", 0)) < 3
+                or not metadata.get("canonical_signatures_only")
+                or not metadata.get("physical_modes_required")):
+            raise ValueError(
+                "[primitive_synthesis] validated cycle catalog is from an "
+                "older workflow and may contain signature variants or "
+                "unvalidated modes; rerun --steps cycle_validate before "
+                "--steps synthesize")
+        if not payload.get("classes"):
+            raise ValueError(
+                "[primitive_synthesis] cycle validation accepted no full classes; "
+                "review class_validity_summary.csv or configure class_overrides")
         return CyclePatternCatalog(payload)
 
     @staticmethod
@@ -382,6 +414,8 @@ class PrimitiveSynthesisStep(Step):
             },
             "n_cycles": self.n_cycles,
             "cycle_validation_required": self.require_cycle_validation,
+            "cycle_split_required": self.require_cycle_split,
+            "source_split": "train" if self.require_cycle_split else "all_validated",
             "states": sorted({state for library in libraries.values()
                               for state in library.states}),
         })
