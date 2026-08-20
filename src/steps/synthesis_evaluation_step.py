@@ -151,7 +151,7 @@ class SynthesisEvaluationStep(Step):
         train_records = self._real_records(
             train_catalog, files, segments_dir, include_waveform=True)
         test_records = self._real_records(
-            test_catalog, files, segments_dir, include_waveform=False)
+            test_catalog, files, segments_dir, include_waveform=True)
 
         generated_records = []
         for source in synthetic_manifest:
@@ -179,7 +179,7 @@ class SynthesisEvaluationStep(Step):
         train_groups, test_groups = grouped(train_records), grouped(test_records)
         generated_groups = grouped(generated_records)
         expected_groups = sorted(test_groups)
-        distribution_rows, state_rows, novelty_rows = [], [], []
+        distribution_rows, state_rows, novelty_rows, baseline_rows = [], [], [], []
         for class_id, mode_id in expected_groups:
             real = test_groups[(class_id, mode_id)]
             generated = generated_groups.get((class_id, mode_id), [])
@@ -209,6 +209,17 @@ class SynthesisEvaluationStep(Step):
                     nearest_distance = float(distances[nearest])
                 else:
                     nearest_id, nearest_distance = "", None
+                if real:
+                    test_distances = np.asarray([
+                        float(np.sqrt(np.mean(
+                            (record["shape"] - target["shape"]) ** 2)))
+                        for target in real
+                    ])
+                    nearest_test = int(np.argmin(test_distances))
+                    nearest_test_id = real[nearest_test]["activity_id"]
+                    nearest_test_distance = float(test_distances[nearest_test])
+                else:
+                    nearest_test_id, nearest_test_distance = "", None
                 peers = [other for other in generated if other is not record]
                 diversity = (min(float(np.sqrt(np.mean(
                     (record["shape"] - other["shape"]) ** 2))) for other in peers)
@@ -218,7 +229,42 @@ class SynthesisEvaluationStep(Step):
                     "class_id": class_id, "mode_id": mode_id,
                     "nearest_train_activity_id": nearest_id,
                     "nearest_train_shape_rmse": nearest_distance,
+                    "nearest_test_activity_id": nearest_test_id,
+                    "nearest_test_shape_rmse": nearest_test_distance,
                     "nearest_generated_shape_rmse": diversity,
+                })
+
+            for record in real:
+                if train_shapes:
+                    train_distances = np.asarray([
+                        float(np.sqrt(np.mean(
+                            (record["shape"] - source["shape"]) ** 2)))
+                        for source in train_shapes
+                    ])
+                    nearest_train = int(np.argmin(train_distances))
+                    nearest_train_id = train_shapes[nearest_train]["activity_id"]
+                    nearest_train_distance = float(train_distances[nearest_train])
+                else:
+                    nearest_train_id, nearest_train_distance = "", None
+                if generated:
+                    generated_distances = np.asarray([
+                        float(np.sqrt(np.mean(
+                            (record["shape"] - source["shape"]) ** 2)))
+                        for source in generated
+                    ])
+                    nearest_generated = int(np.argmin(generated_distances))
+                    nearest_generated_id = generated[nearest_generated]["cycle_id"]
+                    nearest_generated_distance = float(
+                        generated_distances[nearest_generated])
+                else:
+                    nearest_generated_id, nearest_generated_distance = "", None
+                baseline_rows.append({
+                    "activity_id": record["activity_id"], "file": record["file"],
+                    "class_id": class_id, "mode_id": mode_id,
+                    "nearest_train_activity_id": nearest_train_id,
+                    "nearest_train_shape_rmse": nearest_train_distance,
+                    "nearest_generated_cycle_id": nearest_generated_id,
+                    "nearest_generated_shape_rmse": nearest_generated_distance,
                 })
 
         missing_groups = [
@@ -233,6 +279,27 @@ class SynthesisEvaluationStep(Step):
                    if row["nearest_train_shape_rmse"] is not None]
         diversity = [row["nearest_generated_shape_rmse"] for row in novelty_rows
                      if row["nearest_generated_shape_rmse"] is not None]
+        generated_to_test = [row["nearest_test_shape_rmse"] for row in novelty_rows
+                             if row["nearest_test_shape_rmse"] is not None]
+        test_to_train = [row["nearest_train_shape_rmse"] for row in baseline_rows
+                         if row["nearest_train_shape_rmse"] is not None]
+        test_to_generated = [row["nearest_generated_shape_rmse"]
+                             for row in baseline_rows
+                             if row["nearest_generated_shape_rmse"] is not None]
+        mean_generated_to_train = float(np.mean(novelty)) if novelty else None
+        mean_test_to_train = float(np.mean(test_to_train)) if test_to_train else None
+        mean_test_to_generated = (
+            float(np.mean(test_to_generated)) if test_to_generated else None)
+        novelty_ratio = (
+            mean_generated_to_train / mean_test_to_train
+            if mean_generated_to_train is not None
+            and mean_test_to_train is not None and mean_test_to_train > 1e-9
+            else None)
+        coverage_ratio = (
+            mean_test_to_generated / mean_test_to_train
+            if mean_test_to_generated is not None
+            and mean_test_to_train is not None and mean_test_to_train > 1e-9
+            else None)
         summary = {
             "evaluation_scope": "heldout_test_waveforms",
             "structure_fit_scope": "all_validated_cycles",
@@ -245,15 +312,22 @@ class SynthesisEvaluationStep(Step):
             "mean_normalized_wasserstein": (
                 float(np.mean(normalized)) if normalized else None),
             "mean_nearest_train_shape_rmse": (
-                float(np.mean(novelty)) if novelty else None),
+                mean_generated_to_train),
+            "mean_generated_to_test_shape_rmse": (
+                float(np.mean(generated_to_test)) if generated_to_test else None),
             "mean_nearest_generated_shape_rmse": (
                 float(np.mean(diversity)) if diversity else None),
+            "mean_test_to_train_shape_rmse": mean_test_to_train,
+            "mean_test_to_generated_shape_rmse": mean_test_to_generated,
+            "generated_novelty_to_real_baseline_ratio": novelty_ratio,
+            "generated_coverage_to_real_baseline_ratio": coverage_ratio,
         }
 
         log_dir = self.log_dir(context)
         distribution_path = os.path.join(log_dir, "distribution_metrics.csv")
         state_path = os.path.join(log_dir, "state_duration_metrics.csv")
         novelty_path = os.path.join(log_dir, "novelty_metrics.csv")
+        baseline_path = os.path.join(log_dir, "real_holdout_shape_baseline.csv")
         summary_path = os.path.join(log_dir, "quality_summary.json")
         metric_fields = [
             "class_id", "mode_id", "metric", "real_count", "generated_count",
@@ -265,7 +339,13 @@ class SynthesisEvaluationStep(Step):
         self._write_csv(novelty_path, novelty_rows, [
             "cycle_id", "file", "class_id", "mode_id",
             "nearest_train_activity_id", "nearest_train_shape_rmse",
+            "nearest_test_activity_id", "nearest_test_shape_rmse",
             "nearest_generated_shape_rmse",
+        ])
+        self._write_csv(baseline_path, baseline_rows, [
+            "activity_id", "file", "class_id", "mode_id",
+            "nearest_train_activity_id", "nearest_train_shape_rmse",
+            "nearest_generated_cycle_id", "nearest_generated_shape_rmse",
         ])
         with open(summary_path, "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2, ensure_ascii=False)
@@ -273,6 +353,7 @@ class SynthesisEvaluationStep(Step):
             "distribution_metrics": self.rel(context, distribution_path),
             "state_duration_metrics": self.rel(context, state_path),
             "novelty_metrics": self.rel(context, novelty_path),
+            "real_holdout_shape_baseline": self.rel(context, baseline_path),
             "quality_summary": self.rel(context, summary_path),
         }, extra={"cluster_tag": self.cluster_tag, **summary})
         print(f"[synthesis_evaluation] {len(generated_records)} generated vs "

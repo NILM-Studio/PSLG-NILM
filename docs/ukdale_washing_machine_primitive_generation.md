@@ -239,6 +239,9 @@ output/ukdale_wm_primglr_detsec_3789/figure/primitive_synthesis/
 - `state_duration_metrics.csv`：各状态持续时间的同类指标；
 - `novelty_metrics.csv`：生成周期到最近训练周期、最近其他生成周期的归一化形状RMSE；
 - `quality_summary.json`：总体摘要及未覆盖模式列表。
+- `real_holdout_shape_baseline.csv`：真实测试周期到最近训练周期、最近生成周期的形状距离，用作自然类内变化和生成覆盖率基线。
+
+首轮完整均衡实验结果（2026-08-20）：训练真实周期644、测试真实周期184、生成周期220，11个 `(Class, Mode)` 全部覆盖；平均归一化Wasserstein距离为0.1057，生成到最近训练周期的形状RMSE为0.3920，生成样本间最近形状RMSE为0.3363。形状距离仍需结合真实测试到训练集基线解释。
 
 运行命令：
 

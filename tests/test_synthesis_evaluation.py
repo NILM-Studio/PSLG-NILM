@@ -27,6 +27,15 @@ class SynthesisEvaluationTest(unittest.TestCase):
         self.assertEqual(row["generated_count"], 0)
         self.assertIsNone(row["wasserstein"])
 
+    def test_shape_rmse_has_interpretable_standardized_scale(self):
+        left = SynthesisEvaluationStep._resample_shape(
+            np.sin(np.linspace(0, 2 * np.pi, 100)), 64)
+        right = SynthesisEvaluationStep._resample_shape(
+            np.cos(np.linspace(0, 2 * np.pi, 100)), 64)
+        distance = float(np.sqrt(np.mean((left - right) ** 2)))
+        self.assertGreater(distance, 1.0)
+        self.assertLess(distance, 2.0)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
