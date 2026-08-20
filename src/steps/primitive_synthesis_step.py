@@ -32,8 +32,10 @@ class PrimitiveSynthesisStep(Step):
                  require_cycle_validation: bool = True):
         if not cluster_tag:
             raise ValueError("primitive synthesis requires --cluster-tag")
+        validation_tag = "validated_modes" if require_cycle_validation else "unvalidated"
         super().__init__(
-            variant=f"{sampler}_{sequence_method}_{cycle_class}_on_{cluster_tag}")
+            variant=(f"{sampler}_{sequence_method}_{cycle_class}_{validation_tag}"
+                     f"_on_{cluster_tag}"))
         self.cluster_tag = cluster_tag
         self.sampler_name = str(sampler).lower()
         self.sequence_method = str(sequence_method).lower()
@@ -109,6 +111,15 @@ class PrimitiveSynthesisStep(Step):
         if validated_path and os.path.exists(validated_path):
             with open(validated_path, encoding="utf-8") as f:
                 payload = json.load(f)
+            metadata = payload.get("validation", {})
+            if (int(payload.get("version", 0)) < 3
+                    or not metadata.get("canonical_signatures_only")
+                    or not metadata.get("physical_modes_required")):
+                raise ValueError(
+                    "[primitive_synthesis] validated cycle catalog is from an "
+                    "older workflow and may contain signature variants or "
+                    "unvalidated modes; rerun --steps cycle_validate before "
+                    "--steps synthesize")
             if not payload.get("classes"):
                 raise ValueError(
                     "[primitive_synthesis] cycle validation accepted no full classes; "
@@ -134,6 +145,44 @@ class PrimitiveSynthesisStep(Step):
             payload = json.load(f)
         return CyclePatternCatalog(payload)
 
+    @staticmethod
+    def _audit_catalog(catalog: CyclePatternCatalog,
+                       class_ids: List[int]) -> dict:
+        """Fail closed unless every synthesis member is canonical and mode-labelled."""
+        audit = {"valid_class_ids": list(class_ids), "classes": {}}
+        for class_id in class_ids:
+            entry = catalog.classes[class_id]
+            signature = [int(value) for value in entry.get(
+                "representative_signature", [])]
+            if not signature:
+                raise ValueError(
+                    f"[primitive_synthesis] class {class_id} has no representative signature")
+            members = catalog.member_ids(class_id)
+            if not members:
+                raise ValueError(
+                    f"[primitive_synthesis] class {class_id} has no validated members")
+            modes = {}
+            for activity_id in members:
+                activity = catalog.activities[activity_id]
+                observed = [int(block["state_label"])
+                            for block in activity.get("blocks", [])]
+                if observed != signature:
+                    raise ValueError(
+                        f"[primitive_synthesis] class {class_id} activity "
+                        f"{activity_id} is not representative: {observed} != {signature}")
+                mode_id = int(activity.get("validation_mode_id", -1))
+                if mode_id < 0:
+                    raise ValueError(
+                        f"[primitive_synthesis] class {class_id} activity "
+                        f"{activity_id} has no validated physical mode")
+                modes.setdefault(str(mode_id), []).append(activity_id)
+            audit["classes"][str(class_id)] = {
+                "representative_signature": signature,
+                "validated_members": len(members),
+                "modes": {mode: len(ids) for mode, ids in sorted(modes.items())},
+            }
+        return audit
+
     def _sampler(self, library: PrimitiveLibrary):
         if self.sampler_name == "real_resample":
             return RealPrimitiveSampler(
@@ -151,6 +200,7 @@ class PrimitiveSynthesisStep(Step):
         primitives = self._load_primitives(context)
         catalog = self._load_catalog(context)
         class_ids = catalog.resolve_classes(self.cycle_class)
+        catalog_audit = self._audit_catalog(catalog, class_ids)
         if self.mode_sampling not in ("balanced", "empirical"):
             raise ValueError("primitive_synthesis.mode_sampling must be balanced or empirical")
         mode_ids = {class_id: catalog.mode_ids_for_class(class_id)
@@ -295,12 +345,14 @@ class PrimitiveSynthesisStep(Step):
         })
         continuity_path = _dump("continuity_metrics.json", continuity)
         manifest_path = _dump("synthesis_manifest.json", records)
+        audit_path = _dump("synthesis_input_audit.json", catalog_audit)
         self.record(context, artifacts={
             "cycles_dir": self.rel(context, cycles_dir),
             "transition_model": self.rel(context, model_path),
             "library_summary": self.rel(context, library_path),
             "continuity_metrics": self.rel(context, continuity_path),
             "synthesis_manifest": self.rel(context, manifest_path),
+            "input_audit": self.rel(context, audit_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
             "sampler": self.sampler_name,

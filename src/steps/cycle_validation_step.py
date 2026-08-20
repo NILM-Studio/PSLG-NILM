@@ -47,7 +47,7 @@ class CycleValidationStep(Step):
                  class_overrides: Dict[str, str] | None = None):
         if not cluster_tag:
             raise ValueError("cycle validation requires --cluster-tag")
-        super().__init__(variant=f"multimodal_robust_on_{cluster_tag}")
+        super().__init__(variant=f"canonical_multimodal_robust_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.fs = float(fs)
         self.min_class_support = max(1, int(min_class_support))
@@ -335,9 +335,11 @@ class CycleValidationStep(Step):
 
         valid_id_set = set(valid_activity_ids)
         filtered = copy.deepcopy(payload)
-        filtered["version"] = max(2, int(filtered.get("version", 1)))
+        filtered["version"] = max(3, int(filtered.get("version", 1)))
         filtered["validation"] = {
-            "method": "grammar_boundary_gmm_mode_robust_mad",
+            "method": "canonical_signature_gmm_mode_robust_mad",
+            "canonical_signatures_only": True,
+            "physical_modes_required": True,
             "valid_class_ids": valid_class_ids,
             "valid_activity_ids": sorted(valid_id_set, key=int),
             "grammar": grammar,

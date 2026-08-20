@@ -219,8 +219,17 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 self.assertEqual(
                     continuity["state_boundary"]["after"]["max"], 0.0)
                 step = manifest.data["steps"]["primitive_synthesis"]
-                self.assertIn("real_resample_empirical_all_on_kmeans_k2_merged",
+                self.assertIn(
+                    "real_resample_empirical_all_validated_modes_on_kmeans_k2_merged",
                               step["subdir"])
+                audit_path = manifest.artifact_path(
+                    "primitive_synthesis", "input_audit")
+                with open(audit_path, encoding="utf-8") as f:
+                    audit = json.load(f)
+                self.assertEqual(audit["valid_class_ids"], [0, 1])
+                self.assertEqual(
+                    audit["classes"]["0"]["representative_signature"],
+                    [0, 1, 0])
             finally:
                 os.chdir(cwd)
 
