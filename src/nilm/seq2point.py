@@ -99,18 +99,20 @@ def make_keras_sequence(corpus: CycleWindowCorpus, batch_size: int,
 
 
 def build_seq2point(window_length: int = 599, learning_rate: float = 1e-3,
-                    dropout: float = 0.2):
+                    dropout: float = 0.0):
     import tensorflow as tf
 
     inputs = tf.keras.Input(shape=(window_length, 1), name="mains_window")
     x = inputs
     for filters, kernel in ((30, 10), (30, 8), (40, 6), (50, 5), (50, 5)):
         x = tf.keras.layers.Conv1D(
-            filters, kernel, activation="relu", padding="valid")(x)
+            filters, kernel, activation="relu", padding="same")(x)
     x = tf.keras.layers.Flatten()(x)
     x = tf.keras.layers.Dense(1024, activation="relu")(x)
-    x = tf.keras.layers.Dropout(dropout)(x)
-    outputs = tf.keras.layers.Dense(1, activation="relu", name="appliance_power")(x)
+    if dropout > 0:
+        x = tf.keras.layers.Dropout(dropout)(x)
+    outputs = tf.keras.layers.Dense(
+        1, activation="linear", name="appliance_power")(x)
     model = tf.keras.Model(inputs, outputs, name="seq2point_cnn")
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
@@ -142,6 +144,12 @@ def regression_metrics(target: np.ndarray, prediction: np.ndarray,
         "recall": float(recall),
         "f1": float(2 * precision * recall / (precision + recall)
                     if precision + recall else 0.0),
+        "target_mean_watts": float(np.mean(target)),
+        "target_max_watts": float(np.max(target)),
+        "target_on_fraction": float(np.mean(true_on)),
+        "prediction_mean_watts": float(np.mean(prediction)),
+        "prediction_max_watts": float(np.max(prediction)),
+        "prediction_on_fraction": float(np.mean(predicted_on)),
         "on_threshold_watts": float(on_threshold),
         "n_points": int(len(target)),
     }

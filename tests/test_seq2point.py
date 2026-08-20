@@ -30,6 +30,10 @@ class Seq2PointTests(unittest.TestCase):
         self.assertEqual(metrics["sae"], 0.0)
         self.assertEqual(metrics["nde"], 0.0)
         self.assertEqual(metrics["f1"], 1.0)
+        self.assertEqual(metrics["prediction_mean_watts"],
+                         metrics["target_mean_watts"])
+        self.assertEqual(metrics["prediction_on_fraction"],
+                         metrics["target_on_fraction"])
 
     def test_experiment_matrix_contains_ten_runs(self):
         manifest = {"experiments": {

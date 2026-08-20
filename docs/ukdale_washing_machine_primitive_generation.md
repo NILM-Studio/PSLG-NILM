@@ -437,7 +437,7 @@ D. 全量真实数据（参考上限）
 
 #### 6.3.2 Seq2Point 下游评价
 
-下游基线采用 Seq2Point CNN：输入599点总表窗口，输出窗口中心点的洗衣机功率。网络依次使用五层一维卷积 `(30,10)、(30,8)、(40,6)、(50,5)、(50,5)`，随后为1024单元全连接层、Dropout和非负单点输出。所有实验固定总表缩放上限10,000 W、洗衣机缩放上限4,000 W；训练窗口步长5，验证步长5，测试步长1。端点按原论文使用零填充，每个周期独立取窗，不跨周期连接。
+下游基线采用 Seq2Point CNN：输入599点总表窗口，输出窗口中心点的洗衣机功率。网络依次使用五层 `same` 填充的一维卷积 `(30,10)、(30,8)、(40,6)、(50,5)、(50,5)`，随后为1024单元全连接层和线性单点输出，推理后再将负功率截断为0。所有实验固定总表缩放上限10,000 W、洗衣机缩放上限4,000 W；训练窗口步长5，验证步长5，测试步长1。端点使用零填充，每个周期独立取窗，不跨周期连接。
 
 第一阶段固定随机种子42，顺序训练10组模型：`5%/10%/20%` 下各训练 A/B/C，以及全量真实 D。A/B/C 在相同比例下共享同一真实周期，B和C额外样本数相等；验证集固定92周期、测试集固定184周期。指标定义为功率 MAE、总能量相对误差 SAE、归一化分解误差 NDE，以及使用20 W洗衣机开机阈值的 Precision、Recall和F1。
 
@@ -445,7 +445,7 @@ D. 全量真实数据（参考上限）
 mkdir -p slurm/slurm_log
 
 # 先验证数据读取、TensorFlow GPU和模型训练链路，不污染正式结果目录
-sbatch --export=ALL,EXPERIMENTS=05pct:A,EPOCHS=1,OUTPUT_ROOT=log/ukdale_wm_primglr_detsec_3789/nilm_seq2point_smoke \
+sbatch --export=ALL,EXPERIMENTS=05pct:A,EPOCHS=1,FORCE=1,OUTPUT_ROOT=log/ukdale_wm_primglr_detsec_3789/nilm_seq2point_smoke \
   slurm/run_ukdale_seq2point.sh
 
 # 冒烟测试通过后提交完整10组实验
@@ -465,6 +465,8 @@ log/ukdale_wm_primglr_detsec_3789/nilm_seq2point/
 ```
 
 每个实验目录保存 `best_model.keras`、`history.csv`、`metrics.json` 和 `test_predictions.npz`。种子42验证流程无误后，再使用多个随机种子重复训练并报告均值与标准差。
+
+首次冒烟测试发现ReLU输出层产生全零预测（`SAE=NDE=1，F1=0`）。对照Seq2Point作者公开实现后，将卷积改为 `same` 填充并将末层修正为线性输出；正式训练不得使用该次全零结果。`metrics.json` 同时记录真实值和预测值的均值、最大值及开机比例，用于自动识别模型坍缩。
 
 ### 6.4 后续扩展
 

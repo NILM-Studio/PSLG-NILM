@@ -140,7 +140,7 @@ def main() -> None:
     parser.add_argument("--train-stride", type=int, default=5)
     parser.add_argument("--validation-stride", type=int, default=5)
     parser.add_argument("--learning-rate", type=float, default=1e-3)
-    parser.add_argument("--dropout", type=float, default=0.2)
+    parser.add_argument("--dropout", type=float, default=0.0)
     parser.add_argument("--mains-scale", type=float, default=10_000.0)
     parser.add_argument("--appliance-scale", type=float, default=4_000.0)
     parser.add_argument("--on-threshold", type=float, default=20.0)
