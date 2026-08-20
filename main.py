@@ -47,7 +47,8 @@ for _p in (project_root, models_dir,
 
 # Canonical step order — all steps are implemented.
 ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
-                  "cycle_classify", "cycle_validate", "cycle_split", "synthesize", "fewshot",
+                  "cycle_classify", "cycle_validate", "cycle_split", "synthesize",
+                  "synthesis_eval", "fewshot",
                   "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
@@ -253,6 +254,17 @@ def _build_cycle_split(cfg, sel):
     )
 
 
+def _build_synthesis_eval(cfg, sel):
+    from src.steps.synthesis_evaluation_step import SynthesisEvaluationStep
+    c = cfg.get("synthesis_evaluation", {}) or {}
+    ex = cfg.get("extract_active_data", {}) or {}
+    return SynthesisEvaluationStep(
+        cluster_tag=sel["cluster_tag"],
+        fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
+        waveform_points=c.get("waveform_points", 256),
+    )
+
+
 def _build_fewshot(cfg, sel):
     from src.steps.few_shot_cluster_extract_step import FewShotClusterExtractStep
     c = cfg.get("few_shot_cluster_extract", {})
@@ -296,6 +308,7 @@ STEP_BUILDERS = {
     "cycle_validate": _build_cycle_validate,
     "cycle_split": _build_cycle_split,
     "synthesize": _build_synthesize,
+    "synthesis_eval": _build_synthesis_eval,
     "fewshot": _build_fewshot,
     "pam": _build_pam,
     "split": _build_split,

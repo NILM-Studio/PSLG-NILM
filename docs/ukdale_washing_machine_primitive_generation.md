@@ -231,7 +231,24 @@ output/ukdale_wm_primglr_detsec_3789/figure/primitive_synthesis/
 
 ### 6.1 下一步：生成质量定量评价
 
-先检查 `cycle_split_summary.json`，确认每个 `(Class, Mode)` 均保留训练成员和测试成员，再实现质量评价Step。按照920个有效周期和 `70%/10%/20%` 比例，总量应接近训练644、验证92、测试184；精确数量会因逐组取整略有变化。
+先检查 `cycle_split_summary.json`，确认每个 `(Class, Mode)` 均保留训练成员和测试成员，再运行质量评价Step。按照920个有效周期和 `70%/10%/20%` 比例，总量应接近训练644、验证92、测试184；精确数量会因逐组取整略有变化。
+
+当前拆分结果已经确认：训练644、验证92、测试184，11个 `(Class, Mode)` 均有训练与测试成员。`synthesis_eval` 已实现以下产物：
+
+- `distribution_metrics.csv`：时长、能耗、平均功率和峰值功率的Wasserstein距离、归一化距离与KS统计量；
+- `state_duration_metrics.csv`：各状态持续时间的同类指标；
+- `novelty_metrics.csv`：生成周期到最近训练周期、最近其他生成周期的归一化形状RMSE；
+- `quality_summary.json`：总体摘要及未覆盖模式列表。
+
+运行命令：
+
+```bash
+python main.py \
+  --config config/config_ukdale_detsec.yaml \
+  --steps synthesis_eval \
+  --run-id ukdale_wm_primglr_detsec_3789 \
+  --cluster-tag kmeans_k4_merged
+```
 
 按 `(Class, Mode)` 分组比较真实周期与生成周期：
 
