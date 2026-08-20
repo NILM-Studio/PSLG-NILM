@@ -146,6 +146,22 @@ class PrimitiveSynthesisStep(Step):
         return CyclePatternCatalog(payload)
 
     @staticmethod
+    def _canonical_blocks(blocks: List[dict]) -> List[tuple[int, int]]:
+        """Collapse adjacent equal labels using the classifier's signature rule."""
+        collapsed: List[tuple[int, int]] = []
+        for block in blocks:
+            state = int(block["state_label"])
+            length = int(block.get("length_samples", 0))
+            if length <= 0:
+                continue
+            if collapsed and collapsed[-1][0] == state:
+                previous_state, previous_length = collapsed[-1]
+                collapsed[-1] = (previous_state, previous_length + length)
+            else:
+                collapsed.append((state, length))
+        return collapsed
+
+    @staticmethod
     def _audit_catalog(catalog: CyclePatternCatalog,
                        class_ids: List[int]) -> dict:
         """Fail closed unless every synthesis member is canonical and mode-labelled."""
@@ -164,8 +180,9 @@ class PrimitiveSynthesisStep(Step):
             modes = {}
             for activity_id in members:
                 activity = catalog.activities[activity_id]
-                observed = [int(block["state_label"])
-                            for block in activity.get("blocks", [])]
+                observed = [state for state, _ in
+                            PrimitiveSynthesisStep._canonical_blocks(
+                                activity.get("blocks", []))]
                 if observed != signature:
                     raise ValueError(
                         f"[primitive_synthesis] class {class_id} activity "
@@ -261,8 +278,7 @@ class PrimitiveSynthesisStep(Step):
             if self.sequence_method == "empirical":
                 source_activity_id, blocks = catalog.sample_activity(
                     class_id, rng, mode_id=mode_id)
-                state_blocks = [(int(block["state_label"]), int(block["length_samples"]))
-                                for block in blocks]
+                state_blocks = self._canonical_blocks(blocks)
             else:
                 state_blocks = transition_models[key].sample(
                     self.sequence_method, rng, self.min_blocks, self.max_blocks)

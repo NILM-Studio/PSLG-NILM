@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.framework.step import Step
 from src.framework.workflow import Workflow
-from src.generation.cycle_patterns import CyclePatternClassifier
+from src.generation.cycle_patterns import CyclePatternCatalog, CyclePatternClassifier
 from src.generation.cycle_validation import (discover_metric_modes,
                                              infer_cycle_grammar,
                                              robust_z_scores)
@@ -157,6 +157,29 @@ class CyclePatternClassifierTest(unittest.TestCase):
 
 
 class PrimitiveSynthesisStepTest(unittest.TestCase):
+    def test_catalog_audit_uses_collapsed_canonical_signature(self):
+        catalog = CyclePatternCatalog({
+            "classes": [{
+                "class_id": 0,
+                "representative_signature": [1, 0, 1],
+                "support": 1,
+                "member_ids": ["0"],
+            }],
+            "activities": {"0": {
+                "validation_mode_id": 2,
+                "blocks": [
+                    {"state_label": 1, "length_samples": 3},
+                    {"state_label": 1, "length_samples": 4},
+                    {"state_label": 0, "length_samples": 5},
+                    {"state_label": 1, "length_samples": 6},
+                ],
+            }},
+        })
+        audit = PrimitiveSynthesisStep._audit_catalog(catalog, [0])
+        self.assertEqual(
+            audit["classes"]["0"]["representative_signature"], [1, 0, 1])
+        self.assertEqual(audit["classes"]["0"]["modes"], {"2": 1})
+
     def test_real_resampling_emits_traceable_cycles(self):
         with tempfile.TemporaryDirectory() as tmp:
             cwd = os.getcwd()
