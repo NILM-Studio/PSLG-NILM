@@ -92,7 +92,7 @@ primitive_synthesis:
   mode_sampling: empirical
   activity_sampling: balanced
   conditioning_method: cycle_neighbors
-  conditioning_neighbors: 5
+  conditioning_neighbors: 10
   conditioning_exclude_anchor: true
   candidate_pool: 32
   within_state_smooth_samples: 3
