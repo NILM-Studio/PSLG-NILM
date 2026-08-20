@@ -264,6 +264,7 @@ python main.py \
 
 - `mode_sampling=empirical`：保持真实模式比例，用于NILM数据增强。
 - `mode_sampling=balanced`：保证每个模式有足够样本，用于逐模式质量评估。
+- `class_sampling=balanced_pairs`：直接均衡全部 `(Class, Mode)` 组合。本实验使用220个生成周期，对11个组合各生成20个，作为质量评价协议；正式数据增强仍使用经验比例。
 
 ### 6.2 核心实验：NILM小样本增益
 

@@ -209,6 +209,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 wf.add(PrimitiveSynthesisStep(
                     cluster_tag="kmeans_k2_merged", n_cycles=4,
                     random_seed=9, sequence_method="empirical", fs=1.0,
+                    class_sampling="balanced_pairs",
                     require_cycle_split=True))
                 wf.run()
 
@@ -240,6 +241,11 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                 with open(path, encoding="utf-8") as f:
                     records = json.load(f)
                 self.assertEqual(len(records), 4)
+                self.assertEqual(
+                    {(row["cycle_class"], row["cycle_mode"])
+                     for row in records}, {(0, 0), (1, 0)})
+                self.assertEqual(
+                    [row["cycle_class"] for row in records], [0, 1, 0, 1])
                 self.assertTrue(records[0]["blocks"][0]["sources"])
                 self.assertGreater(records[0]["energy_wh"], 0.0)
 

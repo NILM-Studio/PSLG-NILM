@@ -267,12 +267,19 @@ class PrimitiveSynthesisStep(Step):
                 samplers[key] = self._sampler(libraries[key])
         rng = np.random.default_rng(self.random_seed)
 
-        if self.class_sampling not in ("balanced", "empirical"):
-            raise ValueError("primitive_synthesis.class_sampling must be balanced or empirical")
+        if self.class_sampling not in ("balanced", "balanced_pairs", "empirical"):
+            raise ValueError(
+                "primitive_synthesis.class_sampling must be balanced, "
+                "balanced_pairs, or empirical")
         class_weights = np.asarray(
             [catalog.classes[class_id]["support"] for class_id in class_ids],
             dtype=np.float64)
         class_weights /= class_weights.sum()
+        class_mode_pairs = sorted(
+            (class_id, mode_id)
+            for class_id in class_ids
+            for mode_id in mode_ids[class_id]
+        )
 
         log_dir = self.log_dir(context)
         cycles_dir = os.path.join(log_dir, "cycles")
@@ -283,26 +290,32 @@ class PrimitiveSynthesisStep(Step):
         mode_counters = {class_id: 0 for class_id in class_ids}
 
         for cycle_id in range(self.n_cycles):
-            if len(class_ids) == 1:
-                class_id = class_ids[0]
-            elif self.class_sampling == "balanced":
-                class_id = class_ids[cycle_id % len(class_ids)]
+            if self.class_sampling == "balanced_pairs":
+                class_id, mode_id = class_mode_pairs[
+                    cycle_id % len(class_mode_pairs)]
             else:
-                class_id = class_ids[int(rng.choice(len(class_ids), p=class_weights))]
-            available_modes = mode_ids[class_id]
-            if len(available_modes) == 1:
-                mode_id = available_modes[0]
-            elif self.mode_sampling == "balanced":
-                mode_id = available_modes[
-                    mode_counters[class_id] % len(available_modes)]
-                mode_counters[class_id] += 1
-            else:
-                supports = np.asarray([
-                    len(catalog.member_ids(class_id, value))
-                    for value in available_modes
-                ], dtype=np.float64)
-                supports /= supports.sum()
-                mode_id = available_modes[int(rng.choice(len(available_modes), p=supports))]
+                if len(class_ids) == 1:
+                    class_id = class_ids[0]
+                elif self.class_sampling == "balanced":
+                    class_id = class_ids[cycle_id % len(class_ids)]
+                else:
+                    class_id = class_ids[int(rng.choice(
+                        len(class_ids), p=class_weights))]
+                available_modes = mode_ids[class_id]
+                if len(available_modes) == 1:
+                    mode_id = available_modes[0]
+                elif self.mode_sampling == "balanced":
+                    mode_id = available_modes[
+                        mode_counters[class_id] % len(available_modes)]
+                    mode_counters[class_id] += 1
+                else:
+                    supports = np.asarray([
+                        len(catalog.member_ids(class_id, value))
+                        for value in available_modes
+                    ], dtype=np.float64)
+                    supports /= supports.sum()
+                    mode_id = available_modes[int(rng.choice(
+                        len(available_modes), p=supports))]
             key = (class_id, mode_id)
             sampler = samplers[key]
 

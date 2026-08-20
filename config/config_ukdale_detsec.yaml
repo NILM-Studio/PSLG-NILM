@@ -84,11 +84,11 @@ cycle_split:
   validation_ratio: 0.1
   test_ratio: 0.2
 primitive_synthesis:
-  n_cycles: 100
+  n_cycles: 220
   random_seed: 42
   min_blocks: 3
   max_blocks: 20
-  class_sampling: balanced
+  class_sampling: balanced_pairs
   mode_sampling: empirical
   candidate_pool: 32
   within_state_smooth_samples: 3
