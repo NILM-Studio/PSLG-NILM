@@ -306,7 +306,7 @@ def _build_nilm_dataset(cfg, sel):
         aligned_series_path=c.get("aligned_series", ""),
         real_ratios=c.get("real_ratios", [0.05, 0.10, 0.20]),
         sample_period_seconds=c.get("sample_period_seconds", 6),
-        max_gap_seconds=c.get("max_gap_seconds", 30),
+        max_gap_seconds=c.get("max_gap_seconds", 150),
         random_seed=c.get("random_seed", 42),
         expected_conditioning_neighbors=c.get(
             "expected_conditioning_neighbors", 10),

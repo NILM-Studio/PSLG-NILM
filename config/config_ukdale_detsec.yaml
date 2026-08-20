@@ -107,7 +107,7 @@ nilm_dataset:
   aligned_series: input/ukdale_house1_mains_washing_machine.csv
   real_ratios: [0.05, 0.10, 0.20]
   sample_period_seconds: 6
-  max_gap_seconds: 30
+  max_gap_seconds: 150
   random_seed: 42
   expected_conditioning_neighbors: 10
 dataset_split:

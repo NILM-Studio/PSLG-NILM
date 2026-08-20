@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import json
 import os
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -17,7 +18,7 @@ class NilmDatasetStep(Step):
 
     def __init__(self, cluster_tag: str, aligned_series_path: str,
                  real_ratios=(0.05, 0.10, 0.20), sample_period_seconds: int = 6,
-                 max_gap_seconds: int = 30, random_seed: int = 42,
+                 max_gap_seconds: int = 150, random_seed: int = 42,
                  expected_conditioning_neighbors: int = 10):
         if not cluster_tag:
             raise ValueError("nilm_dataset requires --cluster-tag")
@@ -244,15 +245,42 @@ class NilmDatasetStep(Step):
             "test": [row["file"] for row in test],
         }
 
+        expected_groups = Counter(
+            (row["split"], int(row["class_id"]), int(row["mode_id"]))
+            for row in assignments)
+        accepted_groups = Counter(
+            (row["split"], int(row["class_id"]), int(row["mode_id"]))
+            for row in real_records)
+        group_retention = []
+        for (split, class_id, mode_id), total in sorted(expected_groups.items()):
+            accepted = accepted_groups[(split, class_id, mode_id)]
+            group_retention.append({
+                "split": split, "class_id": class_id, "mode_id": mode_id,
+                "total": total, "accepted": accepted,
+                "rejected": total - accepted,
+                "acceptance_ratio": accepted / total if total else 0.0,
+            })
+
         manifest_path = os.path.join(log_dir, "nilm_dataset_manifest.json")
+        total_real = len(real_records) + len(rejected)
         audit = {
             "aligned_series": str(aligned_path),
             "sample_period_seconds": self.sample_period_seconds,
             "max_gap_seconds": self.max_gap_seconds,
             "real_counts": {"train": len(train), "validation": len(validation),
                             "test": len(test), "rejected": len(rejected)},
+            "real_acceptance_ratio": (
+                len(real_records) / total_real if total_real else 0.0),
+            "real_rejection_reasons": dict(Counter(
+                row["reason"] for row in rejected)),
+            "class_mode_retention": group_retention,
             "synthetic_count": len(synthetic_records),
             "synthetic_rejected": len(rejected_synthetic),
+            "synthetic_acceptance_ratio": (
+                len(synthetic_records) / len(synthetic_manifest)
+                if synthetic_manifest else 0.0),
+            "synthetic_rejection_reasons": dict(Counter(
+                row["reason"] for row in rejected_synthetic)),
             "synthetic_background": "max(source_train_mains-source_train_appliance,0)",
             "test_waveform_used_by_synthesis": False,
             "experiments": experiments,

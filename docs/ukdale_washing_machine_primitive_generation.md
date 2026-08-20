@@ -401,7 +401,9 @@ python scripts/prepare_ukdale_nilm_pair.py \
 输出列为 `timestamp,mains,appliance`，审计文件为
 `input/ukdale_house1_mains_washing_machine.csv.audit.json`。正式构建训练集之前必须检查匹配率、时间戳偏移、采样间隔和 `appliance > mains` 的比例。
 
-本次真实对齐结果为19,170,651个匹配点，匹配率98.03%，总表相对支路偏移范围为 `[-3,3]` 秒。`appliance > mains` 占0.1095%，构造合成背景时使用 `max(mains-appliance, 0)`。最大数据间隔为985,803秒，因此 `nilm_dataset` 会拒绝周期内部超过30秒的缺口，并将通过检查的周期统一到6秒网格。
+本次真实对齐结果为19,170,651个匹配点，匹配率98.03%，总表相对支路偏移范围为 `[-3,3]` 秒。`appliance > mains` 占0.1095%，构造合成背景时使用 `max(mains-appliance, 0)`。最大数据间隔为985,803秒，因此 `nilm_dataset` 会拒绝周期内部超过150秒的缺口，并将通过检查的周期统一到6秒网格。150秒与工作周期提取阶段的 `t_drop` 定义一致：只插值短时采样缺失，不跨越足以分隔两个工作周期的停采区间。
+
+初版曾使用30秒阈值，导致920个真实周期中432个被拒绝，其中426个原因为 `gap_exceeds_30s`，且拒绝集中于若干 Class/Mode。该阈值与上游 `t_drop=150s` 不一致，会造成不必要的样本损失和类别偏差，故不作为正式实验设置。正式审计文件额外记录整体接受率、拒绝原因以及每个 split/Class/Mode 的保留率。
 
 对齐完成并用选定的 `k=10` 设置重新生成周期后，构建 NILM 数据集：
 
