@@ -196,6 +196,9 @@ def _build_synthesize(cfg, sel):
         cycle_class=sel["cycle_class"],
         class_sampling=c.get("class_sampling", "balanced"),
         mode_sampling=c.get("mode_sampling", "empirical"),
+        conditioning_method=sel["synthesis_conditioning"],
+        conditioning_neighbors=c.get("conditioning_neighbors", 5),
+        conditioning_exclude_anchor=c.get("conditioning_exclude_anchor", True),
         candidate_pool=c.get("candidate_pool", 32),
         within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
@@ -260,6 +263,7 @@ def _build_synthesis_eval(cfg, sel):
     ex = cfg.get("extract_active_data", {}) or {}
     return SynthesisEvaluationStep(
         cluster_tag=sel["cluster_tag"],
+        experiment_tag=sel["synthesis_conditioning"],
         fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
         waveform_points=c.get("waveform_points", 256),
     )
@@ -319,6 +323,7 @@ def resolve_selection(args, cfg):
     """Merge CLI overrides over config defaults into a single selection dict."""
     run = cfg.get("run", {}) or {}
     paths = cfg.get("paths", {}) or {}
+    synthesis = cfg.get("primitive_synthesis", {}) or {}
     appliance = args.appliance or run.get("appliance") or "appliance"
     run_id = (args.run_id or run.get("run_id")
               or datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
@@ -334,6 +339,9 @@ def resolve_selection(args, cfg):
         "primitive_sampler": getattr(args, "primitive_sampler", None) or "real_resample",
         "sequence_method": getattr(args, "sequence_method", None) or "empirical",
         "cycle_class": getattr(args, "cycle_class", None) or "all",
+        "synthesis_conditioning": (
+            getattr(args, "synthesis_conditioning", None)
+            or synthesis.get("conditioning_method", "independent")),
     }
 
 
@@ -387,6 +395,8 @@ def main():
                    help="State-order sampler for synthesize: empirical | markov (default: empirical).")
     p.add_argument("--cycle-class", default=None,
                    help="Cycle class for synthesize: all | majority | class id (default: all).")
+    p.add_argument("--synthesis-conditioning", default=None,
+                   help="Primitive conditioning: independent | cycle_neighbors.")
     p.add_argument("--appliance", default=None, help="Override run.appliance.")
     p.add_argument("--run-id", default=None, help="Reuse a run directory (enables manifest reuse).")
     p.add_argument("--raw-series", default=None, help="Override paths.raw_series.")

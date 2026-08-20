@@ -4,14 +4,15 @@ from __future__ import annotations
 import json
 import os
 from glob import glob
-from typing import List
+from typing import Dict, List, Tuple
 
 import numpy as np
 import pandas as pd
 
 from src.framework.step import Step
-from src.generation import (CyclePatternCatalog, PrimitiveLibrary,
-                            RealPrimitiveSampler, StateTransitionModel)
+from src.generation import (CycleNeighborIndex, CyclePatternCatalog,
+                            PrimitiveLibrary, RealPrimitiveSampler,
+                            StateTransitionModel, cycle_profile)
 from src.generation.primitive_library import Primitive
 
 
@@ -26,6 +27,9 @@ class PrimitiveSynthesisStep(Step):
                  max_blocks: int = 20, fs: float = 0.1666667,
                  cycle_class: str = "all", class_sampling: str = "balanced",
                  mode_sampling: str = "empirical",
+                 conditioning_method: str = "independent",
+                 conditioning_neighbors: int = 5,
+                 conditioning_exclude_anchor: bool = True,
                  candidate_pool: int = 32,
                  within_state_smooth_samples: int = 3,
                  boundary_smooth_samples: int = 3,
@@ -38,8 +42,10 @@ class PrimitiveSynthesisStep(Step):
         else:
             validation_tag = ("validated_modes" if require_cycle_validation
                               else "unvalidated")
+        conditioning_method = str(conditioning_method).lower()
         super().__init__(
-            variant=(f"{sampler}_{sequence_method}_{cycle_class}_{validation_tag}"
+            variant=(f"{sampler}_{sequence_method}_{conditioning_method}_"
+                     f"{cycle_class}_{validation_tag}"
                      f"_on_{cluster_tag}"))
         self.cluster_tag = cluster_tag
         self.sampler_name = str(sampler).lower()
@@ -52,6 +58,9 @@ class PrimitiveSynthesisStep(Step):
         self.cycle_class = str(cycle_class).lower()
         self.class_sampling = str(class_sampling).lower()
         self.mode_sampling = str(mode_sampling).lower()
+        self.conditioning_method = conditioning_method
+        self.conditioning_neighbors = max(1, int(conditioning_neighbors))
+        self.conditioning_exclude_anchor = bool(conditioning_exclude_anchor)
         self.candidate_pool = int(candidate_pool)
         self.within_state_smooth_samples = int(within_state_smooth_samples)
         self.boundary_smooth_samples = int(boundary_smooth_samples)
@@ -59,6 +68,10 @@ class PrimitiveSynthesisStep(Step):
         self.require_cycle_split = bool(require_cycle_split)
         if self.fs <= 0:
             raise ValueError("primitive_synthesis.fs must be positive")
+        if self.conditioning_method not in ("independent", "cycle_neighbors"):
+            raise ValueError(
+                "primitive_synthesis.conditioning_method must be independent "
+                "or cycle_neighbors")
 
     def _cluster_artifact(self, context: dict, key: str) -> str:
         path = context["manifest"].cluster_artifact_path(self.cluster_tag, key)
@@ -74,7 +87,9 @@ class PrimitiveSynthesisStep(Step):
             raise FileNotFoundError("[primitive_synthesis] activity CSV directory not found")
         return path
 
-    def _load_primitives(self, context: dict) -> List[Primitive]:
+    def _load_primitives(
+            self, context: dict, allowed_activity_ids: set[int],
+    ) -> Tuple[List[Primitive], Dict[int, np.ndarray]]:
         labels = np.load(self._cluster_artifact(context, "labels")).reshape(-1)
         indices = np.load(self._cluster_artifact(context, "indices"))
         lengths = np.load(self._cluster_artifact(context, "seq_len")).reshape(-1)
@@ -87,7 +102,8 @@ class PrimitiveSynthesisStep(Step):
         cache, primitives = {}, []
         for primitive_id, (label, index, length) in enumerate(zip(labels, indices, lengths)):
             activity_index, start = int(index[0]), int(index[1])
-            if not (0 <= activity_index < len(files)) or int(length) <= 0:
+            if (activity_index not in allowed_activity_ids
+                    or not (0 <= activity_index < len(files)) or int(length) <= 0):
                 continue
             if activity_index not in cache:
                 frame = pd.read_csv(os.path.join(segments_dir, files[activity_index]))
@@ -103,7 +119,7 @@ class PrimitiveSynthesisStep(Step):
                 power=np.asarray(source[start:end], dtype=np.float32)))
         if not primitives:
             raise ValueError("[primitive_synthesis] primitive library is empty")
-        return primitives
+        return primitives, cache
 
     def _load_catalog(self, context: dict) -> CyclePatternCatalog:
         if self.require_cycle_split:
@@ -243,10 +259,29 @@ class PrimitiveSynthesisStep(Step):
         raise ValueError(
             f"unknown primitive sampler '{self.sampler_name}'; supported: real_resample")
 
+    def _conditioners(self, catalog: CyclePatternCatalog,
+                      class_ids: List[int], power_cache: Dict[int, np.ndarray],
+                      mode_ids: Dict[int, List[int]]) -> Dict[tuple[int, int], CycleNeighborIndex]:
+        if self.conditioning_method == "independent":
+            return {}
+        result = {}
+        for class_id in class_ids:
+            states = sorted(set(int(value) for value in
+                                catalog.classes[class_id]["representative_signature"]))
+            for mode_id in mode_ids[class_id]:
+                profiles = {}
+                for activity_id in catalog.member_ids(class_id, mode_id):
+                    index = int(activity_id)
+                    profiles[index] = cycle_profile(
+                        power_cache[index], catalog.activities[activity_id]["blocks"], states)
+                result[(class_id, mode_id)] = CycleNeighborIndex(
+                    profiles, neighbor_count=self.conditioning_neighbors,
+                    exclude_anchor=self.conditioning_exclude_anchor)
+        return result
+
     def run(self, context: dict) -> dict:
         if self.n_cycles <= 0:
             raise ValueError("primitive_synthesis.n_cycles must be positive")
-        primitives = self._load_primitives(context)
         catalog = self._load_catalog(context)
         class_ids = catalog.resolve_classes(self.cycle_class)
         catalog_audit = self._audit_catalog(catalog, class_ids)
@@ -254,6 +289,12 @@ class PrimitiveSynthesisStep(Step):
             raise ValueError("primitive_synthesis.mode_sampling must be balanced or empirical")
         mode_ids = {class_id: catalog.mode_ids_for_class(class_id)
                     for class_id in class_ids}
+        allowed_activity_ids = {
+            int(activity_id) for class_id in class_ids
+            for activity_id in catalog.member_ids(class_id)
+        }
+        primitives, power_cache = self._load_primitives(
+            context, allowed_activity_ids)
         transition_models, libraries, samplers = {}, {}, {}
         for class_id in class_ids:
             for mode_id in mode_ids[class_id]:
@@ -265,6 +306,8 @@ class PrimitiveSynthesisStep(Step):
                 libraries[key] = PrimitiveLibrary(
                     p for p in primitives if p.activity_index in member_ids)
                 samplers[key] = self._sampler(libraries[key])
+        conditioners = self._conditioners(
+            catalog, class_ids, power_cache, mode_ids)
         rng = np.random.default_rng(self.random_seed)
 
         if self.class_sampling not in ("balanced", "balanced_pairs", "empirical"):
@@ -327,12 +370,22 @@ class PrimitiveSynthesisStep(Step):
             else:
                 state_blocks = transition_models[key].sample(
                     self.sequence_method, rng, self.min_blocks, self.max_blocks)
+                if self.conditioning_method == "cycle_neighbors":
+                    source_activity_id, _ = catalog.sample_activity(
+                        class_id, rng, mode_id=mode_id)
+            conditioning_neighbors = (
+                conditioners[key].neighbors(int(source_activity_id))
+                if self.conditioning_method == "cycle_neighbors" else [])
+            conditioned_activity_ids = (
+                {row["activity_id"] for row in conditioning_neighbors}
+                if conditioning_neighbors else None)
             powers, states, block_ids, block_records = [], [], [], []
             cursor = 0
             for block_id, (state, target_length) in enumerate(state_blocks):
                 previous_end = float(powers[-1][-1]) if powers else None
                 power, provenance = sampler.sample_block(
-                    state, target_length, rng, initial_power=previous_end)
+                    state, target_length, rng, initial_power=previous_end,
+                    allowed_activity_ids=conditioned_activity_ids)
                 powers.append(power)
                 states.append(np.full(len(power), state, dtype=np.int32))
                 block_ids.append(np.full(len(power), block_id, dtype=np.int32))
@@ -364,6 +417,8 @@ class PrimitiveSynthesisStep(Step):
                 "cycle_class": int(class_id),
                 "cycle_mode": int(mode_id),
                 "source_activity_id": source_activity_id,
+                "conditioning_method": self.conditioning_method,
+                "conditioning_neighbors": conditioning_neighbors,
                 "sequence_method": self.sequence_method,
                 "state_sequence": [int(s) for s, _ in state_blocks],
                 "length_samples": int(len(power)),
@@ -407,6 +462,13 @@ class PrimitiveSynthesisStep(Step):
         continuity_path = _dump("continuity_metrics.json", continuity)
         manifest_path = _dump("synthesis_manifest.json", records)
         audit_path = _dump("synthesis_input_audit.json", catalog_audit)
+        conditioning_path = _dump("conditioning_summary.json", {
+            "method": self.conditioning_method,
+            "neighbor_count": self.conditioning_neighbors,
+            "exclude_anchor": self.conditioning_exclude_anchor,
+            "conditioned_cycles": int(sum(
+                bool(record["conditioning_neighbors"]) for record in records)),
+        })
         self.record(context, artifacts={
             "cycles_dir": self.rel(context, cycles_dir),
             "transition_model": self.rel(context, model_path),
@@ -414,6 +476,7 @@ class PrimitiveSynthesisStep(Step):
             "continuity_metrics": self.rel(context, continuity_path),
             "synthesis_manifest": self.rel(context, manifest_path),
             "input_audit": self.rel(context, audit_path),
+            "conditioning_summary": self.rel(context, conditioning_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
             "sampler": self.sampler_name,
@@ -422,6 +485,9 @@ class PrimitiveSynthesisStep(Step):
             "generated_cycle_classes": class_ids,
             "class_sampling": self.class_sampling,
             "mode_sampling": self.mode_sampling,
+            "conditioning_method": self.conditioning_method,
+            "conditioning_neighbors": self.conditioning_neighbors,
+            "conditioning_exclude_anchor": self.conditioning_exclude_anchor,
             "generated_cycle_modes": {
                 str(class_id): mode_ids[class_id] for class_id in class_ids
             },

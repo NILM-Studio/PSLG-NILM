@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.framework.step import Step
 from src.framework.workflow import Workflow
 from src.generation.cycle_patterns import CyclePatternCatalog, CyclePatternClassifier
+from src.generation.cycle_conditioning import CycleNeighborIndex, cycle_profile
 from src.generation.cycle_validation import (discover_metric_modes,
                                              infer_cycle_grammar,
                                              robust_z_scores)
@@ -124,6 +125,36 @@ class CyclePatternClassifierTest(unittest.TestCase):
         self.assertEqual(provenance[0]["join_jump_after"], 0.0)
         self.assertEqual(provenance[1]["join_jump_after"], 0.0)
 
+    def test_conditioned_sampler_only_uses_allowed_activities(self):
+        library = PrimitiveLibrary([
+            Primitive(0, 0, 0, 0, np.array([1.0, 2.0], dtype=np.float32)),
+            Primitive(1, 0, 1, 0, np.array([10.0, 11.0], dtype=np.float32)),
+        ])
+        sampler = RealPrimitiveSampler(library)
+        _, provenance = sampler.sample_block(
+            0, 2, np.random.default_rng(4), allowed_activity_ids={1})
+        self.assertEqual(provenance[0]["activity_index"], 1)
+
+    def test_cycle_neighbor_index_excludes_anchor_and_ranks_profiles(self):
+        index = CycleNeighborIndex({
+            0: np.array([0.0, 0.0]),
+            1: np.array([0.1, 0.2]),
+            2: np.array([10.0, 10.0]),
+        }, neighbor_count=2, exclude_anchor=True)
+        neighbors = index.neighbors(0)
+        self.assertEqual([row["activity_id"] for row in neighbors], [1, 2])
+        self.assertGreater(neighbors[1]["distance"], neighbors[0]["distance"])
+
+    def test_cycle_profile_contains_state_power_and_duration_context(self):
+        blocks = [
+            {"state_label": 0, "length_samples": 2},
+            {"state_label": 1, "length_samples": 2},
+        ]
+        low = cycle_profile(np.array([1.0, 1.0, 5.0, 5.0]), blocks, [0, 1])
+        high = cycle_profile(np.array([1.0, 1.0, 50.0, 50.0]), blocks, [0, 1])
+        self.assertEqual(len(low), 8)
+        self.assertGreater(high[-1], low[-1])
+
     def test_cycle_grammar_is_inferred_from_supported_class_patterns(self):
         classes = [
             {"support": 80, "representative_signature": [1, 0, 2, 1]},
@@ -210,6 +241,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     cluster_tag="kmeans_k2_merged", n_cycles=4,
                     random_seed=9, sequence_method="empirical", fs=1.0,
                     class_sampling="balanced_pairs",
+                    conditioning_method="cycle_neighbors",
                     require_cycle_split=True))
                 wf.run()
 
@@ -246,6 +278,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                      for row in records}, {(0, 0), (1, 0)})
                 self.assertEqual(
                     [row["cycle_class"] for row in records], [0, 1, 0, 1])
+                self.assertTrue(all(row["conditioning_neighbors"] for row in records))
                 self.assertTrue(records[0]["blocks"][0]["sources"])
                 self.assertGreater(records[0]["energy_wh"], 0.0)
 
@@ -264,8 +297,8 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     continuity["state_boundary"]["after"]["max"], 0.0)
                 step = manifest.data["steps"]["primitive_synthesis"]
                 self.assertIn(
-                    "real_resample_empirical_all_train_split_on_kmeans_k2_merged",
-                              step["subdir"])
+                    "real_resample_empirical_cycle_neighbors_all_train_split_on_kmeans_k2_merged",
+                    step["subdir"])
                 audit_path = manifest.artifact_path(
                     "primitive_synthesis", "input_audit")
                 with open(audit_path, encoding="utf-8") as f:

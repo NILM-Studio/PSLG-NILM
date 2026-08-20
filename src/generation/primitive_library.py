@@ -76,8 +76,15 @@ class RealPrimitiveSampler:
         self.boundary_smooth_samples = max(0, int(boundary_smooth_samples))
 
     def _select(self, state: int, previous_end: float | None,
-                rng: np.random.Generator) -> Primitive:
+                rng: np.random.Generator,
+                allowed_activity_ids: set[int] | None = None) -> Primitive:
         candidates = self.library.candidates(state)
+        if allowed_activity_ids is not None:
+            candidates = [primitive for primitive in candidates
+                          if primitive.activity_index in allowed_activity_ids]
+            if not candidates:
+                raise KeyError(
+                    f"no primitives for state {state} in conditioned activity pool")
         if previous_end is None:
             return candidates[int(rng.integers(0, len(candidates)))]
         pool_size = min(self.candidate_pool, len(candidates))
@@ -100,14 +107,17 @@ class RealPrimitiveSampler:
 
     def sample_block(self, state: int, target_length: int,
                      rng: np.random.Generator,
-                     initial_power: float | None = None) -> Tuple[np.ndarray, List[dict]]:
+                     initial_power: float | None = None,
+                     allowed_activity_ids: set[int] | None = None,
+                     ) -> Tuple[np.ndarray, List[dict]]:
         target_length = max(1, int(target_length))
         chunks, provenance = [], []
         remaining = target_length
         previous_end = initial_power
         while remaining > 0:
             is_first_chunk = not chunks
-            primitive = self._select(state, previous_end, rng)
+            primitive = self._select(
+                state, previous_end, rng, allowed_activity_ids)
             take = min(remaining, len(primitive.power))
             raw = np.asarray(primitive.power[:take], dtype=np.float32)
             raw_start = float(raw[0])

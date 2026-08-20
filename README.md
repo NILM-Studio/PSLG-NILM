@@ -47,7 +47,7 @@ extract → segment → feature → cluster → state_merge → cycle_classify �
 | cycle_classify | `cycle_classification` | 按完整状态组合发现真实工作周期类别并识别离群周期 |
 | cycle_validate | `cycle_validation` | 筛选完整代表周期并识别类内物理模式 |
 | cycle_split | `cycle_split` | 按类别/模式和时间顺序拆分周期来源，隔离测试波形 |
-| synthesize | `primitive_synthesis` | 按状态基元库和经验/Markov顺序重组完整工作周期 |
+| synthesize | `primitive_synthesis` | 独立或周期近邻条件下，按状态基元库和经验/Markov顺序重组完整工作周期 |
 | synthesis_eval | `synthesis_evaluation` | 生成周期与留出真实周期的分布、状态时长和新颖性评价 |
 | fewshot | `few_shot_cluster_extract` | 按簇规模识别少样本簇并导出 |
 | pam | `primitive_activity_mapping` | 基元↔活动映射（索引对齐），划分少样本/非少样本活动 |

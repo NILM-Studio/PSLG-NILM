@@ -22,12 +22,15 @@ class SynthesisEvaluationStep(Step):
     step_type = "synthesis_evaluation"
 
     def __init__(self, cluster_tag: str, fs: float = 0.1666667,
-                 waveform_points: int = 256):
+                 waveform_points: int = 256,
+                 experiment_tag: str = "independent"):
         if not cluster_tag:
             raise ValueError("synthesis evaluation requires --cluster-tag")
         if fs <= 0 or waveform_points < 16:
             raise ValueError("invalid synthesis evaluation sampling parameters")
-        super().__init__(variant=f"heldout_on_{cluster_tag}")
+        self.experiment_tag = str(experiment_tag).lower()
+        super().__init__(
+            variant=f"heldout_{self.experiment_tag}_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.fs = float(fs)
         self.waveform_points = int(waveform_points)
@@ -132,6 +135,14 @@ class SynthesisEvaluationStep(Step):
         if split_tag and split_tag != self.cluster_tag:
             raise ValueError(
                 f"[synthesis_evaluation] split uses {split_tag}, requested {self.cluster_tag}")
+        synthesis_entry = context["manifest"].get_step("primitive_synthesis") or {}
+        actual_conditioning = (synthesis_entry.get("extra") or {}).get(
+            "conditioning_method")
+        if actual_conditioning and actual_conditioning != self.experiment_tag:
+            raise ValueError(
+                "[synthesis_evaluation] latest synthesis uses conditioning "
+                f"'{actual_conditioning}', requested '{self.experiment_tag}'; "
+                "rerun synthesize with the same --synthesis-conditioning value")
         train_path = self.resolve(context, "cycle_split", "train_catalog")
         test_path = self.resolve(context, "cycle_split", "test_catalog")
         synthesis_path = self.resolve(
@@ -302,6 +313,7 @@ class SynthesisEvaluationStep(Step):
             else None)
         summary = {
             "evaluation_scope": "heldout_test_waveforms",
+            "synthesis_conditioning": self.experiment_tag,
             "structure_fit_scope": "all_validated_cycles",
             "train_real_cycles": len(train_records),
             "test_real_cycles": len(test_records),

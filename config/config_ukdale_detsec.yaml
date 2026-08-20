@@ -90,6 +90,9 @@ primitive_synthesis:
   max_blocks: 20
   class_sampling: balanced_pairs
   mode_sampling: empirical
+  conditioning_method: cycle_neighbors
+  conditioning_neighbors: 5
+  conditioning_exclude_anchor: true
   candidate_pool: 32
   within_state_smooth_samples: 3
   boundary_smooth_samples: 3
