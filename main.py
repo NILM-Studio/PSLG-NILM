@@ -48,7 +48,7 @@ for _p in (project_root, models_dir,
 # Canonical step order — all steps are implemented.
 ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
                   "cycle_classify", "cycle_validate", "cycle_split", "synthesize",
-                  "synthesis_eval", "fewshot",
+                  "synthesis_eval", "nilm_dataset", "fewshot",
                   "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
@@ -298,6 +298,21 @@ def _build_fewshot(cfg, sel):
     )
 
 
+def _build_nilm_dataset(cfg, sel):
+    from src.steps.nilm_dataset_step import NilmDatasetStep
+    c = cfg.get("nilm_dataset", {})
+    return NilmDatasetStep(
+        cluster_tag=sel["cluster_tag"],
+        aligned_series_path=c.get("aligned_series", ""),
+        real_ratios=c.get("real_ratios", [0.05, 0.10, 0.20]),
+        sample_period_seconds=c.get("sample_period_seconds", 6),
+        max_gap_seconds=c.get("max_gap_seconds", 30),
+        random_seed=c.get("random_seed", 42),
+        expected_conditioning_neighbors=c.get(
+            "expected_conditioning_neighbors", 10),
+    )
+
+
 def _build_pam(cfg, sel):
     from src.steps.primitive_activity_mapping_step import PrimitiveActivityMappingStep
     return PrimitiveActivityMappingStep(cluster_tag=sel["cluster_tag"])
@@ -328,6 +343,7 @@ STEP_BUILDERS = {
     "cycle_split": _build_cycle_split,
     "synthesize": _build_synthesize,
     "synthesis_eval": _build_synthesis_eval,
+    "nilm_dataset": _build_nilm_dataset,
     "fewshot": _build_fewshot,
     "pam": _build_pam,
     "split": _build_split,

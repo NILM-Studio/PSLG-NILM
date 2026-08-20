@@ -34,7 +34,7 @@ output/<run_id>/figure/  # 出图脚本的统一输出
 ## 流水线
 
 ```
-extract → segment → feature → cluster → state_merge → cycle_classify → cycle_validate → cycle_split → synthesize → synthesis_eval → fewshot → pam → split
+extract → segment → feature → cluster → state_merge → cycle_classify → cycle_validate → cycle_split → synthesize → synthesis_eval → nilm_dataset → fewshot → pam → split
 ```
 
 | 步骤 | step_type | 说明 |

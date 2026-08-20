@@ -401,6 +401,25 @@ python scripts/prepare_ukdale_nilm_pair.py \
 输出列为 `timestamp,mains,appliance`，审计文件为
 `input/ukdale_house1_mains_washing_machine.csv.audit.json`。正式构建训练集之前必须检查匹配率、时间戳偏移、采样间隔和 `appliance > mains` 的比例。
 
+本次真实对齐结果为19,170,651个匹配点，匹配率98.03%，总表相对支路偏移范围为 `[-3,3]` 秒。`appliance > mains` 占0.1095%，构造合成背景时使用 `max(mains-appliance, 0)`。最大数据间隔为985,803秒，因此 `nilm_dataset` 会拒绝周期内部超过30秒的缺口，并将通过检查的周期统一到6秒网格。
+
+对齐完成并用选定的 `k=10` 设置重新生成周期后，构建 NILM 数据集：
+
+```bash
+python main.py \
+  --config config/config_ukdale_detsec.yaml \
+  --steps synthesize,nilm_dataset \
+  --run-id ukdale_wm_primglr_detsec_3789 \
+  --cluster-tag kmeans_k4_merged \
+  --synthesis-conditioning cycle_neighbors \
+  --conditioning-neighbors 10 \
+  --synthesis-seed 42
+```
+
+每个周期保存为包含 `timestamp,mains,appliance` 的压缩 NPZ。真实周期沿用既有 `train/validation/test` 划分；合成周期的背景负载只来自其训练源周期，并按
+`synthetic_mains = max(train_mains-train_appliance, 0) + synthetic_appliance`
+构造。数据清单输出 `5%/10%/20%` 的 A（少量真实）和 C（等量真实加等量生成），以及 D（全量真实）设置。测试波形不参与基元库、背景构造或训练子集。
+
 建议训练组：
 
 ```text
