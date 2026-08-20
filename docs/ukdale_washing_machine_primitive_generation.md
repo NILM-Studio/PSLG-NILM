@@ -433,7 +433,38 @@ C. 少量真实数据 + 本文生成数据
 D. 全量真实数据（参考上限）
 ```
 
-真实数据比例建议为 `5%,10%,20%,50%`。测试集必须由未参与基元库、类别发现、模式估计和生成器拟合的真实周期组成，防止数据泄漏。下游指标建议包括 `MAE、SAE、NDE、F1`。论文主要结论应来自C相对A/B的提升，而不是只依赖曲线视觉相似度。
+真实数据比例为 `5%,10%,20%`，另设全量真实数据参考上限。测试集必须由未参与基元库、类别发现、模式估计和生成器拟合的真实周期组成，防止数据泄漏。下游指标包括 `MAE、SAE、NDE、F1`。论文主要结论应来自C相对A/B的提升，而不是只依赖曲线视觉相似度。
+
+#### 6.3.2 Seq2Point 下游评价
+
+下游基线采用 Seq2Point CNN：输入599点总表窗口，输出窗口中心点的洗衣机功率。网络依次使用五层一维卷积 `(30,10)、(30,8)、(40,6)、(50,5)、(50,5)`，随后为1024单元全连接层、Dropout和非负单点输出。所有实验固定总表缩放上限10,000 W、洗衣机缩放上限4,000 W；训练窗口步长5，验证步长5，测试步长1。端点按原论文使用零填充，每个周期独立取窗，不跨周期连接。
+
+第一阶段固定随机种子42，顺序训练10组模型：`5%/10%/20%` 下各训练 A/B/C，以及全量真实 D。A/B/C 在相同比例下共享同一真实周期，B和C额外样本数相等；验证集固定92周期、测试集固定184周期。指标定义为功率 MAE、总能量相对误差 SAE、归一化分解误差 NDE，以及使用20 W洗衣机开机阈值的 Precision、Recall和F1。
+
+```bash
+mkdir -p slurm/slurm_log
+
+# 先验证数据读取、TensorFlow GPU和模型训练链路，不污染正式结果目录
+sbatch --export=ALL,EXPERIMENTS=05pct:A,EPOCHS=1,OUTPUT_ROOT=log/ukdale_wm_primglr_detsec_3789/nilm_seq2point_smoke \
+  slurm/run_ukdale_seq2point.sh
+
+# 冒烟测试通过后提交完整10组实验
+sbatch slurm/run_ukdale_seq2point.sh
+```
+
+任务支持断点续跑：已存在 `metrics.json` 的实验会自动跳过。输出位于：
+
+```text
+log/ukdale_wm_primglr_detsec_3789/nilm_seq2point/
+├── 05pct_A_seed42/
+├── 05pct_B_seed42/
+├── 05pct_C_seed42/
+├── ...
+├── full_D_seed42/
+└── summary_seed42.csv
+```
+
+每个实验目录保存 `best_model.keras`、`history.csv`、`metrics.json` 和 `test_predictions.npz`。种子42验证流程无误后，再使用多个随机种子重复训练并报告均值与标准差。
 
 ### 6.4 后续扩展
 
