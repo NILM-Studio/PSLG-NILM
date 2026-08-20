@@ -310,6 +310,9 @@ def _build_nilm_dataset(cfg, sel):
         random_seed=c.get("random_seed", 42),
         expected_conditioning_neighbors=c.get(
             "expected_conditioning_neighbors", 10),
+        traditional_scale_range=c.get("traditional_scale_range", [0.9, 1.1]),
+        traditional_noise_ratio=c.get("traditional_noise_ratio", 0.01),
+        active_threshold_watts=c.get("active_threshold_watts", 10),
     )
 
 

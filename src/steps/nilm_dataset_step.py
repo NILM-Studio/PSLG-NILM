@@ -19,7 +19,10 @@ class NilmDatasetStep(Step):
     def __init__(self, cluster_tag: str, aligned_series_path: str,
                  real_ratios=(0.05, 0.10, 0.20), sample_period_seconds: int = 6,
                  max_gap_seconds: int = 150, random_seed: int = 42,
-                 expected_conditioning_neighbors: int = 10):
+                 expected_conditioning_neighbors: int = 10,
+                 traditional_scale_range=(0.9, 1.1),
+                 traditional_noise_ratio: float = 0.01,
+                 active_threshold_watts: float = 10.0):
         if not cluster_tag:
             raise ValueError("nilm_dataset requires --cluster-tag")
         if not aligned_series_path:
@@ -35,6 +38,14 @@ class NilmDatasetStep(Step):
         self.max_gap_seconds = int(max_gap_seconds)
         self.random_seed = int(random_seed)
         self.expected_conditioning_neighbors = int(expected_conditioning_neighbors)
+        self.traditional_scale_range = tuple(float(value)
+                                             for value in traditional_scale_range)
+        if (len(self.traditional_scale_range) != 2
+                or self.traditional_scale_range[0] <= 0
+                or self.traditional_scale_range[1] < self.traditional_scale_range[0]):
+            raise ValueError("traditional_scale_range must contain positive [low, high]")
+        self.traditional_noise_ratio = max(0.0, float(traditional_noise_ratio))
+        self.active_threshold_watts = max(0.0, float(active_threshold_watts))
 
     @staticmethod
     def _load_assignments(path: str) -> list[dict]:
@@ -95,6 +106,27 @@ class NilmDatasetStep(Step):
         path = os.path.join(directory, f"{name}.npz")
         np.savez_compressed(path, **payload)
         return path
+
+    @staticmethod
+    def _traditional_augment(mains: np.ndarray, appliance: np.ndarray,
+                             rng: np.random.Generator, scale_range,
+                             noise_ratio: float, active_threshold: float):
+        """Apply magnitude scaling and active-state jitter to an NILM pair."""
+        low, high = (float(scale_range[0]), float(scale_range[1]))
+        scale = float(rng.uniform(low, high))
+        active = appliance > active_threshold
+        augmented = appliance.astype(np.float32, copy=True) * scale
+        active_values = appliance[active]
+        sigma = (float(np.std(active_values)) * float(noise_ratio)
+                 if len(active_values) else 0.0)
+        if sigma > 0:
+            augmented[active] += rng.normal(0.0, sigma, int(np.sum(active))).astype(
+                np.float32)
+        augmented = np.maximum(augmented, 0.0).astype(np.float32)
+        background = np.maximum(mains - appliance, 0.0).astype(np.float32)
+        return (background + augmented).astype(np.float32), augmented, {
+            "scale": scale, "active_noise_sigma": sigma,
+        }
 
     @staticmethod
     def _relative(path: str, root: str) -> str:
@@ -220,6 +252,34 @@ class NilmDatasetStep(Step):
         train = [row for row in real_records if row["split"] == "train"]
         validation = [row for row in real_records if row["split"] == "validation"]
         test = [row for row in real_records if row["split"] == "test"]
+        traditional_records, traditional_by_activity = [], {}
+        for record in train:
+            activity_id = str(record["activity_id"])
+            source_payload = real_by_activity[activity_id]["payload"]
+            augment_rng = np.random.default_rng(np.random.SeedSequence([
+                self.random_seed, int(activity_id), 32452843,
+            ]))
+            augmented_mains, augmented_appliance, parameters = (
+                self._traditional_augment(
+                    source_payload["mains"], source_payload["appliance"],
+                    augment_rng, self.traditional_scale_range,
+                    self.traditional_noise_ratio, self.active_threshold_watts))
+            payload = {
+                "timestamp": source_payload["timestamp"],
+                "mains": augmented_mains,
+                "appliance": augmented_appliance,
+            }
+            path = self._write_npz(
+                os.path.join(cycle_root, "traditional"),
+                f"traditional_{int(activity_id):05d}", payload)
+            augmented_record = {
+                "kind": "traditional", "source_activity_id": activity_id,
+                "class_id": record["class_id"], "mode_id": record["mode_id"],
+                "split": "train", "length_samples": record["length_samples"],
+                "file": self._relative(path, log_dir), **parameters,
+            }
+            traditional_records.append(augmented_record)
+            traditional_by_activity[activity_id] = augmented_record
         experiments = {}
         for ratio in self.real_ratios:
             count = max(1, int(round(len(train) * ratio)))
@@ -229,14 +289,22 @@ class NilmDatasetStep(Step):
             real_subset = self._stratified_select(train, count, rng)
             generated_subset = self._stratified_select(
                 synthetic_records, min(len(synthetic_records), len(real_subset)), rng)
+            traditional_subset = [
+                traditional_by_activity[str(row["activity_id"])]
+                for row in real_subset
+            ]
             tag = f"{int(round(ratio * 100)):02d}pct"
             experiments[tag] = {
                 "real_ratio": ratio,
                 "A_real_only": [row["file"] for row in real_subset],
+                "B_real_plus_traditional": (
+                    [row["file"] for row in real_subset]
+                    + [row["file"] for row in traditional_subset]),
                 "C_real_plus_generated": (
                     [row["file"] for row in real_subset]
                     + [row["file"] for row in generated_subset]),
                 "selected_real_count": len(real_subset),
+                "selected_traditional_count": len(traditional_subset),
                 "selected_generated_count": len(generated_subset),
             }
         experiments["full"] = {
@@ -282,6 +350,14 @@ class NilmDatasetStep(Step):
             "synthetic_rejection_reasons": dict(Counter(
                 row["reason"] for row in rejected_synthetic)),
             "synthetic_background": "max(source_train_mains-source_train_appliance,0)",
+            "traditional_augmentation": {
+                "method": "magnitude_scaling_plus_active_jitter",
+                "count": len(traditional_records),
+                "scale_range": list(self.traditional_scale_range),
+                "noise_ratio": self.traditional_noise_ratio,
+                "active_threshold_watts": self.active_threshold_watts,
+                "paired_with_selected_real_cycles": True,
+            },
             "test_waveform_used_by_synthesis": False,
             "experiments": experiments,
             "rejected_cycles": rejected,
@@ -289,9 +365,14 @@ class NilmDatasetStep(Step):
         }
         with open(manifest_path, "w", encoding="utf-8") as f:
             json.dump(audit, f, indent=2, ensure_ascii=False)
+        traditional_manifest_path = os.path.join(
+            log_dir, "traditional_augmentation_manifest.json")
+        with open(traditional_manifest_path, "w", encoding="utf-8") as f:
+            json.dump(traditional_records, f, indent=2, ensure_ascii=False)
         self.record(context, artifacts={
             "dataset_manifest": self.rel(context, manifest_path),
             "cycles_dir": self.rel(context, cycle_root),
+            "traditional_manifest": self.rel(context, traditional_manifest_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
             "real_counts": audit["real_counts"],

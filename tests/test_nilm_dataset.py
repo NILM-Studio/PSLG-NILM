@@ -38,6 +38,18 @@ class NilmDatasetStepTests(unittest.TestCase):
             {(0, 0), (1, 0)},
         )
 
+    def test_traditional_augmentation_preserves_background_and_off_state(self):
+        mains = np.array([100, 300, 500], dtype=np.float32)
+        appliance = np.array([0, 100, 300], dtype=np.float32)
+        augmented_mains, augmented_appliance, parameters = (
+            NilmDatasetStep._traditional_augment(
+                mains, appliance, np.random.default_rng(2),
+                (1.0, 1.0), noise_ratio=0.0, active_threshold=10))
+        self.assertTrue(np.array_equal(augmented_appliance, appliance))
+        self.assertTrue(np.array_equal(augmented_mains, mains))
+        self.assertEqual(parameters["scale"], 1.0)
+        self.assertEqual(augmented_appliance[0], 0.0)
+
 
 if __name__ == "__main__":
     unittest.main()
