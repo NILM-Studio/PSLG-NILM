@@ -317,6 +317,37 @@ python main.py \
 
 两种方法逐 `(Class, Mode)` 的时长Wasserstein差异最大绝对值为0，确认目标周期、状态结构和状态时长完全配对。`Class 5 / Mode 1` 的能耗距离从0.5482降至0.3126，平均功率距离从0.5255降至0.1896。周期条件方法明显改善物理一致性和形状真实性，但生成样本间最近距离下降6.3%，表明局部多样性略有收缩；部分模式的峰值功率距离上升，后续需通过近邻数消融和多随机种子实验确认稳定性。
 
+#### 6.2.1 近邻数与随机种子消融
+
+`--conditioning-neighbors` 和 `--synthesis-seed` 可覆盖配置文件。实验标签包含方法、近邻数和随机种子，例如 `cycle_neighbors_k5_seed42`，因此不同实验不会覆盖。第一阶段固定种子42比较 `k=3/5/10`：
+
+```bash
+bash scripts/run_ukdale_synthesis_ablation.sh \
+  ukdale_wm_primglr_detsec_3789 42
+```
+
+脚本依次运行 `independent_seed42`、`cycle_neighbors_k3_seed42`、`cycle_neighbors_k5_seed42` 和 `cycle_neighbors_k10_seed42`，随后执行：
+
+```bash
+python scripts/summarize_synthesis_ablation.py \
+  --run-id ukdale_wm_primglr_detsec_3789 \
+  --cluster-tag kmeans_k4_merged \
+  --neighbors 3 5 10 \
+  --seeds 42
+```
+
+汇总产物位于：
+
+```text
+output/ukdale_wm_primglr_detsec_3789/synthesis_ablation/
+├── ablation_runs.csv
+├── ablation_aggregate.csv
+├── paired_metric_deltas.csv
+└── ablation_report.json
+```
+
+选定近邻数后，使用种子 `42 43 44 45 46` 重复实验并报告均值与标准差。汇总工具会强制检查每组配对实验的周期时长指标完全一致，避免非公平比较进入最终表格。
+
 ### 6.3 核心实验：NILM小样本增益
 
 建议训练组：

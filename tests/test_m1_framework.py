@@ -135,6 +135,7 @@ class TestCLIParsing(unittest.TestCase):
         self.assertEqual(sel["feature_model"], "detsec")
         self.assertEqual(sel["n_clusters"], [3, 4, 5])
         self.assertEqual(sel["raw_series"], "input/x.csv")
+        self.assertEqual(sel["synthesis_experiment_tag"], "independent_seed42")
 
     def test_resolve_selection_cli_overrides(self):
         args = argparse_ns(segment_method="fluss", feature_model="bilstm_ae",
@@ -146,11 +147,24 @@ class TestCLIParsing(unittest.TestCase):
         self.assertEqual(sel["n_clusters"], [2, 3])
         self.assertEqual(sel["run_id"], "r9")
 
+    def test_synthesis_experiment_cli_overrides(self):
+        args = argparse_ns(
+            synthesis_conditioning="cycle_neighbors",
+            conditioning_neighbors=10, synthesis_seed=44)
+        sel = mainmod.resolve_selection(args, {})
+        self.assertEqual(sel["conditioning_neighbors"], 10)
+        self.assertEqual(sel["synthesis_seed"], 44)
+        self.assertEqual(
+            sel["synthesis_experiment_tag"], "cycle_neighbors_k10_seed44")
+        with self.assertRaises(ValueError):
+            mainmod.synthesis_experiment_tag("cycle_neighbors", 0, 42)
+
 
 def argparse_ns(**over):
     base = dict(segment_method=None, feature_model=None, cluster_method=None,
                 n_clusters=None, cluster_tag=None, appliance=None, run_id=None,
-                raw_series=None)
+                raw_series=None, synthesis_conditioning=None,
+                conditioning_neighbors=None, synthesis_seed=None)
     base.update(over)
 
     class NS:  # minimal stand-in for argparse.Namespace

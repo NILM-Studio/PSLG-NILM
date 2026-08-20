@@ -77,6 +77,18 @@ def parse_int_list(spec: str):
     return [int(t) for t in s.split(",") if t.strip()]
 
 
+def synthesis_experiment_tag(conditioning: str, neighbors: int,
+                             seed: int) -> str:
+    method = str(conditioning).strip().lower()
+    if method == "independent":
+        return f"independent_seed{int(seed)}"
+    if method == "cycle_neighbors":
+        if int(neighbors) < 1:
+            raise ValueError("conditioning neighbors must be positive")
+        return f"cycle_neighbors_k{int(neighbors)}_seed{int(seed)}"
+    raise ValueError(f"unknown synthesis conditioning method: {conditioning}")
+
+
 # ── step builders (lazy-import the step classes) ─────────────────────────────
 
 def _build_extract(cfg, sel):
@@ -189,7 +201,7 @@ def _build_synthesize(cfg, sel):
         sampler=sel["primitive_sampler"],
         sequence_method=sel["sequence_method"],
         n_cycles=c.get("n_cycles", 100),
-        random_seed=c.get("random_seed", 42),
+        random_seed=sel["synthesis_seed"],
         min_blocks=c.get("min_blocks", 3),
         max_blocks=c.get("max_blocks", 20),
         fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
@@ -198,8 +210,9 @@ def _build_synthesize(cfg, sel):
         mode_sampling=c.get("mode_sampling", "empirical"),
         activity_sampling=c.get("activity_sampling", "empirical"),
         conditioning_method=sel["synthesis_conditioning"],
-        conditioning_neighbors=c.get("conditioning_neighbors", 5),
+        conditioning_neighbors=sel["conditioning_neighbors"],
         conditioning_exclude_anchor=c.get("conditioning_exclude_anchor", True),
+        experiment_tag=sel["synthesis_experiment_tag"],
         candidate_pool=c.get("candidate_pool", 32),
         within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
@@ -264,7 +277,8 @@ def _build_synthesis_eval(cfg, sel):
     ex = cfg.get("extract_active_data", {}) or {}
     return SynthesisEvaluationStep(
         cluster_tag=sel["cluster_tag"],
-        experiment_tag=sel["synthesis_conditioning"],
+        conditioning_method=sel["synthesis_conditioning"],
+        experiment_tag=sel["synthesis_experiment_tag"],
         fs=c.get("fs", ex.get("resample_fs", ex.get("fs", 0.1666667))),
         waveform_points=c.get("waveform_points", 256),
     )
@@ -328,6 +342,14 @@ def resolve_selection(args, cfg):
     appliance = args.appliance or run.get("appliance") or "appliance"
     run_id = (args.run_id or run.get("run_id")
               or datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
+    conditioning = (getattr(args, "synthesis_conditioning", None)
+                    or synthesis.get("conditioning_method", "independent"))
+    neighbors_arg = getattr(args, "conditioning_neighbors", None)
+    neighbors = (neighbors_arg if neighbors_arg is not None
+                 else synthesis.get("conditioning_neighbors", 5))
+    seed_arg = getattr(args, "synthesis_seed", None)
+    seed = (seed_arg if seed_arg is not None
+            else synthesis.get("random_seed", 42))
     return {
         "appliance": appliance,
         "run_id": run_id,
@@ -340,9 +362,11 @@ def resolve_selection(args, cfg):
         "primitive_sampler": getattr(args, "primitive_sampler", None) or "real_resample",
         "sequence_method": getattr(args, "sequence_method", None) or "empirical",
         "cycle_class": getattr(args, "cycle_class", None) or "all",
-        "synthesis_conditioning": (
-            getattr(args, "synthesis_conditioning", None)
-            or synthesis.get("conditioning_method", "independent")),
+        "synthesis_conditioning": conditioning,
+        "conditioning_neighbors": int(neighbors),
+        "synthesis_seed": int(seed),
+        "synthesis_experiment_tag": synthesis_experiment_tag(
+            conditioning, int(neighbors), int(seed)),
     }
 
 
@@ -398,6 +422,10 @@ def main():
                    help="Cycle class for synthesize: all | majority | class id (default: all).")
     p.add_argument("--synthesis-conditioning", default=None,
                    help="Primitive conditioning: independent | cycle_neighbors.")
+    p.add_argument("--conditioning-neighbors", type=int, default=None,
+                   help="Cycle-neighbor pool size for synthesize.")
+    p.add_argument("--synthesis-seed", type=int, default=None,
+                   help="Random seed for structurally paired synthesis.")
     p.add_argument("--appliance", default=None, help="Override run.appliance.")
     p.add_argument("--run-id", default=None, help="Reuse a run directory (enables manifest reuse).")
     p.add_argument("--raw-series", default=None, help="Override paths.raw_series.")

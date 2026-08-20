@@ -298,7 +298,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     continuity["state_boundary"]["after"]["max"], 0.0)
                 step = manifest.data["steps"]["primitive_synthesis"]
                 self.assertIn(
-                    "real_resample_empirical_cycle_neighbors_balanced_activity_all_train_split_on_kmeans_k2_merged",
+                    "real_resample_empirical_cycle_neighbors_k5_seed9_balanced_activity_all_train_split_on_kmeans_k2_merged",
                     step["subdir"])
                 audit_path = manifest.artifact_path(
                     "primitive_synthesis", "input_audit")

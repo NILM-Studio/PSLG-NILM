@@ -23,12 +23,14 @@ class SynthesisEvaluationStep(Step):
 
     def __init__(self, cluster_tag: str, fs: float = 0.1666667,
                  waveform_points: int = 256,
-                 experiment_tag: str = "independent"):
+                 conditioning_method: str = "independent",
+                 experiment_tag: str = "independent_seed42"):
         if not cluster_tag:
             raise ValueError("synthesis evaluation requires --cluster-tag")
         if fs <= 0 or waveform_points < 16:
             raise ValueError("invalid synthesis evaluation sampling parameters")
         self.experiment_tag = str(experiment_tag).lower()
+        self.conditioning_method = str(conditioning_method).lower()
         super().__init__(
             variant=f"heldout_{self.experiment_tag}_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
@@ -136,13 +138,19 @@ class SynthesisEvaluationStep(Step):
             raise ValueError(
                 f"[synthesis_evaluation] split uses {split_tag}, requested {self.cluster_tag}")
         synthesis_entry = context["manifest"].get_step("primitive_synthesis") or {}
-        actual_conditioning = (synthesis_entry.get("extra") or {}).get(
-            "conditioning_method")
-        if actual_conditioning and actual_conditioning != self.experiment_tag:
+        synthesis_extra = synthesis_entry.get("extra") or {}
+        actual_conditioning = synthesis_extra.get("conditioning_method")
+        if actual_conditioning and actual_conditioning != self.conditioning_method:
             raise ValueError(
                 "[synthesis_evaluation] latest synthesis uses conditioning "
-                f"'{actual_conditioning}', requested '{self.experiment_tag}'; "
+                f"'{actual_conditioning}', requested '{self.conditioning_method}'; "
                 "rerun synthesize with the same --synthesis-conditioning value")
+        actual_experiment = synthesis_extra.get("experiment_tag")
+        if actual_experiment and actual_experiment != self.experiment_tag:
+            raise ValueError(
+                "[synthesis_evaluation] latest synthesis experiment is "
+                f"'{actual_experiment}', requested '{self.experiment_tag}'; "
+                "rerun synthesize with matching neighbor count and seed")
         train_path = self.resolve(context, "cycle_split", "train_catalog")
         test_path = self.resolve(context, "cycle_split", "test_catalog")
         synthesis_path = self.resolve(
@@ -313,7 +321,8 @@ class SynthesisEvaluationStep(Step):
             else None)
         summary = {
             "evaluation_scope": "heldout_test_waveforms",
-            "synthesis_conditioning": self.experiment_tag,
+            "synthesis_conditioning": self.conditioning_method,
+            "experiment_tag": self.experiment_tag,
             "structure_fit_scope": "all_validated_cycles",
             "train_real_cycles": len(train_records),
             "test_real_cycles": len(test_records),

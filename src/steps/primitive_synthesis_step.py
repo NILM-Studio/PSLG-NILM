@@ -31,6 +31,7 @@ class PrimitiveSynthesisStep(Step):
                  conditioning_method: str = "independent",
                  conditioning_neighbors: int = 5,
                  conditioning_exclude_anchor: bool = True,
+                 experiment_tag: str | None = None,
                  candidate_pool: int = 32,
                  within_state_smooth_samples: int = 3,
                  boundary_smooth_samples: int = 3,
@@ -45,8 +46,13 @@ class PrimitiveSynthesisStep(Step):
                               else "unvalidated")
         conditioning_method = str(conditioning_method).lower()
         activity_sampling = str(activity_sampling).lower()
+        experiment_tag = (str(experiment_tag).lower() if experiment_tag else
+                          (f"independent_seed{int(random_seed)}"
+                           if conditioning_method == "independent" else
+                           f"cycle_neighbors_k{int(conditioning_neighbors)}_"
+                           f"seed{int(random_seed)}"))
         super().__init__(
-            variant=(f"{sampler}_{sequence_method}_{conditioning_method}_"
+            variant=(f"{sampler}_{sequence_method}_{experiment_tag}_"
                      f"{activity_sampling}_activity_{cycle_class}_{validation_tag}"
                      f"_on_{cluster_tag}"))
         self.cluster_tag = cluster_tag
@@ -64,6 +70,7 @@ class PrimitiveSynthesisStep(Step):
         self.conditioning_method = conditioning_method
         self.conditioning_neighbors = max(1, int(conditioning_neighbors))
         self.conditioning_exclude_anchor = bool(conditioning_exclude_anchor)
+        self.experiment_tag = experiment_tag
         self.candidate_pool = int(candidate_pool)
         self.within_state_smooth_samples = int(within_state_smooth_samples)
         self.boundary_smooth_samples = int(boundary_smooth_samples)
@@ -530,6 +537,7 @@ class PrimitiveSynthesisStep(Step):
             "mode_sampling": self.mode_sampling,
             "activity_sampling": self.activity_sampling,
             "conditioning_method": self.conditioning_method,
+            "experiment_tag": self.experiment_tag,
             "conditioning_neighbors": self.conditioning_neighbors,
             "conditioning_exclude_anchor": self.conditioning_exclude_anchor,
             "generated_cycle_modes": {
