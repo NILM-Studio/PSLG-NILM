@@ -241,6 +241,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     cluster_tag="kmeans_k2_merged", n_cycles=4,
                     random_seed=9, sequence_method="empirical", fs=1.0,
                     class_sampling="balanced_pairs",
+                    activity_sampling="balanced",
                     conditioning_method="cycle_neighbors",
                     require_cycle_split=True))
                 wf.run()
@@ -297,7 +298,7 @@ class PrimitiveSynthesisStepTest(unittest.TestCase):
                     continuity["state_boundary"]["after"]["max"], 0.0)
                 step = manifest.data["steps"]["primitive_synthesis"]
                 self.assertIn(
-                    "real_resample_empirical_cycle_neighbors_all_train_split_on_kmeans_k2_merged",
+                    "real_resample_empirical_cycle_neighbors_balanced_activity_all_train_split_on_kmeans_k2_merged",
                     step["subdir"])
                 audit_path = manifest.artifact_path(
                     "primitive_synthesis", "input_audit")

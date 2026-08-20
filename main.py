@@ -196,6 +196,7 @@ def _build_synthesize(cfg, sel):
         cycle_class=sel["cycle_class"],
         class_sampling=c.get("class_sampling", "balanced"),
         mode_sampling=c.get("mode_sampling", "empirical"),
+        activity_sampling=c.get("activity_sampling", "empirical"),
         conditioning_method=sel["synthesis_conditioning"],
         conditioning_neighbors=c.get("conditioning_neighbors", 5),
         conditioning_exclude_anchor=c.get("conditioning_exclude_anchor", True),
