@@ -45,7 +45,7 @@ python main.py \
 ```
 
 Review these artifacts under
-`log/<run-id>/cycle_validation_multimodal_robust_on_<cluster-tag>/`:
+`log/<run-id>/cycle_validation_canonical_multimodal_robust_on_<cluster-tag>/`:
 
 - `class_validity_summary.csv`: class decision and reasons.
 - `cycle_validity_report.csv`: one row per real activity.
@@ -93,3 +93,12 @@ python main.py \
 For a paper evaluation, split source activities into train and test before
 fitting final thresholds or generators. The held-out real cycles must not
 contribute primitives, class representatives, or validation statistics.
+
+Validated synthesis is written under
+`primitive_synthesis_real_resample_empirical_all_validated_modes_on_<cluster-tag>/`.
+Its `synthesis_input_audit.json` records each accepted class, canonical
+signature, physical mode, and source-member count. Older validation catalogs
+are rejected rather than silently reused.
+
+The maintained UK-DALE washing-machine experiment record is available in
+`docs/ukdale_washing_machine_primitive_generation.md`.
