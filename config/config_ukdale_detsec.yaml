@@ -129,7 +129,7 @@ nilm_continuous_dataset:
   active_threshold_watts: 10
   min_off_samples: 599
   max_chunk_samples: 100000
-  off_to_real_sample_ratio: 1.0
+  off_to_real_sample_ratio: 20.0
   random_seed: 42
   require_train_only_structure: true
 dataset_split:
