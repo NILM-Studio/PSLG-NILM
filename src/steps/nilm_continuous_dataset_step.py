@@ -144,6 +144,19 @@ class NilmContinuousDatasetStep(Step):
                 break
         return selected
 
+    @staticmethod
+    def _repeat_off(records: list[dict], target_samples: int) -> list[dict]:
+        """Repeat one fixed OFF pool without introducing new background data."""
+        if target_samples <= 0 or not records:
+            return []
+        selected, total, index = [], 0, 0
+        while total < target_samples:
+            record = records[index % len(records)]
+            selected.append(record)
+            total += int(record["length_samples"])
+            index += 1
+        return selected
+
     def run(self, context: dict) -> dict:
         aligned_path = Path(self.aligned_series_path)
         if not aligned_path.exists():
@@ -223,20 +236,32 @@ class NilmContinuousDatasetStep(Step):
         ratio_entries.sort(key=lambda item: float(item[1]["real_ratio"]))
         for tag, entry in ratio_entries:
             real_files = entry["A_real_only"]
-            active_samples = self._sample_count(cycle_root, real_files)
+            real_active_samples = self._sample_count(cycle_root, real_files)
             selected_off = self._select_off(
                 off_records,
-                int(round(active_samples * self.off_to_real_sample_ratio)),
+                int(round(real_active_samples * self.off_to_real_sample_ratio)),
                 int(round(float(entry["real_ratio"]) * 10_000)))
+            augmented_active_samples = max(
+                self._sample_count(
+                    cycle_root, entry["B_real_plus_traditional"]),
+                self._sample_count(
+                    cycle_root, entry["C_real_plus_generated"]),
+            )
+            repeated_off = self._repeat_off(
+                selected_off,
+                int(round(augmented_active_samples
+                          * self.off_to_real_sample_ratio)))
             off_files = [self._relative(row["path"], log_dir)
                          for row in selected_off]
+            augmented_off_files = [self._relative(row["path"], log_dir)
+                                   for row in repeated_off]
             experiments[tag] = {
                 "real_ratio": float(entry["real_ratio"]),
                 "A_real_only": imported(entry["A_real_only"]) + off_files,
                 "B_real_plus_traditional": imported(
-                    entry["B_real_plus_traditional"]) + off_files,
+                    entry["B_real_plus_traditional"]) + augmented_off_files,
                 "C_real_plus_generated": imported(
-                    entry["C_real_plus_generated"]) + off_files,
+                    entry["C_real_plus_generated"]) + augmented_off_files,
                 "selected_real_count": int(entry["selected_real_count"]),
                 "selected_traditional_count": int(
                     entry["selected_traditional_count"]),
@@ -244,6 +269,10 @@ class NilmContinuousDatasetStep(Step):
                 "selected_off_chunks": len(off_files),
                 "selected_off_samples": int(sum(
                     row["length_samples"] for row in selected_off)),
+                "augmented_off_file_references": len(augmented_off_files),
+                "augmented_off_samples": int(sum(
+                    row["length_samples"] for row in repeated_off)),
+                "off_background_policy": "same_unique_pool_repeated_for_B_and_C",
             }
 
         full_real = cycle_manifest["experiments"]["full"]["D_full_real"]

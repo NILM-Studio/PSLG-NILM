@@ -77,6 +77,20 @@ class NilmDatasetStepTests(unittest.TestCase):
         self.assertEqual([len(row["timestamp"]) for row in off], [2, 3])
         self.assertTrue(all(np.max(row["appliance"]) <= 10 for row in off))
 
+    def test_off_pool_is_repeated_without_adding_unique_backgrounds(self):
+        records = [
+            {"path": "off_a.npz", "length_samples": 4},
+            {"path": "off_b.npz", "length_samples": 6},
+        ]
+        selected = NilmContinuousDatasetStep._repeat_off(records, 24)
+        self.assertEqual(
+            [row["path"] for row in selected],
+            ["off_a.npz", "off_b.npz", "off_a.npz", "off_b.npz", "off_a.npz"],
+        )
+        self.assertEqual(sum(row["length_samples"] for row in selected), 24)
+        self.assertEqual({row["path"] for row in selected},
+                         {"off_a.npz", "off_b.npz"})
+
 
 if __name__ == "__main__":
     unittest.main()
