@@ -13,7 +13,6 @@ import pandas as pd
 from src.framework.step import Step
 from src.generation.cycle_validation import (discover_metric_modes,
                                              infer_cycle_grammar,
-                                             robust_z_scores,
                                              signature_purity)
 
 
@@ -44,11 +43,15 @@ class CycleValidationStep(Step):
                  min_mode_support: int = 15,
                  mode_bic_min_gain: float = 10.0,
                  mode_random_state: int = 42,
-                 class_overrides: Dict[str, str] | None = None):
+                 class_overrides: Dict[str, str] | None = None,
+                 require_train_only_structure: bool = False):
         if not cluster_tag:
             raise ValueError("cycle validation requires --cluster-tag")
-        super().__init__(variant=f"canonical_multimodal_robust_on_{cluster_tag}")
+        scope = "train_only_" if require_train_only_structure else ""
+        super().__init__(
+            variant=f"{scope}canonical_multimodal_robust_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
+        self.require_train_only_structure = bool(require_train_only_structure)
         self.fs = float(fs)
         self.min_class_support = max(1, int(min_class_support))
         self.min_signature_purity = float(min_signature_purity)
@@ -132,8 +135,25 @@ class CycleValidationStep(Step):
             writer.writeheader()
             writer.writerows(rows)
 
+    @staticmethod
+    def _reference_robust_scores(reference, query) -> np.ndarray:
+        """Score query values against a fixed training median and MAD."""
+        reference = np.asarray(list(reference), dtype=np.float64)
+        query = np.asarray(list(query), dtype=np.float64)
+        if reference.size == 0:
+            return np.full(query.shape, np.inf, dtype=np.float64)
+        median = float(np.median(reference))
+        mad = float(np.median(np.abs(reference - median)))
+        if mad <= np.finfo(np.float64).eps:
+            return np.where(np.isclose(query, median), 0.0, np.inf)
+        return np.abs(query - median) / (1.4826 * mad)
+
     def run(self, context: dict) -> dict:
         payload, segments_dir, files = self._load_inputs(context)
+        if (self.require_train_only_structure
+                and payload.get("fit_scope") != "train_only"):
+            raise ValueError(
+                "[cycle_validation] train-only structure fit is required")
         classes = payload.get("classes", [])
         grammar = infer_cycle_grammar(
             classes, self.min_class_support, self.core_state_min_prevalence,
@@ -148,8 +168,11 @@ class CycleValidationStep(Step):
             metrics = self._activity_metrics(
                 activity_id, record, segments_dir, files)
             metrics.update({"activity_id": str(activity_id),
-                            "class_id": int(record["class_id"])})
+                            "class_id": int(record["class_id"]),
+                            "source_split": record.get("source_split", "all")})
             activity_rows[str(activity_id)] = metrics
+
+        train_only = payload.get("fit_scope") == "train_only"
 
         class_lookup = {int(entry["class_id"]): entry for entry in classes}
         metric_names = ["duration_seconds", "energy_wh", "mean_power", "max_power"]
@@ -195,28 +218,62 @@ class CycleValidationStep(Step):
                         and activity_rows[str(v)]["passes_hard_checks"]]
             eligible = [mid for mid in eligible
                         if activity_rows[mid]["is_representative_signature"]]
-            if not eligible:
+            fit_eligible = [
+                mid for mid in eligible
+                if not train_only or activity_rows[mid]["source_split"] == "train"
+            ]
+            if not fit_eligible:
                 mode_diagnostics[str(class_id)] = {"selected_modes": 0}
                 continue
-            matrix = np.asarray([
+            fit_matrix = np.asarray([
                 [activity_rows[mid][name] for name in metric_names]
-                for mid in eligible
+                for mid in fit_eligible
             ], dtype=np.float64)
             labels, diagnostics = discover_metric_modes(
-                matrix, max_modes=self.max_metric_modes,
+                fit_matrix, max_modes=self.max_metric_modes,
                 min_mode_support=self.min_mode_support,
                 bic_min_gain=self.mode_bic_min_gain,
                 random_state=self.mode_random_state + class_id)
+            diagnostics["fit_scope"] = "train_only" if train_only else "all_activities"
+            diagnostics["fit_members"] = len(fit_eligible)
             mode_diagnostics[str(class_id)] = diagnostics
-            for mid, label in zip(eligible, labels):
+            for mid, label in zip(fit_eligible, labels):
                 activity_rows[mid]["mode_id"] = int(label)
+
+            heldout = [mid for mid in eligible if mid not in set(fit_eligible)]
+            if heldout:
+                from sklearn.preprocessing import StandardScaler
+                scaler = StandardScaler().fit(
+                    np.log1p(np.clip(fit_matrix, 0.0, None)))
+                fit_scaled = scaler.transform(
+                    np.log1p(np.clip(fit_matrix, 0.0, None)))
+                centers = {
+                    mode_id: np.mean(fit_scaled[labels == mode_id], axis=0)
+                    for mode_id in sorted(set(labels.tolist()))
+                }
+                heldout_matrix = np.asarray([
+                    [activity_rows[mid][name] for name in metric_names]
+                    for mid in heldout
+                ], dtype=np.float64)
+                heldout_scaled = scaler.transform(
+                    np.log1p(np.clip(heldout_matrix, 0.0, None)))
+                for mid, vector in zip(heldout, heldout_scaled):
+                    mode_id = min(
+                        centers, key=lambda key: float(np.linalg.norm(
+                            vector - centers[key])))
+                    activity_rows[mid]["mode_id"] = int(mode_id)
+                diagnostics["mapped_holdout_members"] = len(heldout)
+                diagnostics["holdout_assignment"] = "nearest_training_mode_centroid"
 
             for mode_id in sorted(set(labels.tolist())):
                 mode_members = [mid for mid in eligible
                                 if activity_rows[mid]["mode_id"] == mode_id]
+                fit_mode_members = [mid for mid in fit_eligible
+                                    if activity_rows[mid]["mode_id"] == mode_id]
                 for metric in metric_names:
-                    scores = robust_z_scores(
-                        activity_rows[mid][metric] for mid in mode_members)
+                    scores = self._reference_robust_scores(
+                        (activity_rows[mid][metric] for mid in fit_mode_members),
+                        (activity_rows[mid][metric] for mid in mode_members))
                     for mid, score in zip(mode_members, scores):
                         activity_rows[mid][f"{metric}_robust_z"] = float(score)
                 valid_mode_members = [
@@ -228,6 +285,7 @@ class CycleValidationStep(Step):
                     "class_id": class_id,
                     "mode_id": int(mode_id),
                     "support": len(mode_members),
+                    "fit_support": len(fit_mode_members),
                     "valid_members": len(valid_mode_members),
                     "outlier_members": len(mode_members) - len(valid_mode_members),
                 }
@@ -236,10 +294,12 @@ class CycleValidationStep(Step):
                     mode_row[f"median_{name}"] = float(np.median(values))
                 mode_rows.append(mode_row)
 
-                if valid_mode_members:
+                valid_fit_mode_members = [
+                    mid for mid in valid_mode_members if mid in set(fit_mode_members)]
+                if valid_fit_mode_members:
                     z_matrix = np.asarray([
                         [activity_rows[mid][f"{name}_robust_z"] for name in metric_names]
-                        for mid in valid_mode_members
+                        for mid in valid_fit_mode_members
                     ], dtype=np.float64)
                     distances = np.linalg.norm(np.nan_to_num(
                         z_matrix, nan=0.0, posinf=1e6, neginf=1e6), axis=1)
@@ -250,7 +310,7 @@ class CycleValidationStep(Step):
                         choices.append(("far", int(ranked[-1])))
                     seen = set()
                     for role, position in choices:
-                        mid = valid_mode_members[position]
+                        mid = valid_fit_mode_members[position]
                         if mid in seen:
                             continue
                         seen.add(mid)
@@ -283,10 +343,15 @@ class CycleValidationStep(Step):
                        if str(v) in activity_rows]
             valid_members = [mid for mid in members
                              if activity_rows[mid]["is_valid_member"]]
+            fit_members = [mid for mid in members
+                           if not train_only
+                           or activity_rows[mid]["source_split"] == "train"]
+            fit_valid_members = [mid for mid in fit_members
+                                 if activity_rows[mid]["is_valid_member"]]
             representative_members = [
-                mid for mid in members
+                mid for mid in fit_members
                 if activity_rows[mid]["is_representative_signature"]]
-            ratio = float(len(valid_members) / max(len(members), 1))
+            ratio = float(len(fit_valid_members) / max(len(fit_members), 1))
             purity = signature_purity(entry)
             signature = [int(v) for v in entry.get("representative_signature", [])]
             reasons = []
@@ -297,7 +362,7 @@ class CycleValidationStep(Step):
             if terminal_states and (not signature or signature[-1] not in terminal_states):
                 reasons.append("uncommon_terminal_state")
             median_duration = float((entry.get("duration_samples") or {}).get("median", 0.0)) / self.fs
-            if not valid_members:
+            if not fit_valid_members:
                 status = "invalid"
                 reasons.append("no_valid_members")
             elif median_duration < self.min_duration_seconds:
@@ -317,7 +382,7 @@ class CycleValidationStep(Step):
             if override:
                 status = override
                 reasons.append("manual_override")
-            if status == "valid_full" and valid_members:
+            if status == "valid_full" and fit_valid_members:
                 valid_class_ids.append(class_id)
                 valid_activity_ids.extend(valid_members)
             class_rows.append({
@@ -325,7 +390,8 @@ class CycleValidationStep(Step):
                 "status": status,
                 "support": int(entry.get("support", 0)),
                 "representative_members": len(representative_members),
-                "valid_members": len(valid_members),
+                "valid_members": len(fit_valid_members),
+                "mapped_valid_members": len(valid_members),
                 "valid_member_ratio": ratio,
                 "signature_purity": purity,
                 "representative_signature": "->".join(map(str, signature)),
@@ -344,6 +410,7 @@ class CycleValidationStep(Step):
             "valid_activity_ids": sorted(valid_id_set, key=int),
             "grammar": grammar,
             "mode_diagnostics": mode_diagnostics,
+            "fit_scope": "train_only" if train_only else "all_activities",
         }
         filtered["activities"] = {
             key: value for key, value in filtered.get("activities", {}).items()
@@ -357,7 +424,12 @@ class CycleValidationStep(Step):
                 continue
             entry["member_ids"] = [mid for mid in entry.get("member_ids", [])
                                    if str(mid) in valid_id_set]
-            entry["support"] = len(entry["member_ids"])
+            entry["fit_member_ids"] = [
+                mid for mid in entry.get("fit_member_ids", entry["member_ids"])
+                if str(mid) in valid_id_set
+            ]
+            entry["support"] = len(entry["fit_member_ids"])
+            entry["total_support"] = len(entry["member_ids"])
             if entry["member_ids"]:
                 filtered_classes.append(entry)
         filtered["classes"] = filtered_classes
@@ -385,12 +457,12 @@ class CycleValidationStep(Step):
         ])
         self._write_csv(class_path, class_rows, [
             "class_id", "status", "support", "representative_members",
-            "valid_members", "valid_member_ratio",
+            "valid_members", "mapped_valid_members", "valid_member_ratio",
             "signature_purity", "representative_signature", "median_duration_seconds",
             "reasons",
         ])
         self._write_csv(mode_path, mode_rows, [
-            "class_id", "mode_id", "support", "valid_members", "outlier_members",
+            "class_id", "mode_id", "support", "fit_support", "valid_members", "outlier_members",
             *[f"median_{name}" for name in metric_names],
         ])
         self._write_csv(representatives_path, representative_rows, [
@@ -420,6 +492,7 @@ class CycleValidationStep(Step):
             "cluster_tag": self.cluster_tag,
             "valid_class_ids": valid_class_ids,
             "n_valid_activities": len(valid_id_set),
+            "structure_fit_scope": "train_only" if train_only else "all_activities",
         })
         print(f"[cycle_validation] inferred core states={sorted(required_states)}, "
               f"terminal states={sorted(terminal_states)}")

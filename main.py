@@ -47,8 +47,9 @@ for _p in (project_root, models_dir,
 
 # Canonical step order — all steps are implemented.
 ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge",
+                  "temporal_holdout",
                   "cycle_classify", "cycle_validate", "cycle_split", "synthesize",
-                  "synthesis_eval", "nilm_dataset", "fewshot",
+                  "synthesis_eval", "nilm_dataset", "nilm_continuous", "fewshot",
                   "pam", "split"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
@@ -218,6 +219,8 @@ def _build_synthesize(cfg, sel):
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
         require_cycle_validation=c.get("require_cycle_validation", True),
         require_cycle_split=c.get("require_cycle_split", False),
+        require_train_only_structure=c.get(
+            "require_train_only_structure", False),
     )
 
 
@@ -231,6 +234,18 @@ def _build_cycle_classify(cfg, sel):
         rare_max_distance=c.get("rare_max_distance", 0.34),
         min_pattern_blocks=c.get("min_pattern_blocks", 3),
         min_unique_states=c.get("min_unique_states", 2),
+        require_temporal_holdout=c.get("require_temporal_holdout", False),
+    )
+
+
+def _build_temporal_holdout(cfg, sel):
+    from src.steps.temporal_holdout_step import TemporalHoldoutStep
+    c = cfg.get("temporal_holdout", {}) or {}
+    return TemporalHoldoutStep(
+        cluster_tag=sel["cluster_tag"],
+        train_ratio=c.get("train_ratio", 0.7),
+        validation_ratio=c.get("validation_ratio", 0.1),
+        test_ratio=c.get("test_ratio", 0.2),
     )
 
 
@@ -257,6 +272,8 @@ def _build_cycle_validate(cfg, sel):
         mode_bic_min_gain=c.get("mode_bic_min_gain", 10.0),
         mode_random_state=c.get("mode_random_state", 42),
         class_overrides=c.get("class_overrides", {}),
+        require_train_only_structure=c.get(
+            "require_train_only_structure", False),
     )
 
 
@@ -268,6 +285,7 @@ def _build_cycle_split(cfg, sel):
         train_ratio=c.get("train_ratio", 0.7),
         validation_ratio=c.get("validation_ratio", 0.1),
         test_ratio=c.get("test_ratio", 0.2),
+        require_temporal_holdout=c.get("require_temporal_holdout", False),
     )
 
 
@@ -313,6 +331,28 @@ def _build_nilm_dataset(cfg, sel):
         traditional_scale_range=c.get("traditional_scale_range", [0.9, 1.1]),
         traditional_noise_ratio=c.get("traditional_noise_ratio", 0.01),
         active_threshold_watts=c.get("active_threshold_watts", 10),
+        require_train_only_structure=c.get(
+            "require_train_only_structure", False),
+    )
+
+
+def _build_nilm_continuous(cfg, sel):
+    from src.steps.nilm_continuous_dataset_step import NilmContinuousDatasetStep
+    c = cfg.get("nilm_continuous_dataset", {}) or {}
+    fallback = cfg.get("nilm_dataset", {}) or {}
+    return NilmContinuousDatasetStep(
+        cluster_tag=sel["cluster_tag"],
+        aligned_series_path=c.get(
+            "aligned_series", fallback.get("aligned_series", "")),
+        sample_period_seconds=c.get("sample_period_seconds", 6),
+        max_gap_seconds=c.get("max_gap_seconds", 150),
+        active_threshold_watts=c.get("active_threshold_watts", 10),
+        min_off_samples=c.get("min_off_samples", 599),
+        max_chunk_samples=c.get("max_chunk_samples", 100_000),
+        off_to_real_sample_ratio=c.get("off_to_real_sample_ratio", 1.0),
+        random_seed=c.get("random_seed", 42),
+        require_train_only_structure=c.get(
+            "require_train_only_structure", True),
     )
 
 
@@ -341,12 +381,14 @@ STEP_BUILDERS = {
     "feature": _build_feature,
     "cluster": _build_cluster,
     "state_merge": _build_state_merge,
+    "temporal_holdout": _build_temporal_holdout,
     "cycle_classify": _build_cycle_classify,
     "cycle_validate": _build_cycle_validate,
     "cycle_split": _build_cycle_split,
     "synthesize": _build_synthesize,
     "synthesis_eval": _build_synthesis_eval,
     "nilm_dataset": _build_nilm_dataset,
+    "nilm_continuous": _build_nilm_continuous,
     "fewshot": _build_fewshot,
     "pam": _build_pam,
     "split": _build_split,

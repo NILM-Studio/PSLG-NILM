@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 
-from scripts.train_nilm_seq2point import experiment_specs
+from scripts.train_nilm_seq2point import chunk_energy_metrics, experiment_specs
 from src.nilm.seq2point import CycleWindowCorpus, regression_metrics
 
 
@@ -30,14 +30,21 @@ class Seq2PointTests(unittest.TestCase):
         self.assertEqual(metrics["sae"], 0.0)
         self.assertEqual(metrics["nde"], 0.0)
         self.assertEqual(metrics["f1"], 1.0)
+        self.assertEqual(metrics["false_positive_rate"], 0.0)
         self.assertEqual(metrics["prediction_mean_watts"],
                          metrics["target_mean_watts"])
         self.assertEqual(metrics["prediction_on_fraction"],
                          metrics["target_on_fraction"])
 
+    def test_chunk_energy_metrics_are_zero_for_perfect_prediction(self):
+        values = np.asarray([0, 10, 20, 30], dtype=np.float32)
+        metrics = chunk_energy_metrics(values, values, [2, 2])
+        self.assertEqual(metrics["mean_chunk_energy_relative_error"], 0.0)
+
     def test_experiment_matrix_contains_ten_runs(self):
         manifest = {"experiments": {
             ratio: {
+                "real_ratio": int(ratio[:2]) / 100,
                 "A_real_only": ["a"],
                 "B_real_plus_traditional": ["b"],
                 "C_real_plus_generated": ["c"],
@@ -47,6 +54,23 @@ class Seq2PointTests(unittest.TestCase):
         specs = experiment_specs(manifest, "all")
         self.assertEqual(len(specs), 10)
         self.assertEqual(specs[-1][:2], ("full", "D"))
+
+    def test_experiment_matrix_discovers_five_ratios(self):
+        manifest = {"experiments": {
+            ratio: {
+                "real_ratio": value,
+                "A_real_only": ["a"],
+                "B_real_plus_traditional": ["b"],
+                "C_real_plus_generated": ["c"],
+            } for ratio, value in (("01pct", 0.01), ("02pct", 0.02),
+                                   ("05pct", 0.05), ("10pct", 0.1),
+                                   ("20pct", 0.2))
+        }}
+        manifest["experiments"]["full"] = {"D_full_real": ["d"]}
+        specs = experiment_specs(manifest, "all")
+        self.assertEqual(len(specs), 16)
+        self.assertEqual([row[0] for row in specs[:6]],
+                         ["01pct"] * 3 + ["02pct"] * 3)
 
 
 if __name__ == "__main__":

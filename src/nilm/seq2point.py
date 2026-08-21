@@ -133,6 +133,7 @@ def regression_metrics(target: np.ndarray, prediction: np.ndarray,
     tp = int(np.sum(true_on & predicted_on))
     fp = int(np.sum(~true_on & predicted_on))
     fn = int(np.sum(true_on & ~predicted_on))
+    tn = int(np.sum(~true_on & ~predicted_on))
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0
     return {
@@ -144,6 +145,7 @@ def regression_metrics(target: np.ndarray, prediction: np.ndarray,
         "recall": float(recall),
         "f1": float(2 * precision * recall / (precision + recall)
                     if precision + recall else 0.0),
+        "false_positive_rate": float(fp / (fp + tn) if fp + tn else 0.0),
         "target_mean_watts": float(np.mean(target)),
         "target_max_watts": float(np.max(target)),
         "target_on_fraction": float(np.mean(true_on)),

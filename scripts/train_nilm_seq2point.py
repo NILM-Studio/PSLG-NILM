@@ -31,7 +31,12 @@ def set_seed(seed: int) -> None:
 def experiment_specs(manifest: dict, requested: str) -> list[tuple[str, str, list[str]]]:
     specs = []
     if requested.strip().lower() == "all":
-        for ratio in ("05pct", "10pct", "20pct"):
+        ratios = [
+            (tag, entry) for tag, entry in manifest["experiments"].items()
+            if tag != "full"
+        ]
+        ratios.sort(key=lambda item: float(item[1]["real_ratio"]))
+        for ratio, _ in ratios:
             for group, key in GROUP_KEYS.items():
                 specs.append((ratio, group, manifest["experiments"][ratio][key]))
         specs.append(("full", "D", manifest["experiments"]["full"]["D_full_real"]))
@@ -59,6 +64,25 @@ def predict_corpus(model, corpus: CycleWindowCorpus, batch_size: int,
     return target, prediction.astype(np.float32), lengths
 
 
+def chunk_energy_metrics(target: np.ndarray, prediction: np.ndarray,
+                         lengths: list[int]) -> dict:
+    errors = []
+    offset = 0
+    for length in lengths:
+        real = float(np.sum(target[offset:offset + length]))
+        estimated = float(np.sum(prediction[offset:offset + length]))
+        errors.append(abs(estimated - real) / max(real, 1e-12))
+        offset += length
+    if offset != len(target):
+        raise ValueError("prediction chunk lengths do not cover the test corpus")
+    values = np.asarray(errors, dtype=np.float64)
+    return {
+        "mean_chunk_energy_relative_error": float(np.mean(values)),
+        "median_chunk_energy_relative_error": float(np.median(values)),
+        "p95_chunk_energy_relative_error": float(np.percentile(values, 95)),
+    }
+
+
 def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
               group: str, train_files: list[str]) -> dict:
     import tensorflow as tf
@@ -72,7 +96,7 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
         dataset_root, full["validation"], args.window_length,
         args.validation_stride, args.mains_scale, args.appliance_scale)
     test = CycleWindowCorpus(
-        dataset_root, full["test"], args.window_length, 1,
+        dataset_root, full["test"], args.window_length, args.test_stride,
         args.mains_scale, args.appliance_scale)
     output = Path(args.output_root) / f"{ratio}_{group}_seed{args.seed}"
     output.mkdir(parents=True, exist_ok=True)
@@ -105,6 +129,7 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
     target, prediction, cycle_lengths = predict_corpus(
         model, test, args.batch_size, args.appliance_scale)
     metrics = regression_metrics(target, prediction, args.on_threshold)
+    metrics.update(chunk_energy_metrics(target, prediction, cycle_lengths))
     metrics.update({
         "ratio": ratio, "group": group, "seed": args.seed,
         "train_cycles": len(train_files), "validation_cycles": len(full["validation"]),
@@ -112,6 +137,7 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
         "validation_windows": len(validation), "test_points": len(test),
         "window_length": args.window_length, "train_stride": args.train_stride,
         "validation_stride": args.validation_stride,
+        "test_stride": args.test_stride,
         "mains_scale": args.mains_scale, "appliance_scale": args.appliance_scale,
         "epochs_completed": len(history.history["loss"]),
         "best_validation_loss": float(np.min(history.history["val_loss"])),
@@ -139,16 +165,19 @@ def main() -> None:
     parser.add_argument("--window-length", type=int, default=599)
     parser.add_argument("--train-stride", type=int, default=5)
     parser.add_argument("--validation-stride", type=int, default=5)
+    parser.add_argument("--test-stride", type=int, default=1)
     parser.add_argument("--learning-rate", type=float, default=1e-3)
     parser.add_argument("--dropout", type=float, default=0.0)
     parser.add_argument("--mains-scale", type=float, default=10_000.0)
     parser.add_argument("--appliance-scale", type=float, default=4_000.0)
     parser.add_argument("--on-threshold", type=float, default=20.0)
     parser.add_argument("--output-root", default=None)
+    parser.add_argument("--dataset-dir", default=None)
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    dataset_root = (Path("log") / args.run_id
+    dataset_root = (Path(args.dataset_dir) if args.dataset_dir else
+                    Path("log") / args.run_id
                     / "nilm_dataset_cycle_augmentation_on_kmeans_k4_merged")
     manifest_path = dataset_root / "nilm_dataset_manifest.json"
     with open(manifest_path, encoding="utf-8") as f:

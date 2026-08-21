@@ -3,6 +3,7 @@ import unittest
 import numpy as np
 
 from src.steps.nilm_dataset_step import NilmDatasetStep
+from src.steps.nilm_continuous_dataset_step import NilmContinuousDatasetStep
 
 
 class NilmDatasetStepTests(unittest.TestCase):
@@ -49,6 +50,32 @@ class NilmDatasetStepTests(unittest.TestCase):
         self.assertTrue(np.array_equal(augmented_mains, mains))
         self.assertEqual(parameters["scale"], 1.0)
         self.assertEqual(augmented_appliance[0], 0.0)
+
+    def test_continuous_chunks_do_not_bridge_long_gap(self):
+        step = NilmContinuousDatasetStep(
+            "kmeans_k2_merged", "pair.csv", sample_period_seconds=6,
+            max_gap_seconds=30, min_off_samples=2, max_chunk_samples=100)
+        timestamp = np.asarray([0, 6, 12, 100, 106, 112], dtype=np.int64)
+        mains = np.asarray([10, 11, 12, 20, 21, 22], dtype=np.float32)
+        appliance = np.zeros(6, dtype=np.float32)
+        chunks = step._uniform_chunks(
+            timestamp, mains, appliance, None, None)
+        self.assertEqual(len(chunks), 2)
+        self.assertEqual(chunks[0]["timestamp"].tolist(), [0, 6, 12])
+        self.assertEqual(chunks[1]["timestamp"].tolist(), [102, 108])
+
+    def test_off_chunks_exclude_active_samples(self):
+        step = NilmContinuousDatasetStep(
+            "kmeans_k2_merged", "pair.csv", active_threshold_watts=10,
+            min_off_samples=2, max_chunk_samples=100)
+        chunk = {
+            "timestamp": np.arange(7),
+            "mains": np.arange(7, dtype=np.float32),
+            "appliance": np.asarray([0, 1, 20, 30, 0, 0, 0], dtype=np.float32),
+        }
+        off = step._off_chunks([chunk])
+        self.assertEqual([len(row["timestamp"]) for row in off], [2, 3])
+        self.assertTrue(all(np.max(row["appliance"]) <= 10 for row in off))
 
 
 if __name__ == "__main__":

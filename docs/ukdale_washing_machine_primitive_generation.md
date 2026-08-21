@@ -512,6 +512,60 @@ log/ukdale_wm_primglr_detsec_3789/nilm_seq2point/
 
 C在10%设置下F1低于A/B，主要表现为Precision下降而Recall保持较高。一个合理解释是当前合成数据全部来自洗衣机工作周期，继续增加了ON状态窗口，使模型更倾向于输出开机。论文必须分别报告MAE/NDE与Precision/Recall/F1，不能用单一指标概括效果；还需要在连续时间线中加入大量真实关机背景，检验误报率和实际NILM性能。
 
+#### 6.3.5 严格时间留出与连续时间线评价
+
+前述五种子结果属于工作周期内评价：测试数据是真实留出周期，但周期类别、代表签名和物理模式是在全体有效周期上发现的，而且测试序列几乎都处于洗衣机工作状态。它可用于确认下游链路和初步增强趋势，但不能作为最终无泄漏结论。
+
+正式评价增加两项约束。第一，在周期类别发现之前，按周期开始时间做一次全局连续的 `70%/10%/20%` 划分。只有训练周期参与类别代表、周期语法、物理模式中心和MAD阈值拟合；验证/测试周期仅映射到既有训练类别和最近训练模式。第二，验证和测试直接从对齐后的家庭总表连续时间线提取，保留真实关机背景，并在超过150秒的数据缺口处断开，禁止跨缺口插值。训练集A/B/C共享相同的真实关机片段，避免关机样本差异成为混杂因素。
+
+严格数据链执行命令：
+
+```bash
+python main.py \
+  --config config/config_ukdale_detsec.yaml \
+  --steps temporal_holdout,cycle_classify,cycle_validate,cycle_split,synthesize,nilm_dataset,nilm_continuous \
+  --run-id ukdale_wm_primglr_detsec_3789 \
+  --cluster-tag kmeans_k4_merged \
+  --synthesis-conditioning cycle_neighbors \
+  --conditioning-neighbors 10 \
+  --synthesis-seed 42
+```
+
+首先检查以下审计产物：
+
+```bash
+cat log/ukdale_wm_primglr_detsec_3789/\
+temporal_holdout_global_chronological_on_kmeans_k4_merged/\
+temporal_holdout_summary.json
+
+cat log/ukdale_wm_primglr_detsec_3789/\
+cycle_split_global_chronological_train_only_on_kmeans_k4_merged/\
+cycle_split_summary.json
+
+cat log/ukdale_wm_primglr_detsec_3789/\
+nilm_continuous_dataset_strict_temporal_on_kmeans_k4_merged/\
+nilm_dataset_manifest.json
+```
+
+三份文件必须分别出现 `structure_fit_scope: train_only`，周期划分必须全局按时间递增且互不重叠，连续验证/测试样本数及训练关机池样本数必须大于0。正式小样本比例扩展为 `1%、2%、5%、10%、20%`；每个比例仍比较A（真实）、B（真实+传统增强）和C（真实+本文生成），D为全量真实参考。
+
+先提交一组3轮烟雾测试；`TEST_STRIDE=5` 只用于快速检查，不进入论文表格：
+
+```bash
+mkdir -p slurm/slurm_log
+sbatch --export=ALL,EXPERIMENTS=01pct:A,EPOCHS=3,FORCE=1,TEST_STRIDE=5 \
+  slurm/run_ukdale_seq2point_continuous.sh
+```
+
+确认GPU、损失和预测均正常后，先跑随机种子42的完整16组。脚本默认 `TEST_STRIDE=1`，对连续时间线逐点评价：
+
+```bash
+sbatch --export=ALL,SEED=42,EPOCHS=30 \
+  slurm/run_ukdale_seq2point_continuous.sh
+```
+
+连续评价除 `MAE、SAE、NDE、Precision、Recall、F1` 外，新增关机点误报率 `false_positive_rate`，以及按连续数据块统计的平均、中位数和P95能量相对误差。主结论优先观察C相对A/B在1%和2%下是否稳定降低MAE/NDE，同时不能显著提高关机误报率。种子42通过后，再运行 `7、21、84、168`，报告五种子均值、标准差和种子内配对差值。
+
 ### 6.4 后续扩展
 
 洗衣机完成全套评价后，再选择至少一种运行逻辑明显不同的电器，例如冰箱或水壶，验证方法是否只适用于多阶段洗衣机。
@@ -527,12 +581,14 @@ C在10%设置下F1低于A/B，主要表现为Precision下降而Recall保持较�
 - 只使用 `valid_full`、精确代表签名和有效模式的严格生成。
 - 220条均衡生成周期、11个类别/模式组合及结构与拼接连续性的人工验收。
 - 独立基元重采样的留出集统计、形状新颖性和覆盖率基线。
+- 工作周期内Seq2Point的5种子、50组预实验及配对统计。
+- 严格的结构发现前全局时间留出、训练集单独拟合和连续时间线评价代码。
 
 ### 尚未证明
 
 - 生成分布与真实分布在统计上足够接近。
 - 生成数据具有足够多样性且没有记忆训练样本。
-- 生成数据能够提升下游NILM小样本性能。
+- 生成数据能在无结构泄漏的连续时间线评价中稳定提升NILM小样本性能。
 - 方法可以泛化到其他电器、房屋和数据集。
 
 论文表述必须区分“已完成的工程流程”“视觉可行性”和“经实验验证的研究结论”。

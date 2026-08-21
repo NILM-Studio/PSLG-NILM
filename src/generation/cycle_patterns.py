@@ -52,7 +52,10 @@ class CyclePatternClassifier:
         self.min_pattern_blocks = max(1, int(min_pattern_blocks))
         self.min_unique_states = max(1, int(min_unique_states))
 
-    def fit(self, sequences: Dict[str, List[dict]]) -> dict:
+    def fit(self, sequences: Dict[str, List[dict]],
+            fit_ids: Iterable[str] | None = None) -> dict:
+        fit_id_set = ({str(value) for value in fit_ids}
+                      if fit_ids is not None else {str(key) for key in sequences})
         activities = {}
         signature_counts = Counter()
         for activity_id, blocks in sequences.items():
@@ -78,7 +81,7 @@ class CyclePatternClassifier:
             elif len(set(signature)) < self.min_unique_states:
                 activities[str(activity_id)]["class_id"] = -1
                 activities[str(activity_id)]["outlier_reason"] = "too_few_unique_states"
-            else:
+            elif str(activity_id) in fit_id_set:
                 signature_counts[signature] += 1
         if not activities:
             raise ValueError("no valid state sequences available for cycle classification")
@@ -94,6 +97,7 @@ class CyclePatternClassifier:
             anchors = [signature for signature, _ in ranked[:self.max_classes]]
 
         class_members = {class_id: [] for class_id in range(len(anchors))}
+        fit_class_members = {class_id: [] for class_id in range(len(anchors))}
         outliers = []
         for activity_id, record in activities.items():
             if record.get("class_id") == -1:
@@ -113,19 +117,26 @@ class CyclePatternClassifier:
                 record["class_id"] = class_id
                 record["distance_to_representative"] = distance
                 class_members[class_id].append(activity_id)
+                if str(activity_id) in fit_id_set:
+                    fit_class_members[class_id].append(activity_id)
 
         classes = []
         for class_id, representative in enumerate(anchors):
             members = class_members[class_id]
-            if not members:
+            fit_members = fit_class_members[class_id]
+            if not fit_members:
                 continue
-            lengths = np.asarray([activities[m]["length_samples"] for m in members], dtype=np.int64)
-            signatures = Counter(tuple(activities[m]["signature"]) for m in members)
+            lengths = np.asarray(
+                [activities[m]["length_samples"] for m in fit_members], dtype=np.int64)
+            signatures = Counter(
+                tuple(activities[m]["signature"]) for m in fit_members)
             classes.append({
                 "class_id": int(class_id),
                 "representative_signature": list(representative),
-                "support": int(len(members)),
+                "support": int(len(fit_members)),
+                "total_support": int(len(members)),
                 "member_ids": members,
+                "fit_member_ids": fit_members,
                 "unique_signatures": int(len(signatures)),
                 "signature_counts": {
                     "->".join(map(str, key)): int(value)
@@ -154,11 +165,14 @@ class CyclePatternClassifier:
                 "min_unique_states": self.min_unique_states,
             },
             "n_activities": int(len(activities)),
+            "n_fit_activities": int(sum(
+                str(key) in fit_id_set for key in activities)),
             "n_classes": int(len(classes)),
             "n_outliers": int(sum(r["class_id"] == -1 for r in activities.values())),
             "classes": classes,
             "outlier_ids": sorted(k for k, r in activities.items() if r["class_id"] == -1),
             "activities": activities,
+            "fit_scope": "train_only" if fit_ids is not None else "all_activities",
         }
 
 

@@ -21,7 +21,8 @@ class CycleSplitStep(Step):
     step_type = "cycle_split"
 
     def __init__(self, cluster_tag: str, train_ratio: float = 0.7,
-                 validation_ratio: float = 0.1, test_ratio: float = 0.2):
+                 validation_ratio: float = 0.1, test_ratio: float = 0.2,
+                 require_temporal_holdout: bool = False):
         if not cluster_tag:
             raise ValueError("cycle split requires --cluster-tag")
         ratios = [float(train_ratio), float(validation_ratio), float(test_ratio)]
@@ -29,9 +30,12 @@ class CycleSplitStep(Step):
             raise ValueError("cycle_split ratios must be non-negative and sum to 1")
         if ratios[0] <= 0:
             raise ValueError("cycle_split.train_ratio must be positive")
-        super().__init__(variant=f"chronological_stratified_on_{cluster_tag}")
+        scope = ("global_chronological_train_only"
+                 if require_temporal_holdout else "chronological_stratified")
+        super().__init__(variant=f"{scope}_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.train_ratio, self.validation_ratio, self.test_ratio = ratios
+        self.require_temporal_holdout = bool(require_temporal_holdout)
 
     @staticmethod
     def _counts(n: int, train_ratio: float, validation_ratio: float,
@@ -67,7 +71,13 @@ class CycleSplitStep(Step):
         for entry in result.get("classes", []):
             entry["member_ids"] = [str(value) for value in entry.get("member_ids", [])
                                    if str(value) in member_ids]
-            entry["support"] = len(entry["member_ids"])
+            entry["fit_member_ids"] = [
+                str(value) for value in entry.get(
+                    "fit_member_ids", entry["member_ids"])
+                if str(value) in member_ids
+            ]
+            entry["support"] = len(entry["fit_member_ids"])
+            entry["total_support"] = len(entry["member_ids"])
             if entry["member_ids"]:
                 classes.append(entry)
         result["classes"] = classes
@@ -76,7 +86,8 @@ class CycleSplitStep(Step):
         result["source_split"] = {
             "name": split,
             "waveform_holdout": True,
-            "structure_fit_scope": "all_validated_cycles",
+            "structure_fit_scope": (result.get("validation") or {}).get(
+                "fit_scope", "all_validated_cycles"),
         }
         return result
 
@@ -93,6 +104,9 @@ class CycleSplitStep(Step):
                 "[cycle_split] validated catalog not found; run cycle_validate first")
         with open(catalog_path, encoding="utf-8") as f:
             payload = json.load(f)
+        if (self.require_temporal_holdout
+                and (payload.get("validation") or {}).get("fit_scope") != "train_only"):
+            raise ValueError("[cycle_split] strict temporal validation is required")
 
         segments_dir = self.resolve(context, "extract_active_data", "segments_dir")
         files = (sorted(name for name in os.listdir(segments_dir)
@@ -113,16 +127,31 @@ class CycleSplitStep(Step):
 
         split_ids = {"train": set(), "validation": set(), "test": set()}
         assignments, group_summary = [], []
+        strict_temporal = ((payload.get("validation") or {}).get("fit_scope")
+                           == "train_only")
         for (class_id, mode_id), members in sorted(groups.items()):
             members = sorted(members, key=int)
-            n_train, n_validation, n_test = self._counts(
-                len(members), self.train_ratio, self.validation_ratio, self.test_ratio)
-            boundaries = (n_train, n_train + n_validation)
-            slices = {
-                "train": members[:boundaries[0]],
-                "validation": members[boundaries[0]:boundaries[1]],
-                "test": members[boundaries[1]:],
-            }
+            if strict_temporal:
+                slices = {split: [] for split in split_ids}
+                for activity_id in members:
+                    split = payload["activities"][activity_id].get("source_split")
+                    if split not in slices:
+                        raise ValueError(
+                            f"[cycle_split] activity {activity_id} lacks temporal split")
+                    slices[split].append(activity_id)
+                n_train, n_validation, n_test = (
+                    len(slices["train"]), len(slices["validation"]),
+                    len(slices["test"]))
+            else:
+                n_train, n_validation, n_test = self._counts(
+                    len(members), self.train_ratio, self.validation_ratio,
+                    self.test_ratio)
+                boundaries = (n_train, n_train + n_validation)
+                slices = {
+                    "train": members[:boundaries[0]],
+                    "validation": members[boundaries[0]:boundaries[1]],
+                    "test": members[boundaries[1]:],
+                }
             for split, ids in slices.items():
                 split_ids[split].update(ids)
                 for activity_id in ids:
@@ -167,14 +196,16 @@ class CycleSplitStep(Step):
         artifacts["assignments"] = self.rel(context, assignment_path)
 
         summary = {
-            "method": "chronological_within_class_mode",
+            "method": ("inherited_global_chronological_before_structure_fit"
+                       if strict_temporal else "chronological_within_class_mode"),
             "ratios": {"train": self.train_ratio,
                        "validation": self.validation_ratio,
                        "test": self.test_ratio},
             "counts": {key: len(value) for key, value in split_ids.items()},
             "groups": group_summary,
             "waveform_holdout": True,
-            "structure_fit_scope": "all_validated_cycles",
+            "structure_fit_scope": ("train_only" if strict_temporal
+                                    else "all_validated_cycles"),
         }
         summary_path = os.path.join(log_dir, "cycle_split_summary.json")
         with open(summary_path, "w", encoding="utf-8") as f:
@@ -185,7 +216,7 @@ class CycleSplitStep(Step):
             "cluster_tag": self.cluster_tag,
             "counts": summary["counts"],
             "waveform_holdout": True,
-            "structure_fit_scope": "all_validated_cycles",
+            "structure_fit_scope": summary["structure_fit_scope"],
         })
         print(f"[cycle_split] train/validation/test={summary['counts']} -> {log_dir}")
         return context

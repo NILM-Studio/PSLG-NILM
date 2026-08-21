@@ -36,11 +36,13 @@ class PrimitiveSynthesisStep(Step):
                  within_state_smooth_samples: int = 3,
                  boundary_smooth_samples: int = 3,
                  require_cycle_validation: bool = True,
-                 require_cycle_split: bool = False):
+                 require_cycle_split: bool = False,
+                 require_train_only_structure: bool = False):
         if not cluster_tag:
             raise ValueError("primitive synthesis requires --cluster-tag")
         if require_cycle_split:
-            validation_tag = "train_split"
+            validation_tag = ("strict_train_split" if require_train_only_structure
+                              else "train_split")
         else:
             validation_tag = ("validated_modes" if require_cycle_validation
                               else "unvalidated")
@@ -76,6 +78,7 @@ class PrimitiveSynthesisStep(Step):
         self.boundary_smooth_samples = int(boundary_smooth_samples)
         self.require_cycle_validation = bool(require_cycle_validation)
         self.require_cycle_split = bool(require_cycle_split)
+        self.require_train_only_structure = bool(require_train_only_structure)
         if self.fs <= 0:
             raise ValueError("primitive_synthesis.fs must be positive")
         if self.conditioning_method not in ("independent", "cycle_neighbors"):
@@ -155,6 +158,11 @@ class PrimitiveSynthesisStep(Step):
                 raise ValueError(
                     "[primitive_synthesis] cycle split catalog is not a valid "
                     "waveform-held-out training catalog")
+            if (self.require_train_only_structure
+                    and source_split.get("structure_fit_scope") != "train_only"):
+                raise ValueError(
+                    "[primitive_synthesis] training catalog structure was not "
+                    "fit on train only")
             return self._validated_catalog(payload)
 
         validation = context["manifest"].get_step("cycle_validation") or {}
@@ -547,6 +555,9 @@ class PrimitiveSynthesisStep(Step):
             "cycle_validation_required": self.require_cycle_validation,
             "cycle_split_required": self.require_cycle_split,
             "source_split": "train" if self.require_cycle_split else "all_validated",
+            "structure_fit_scope": (
+                "train_only" if self.require_train_only_structure
+                else "all_validated_cycles"),
             "states": sorted({state for library in libraries.values()
                               for state in library.states}),
         })

@@ -20,6 +20,8 @@ EPOCHS="${EPOCHS:-30}"
 PATIENCE="${PATIENCE:-5}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-}"
 FORCE="${FORCE:-0}"
+DATASET_DIR="${DATASET_DIR:-}"
+TEST_STRIDE="${TEST_STRIDE:-1}"
 
 EXTRA_ARGS=()
 if [[ -n "$OUTPUT_ROOT" ]]; then
@@ -28,6 +30,9 @@ fi
 if [[ "$FORCE" == "1" ]]; then
   EXTRA_ARGS+=(--force)
 fi
+if [[ -n "$DATASET_DIR" ]]; then
+  EXTRA_ARGS+=(--dataset-dir "$DATASET_DIR")
+fi
 
 python -u -m scripts.train_nilm_seq2point \
   --run-id "$RUN_ID" \
@@ -35,4 +40,5 @@ python -u -m scripts.train_nilm_seq2point \
   --seed "$SEED" \
   --epochs "$EPOCHS" \
   --patience "$PATIENCE" \
+  --test-stride "$TEST_STRIDE" \
   "${EXTRA_ARGS[@]}"

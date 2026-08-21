@@ -22,7 +22,8 @@ class NilmDatasetStep(Step):
                  expected_conditioning_neighbors: int = 10,
                  traditional_scale_range=(0.9, 1.1),
                  traditional_noise_ratio: float = 0.01,
-                 active_threshold_watts: float = 10.0):
+                 active_threshold_watts: float = 10.0,
+                 require_train_only_structure: bool = False):
         if not cluster_tag:
             raise ValueError("nilm_dataset requires --cluster-tag")
         if not aligned_series_path:
@@ -30,7 +31,8 @@ class NilmDatasetStep(Step):
         ratios = [float(value) for value in real_ratios]
         if not ratios or any(value <= 0 or value > 1 for value in ratios):
             raise ValueError("nilm_dataset.real_ratios must be in (0, 1]")
-        super().__init__(variant=f"cycle_augmentation_on_{cluster_tag}")
+        scope = "strict_" if require_train_only_structure else ""
+        super().__init__(variant=f"{scope}cycle_augmentation_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.aligned_series_path = aligned_series_path
         self.real_ratios = ratios
@@ -46,6 +48,7 @@ class NilmDatasetStep(Step):
             raise ValueError("traditional_scale_range must contain positive [low, high]")
         self.traditional_noise_ratio = max(0.0, float(traditional_noise_ratio))
         self.active_threshold_watts = max(0.0, float(active_threshold_watts))
+        self.require_train_only_structure = bool(require_train_only_structure)
 
     @staticmethod
     def _load_assignments(path: str) -> list[dict]:
@@ -156,6 +159,11 @@ class NilmDatasetStep(Step):
         segments_dir = self.resolve(context, "extract_active_data", "segments_dir")
         if not (assignments_path and os.path.exists(assignments_path)):
             raise FileNotFoundError("[nilm_dataset] cycle split assignments not found")
+        split_entry = context["manifest"].get_step("cycle_split") or {}
+        if (self.require_train_only_structure
+                and (split_entry.get("extra") or {}).get(
+                    "structure_fit_scope") != "train_only"):
+            raise ValueError("[nilm_dataset] train-only structure fit is required")
         if not (segments_dir and os.path.isdir(segments_dir)):
             raise FileNotFoundError("[nilm_dataset] extracted activity directory not found")
         synthetic_dir, synthetic_manifest_path = self._validate_synthesis(context)
