@@ -66,20 +66,44 @@ def predict_corpus(model, corpus: CycleWindowCorpus, batch_size: int,
 
 def chunk_energy_metrics(target: np.ndarray, prediction: np.ndarray,
                          lengths: list[int]) -> dict:
-    errors = []
+    active_errors = []
+    zero_energy_prediction_means = []
     offset = 0
     for length in lengths:
-        real = float(np.sum(target[offset:offset + length]))
-        estimated = float(np.sum(prediction[offset:offset + length]))
-        errors.append(abs(estimated - real) / max(real, 1e-12))
+        real_chunk = target[offset:offset + length]
+        predicted_chunk = prediction[offset:offset + length]
+        real = float(np.sum(real_chunk))
+        estimated = float(np.sum(predicted_chunk))
+        if real > np.finfo(np.float32).eps:
+            active_errors.append(abs(estimated - real) / real)
+        else:
+            zero_energy_prediction_means.append(float(np.mean(predicted_chunk)))
         offset += length
     if offset != len(target):
         raise ValueError("prediction chunk lengths do not cover the test corpus")
-    values = np.asarray(errors, dtype=np.float64)
+    values = np.asarray(active_errors, dtype=np.float64)
+    zero_values = np.asarray(zero_energy_prediction_means, dtype=np.float64)
     return {
-        "mean_chunk_energy_relative_error": float(np.mean(values)),
-        "median_chunk_energy_relative_error": float(np.median(values)),
-        "p95_chunk_energy_relative_error": float(np.percentile(values, 95)),
+        "active_energy_chunk_count": int(len(values)),
+        "zero_energy_chunk_count": int(len(zero_values)),
+        "mean_active_chunk_energy_relative_error": (
+            float(np.mean(values)) if len(values) else None),
+        "median_active_chunk_energy_relative_error": (
+            float(np.median(values)) if len(values) else None),
+        "p95_active_chunk_energy_relative_error": (
+            float(np.percentile(values, 95)) if len(values) else None),
+        "mean_prediction_watts_on_zero_energy_chunks": (
+            float(np.mean(zero_values)) if len(zero_values) else None),
+        "p95_prediction_watts_on_zero_energy_chunks": (
+            float(np.percentile(zero_values, 95)) if len(zero_values) else None),
+    }
+
+
+def target_distribution(corpus: CycleWindowCorpus, on_threshold: float) -> dict:
+    target = corpus.all_targets()
+    return {
+        "mean_watts": float(np.mean(target)),
+        "on_fraction": float(np.mean(target >= on_threshold)),
     }
 
 
@@ -130,6 +154,8 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
         model, test, args.batch_size, args.appliance_scale)
     metrics = regression_metrics(target, prediction, args.on_threshold)
     metrics.update(chunk_energy_metrics(target, prediction, cycle_lengths))
+    train_distribution = target_distribution(train, args.on_threshold)
+    validation_distribution = target_distribution(validation, args.on_threshold)
     metrics.update({
         "ratio": ratio, "group": group, "seed": args.seed,
         "train_cycles": len(train_files), "validation_cycles": len(full["validation"]),
@@ -138,6 +164,10 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
         "window_length": args.window_length, "train_stride": args.train_stride,
         "validation_stride": args.validation_stride,
         "test_stride": args.test_stride,
+        "train_target_mean_watts": train_distribution["mean_watts"],
+        "train_target_on_fraction": train_distribution["on_fraction"],
+        "validation_target_mean_watts": validation_distribution["mean_watts"],
+        "validation_target_on_fraction": validation_distribution["on_fraction"],
         "mains_scale": args.mains_scale, "appliance_scale": args.appliance_scale,
         "epochs_completed": len(history.history["loss"]),
         "best_validation_loss": float(np.min(history.history["val_loss"])),

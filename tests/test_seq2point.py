@@ -39,7 +39,17 @@ class Seq2PointTests(unittest.TestCase):
     def test_chunk_energy_metrics_are_zero_for_perfect_prediction(self):
         values = np.asarray([0, 10, 20, 30], dtype=np.float32)
         metrics = chunk_energy_metrics(values, values, [2, 2])
-        self.assertEqual(metrics["mean_chunk_energy_relative_error"], 0.0)
+        self.assertEqual(metrics["mean_active_chunk_energy_relative_error"], 0.0)
+
+    def test_zero_energy_chunks_report_false_power_without_dividing_by_zero(self):
+        target = np.asarray([0, 0, 10, 20], dtype=np.float32)
+        prediction = np.asarray([5, 7, 10, 20], dtype=np.float32)
+        metrics = chunk_energy_metrics(target, prediction, [2, 2])
+        self.assertEqual(metrics["active_energy_chunk_count"], 1)
+        self.assertEqual(metrics["zero_energy_chunk_count"], 1)
+        self.assertEqual(
+            metrics["mean_prediction_watts_on_zero_energy_chunks"], 6.0)
+        self.assertEqual(metrics["mean_active_chunk_energy_relative_error"], 0.0)
 
     def test_experiment_matrix_contains_ten_runs(self):
         manifest = {"experiments": {
