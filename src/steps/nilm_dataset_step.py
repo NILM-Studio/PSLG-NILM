@@ -11,6 +11,8 @@ import numpy as np
 import pandas as pd
 
 from src.framework.step import Step
+from src.generation.primitive_library import (Primitive, PrimitiveLibrary,
+                                              RealPrimitiveSampler)
 
 
 class NilmDatasetStep(Step):
@@ -23,6 +25,10 @@ class NilmDatasetStep(Step):
                  traditional_scale_range=(0.9, 1.1),
                  traditional_noise_ratio: float = 0.01,
                  active_threshold_watts: float = 10.0,
+                 synthesis_scope: str = "legacy_global",
+                 candidate_pool: int = 32,
+                 within_state_smooth_samples: int = 3,
+                 boundary_smooth_samples: int = 3,
                  require_train_only_structure: bool = False):
         if not cluster_tag:
             raise ValueError("nilm_dataset requires --cluster-tag")
@@ -31,11 +37,16 @@ class NilmDatasetStep(Step):
         ratios = [float(value) for value in real_ratios]
         if not ratios or any(value <= 0 or value > 1 for value in ratios):
             raise ValueError("nilm_dataset.real_ratios must be in (0, 1]")
+        if synthesis_scope not in ("legacy_global", "budget_local"):
+            raise ValueError(
+                "nilm_dataset.synthesis_scope must be legacy_global or budget_local")
         scope = "strict_" if require_train_only_structure else ""
-        super().__init__(variant=f"{scope}cycle_augmentation_on_{cluster_tag}")
+        budget = "budget_local_" if synthesis_scope == "budget_local" else ""
+        super().__init__(
+            variant=f"{scope}{budget}cycle_augmentation_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.aligned_series_path = aligned_series_path
-        self.real_ratios = ratios
+        self.real_ratios = sorted(set(ratios))
         self.sample_period_seconds = int(sample_period_seconds)
         self.max_gap_seconds = int(max_gap_seconds)
         self.random_seed = int(random_seed)
@@ -48,6 +59,11 @@ class NilmDatasetStep(Step):
             raise ValueError("traditional_scale_range must contain positive [low, high]")
         self.traditional_noise_ratio = max(0.0, float(traditional_noise_ratio))
         self.active_threshold_watts = max(0.0, float(active_threshold_watts))
+        self.synthesis_scope = synthesis_scope
+        self.candidate_pool = max(1, int(candidate_pool))
+        self.within_state_smooth_samples = max(
+            0, int(within_state_smooth_samples))
+        self.boundary_smooth_samples = max(0, int(boundary_smooth_samples))
         self.require_train_only_structure = bool(require_train_only_structure)
 
     @staticmethod
@@ -77,6 +93,26 @@ class NilmDatasetStep(Step):
             if not progressed:
                 break
         return selected
+
+    @staticmethod
+    def _stratified_order(records: list[dict],
+                          rng: np.random.Generator) -> list[dict]:
+        """Return one deterministic round-robin order for nested budgets."""
+        groups = {}
+        for record in records:
+            key = (int(record["class_id"]), int(record["mode_id"]))
+            groups.setdefault(key, []).append(record)
+        for values in groups.values():
+            rng.shuffle(values)
+        ordered, keys = [], sorted(groups)
+        while True:
+            progressed = False
+            for key in keys:
+                if groups[key]:
+                    ordered.append(groups[key].pop())
+                    progressed = True
+            if not progressed:
+                return ordered
 
     @staticmethod
     def _resample_interval(timestamp: np.ndarray, mains: np.ndarray,
@@ -151,6 +187,154 @@ class NilmDatasetStep(Step):
             raise FileNotFoundError("[nilm_dataset] selected synthesis artifacts not found")
         return cycles, manifest
 
+    def _budget_resources(self, context: dict, train_ids: set[int]):
+        catalog_path = self.resolve(context, "cycle_split", "train_catalog")
+        if not (catalog_path and os.path.exists(catalog_path)):
+            raise FileNotFoundError(
+                "[nilm_dataset] train catalog is required for budget-local synthesis")
+        with open(catalog_path, encoding="utf-8") as f:
+            catalog = json.load(f)
+
+        def cluster_array(key):
+            path = context["manifest"].cluster_artifact_path(self.cluster_tag, key)
+            if not (path and os.path.exists(path)):
+                raise FileNotFoundError(
+                    f"[nilm_dataset] missing {self.cluster_tag}.{key}")
+            return np.load(path)
+
+        labels = cluster_array("labels").reshape(-1)
+        indices = cluster_array("indices")
+        lengths = cluster_array("seq_len").reshape(-1)
+        if not (len(labels) == len(indices) == len(lengths)):
+            raise ValueError(
+                "[nilm_dataset] primitive cluster artifacts are not row-aligned")
+
+        segments_dir = self.resolve(context, "extract_active_data", "segments_dir")
+        files = sorted(name for name in os.listdir(segments_dir)
+                       if name.lower().endswith(".csv"))
+        power_cache, primitives = {}, []
+        for primitive_id, (label, index, length) in enumerate(
+                zip(labels, indices, lengths)):
+            activity_id, start = int(index[0]), int(index[1])
+            if activity_id not in train_ids or int(length) <= 0:
+                continue
+            if activity_id not in power_cache:
+                frame = pd.read_csv(os.path.join(segments_dir, files[activity_id]))
+                column = "power" if "power" in frame.columns else frame.columns[-1]
+                power_cache[activity_id] = pd.to_numeric(
+                    frame[column], errors="coerce").fillna(0.0).to_numpy(
+                        dtype=np.float32)
+            source = power_cache[activity_id]
+            end = min(len(source), start + int(length))
+            if 0 <= start < end:
+                primitives.append(Primitive(
+                    primitive_id=int(primitive_id), state_label=int(label),
+                    activity_index=activity_id, start=start,
+                    power=np.asarray(source[start:end], dtype=np.float32)))
+        if not primitives:
+            raise ValueError("[nilm_dataset] budget-local primitive pool is empty")
+        return catalog, primitives
+
+    def _generate_budget_cycles(
+            self, log_dir: str, tag: str, real_subset: list[dict],
+            real_by_activity: dict, catalog: dict,
+            all_primitives: list[Primitive]) -> list[dict]:
+        selected_ids = {int(row["activity_id"]) for row in real_subset}
+        activities = catalog.get("activities", {})
+        missing = selected_ids - {int(key) for key in activities}
+        if missing:
+            raise ValueError(
+                f"[nilm_dataset] budget activities missing from catalog: {sorted(missing)}")
+
+        group_ids = {}
+        for row in real_subset:
+            key = (int(row["class_id"]), int(row["mode_id"]))
+            group_ids.setdefault(key, set()).add(int(row["activity_id"]))
+        samplers = {}
+        for key, ids in group_ids.items():
+            group_primitives = [primitive for primitive in all_primitives
+                                if primitive.activity_index in ids]
+            samplers[key] = RealPrimitiveSampler(
+                PrimitiveLibrary(group_primitives),
+                candidate_pool=self.candidate_pool,
+                within_state_smooth_samples=self.within_state_smooth_samples,
+                boundary_smooth_samples=self.boundary_smooth_samples)
+
+        generated = []
+        output_dir = os.path.join(
+            log_dir, "cycles", "synthetic_budget", tag)
+        for cycle_index, source_record in enumerate(real_subset):
+            source_id = int(source_record["activity_id"])
+            key = (int(source_record["class_id"]), int(source_record["mode_id"]))
+            allowed_ids = group_ids[key]
+            blocks = activities[str(source_id)].get("blocks", [])
+            rng = np.random.default_rng(np.random.SeedSequence([
+                self.random_seed, source_id, 86028121,
+            ]))
+            powers, provenance, previous_end = [], [], None
+            for block_index, block in enumerate(blocks):
+                state = int(block["state_label"])
+                length = int(block.get("length_samples", 0))
+                if length <= 0:
+                    continue
+                try:
+                    power, sources = samplers[key].sample_block(
+                        state, length, rng, initial_power=previous_end,
+                        allowed_activity_ids=allowed_ids)
+                except KeyError as exc:
+                    raise ValueError(
+                        f"[nilm_dataset] budget {tag} group {key} lacks state {state}"
+                    ) from exc
+                powers.append(power)
+                previous_end = float(power[-1])
+                provenance.append({
+                    "block_index": int(block_index),
+                    "state_label": state,
+                    "length_samples": int(len(power)),
+                    "sources": sources,
+                })
+            if not powers:
+                raise ValueError(
+                    f"[nilm_dataset] activity {source_id} has no usable budget blocks")
+            target = np.concatenate(powers).astype(np.float32)
+            used_ids = sorted({
+                int(source["activity_index"])
+                for block in provenance for source in block["sources"]
+            })
+            if not set(used_ids).issubset(selected_ids):
+                raise ValueError(
+                    "[nilm_dataset] budget-local synthesis used an out-of-budget primitive")
+
+            source_payload = real_by_activity[str(source_id)]["payload"]
+            background = np.maximum(
+                source_payload["mains"] - source_payload["appliance"], 0.0)
+            background_axis = np.linspace(0.0, 1.0, len(background))
+            target_axis = np.linspace(0.0, 1.0, len(target))
+            synthetic_background = np.interp(
+                target_axis, background_axis, background).astype(np.float32)
+            payload = {
+                "timestamp": np.arange(len(target), dtype=np.int64)
+                * self.sample_period_seconds,
+                "mains": (synthetic_background + target).astype(np.float32),
+                "appliance": target,
+            }
+            path = self._write_npz(
+                output_dir, f"synthetic_{cycle_index:05d}_source_{source_id:05d}",
+                payload)
+            generated.append({
+                "kind": "synthetic_budget_local",
+                "cycle_id": int(cycle_index),
+                "source_activity_id": str(source_id),
+                "class_id": key[0], "mode_id": key[1], "split": "train",
+                "length_samples": int(len(target)),
+                "file": self._relative(path, log_dir),
+                "budget_tag": tag,
+                "budget_activity_ids": sorted(selected_ids),
+                "primitive_source_activity_ids": used_ids,
+                "blocks": provenance,
+            })
+        return generated
+
     def run(self, context: dict) -> dict:
         aligned_path = Path(self.aligned_series_path)
         if not aligned_path.exists():
@@ -166,7 +350,9 @@ class NilmDatasetStep(Step):
             raise ValueError("[nilm_dataset] train-only structure fit is required")
         if not (segments_dir and os.path.isdir(segments_dir)):
             raise FileNotFoundError("[nilm_dataset] extracted activity directory not found")
-        synthetic_dir, synthetic_manifest_path = self._validate_synthesis(context)
+        synthetic_dir = synthetic_manifest_path = None
+        if self.synthesis_scope == "legacy_global":
+            synthetic_dir, synthetic_manifest_path = self._validate_synthesis(context)
 
         pair = pd.read_csv(
             aligned_path, usecols=["timestamp", "mains", "appliance"],
@@ -209,8 +395,10 @@ class NilmDatasetStep(Step):
             real_records.append(record)
             real_by_activity[activity_id] = {**record, "payload": values}
 
-        with open(synthetic_manifest_path, encoding="utf-8") as f:
-            synthetic_manifest = json.load(f)
+        synthetic_manifest = []
+        if synthetic_manifest_path:
+            with open(synthetic_manifest_path, encoding="utf-8") as f:
+                synthetic_manifest = json.load(f)
         synthetic_records, rejected_synthetic = [], []
         for row in synthetic_manifest:
             source_id = str(row.get("source_activity_id", ""))
@@ -288,20 +476,37 @@ class NilmDatasetStep(Step):
             }
             traditional_records.append(augmented_record)
             traditional_by_activity[activity_id] = augmented_record
+        budget_catalog = None
+        budget_primitives = []
+        if self.synthesis_scope == "budget_local":
+            budget_catalog, budget_primitives = self._budget_resources(
+                context, {int(row["activity_id"]) for row in train})
+        budget_order = self._stratified_order(
+            train, np.random.default_rng(np.random.SeedSequence([
+                self.random_seed, 15485863,
+            ])))
         experiments = {}
+        budget_synthesis_records = {}
         for ratio in self.real_ratios:
             count = max(1, int(round(len(train) * ratio)))
-            ratio_seed = np.random.SeedSequence(
-                [self.random_seed, int(round(ratio * 10_000))])
-            rng = np.random.default_rng(ratio_seed)
-            real_subset = self._stratified_select(train, count, rng)
-            generated_subset = self._stratified_select(
-                synthetic_records, min(len(synthetic_records), len(real_subset)), rng)
+            real_subset = list(budget_order[:count])
+            tag = f"{int(round(ratio * 100)):02d}pct"
+            if self.synthesis_scope == "budget_local":
+                generated_subset = self._generate_budget_cycles(
+                    log_dir, tag, real_subset, real_by_activity,
+                    budget_catalog, budget_primitives)
+                budget_synthesis_records[tag] = generated_subset
+            else:
+                ratio_rng = np.random.default_rng(np.random.SeedSequence([
+                    self.random_seed, int(round(ratio * 10_000)),
+                ]))
+                generated_subset = self._stratified_select(
+                    synthetic_records,
+                    min(len(synthetic_records), len(real_subset)), ratio_rng)
             traditional_subset = [
                 traditional_by_activity[str(row["activity_id"])]
                 for row in real_subset
             ]
-            tag = f"{int(round(ratio * 100)):02d}pct"
             experiments[tag] = {
                 "real_ratio": ratio,
                 "A_real_only": [row["file"] for row in real_subset],
@@ -314,6 +519,12 @@ class NilmDatasetStep(Step):
                 "selected_real_count": len(real_subset),
                 "selected_traditional_count": len(traditional_subset),
                 "selected_generated_count": len(generated_subset),
+                "selected_real_activity_ids": [
+                    str(row["activity_id"]) for row in real_subset],
+                "synthesis_fit_activity_ids": [
+                    str(row["activity_id"]) for row in real_subset],
+                "synthesis_fit_count": len(real_subset),
+                "synthesis_scope": self.synthesis_scope,
             }
         experiments["full"] = {
             "D_full_real": [row["file"] for row in train],
@@ -339,6 +550,42 @@ class NilmDatasetStep(Step):
 
         manifest_path = os.path.join(log_dir, "nilm_dataset_manifest.json")
         total_real = len(real_records) + len(rejected)
+        budget_synthetic_count = sum(
+            len(rows) for rows in budget_synthesis_records.values())
+        budget_source_ids = {
+            tag: sorted({
+                int(activity_id)
+                for row in rows
+                for activity_id in row["primitive_source_activity_ids"]
+            })
+            for tag, rows in budget_synthesis_records.items()
+        }
+        budget_fit_ids = {
+            tag: {int(value) for value in experiments[tag]["synthesis_fit_activity_ids"]}
+            for tag in budget_synthesis_records
+        }
+        budget_leakage_violations = {
+            tag: sorted(set(budget_source_ids[tag]) - budget_fit_ids[tag])
+            for tag in budget_synthesis_records
+            if set(budget_source_ids[tag]) - budget_fit_ids[tag]
+        }
+        if budget_leakage_violations:
+            raise ValueError(
+                "[nilm_dataset] out-of-budget primitive provenance detected: "
+                f"{budget_leakage_violations}")
+        nested_budget_ids = [
+            {int(value) for value in experiments[
+                f"{int(round(ratio * 100)):02d}pct"]["selected_real_activity_ids"]}
+            for ratio in self.real_ratios
+        ]
+        nested_subsets_verified = all(
+            left.issubset(right)
+            for left, right in zip(nested_budget_ids, nested_budget_ids[1:]))
+        if not nested_subsets_verified:
+            raise ValueError("[nilm_dataset] real-data budgets are not nested")
+        effective_synthetic_count = (
+            budget_synthetic_count if self.synthesis_scope == "budget_local"
+            else len(synthetic_records))
         audit = {
             "aligned_series": str(aligned_path),
             "sample_period_seconds": self.sample_period_seconds,
@@ -350,14 +597,28 @@ class NilmDatasetStep(Step):
             "real_rejection_reasons": dict(Counter(
                 row["reason"] for row in rejected)),
             "class_mode_retention": group_retention,
-            "synthetic_count": len(synthetic_records),
+            "synthetic_count": effective_synthetic_count,
             "synthetic_rejected": len(rejected_synthetic),
             "synthetic_acceptance_ratio": (
-                len(synthetic_records) / len(synthetic_manifest)
-                if synthetic_manifest else 0.0),
+                1.0 if self.synthesis_scope == "budget_local"
+                else (len(synthetic_records) / len(synthetic_manifest)
+                      if synthetic_manifest else 0.0)),
             "synthetic_rejection_reasons": dict(Counter(
                 row["reason"] for row in rejected_synthetic)),
             "synthetic_background": "max(source_train_mains-source_train_appliance,0)",
+            "synthesis_scope": self.synthesis_scope,
+            "nested_real_subsets": nested_subsets_verified,
+            "budget_leakage_check": {
+                "passed": not budget_leakage_violations,
+                "primitive_source_scope": "ratio_budget_only",
+                "empirical_cycle_structure_scope": "ratio_budget_only",
+                "upstream_state_representation_scope": "temporal_training_split_only",
+                "primitive_source_activity_ids": budget_source_ids,
+                "violations": budget_leakage_violations,
+            },
+            "budget_synthesis_counts": {
+                tag: len(rows) for tag, rows in budget_synthesis_records.items()
+            },
             "traditional_augmentation": {
                 "method": "magnitude_scaling_plus_active_jitter",
                 "count": len(traditional_records),
@@ -373,6 +634,10 @@ class NilmDatasetStep(Step):
         }
         with open(manifest_path, "w", encoding="utf-8") as f:
             json.dump(audit, f, indent=2, ensure_ascii=False)
+        budget_manifest_path = os.path.join(
+            log_dir, "budget_synthesis_manifest.json")
+        with open(budget_manifest_path, "w", encoding="utf-8") as f:
+            json.dump(budget_synthesis_records, f, indent=2, ensure_ascii=False)
         traditional_manifest_path = os.path.join(
             log_dir, "traditional_augmentation_manifest.json")
         with open(traditional_manifest_path, "w", encoding="utf-8") as f:
@@ -381,12 +646,15 @@ class NilmDatasetStep(Step):
             "dataset_manifest": self.rel(context, manifest_path),
             "cycles_dir": self.rel(context, cycle_root),
             "traditional_manifest": self.rel(context, traditional_manifest_path),
+            "budget_synthesis_manifest": self.rel(
+                context, budget_manifest_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
             "real_counts": audit["real_counts"],
-            "synthetic_count": len(synthetic_records),
+            "synthetic_count": effective_synthetic_count,
+            "synthesis_scope": self.synthesis_scope,
             "waveform_holdout": True,
         })
         print(f"[nilm_dataset] real={audit['real_counts']} synthetic="
-              f"{len(synthetic_records)} -> {log_dir}")
+              f"{effective_synthetic_count} scope={self.synthesis_scope} -> {log_dir}")
         return context

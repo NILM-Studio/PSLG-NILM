@@ -331,6 +331,10 @@ def _build_nilm_dataset(cfg, sel):
         traditional_scale_range=c.get("traditional_scale_range", [0.9, 1.1]),
         traditional_noise_ratio=c.get("traditional_noise_ratio", 0.01),
         active_threshold_watts=c.get("active_threshold_watts", 10),
+        synthesis_scope=c.get("synthesis_scope", "legacy_global"),
+        candidate_pool=c.get("candidate_pool", 32),
+        within_state_smooth_samples=c.get("within_state_smooth_samples", 3),
+        boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
         require_train_only_structure=c.get(
             "require_train_only_structure", False),
     )

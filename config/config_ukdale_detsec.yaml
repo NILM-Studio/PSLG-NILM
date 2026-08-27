@@ -121,6 +121,10 @@ nilm_dataset:
   traditional_scale_range: [0.9, 1.1]
   traditional_noise_ratio: 0.01
   active_threshold_watts: 10
+  synthesis_scope: budget_local
+  candidate_pool: 32
+  within_state_smooth_samples: 3
+  boundary_smooth_samples: 3
   require_train_only_structure: true
 nilm_continuous_dataset:
   aligned_series: input/ukdale_house1_mains_washing_machine.csv

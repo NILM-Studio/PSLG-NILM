@@ -273,6 +273,11 @@ class NilmContinuousDatasetStep(Step):
                 "augmented_off_samples": int(sum(
                     row["length_samples"] for row in repeated_off)),
                 "off_background_policy": "same_unique_pool_repeated_for_B_and_C",
+                "synthesis_scope": entry.get("synthesis_scope", "legacy_global"),
+                "synthesis_fit_count": int(entry.get(
+                    "synthesis_fit_count", entry["selected_real_count"])),
+                "synthesis_fit_activity_ids": entry.get(
+                    "synthesis_fit_activity_ids", []),
             }
 
         full_real = cycle_manifest["experiments"]["full"]["D_full_real"]
@@ -293,6 +298,12 @@ class NilmContinuousDatasetStep(Step):
             "aligned_series": str(aligned_path),
             "cluster_tag": self.cluster_tag,
             "structure_fit_scope": "train_only",
+            "synthesis_scope": cycle_manifest.get(
+                "synthesis_scope", "legacy_global"),
+            "nested_real_subsets": bool(cycle_manifest.get(
+                "nested_real_subsets", False)),
+            "budget_leakage_check": cycle_manifest.get(
+                "budget_leakage_check", {}),
             "temporal_boundaries": {
                 "validation_start": validation_start,
                 "test_start": test_start,

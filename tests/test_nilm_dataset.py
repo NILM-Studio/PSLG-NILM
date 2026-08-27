@@ -1,9 +1,12 @@
+import os
+import tempfile
 import unittest
 
 import numpy as np
 
 from src.steps.nilm_dataset_step import NilmDatasetStep
 from src.steps.nilm_continuous_dataset_step import NilmContinuousDatasetStep
+from src.generation.primitive_library import Primitive
 
 
 class NilmDatasetStepTests(unittest.TestCase):
@@ -38,6 +41,24 @@ class NilmDatasetStepTests(unittest.TestCase):
             {(row["class_id"], row["mode_id"]) for row in selected},
             {(0, 0), (1, 0)},
         )
+
+    def test_stratified_order_produces_nested_budget_prefixes(self):
+        records = [
+            {"class_id": class_id, "mode_id": 0, "activity_id": str(index)}
+            for index, class_id in enumerate([0, 0, 0, 1, 1, 1])
+        ]
+        ordered = NilmDatasetStep._stratified_order(
+            records, np.random.default_rng(42))
+        one = {row["activity_id"] for row in ordered[:2]}
+        two = {row["activity_id"] for row in ordered[:4]}
+        self.assertTrue(one < two)
+        self.assertEqual({row["class_id"] for row in ordered[:2]}, {0, 1})
+
+    def test_real_ratios_are_sorted_and_deduplicated(self):
+        step = NilmDatasetStep(
+            "kmeans_k2_merged", "pair.csv",
+            real_ratios=(0.2, 0.01, 0.1, 0.01))
+        self.assertEqual(step.real_ratios, [0.01, 0.1, 0.2])
 
     def test_traditional_augmentation_preserves_background_and_off_state(self):
         mains = np.array([100, 300, 500], dtype=np.float32)
@@ -90,6 +111,49 @@ class NilmDatasetStepTests(unittest.TestCase):
         self.assertEqual(sum(row["length_samples"] for row in selected), 24)
         self.assertEqual({row["path"] for row in selected},
                          {"off_a.npz", "off_b.npz"})
+
+    def test_budget_synthesis_never_uses_out_of_budget_primitives(self):
+        step = NilmDatasetStep(
+            "kmeans_k2_merged", "pair.csv", synthesis_scope="budget_local")
+        real_subset = [
+            {"activity_id": "1", "class_id": 0, "mode_id": 0},
+            {"activity_id": "2", "class_id": 0, "mode_id": 0},
+        ]
+        catalog = {"activities": {
+            "1": {"blocks": [
+                {"state_label": 0, "length_samples": 3},
+                {"state_label": 1, "length_samples": 3},
+            ]},
+            "2": {"blocks": [
+                {"state_label": 0, "length_samples": 3},
+                {"state_label": 1, "length_samples": 3},
+            ]},
+        }}
+        primitives = [
+            Primitive(0, 0, 1, 0, np.asarray([1, 2, 3], dtype=np.float32)),
+            Primitive(1, 1, 1, 3, np.asarray([10, 11, 12], dtype=np.float32)),
+            Primitive(2, 0, 2, 0, np.asarray([2, 3, 4], dtype=np.float32)),
+            Primitive(3, 1, 2, 3, np.asarray([11, 12, 13], dtype=np.float32)),
+            Primitive(4, 0, 99, 0, np.asarray([100, 100, 100], dtype=np.float32)),
+        ]
+        payload = {
+            "mains": np.full(6, 50, dtype=np.float32),
+            "appliance": np.asarray([1, 2, 3, 10, 11, 12], dtype=np.float32),
+        }
+        real_by_activity = {
+            "1": {"payload": payload}, "2": {"payload": payload},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            generated = step._generate_budget_cycles(
+                directory, "01pct", real_subset, real_by_activity,
+                catalog, primitives)
+            self.assertEqual(len(generated), 2)
+            for row in generated:
+                self.assertEqual(set(row["budget_activity_ids"]), {1, 2})
+                self.assertTrue(
+                    set(row["primitive_source_activity_ids"]).issubset({1, 2}))
+                with np.load(os.path.join(directory, row["file"])) as output:
+                    self.assertTrue(np.all(output["mains"] >= output["appliance"]))
 
 
 if __name__ == "__main__":

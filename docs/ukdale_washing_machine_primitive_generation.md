@@ -572,6 +572,64 @@ sbatch --export=ALL,SEED=42,EPOCHS=30 \
 
 20倍背景下，1%/A训练开机率降至4.08%，与验证集3.57%接近。首次B/C筛选又发现，两组在增加等量增强活动周期后仍只使用A的一份关机背景，导致训练开机率升至约7.9%，使B/C相对A的误报比较失去公平性。正式构建方式改为：A/B/C共享完全相同的唯一关机背景池；B/C只重复引用该背景池以匹配新增活动样本量，不引入A未见过的新关机波形。这样三组的目标开机率保持接近，同时B/C仍只比A增加对应的传统或生成活动周期。
 
+#### 6.3.6 按小样本预算重新拟合生成器
+
+进一步审计发现，早期C组虽然只抽取少量合成周期，但这些周期来自用完整训练集构建的全局基元库。这样会让1%、2%等小样本实验间接使用其预算之外的真实波形，因此早期连续时间线结果仅保留为诊断，不作为论文最终对比。
+
+正式流程改为预算内生成。先在训练时间段内构造一个按类别/模式分层的确定性顺序，各比例取该顺序的前缀，因此1%包含于2%、2%包含于5%，以降低不同样本抽取造成的混杂。对每个比例，基元波形库和经验周期块结构只允许来自该比例已经选中的真实周期；生成数量与真实周期数量相同。A为预算内真实周期，B增加同等数量的传统增强周期，C增加同等数量的预算内生成周期。上游基元状态表示和类别/模式标签仍只由全局训练时间段拟合，不使用验证或测试数据；这属于固定的训练集预处理，不等同于使用预算外波形拟合该比例的生成器。
+
+重建预算内数据集和连续时间线：
+
+```bash
+python main.py \
+  --config config/config_ukdale_detsec.yaml \
+  --steps nilm_dataset,nilm_continuous \
+  --run-id ukdale_wm_primglr_detsec_3789 \
+  --cluster-tag kmeans_k4_merged
+```
+
+新数据目录为：
+
+```text
+log/ukdale_wm_primglr_detsec_3789/
+nilm_dataset_strict_budget_local_cycle_augmentation_on_kmeans_k4_merged/
+```
+
+正式训练前必须检查 `nilm_dataset_manifest.json`：`synthesis_scope` 应为 `budget_local`，`nested_real_subsets` 应为 `true`，`budget_leakage_check.passed` 应为 `true`，且每个比例的 `selected_generated_count` 必须等于 `selected_real_count`。`budget_synthesis_manifest.json` 保存逐周期、逐基元的来源活动编号，可用于复核每个 `primitive_source_activity_ids` 都是相应比例 `synthesis_fit_activity_ids` 的子集。
+
+可在服务器上一键执行以下验收：
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+
+root = Path("log/ukdale_wm_primglr_detsec_3789")
+dataset = root / "nilm_dataset_strict_budget_local_cycle_augmentation_on_kmeans_k4_merged"
+continuous = root / "nilm_continuous_dataset_strict_temporal_on_kmeans_k4_merged"
+cycle_manifest = json.loads((dataset / "nilm_dataset_manifest.json").read_text())
+continuous_manifest = json.loads((continuous / "nilm_dataset_manifest.json").read_text())
+
+assert cycle_manifest["synthesis_scope"] == "budget_local"
+assert cycle_manifest["nested_real_subsets"] is True
+assert cycle_manifest["budget_leakage_check"]["passed"] is True
+assert continuous_manifest["synthesis_scope"] == "budget_local"
+
+previous = set()
+for tag, row in cycle_manifest["experiments"].items():
+    if tag == "full":
+        continue
+    selected = set(row["selected_real_activity_ids"])
+    assert previous <= selected
+    assert row["selected_generated_count"] == row["selected_real_count"]
+    assert set(row["synthesis_fit_activity_ids"]) == selected
+    previous = selected
+    print(tag, "real/generated=", row["selected_real_count"],
+          row["selected_generated_count"], "fit=", row["synthesis_fit_count"])
+print("budget leakage check: PASS")
+PY
+```
+
 ### 6.4 后续扩展
 
 洗衣机完成全套评价后，再选择至少一种运行逻辑明显不同的电器，例如冰箱或水壶，验证方法是否只适用于多阶段洗衣机。
