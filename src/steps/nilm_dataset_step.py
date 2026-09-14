@@ -522,8 +522,10 @@ class NilmDatasetStep(Step):
                 "selected_real_activity_ids": [
                     str(row["activity_id"]) for row in real_subset],
                 "synthesis_fit_activity_ids": [
-                    str(row["activity_id"]) for row in real_subset],
-                "synthesis_fit_count": len(real_subset),
+                    str(row["activity_id"]) for row in real_subset]
+                    if self.synthesis_scope == "budget_local" else None,
+                "synthesis_fit_count": (len(real_subset)
+                    if self.synthesis_scope == "budget_local" else None),
                 "synthesis_scope": self.synthesis_scope,
             }
         experiments["full"] = {
@@ -609,10 +611,15 @@ class NilmDatasetStep(Step):
             "synthesis_scope": self.synthesis_scope,
             "nested_real_subsets": nested_subsets_verified,
             "budget_leakage_check": {
-                "passed": not budget_leakage_violations,
-                "primitive_source_scope": "ratio_budget_only",
-                "empirical_cycle_structure_scope": "ratio_budget_only",
-                "upstream_state_representation_scope": "temporal_training_split_only",
+                "passed": (not budget_leakage_violations
+                           if self.synthesis_scope == "budget_local" else None),
+                "primitive_source_scope": ("ratio_budget_only"
+                    if self.synthesis_scope == "budget_local" else "global_train_pool"),
+                "empirical_cycle_structure_scope": ("ratio_budget_only"
+                    if self.synthesis_scope == "budget_local" else "global_train_pool"),
+                "upstream_state_representation_scope": "not_verified",
+                "cycle_classification_validation_scope": (
+                    (split_entry.get("extra") or {}).get("structure_fit_scope", "unknown")),
                 "primitive_source_activity_ids": budget_source_ids,
                 "violations": budget_leakage_violations,
             },

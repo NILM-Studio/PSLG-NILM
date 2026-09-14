@@ -274,8 +274,7 @@ class NilmContinuousDatasetStep(Step):
                     row["length_samples"] for row in repeated_off)),
                 "off_background_policy": "same_unique_pool_repeated_for_B_and_C",
                 "synthesis_scope": entry.get("synthesis_scope", "legacy_global"),
-                "synthesis_fit_count": int(entry.get(
-                    "synthesis_fit_count", entry["selected_real_count"])),
+                "synthesis_fit_count": entry.get("synthesis_fit_count"),
                 "synthesis_fit_activity_ids": entry.get(
                     "synthesis_fit_activity_ids", []),
             }
