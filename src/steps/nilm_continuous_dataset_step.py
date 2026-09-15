@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -47,6 +48,55 @@ class NilmContinuousDatasetStep(Step):
     @staticmethod
     def _relative(path: str | Path, root: str | Path) -> str:
         return os.path.relpath(path, root).replace(os.sep, "/")
+
+    @staticmethod
+    def _file_sha256(path: str | Path) -> str:
+        digest = hashlib.sha256()
+        with open(path, "rb") as source:
+            for block in iter(lambda: source.read(1024 * 1024), b""):
+                digest.update(block)
+        return digest.hexdigest()
+
+    def _dataset_identity(self, cycle_manifest_path: str, cycle_manifest: dict,
+                          cycle_manifest_sha256: str, holdout_path: str,
+                          holdout_summary_path: str, aligned_path: Path,
+                          structure_fit_scope: str) -> tuple[str, dict]:
+        """Name the output from its actual inputs before creating any files."""
+        cycle_root = Path(cycle_manifest_path).resolve().parent
+        references = sorted({
+            name for entry in cycle_manifest["experiments"].values()
+            for group in ("A_real_only", "B_real_plus_traditional",
+                          "C_real_plus_generated", "D_full_real")
+            for name in entry.get(group, [])
+        })
+        identity = {
+            "schema_version": 1,
+            "source_cycle_manifest_path": str(Path(cycle_manifest_path).resolve()),
+            "source_cycle_manifest_sha256": cycle_manifest_sha256,
+            "source_cycle_files_sha256": {
+                name: self._file_sha256(cycle_root / name) for name in references},
+            "holdout_assignments_sha256": self._file_sha256(holdout_path),
+            "holdout_summary_sha256": self._file_sha256(holdout_summary_path),
+            "aligned_series_path": str(aligned_path.resolve()),
+            "aligned_series_sha256": self._file_sha256(aligned_path),
+            "builder_code_sha256": self._file_sha256(__file__),
+            "cycle_structure_fit_scope": structure_fit_scope,
+            "configuration": {
+                "cluster_tag": self.cluster_tag,
+                "sample_period_seconds": self.sample_period_seconds,
+                "max_gap_seconds": self.max_gap_seconds,
+                "active_threshold_watts": self.active_threshold_watts,
+                "min_off_samples": self.min_off_samples,
+                "max_chunk_samples": self.max_chunk_samples,
+                "off_to_real_sample_ratio": self.off_to_real_sample_ratio,
+                "random_seed": self.random_seed,
+                "require_train_only_structure": self.require_train_only_structure,
+            },
+        }
+        digest = hashlib.sha256(json.dumps(
+            identity, sort_keys=True, separators=(",", ":"),
+            allow_nan=False).encode("utf-8")).hexdigest()
+        return digest, identity
 
     def _uniform_chunks(self, timestamp: np.ndarray, mains: np.ndarray,
                         appliance: np.ndarray, start: int | None,
@@ -170,11 +220,21 @@ class NilmContinuousDatasetStep(Step):
             raise FileNotFoundError(
                 "[nilm_continuous_dataset] strict holdout and cycle dataset are required")
         split_entry = context["manifest"].get_step("cycle_split") or {}
+        structure_fit_scope = (split_entry.get("extra") or {}).get(
+            "structure_fit_scope", "unknown")
         if (self.require_train_only_structure
-                and (split_entry.get("extra") or {}).get(
-                    "structure_fit_scope") != "train_only"):
+                and structure_fit_scope != "train_only"):
             raise ValueError(
                 "[nilm_continuous_dataset] structure must be fit on train only")
+
+        cycle_manifest_bytes = Path(cycle_manifest_path).read_bytes()
+        cycle_manifest = json.loads(cycle_manifest_bytes)
+        source_cycle_manifest_sha256 = hashlib.sha256(cycle_manifest_bytes).hexdigest()
+        dataset_fingerprint, input_identity = self._dataset_identity(
+            cycle_manifest_path, cycle_manifest, source_cycle_manifest_sha256,
+            holdout_path, holdout_summary_path, aligned_path, structure_fit_scope)
+        self.variant = (f"temporal_on_{self.cluster_tag}_"
+                        f"inputs_{dataset_fingerprint[:20]}")
 
         with open(holdout_path, newline="", encoding="utf-8") as f:
             assignments = list(csv.DictReader(f))
@@ -222,8 +282,6 @@ class NilmContinuousDatasetStep(Step):
             os.path.join(log_dir, "continuous", "train_off"), "off", off_chunks)
 
         cycle_root = Path(cycle_manifest_path).parent
-        with open(cycle_manifest_path, encoding="utf-8") as f:
-            cycle_manifest = json.load(f)
 
         def imported(files):
             return [self._relative(cycle_root / path, log_dir) for path in files]
@@ -293,12 +351,27 @@ class NilmContinuousDatasetStep(Step):
         }
 
         manifest = {
-            "benchmark_type": "strict_temporal_continuous_test",
+            "benchmark_type": "temporal_continuous_test",
+            "dataset_fingerprint": dataset_fingerprint,
+            "input_identity": input_identity,
+            "source_cycle_manifest": self._relative(cycle_manifest_path, log_dir),
+            "source_cycle_manifest_sha256": source_cycle_manifest_sha256,
             "aligned_series": str(aligned_path),
             "cluster_tag": self.cluster_tag,
-            "structure_fit_scope": "train_only",
+            "structure_fit_scope": structure_fit_scope,
+            "structure_fit_scope_applies_to": "cycle_classification_and_validation",
+            "upstream_state_representation_scope": (
+                cycle_manifest.get("budget_leakage_check") or {}).get(
+                    "upstream_state_representation_scope", "not_verified"),
             "synthesis_scope": cycle_manifest.get(
                 "synthesis_scope", "legacy_global"),
+            "budget_conditioning": cycle_manifest.get("budget_conditioning"),
+            "measurement_audit": cycle_manifest.get("measurement_audit"),
+            "measurement_compatibility": {
+                key: cycle_manifest.get(key) for key in (
+                    "mains_power_type", "appliance_power_type",
+                    "measurement_compatible_for_additive_synthesis")
+            },
             "nested_real_subsets": bool(cycle_manifest.get(
                 "nested_real_subsets", False)),
             "budget_leakage_check": cycle_manifest.get(
@@ -311,6 +384,9 @@ class NilmContinuousDatasetStep(Step):
             "max_gap_seconds": self.max_gap_seconds,
             "active_threshold_watts": self.active_threshold_watts,
             "off_to_real_sample_ratio": self.off_to_real_sample_ratio,
+            "random_seed": self.random_seed,
+            "min_off_samples": self.min_off_samples,
+            "max_chunk_samples": self.max_chunk_samples,
             "continuous_chunks": {
                 "validation": len(validation_records),
                 "test": len(test_records),
@@ -334,7 +410,11 @@ class NilmContinuousDatasetStep(Step):
         }, extra={
             "cluster_tag": self.cluster_tag,
             "benchmark_type": manifest["benchmark_type"],
-            "structure_fit_scope": "train_only",
+            "structure_fit_scope": structure_fit_scope,
+            "dataset_fingerprint": dataset_fingerprint,
+            "source_cycle_manifest_sha256": source_cycle_manifest_sha256,
+            "budget_conditioning": manifest["budget_conditioning"],
+            "measurement_compatibility": manifest["measurement_compatibility"],
             "continuous_samples": manifest["continuous_samples"],
         })
         print(f"[nilm_continuous_dataset] validation/test samples="

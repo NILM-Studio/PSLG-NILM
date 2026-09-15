@@ -41,6 +41,7 @@ class CycleClassificationStep(Step):
             sequences = json.load(f)
 
         split_by_activity = {}
+        excluded_ids = []
         if self.require_temporal_holdout:
             assignment_path = self.resolve(context, "temporal_holdout", "assignments")
             if not (assignment_path and os.path.exists(assignment_path)):
@@ -54,9 +55,21 @@ class CycleClassificationStep(Step):
             if missing:
                 raise ValueError(
                     f"[cycle_classification] {len(missing)} activities lack holdout split")
+            invalid_splits = set(split_by_activity.values()) - {
+                "train", "validation", "test", "purged"}
+            if invalid_splits:
+                raise ValueError(
+                    f"[cycle_classification] invalid holdout splits: {sorted(invalid_splits)}")
+            excluded_ids = sorted(
+                key for key in sequences if split_by_activity[str(key)] == "purged")
+            sequences = {key: value for key, value in sequences.items()
+                         if split_by_activity[str(key)] != "purged"}
+            if not any(split_by_activity[str(key)] == "train" for key in sequences):
+                raise ValueError("[cycle_classification] no retained training activities")
         fit_ids = ([key for key, split in split_by_activity.items()
                     if split == "train"] if split_by_activity else None)
         result = self.classifier.fit(sequences, fit_ids=fit_ids)
+        result["temporal_excluded_activity_ids"] = excluded_ids
         if split_by_activity:
             for activity_id, record in result["activities"].items():
                 record["source_split"] = split_by_activity[activity_id]
@@ -89,6 +102,7 @@ class CycleClassificationStep(Step):
             "n_classes": result["n_classes"],
             "n_outliers": result["n_outliers"],
             "structure_fit_scope": result["fit_scope"],
+            "temporal_excluded_count": len(excluded_ids),
         })
         print(f"[cycle_classification] {result['n_activities']} activities -> "
               f"{result['n_classes']} classes, {result['n_outliers']} outliers")

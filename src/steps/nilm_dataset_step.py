@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 
 from src.framework.step import Step
+from src.generation.cycle_conditioning import CycleNeighborIndex, cycle_profile
 from src.generation.primitive_library import (Primitive, PrimitiveLibrary,
                                               RealPrimitiveSampler)
 
@@ -29,7 +30,10 @@ class NilmDatasetStep(Step):
                  candidate_pool: int = 32,
                  within_state_smooth_samples: int = 3,
                  boundary_smooth_samples: int = 3,
-                 require_train_only_structure: bool = False):
+                 require_train_only_structure: bool = False,
+                 budget_conditioning_method: str = "independent",
+                 budget_conditioning_neighbors: int = 10,
+                 require_additive_measurement: bool = False):
         if not cluster_tag:
             raise ValueError("nilm_dataset requires --cluster-tag")
         if not aligned_series_path:
@@ -40,8 +44,17 @@ class NilmDatasetStep(Step):
         if synthesis_scope not in ("legacy_global", "budget_local"):
             raise ValueError(
                 "nilm_dataset.synthesis_scope must be legacy_global or budget_local")
+        budget_conditioning_method = str(budget_conditioning_method).lower()
+        if budget_conditioning_method not in ("independent", "cycle_neighbors"):
+            raise ValueError(
+                "nilm_dataset.budget_conditioning_method must be independent "
+                "or cycle_neighbors")
+        if int(budget_conditioning_neighbors) < 1:
+            raise ValueError("nilm_dataset.budget_conditioning_neighbors must be positive")
         scope = "strict_" if require_train_only_structure else ""
-        budget = "budget_local_" if synthesis_scope == "budget_local" else ""
+        budget = (f"budget_local_{budget_conditioning_method}_"
+                  f"k{int(budget_conditioning_neighbors)}_seed{int(random_seed)}_"
+                  if synthesis_scope == "budget_local" else "")
         super().__init__(
             variant=f"{scope}{budget}cycle_augmentation_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
@@ -65,6 +78,43 @@ class NilmDatasetStep(Step):
             0, int(within_state_smooth_samples))
         self.boundary_smooth_samples = max(0, int(boundary_smooth_samples))
         self.require_train_only_structure = bool(require_train_only_structure)
+        self.budget_conditioning_method = budget_conditioning_method
+        self.budget_conditioning_neighbors = int(budget_conditioning_neighbors)
+        self.require_additive_measurement = bool(require_additive_measurement)
+
+    def _measurement_audit(self, aligned_path: Path) -> dict:
+        """Read the preparation audit before forming mains - target + generated."""
+        audit_path = Path(str(aligned_path) + ".audit.json")
+        if not audit_path.is_file():
+            if self.require_additive_measurement:
+                raise FileNotFoundError(
+                    f"[nilm_dataset] additive synthesis requires measurement audit: {audit_path}")
+            return {"audit_path": None, "mains_power_type": "unknown",
+                    "appliance_power_type": "unknown",
+                    "measurement_compatible_for_additive_synthesis": None}
+        with audit_path.open(encoding="utf-8") as f:
+            audit = json.load(f)
+        compatible = audit.get("measurement_compatible_for_additive_synthesis")
+        output_path = audit.get("output_path")
+        path_matches = (bool(output_path)
+                        and Path(output_path).resolve() == aligned_path.resolve())
+        if self.require_additive_measurement:
+            if (compatible is not True or audit.get("mains_power_type") != "active"
+                    or audit.get("appliance_power_type") != "active"):
+                raise ValueError(
+                    "[nilm_dataset] additive synthesis requires compatible active/active "
+                    "mains and appliance measurements; preparation audit is incompatible")
+            if not path_matches:
+                raise ValueError(
+                    "[nilm_dataset] measurement audit output_path does not match aligned series")
+        return {
+            "audit_path": str(audit_path.resolve()),
+            "output_path": output_path,
+            "output_path_matches": path_matches,
+            "mains_power_type": audit.get("mains_power_type", "unknown"),
+            "appliance_power_type": audit.get("appliance_power_type", "unknown"),
+            "measurement_compatible_for_additive_synthesis": compatible,
+        }
 
     @staticmethod
     def _load_assignments(path: str) -> list[dict]:
@@ -187,6 +237,16 @@ class NilmDatasetStep(Step):
             raise FileNotFoundError("[nilm_dataset] selected synthesis artifacts not found")
         return cycles, manifest
 
+    @staticmethod
+    def _exact_integer(value, name: str) -> int:
+        """Reject corrupt coordinates instead of silently truncating them."""
+        if (isinstance(value, (bool, np.bool_))
+                or not isinstance(value, (int, float, np.integer, np.floating))
+                or (isinstance(value, (float, np.floating))
+                    and (not np.isfinite(value) or value != np.floor(value)))):
+            raise ValueError(f"[nilm_dataset] {name} must be a finite integer, got {value!r}")
+        return int(value)
+
     def _budget_resources(self, context: dict, train_ids: set[int]):
         catalog_path = self.resolve(context, "cycle_split", "train_catalog")
         if not (catalog_path and os.path.exists(catalog_path)):
@@ -205,52 +265,161 @@ class NilmDatasetStep(Step):
         labels = cluster_array("labels").reshape(-1)
         indices = cluster_array("indices")
         lengths = cluster_array("seq_len").reshape(-1)
+        if indices.ndim != 2 or indices.shape[1] not in (2, 3):
+            raise ValueError(
+                "[nilm_dataset] primitive indices must have shape (n, 2) or (n, 3)")
         if not (len(labels) == len(indices) == len(lengths)):
             raise ValueError(
                 "[nilm_dataset] primitive cluster artifacts are not row-aligned")
 
         segments_dir = self.resolve(context, "extract_active_data", "segments_dir")
+        if not (segments_dir and os.path.isdir(segments_dir)):
+            raise FileNotFoundError("[nilm_dataset] extracted activity directory not found")
         files = sorted(name for name in os.listdir(segments_dir)
                        if name.lower().endswith(".csv"))
         power_cache, primitives = {}, []
         for primitive_id, (label, index, length) in enumerate(
                 zip(labels, indices, lengths)):
-            activity_id, start = int(index[0]), int(index[1])
-            if activity_id not in train_ids or int(length) <= 0:
+            activity_id = self._exact_integer(index[0], f"primitive {primitive_id} activity ID")
+            if activity_id not in train_ids:
                 continue
+            if not 0 <= activity_id < len(files):
+                raise ValueError(
+                    f"[nilm_dataset] training activity {activity_id} has no extracted file "
+                    f"(available file IDs: 0..{len(files) - 1})")
+            start = self._exact_integer(index[1], f"primitive {primitive_id} start")
+            length = self._exact_integer(length, f"primitive {primitive_id} length")
+            label = self._exact_integer(label, f"primitive {primitive_id} label")
+            if indices.shape[1] == 3:
+                index_label = self._exact_integer(index[2], f"primitive {primitive_id} index label")
+                if index_label != label:
+                    raise ValueError(
+                        f"[nilm_dataset] primitive {primitive_id} index label differs from labels")
             if activity_id not in power_cache:
                 frame = pd.read_csv(os.path.join(segments_dir, files[activity_id]))
                 column = "power" if "power" in frame.columns else frame.columns[-1]
-                power_cache[activity_id] = pd.to_numeric(
-                    frame[column], errors="coerce").fillna(0.0).to_numpy(
-                        dtype=np.float32)
+                source_power = pd.to_numeric(
+                    frame[column], errors="coerce").to_numpy(dtype=np.float64)
+                if (not np.isfinite(source_power).all()
+                        or np.any(np.abs(source_power) > np.finfo(np.float32).max)):
+                    raise ValueError(
+                        f"[nilm_dataset] training activity {activity_id} contains "
+                        "non-finite or non-numeric source power")
+                power_cache[activity_id] = source_power.astype(np.float32)
             source = power_cache[activity_id]
-            end = min(len(source), start + int(length))
-            if 0 <= start < end:
-                primitives.append(Primitive(
-                    primitive_id=int(primitive_id), state_label=int(label),
-                    activity_index=activity_id, start=start,
-                    power=np.asarray(source[start:end], dtype=np.float32)))
+            end = start + length
+            if start < 0 or length <= 0 or end > len(source):
+                raise ValueError(
+                    f"[nilm_dataset] primitive {primitive_id} training activity {activity_id} "
+                    f"interval [{start}, {end}) is outside source length {len(source)} "
+                    "or has non-positive length")
+            primitives.append(Primitive(
+                primitive_id=int(primitive_id), state_label=label,
+                activity_index=activity_id, start=start,
+                power=np.asarray(source[start:end], dtype=np.float32)))
         if not primitives:
             raise ValueError("[nilm_dataset] budget-local primitive pool is empty")
-        return catalog, primitives
+        return catalog, primitives, power_cache
+
+    @staticmethod
+    def _budget_waveforms(selected_ids: set[int], activities: dict,
+                          primitives: list[Primitive], source_waveforms: dict) -> dict:
+        """Verify primitive slices cover each selected cycle's state template.
+
+        Profiles must describe the same physical intervals used by the sampler.
+        In particular, a truncated primitive or a dropped feature row must not
+        silently shift every subsequent state's physical profile.
+        """
+        by_activity = {activity_id: [] for activity_id in selected_ids}
+        for primitive in primitives:
+            if primitive.activity_index in by_activity:
+                by_activity[primitive.activity_index].append(primitive)
+        verified = {}
+        for activity_id in sorted(selected_ids):
+            blocks = activities[str(activity_id)].get("blocks", [])
+            if not blocks:
+                raise ValueError(
+                    f"[nilm_dataset] activity {activity_id} has invalid catalog blocks")
+            state_chunks, template_cursor = [], 0
+            for block_index, block in enumerate(blocks):
+                location = f"activity {activity_id} catalog block {block_index}"
+                length = NilmDatasetStep._exact_integer(
+                    block.get("length_samples", 0), f"{location} length")
+                state = NilmDatasetStep._exact_integer(block["state_label"], f"{location} state")
+                if length <= 0:
+                    raise ValueError(f"[nilm_dataset] {location} must have positive length")
+                for coordinate, expected in (("start", template_cursor),
+                                             ("end", template_cursor + length)):
+                    if coordinate in block:
+                        observed = NilmDatasetStep._exact_integer(
+                            block[coordinate], f"{location} {coordinate}")
+                        if observed != expected:
+                            raise ValueError(
+                                f"[nilm_dataset] {location} {coordinate}={observed} "
+                                f"does not match cumulative template coordinate {expected}")
+                state_chunks.append(np.full(length, state, dtype=np.int64))
+                template_cursor += length
+            states = np.concatenate(state_chunks)
+            waveform = np.asarray(source_waveforms[activity_id], dtype=np.float32)
+            if waveform.ndim != 1 or not np.isfinite(waveform).all():
+                raise ValueError(
+                    f"[nilm_dataset] activity {activity_id} has invalid source power")
+            if len(waveform) != len(states):
+                raise ValueError(
+                    f"[nilm_dataset] activity {activity_id} source length "
+                    f"{len(waveform)} differs from catalog duration {len(states)}")
+            cursor = 0
+            for primitive in sorted(by_activity[activity_id],
+                                    key=lambda value: (value.start, value.primitive_id)):
+                end = int(primitive.start) + len(primitive.power)
+                if int(primitive.start) != cursor or end > len(states):
+                    raise ValueError(
+                        f"[nilm_dataset] activity {activity_id} primitive coverage "
+                        f"gap/overlap at sample {cursor}, next interval "
+                        f"[{primitive.start}, {end})")
+                if (not np.all(states[cursor:end] == int(primitive.state_label))
+                        or not np.array_equal(waveform[cursor:end], primitive.power)):
+                    raise ValueError(
+                        f"[nilm_dataset] activity {activity_id} primitive state/power "
+                        f"does not match source interval [{cursor}, {end})")
+                cursor = end
+            if cursor != len(states):
+                raise ValueError(
+                    f"[nilm_dataset] activity {activity_id} primitive coverage ends "
+                    f"at {cursor}, expected {len(states)}")
+            verified[activity_id] = waveform
+        return verified
 
     def _generate_budget_cycles(
             self, log_dir: str, tag: str, real_subset: list[dict],
             real_by_activity: dict, catalog: dict,
-            all_primitives: list[Primitive]) -> list[dict]:
+            all_primitives: list[Primitive],
+            source_waveforms: dict[int, np.ndarray] | None = None) -> list[dict]:
         selected_ids = {int(row["activity_id"]) for row in real_subset}
         activities = catalog.get("activities", {})
         missing = selected_ids - {int(key) for key in activities}
         if missing:
             raise ValueError(
                 f"[nilm_dataset] budget activities missing from catalog: {sorted(missing)}")
+        if source_waveforms is None:
+            source_waveforms = {
+                activity_id: real_by_activity[str(activity_id)]["payload"]["appliance"]
+                for activity_id in selected_ids
+            }
+        waveforms = self._budget_waveforms(
+            selected_ids, activities, all_primitives, source_waveforms)
 
         group_ids = {}
         for row in real_subset:
             key = (int(row["class_id"]), int(row["mode_id"]))
-            group_ids.setdefault(key, set()).add(int(row["activity_id"]))
-        samplers = {}
+            activity_id = int(row["activity_id"])
+            activity = activities[str(activity_id)]
+            if (int(activity.get("class_id", key[0])) != key[0]
+                    or int(activity.get("validation_mode_id", key[1])) != key[1]):
+                raise ValueError(
+                    f"[nilm_dataset] activity {activity_id} class/mode differs from catalog")
+            group_ids.setdefault(key, set()).add(activity_id)
+        samplers, conditioners = {}, {}
         for key, ids in group_ids.items():
             group_primitives = [primitive for primitive in all_primitives
                                 if primitive.activity_index in ids]
@@ -259,6 +428,20 @@ class NilmDatasetStep(Step):
                 candidate_pool=self.candidate_pool,
                 within_state_smooth_samples=self.within_state_smooth_samples,
                 boundary_smooth_samples=self.boundary_smooth_samples)
+            if self.budget_conditioning_method == "cycle_neighbors":
+                states = sorted({
+                    int(block["state_label"]) for activity_id in ids
+                    for block in activities[str(activity_id)]["blocks"]
+                })
+                profiles = {
+                    activity_id: cycle_profile(
+                        waveforms[activity_id], activities[str(activity_id)]["blocks"],
+                        states)
+                    for activity_id in sorted(ids)
+                }
+                conditioners[key] = CycleNeighborIndex(
+                    profiles, neighbor_count=self.budget_conditioning_neighbors,
+                    exclude_anchor=True)
 
         generated = []
         output_dir = os.path.join(
@@ -266,12 +449,25 @@ class NilmDatasetStep(Step):
         for cycle_index, source_record in enumerate(real_subset):
             source_id = int(source_record["activity_id"])
             key = (int(source_record["class_id"]), int(source_record["mode_id"]))
-            allowed_ids = group_ids[key]
+            # Both methods exclude the template anchor for a matched ablation.
+            # A one-member class/mode cannot provide cross-cycle donors.
+            singleton = len(group_ids[key]) == 1
+            neighbors = []
+            if singleton:
+                allowed_ids = {source_id}
+                actual_method = "singleton_self_resample"
+            elif self.budget_conditioning_method == "cycle_neighbors":
+                neighbors = conditioners[key].neighbors(source_id)
+                allowed_ids = {int(row["activity_id"]) for row in neighbors}
+                actual_method = "cycle_neighbors"
+            else:
+                allowed_ids = group_ids[key] - {source_id}
+                actual_method = "independent"
             blocks = activities[str(source_id)].get("blocks", [])
             rng = np.random.default_rng(np.random.SeedSequence([
                 self.random_seed, source_id, 86028121,
             ]))
-            powers, provenance, previous_end = [], [], None
+            powers, provenance, previous_end, cursor = [], [], None, 0
             for block_index, block in enumerate(blocks):
                 state = int(block["state_label"])
                 length = int(block.get("length_samples", 0))
@@ -290,9 +486,12 @@ class NilmDatasetStep(Step):
                 provenance.append({
                     "block_index": int(block_index),
                     "state_label": state,
+                    "start": int(cursor),
+                    "end": int(cursor + len(power)),
                     "length_samples": int(len(power)),
                     "sources": sources,
                 })
+                cursor += len(power)
             if not powers:
                 raise ValueError(
                     f"[nilm_dataset] activity {source_id} has no usable budget blocks")
@@ -304,6 +503,16 @@ class NilmDatasetStep(Step):
             if not set(used_ids).issubset(selected_ids):
                 raise ValueError(
                     "[nilm_dataset] budget-local synthesis used an out-of-budget primitive")
+            if not set(used_ids).issubset(allowed_ids):
+                raise ValueError(
+                    "[nilm_dataset] synthesis used a primitive outside its donor pool")
+            source_samples = Counter()
+            source_primitive_ids = set()
+            for block in provenance:
+                for source in block["sources"]:
+                    source_samples[int(source["activity_index"])] += int(source["used_length"])
+                    source_primitive_ids.add(int(source["primitive_id"]))
+            self_ratio = float(source_samples[source_id] / len(target))
 
             source_payload = real_by_activity[str(source_id)]["payload"]
             background = np.maximum(
@@ -325,12 +534,40 @@ class NilmDatasetStep(Step):
                 "kind": "synthetic_budget_local",
                 "cycle_id": int(cycle_index),
                 "source_activity_id": str(source_id),
+                "anchor_activity_id": str(source_id),
                 "class_id": key[0], "mode_id": key[1], "split": "train",
                 "length_samples": int(len(target)),
+                "duration_seconds": float(len(target) * self.sample_period_seconds),
+                "mean_power": float(np.mean(target)),
+                "max_power": float(np.max(target)),
+                "energy_wh": float(np.sum(target, dtype=np.float64)
+                                   * self.sample_period_seconds / 3600.0),
                 "file": self._relative(path, log_dir),
                 "budget_tag": tag,
                 "budget_activity_ids": sorted(selected_ids),
+                "conditioning_method": self.budget_conditioning_method,
+                "actual_conditioning_method": actual_method,
+                "conditioning_neighbors_requested": self.budget_conditioning_neighbors,
+                "conditioning_neighbors": neighbors,
+                "conditioning_neighbor_count": len(neighbors),
+                "conditioning_fit_activity_ids": sorted(group_ids[key]),
+                "conditioning_anchor_excluded": source_id not in allowed_ids,
+                "conditioning_fallback": singleton,
+                "conditioning_fallback_reason": (
+                    "singleton_class_mode_budget" if singleton else None),
+                "donor_activity_ids": sorted(allowed_ids),
+                "donor_activity_count": len(allowed_ids),
                 "primitive_source_activity_ids": used_ids,
+                "primitive_source_activity_count": len(used_ids),
+                "primitive_source_count": len(source_primitive_ids),
+                "primitive_source_samples_by_activity": {
+                    str(activity_id): count for activity_id, count in sorted(
+                        source_samples.items()) if count > 0
+                },
+                "self_source_sample_ratio": self_ratio,
+                "cross_cycle_source_sample_ratio": 1.0 - self_ratio,
+                "cross_cycle_source_activity_count": len(set(used_ids) - {source_id}),
+                "cross_cycle_generation": bool(set(used_ids) - {source_id}),
                 "blocks": provenance,
             })
         return generated
@@ -339,6 +576,7 @@ class NilmDatasetStep(Step):
         aligned_path = Path(self.aligned_series_path)
         if not aligned_path.exists():
             raise FileNotFoundError(f"[nilm_dataset] aligned series not found: {aligned_path}")
+        measurement_audit = self._measurement_audit(aligned_path)
         assignments_path = self.resolve(context, "cycle_split", "assignments")
         segments_dir = self.resolve(context, "extract_active_data", "segments_dir")
         if not (assignments_path and os.path.exists(assignments_path)):
@@ -478,9 +716,11 @@ class NilmDatasetStep(Step):
             traditional_by_activity[activity_id] = augmented_record
         budget_catalog = None
         budget_primitives = []
+        budget_source_waveforms = {}
         if self.synthesis_scope == "budget_local":
-            budget_catalog, budget_primitives = self._budget_resources(
-                context, {int(row["activity_id"]) for row in train})
+            budget_catalog, budget_primitives, budget_source_waveforms = (
+                self._budget_resources(
+                    context, {int(row["activity_id"]) for row in train}))
         budget_order = self._stratified_order(
             train, np.random.default_rng(np.random.SeedSequence([
                 self.random_seed, 15485863,
@@ -494,7 +734,7 @@ class NilmDatasetStep(Step):
             if self.synthesis_scope == "budget_local":
                 generated_subset = self._generate_budget_cycles(
                     log_dir, tag, real_subset, real_by_activity,
-                    budget_catalog, budget_primitives)
+                    budget_catalog, budget_primitives, budget_source_waveforms)
                 budget_synthesis_records[tag] = generated_subset
             else:
                 ratio_rng = np.random.default_rng(np.random.SeedSequence([
@@ -527,6 +767,10 @@ class NilmDatasetStep(Step):
                 "synthesis_fit_count": (len(real_subset)
                     if self.synthesis_scope == "budget_local" else None),
                 "synthesis_scope": self.synthesis_scope,
+                "budget_conditioning_method": (self.budget_conditioning_method
+                    if self.synthesis_scope == "budget_local" else None),
+                "budget_conditioning_neighbors": (self.budget_conditioning_neighbors
+                    if self.synthesis_scope == "budget_local" else None),
             }
         experiments["full"] = {
             "D_full_real": [row["file"] for row in train],
@@ -590,6 +834,12 @@ class NilmDatasetStep(Step):
             else len(synthetic_records))
         audit = {
             "aligned_series": str(aligned_path),
+            "measurement_audit": measurement_audit,
+            "mains_power_type": measurement_audit["mains_power_type"],
+            "appliance_power_type": measurement_audit["appliance_power_type"],
+            "measurement_compatible_for_additive_synthesis": measurement_audit[
+                "measurement_compatible_for_additive_synthesis"],
+            "require_additive_measurement": self.require_additive_measurement,
             "sample_period_seconds": self.sample_period_seconds,
             "max_gap_seconds": self.max_gap_seconds,
             "real_counts": {"train": len(train), "validation": len(validation),
@@ -609,6 +859,27 @@ class NilmDatasetStep(Step):
                 row["reason"] for row in rejected_synthetic)),
             "synthetic_background": "max(source_train_mains-source_train_appliance,0)",
             "synthesis_scope": self.synthesis_scope,
+            "budget_conditioning": {
+                "method": self.budget_conditioning_method,
+                "neighbors_requested": self.budget_conditioning_neighbors,
+                "profile_fit_scope": "selected_budget_class_mode_only",
+                "exclude_anchor": True,
+                "singleton_fallback": "singleton_self_resample",
+                "random_seed": self.random_seed,
+                "budgets": {
+                    tag: {
+                        "actual_method_counts": dict(Counter(
+                            row["actual_conditioning_method"] for row in rows)),
+                        "cross_cycle_generated_count": sum(
+                            row["cross_cycle_generation"] for row in rows),
+                        "singleton_fallback_count": sum(
+                            row["conditioning_fallback"] for row in rows),
+                        "mean_self_source_sample_ratio": (
+                            float(np.mean([row["self_source_sample_ratio"]
+                                           for row in rows])) if rows else None),
+                    } for tag, rows in budget_synthesis_records.items()
+                },
+            } if self.synthesis_scope == "budget_local" else None,
             "nested_real_subsets": nested_subsets_verified,
             "budget_leakage_check": {
                 "passed": (not budget_leakage_violations
@@ -660,6 +931,11 @@ class NilmDatasetStep(Step):
             "real_counts": audit["real_counts"],
             "synthetic_count": effective_synthetic_count,
             "synthesis_scope": self.synthesis_scope,
+            "budget_conditioning_method": (self.budget_conditioning_method
+                if self.synthesis_scope == "budget_local" else None),
+            "budget_conditioning_neighbors": (self.budget_conditioning_neighbors
+                if self.synthesis_scope == "budget_local" else None),
+            "random_seed": self.random_seed,
             "waveform_holdout": True,
         })
         print(f"[nilm_dataset] real={audit['real_counts']} synthetic="

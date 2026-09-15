@@ -10,6 +10,17 @@ from pathlib import Path
 GROUPS = ("A_real_only", "B_real_plus_traditional", "C_real_plus_generated")
 
 
+def dataset_directories(run_root: Path) -> tuple[Path, Path]:
+    """Resolve the selected datasets from the run manifest, not folder guesses."""
+    manifest = json.loads((run_root / "run_manifest.json").read_text(encoding="utf-8"))
+    paths = []
+    for step in ("nilm_dataset", "nilm_continuous_dataset"):
+        relative = manifest["steps"][step]["artifacts"]["dataset_manifest"]
+        path = Path(relative)
+        paths.append((path if path.is_absolute() else run_root / path).resolve().parent)
+    return tuple(paths)
+
+
 def audit(dataset: Path, continuous: Path) -> dict:
     def read(root, name):
         return json.loads((root / name).read_text(encoding="utf-8"))
@@ -85,12 +96,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--cluster-tag", default="kmeans_k4_merged")
+    parser.add_argument("--dataset-dir", type=Path,
+                        help="Explicit snapshot; provide with --continuous-dir")
+    parser.add_argument("--continuous-dir", type=Path)
     args = parser.parse_args()
     root = Path("log") / args.run_id
     try:
-        result = audit(
-            root / f"nilm_dataset_strict_budget_local_cycle_augmentation_on_{args.cluster_tag}",
-            root / f"nilm_continuous_dataset_strict_temporal_on_{args.cluster_tag}")
+        if bool(args.dataset_dir) != bool(args.continuous_dir):
+            raise ValueError("--dataset-dir and --continuous-dir must be supplied together")
+        dataset, continuous = ((args.dataset_dir, args.continuous_dir)
+                               if args.dataset_dir else dataset_directories(root))
+        result = audit(dataset, continuous)
+        result["dataset_dir"] = str(dataset)
+        result["continuous_dir"] = str(continuous)
     except (OSError, ValueError, KeyError, TypeError) as exc:
         result = {"budget_provenance_passed": False, "errors": [str(exc)]}
     print(json.dumps(result, indent=2, ensure_ascii=False))

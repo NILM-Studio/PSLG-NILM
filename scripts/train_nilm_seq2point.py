@@ -12,6 +12,7 @@ import numpy as np
 
 from src.nilm.seq2point import (CycleWindowCorpus, build_seq2point,
                                 make_keras_sequence, regression_metrics)
+from src.nilm.experiment_identity import build_experiment_identity, reusable_metrics
 
 
 GROUP_KEYS = {
@@ -19,6 +20,21 @@ GROUP_KEYS = {
     "B": "B_real_plus_traditional",
     "C": "C_real_plus_generated",
 }
+
+
+def resolve_dataset_root(run_root: Path, explicit: str | None = None) -> Path:
+    """Prefer the selected continuous dataset; never guess a legacy directory."""
+    if explicit:
+        return Path(explicit).resolve()
+    with (run_root / "run_manifest.json").open(encoding="utf-8") as source:
+        manifest = json.load(source)
+    for step in ("nilm_continuous_dataset", "nilm_dataset"):
+        entry = manifest.get("steps", {}).get(step, {})
+        reference = entry.get("artifacts", {}).get("dataset_manifest")
+        if reference:
+            path = Path(reference)
+            return (path if path.is_absolute() else run_root / path).resolve().parent
+    raise ValueError("No NILM dataset in run manifest; build it first or set --dataset-dir")
 
 
 def set_seed(seed: int) -> None:
@@ -109,6 +125,14 @@ def target_distribution(corpus: CycleWindowCorpus, on_threshold: float) -> dict:
 
 def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
               group: str, train_files: list[str]) -> dict:
+    output = Path(args.output_root) / f"{ratio}_{group}_seed{args.seed}"
+    identity = build_experiment_identity(
+        args, dataset_root, manifest, ratio, group, train_files)
+    cached = reusable_metrics(output, identity, force=args.force)
+    if cached is not None:
+        print(f"[seq2point] verified completed {ratio}/{group}: {output / 'metrics.json'}")
+        return cached
+
     import tensorflow as tf
     tf.keras.backend.clear_session()
     set_seed(args.seed)
@@ -122,13 +146,8 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
     test = CycleWindowCorpus(
         dataset_root, full["test"], args.window_length, args.test_stride,
         args.mains_scale, args.appliance_scale)
-    output = Path(args.output_root) / f"{ratio}_{group}_seed{args.seed}"
     output.mkdir(parents=True, exist_ok=True)
     metrics_path = output / "metrics.json"
-    if metrics_path.exists() and not args.force:
-        print(f"[seq2point] skip completed {ratio}/{group}: {metrics_path}")
-        with open(metrics_path, encoding="utf-8") as f:
-            return json.load(f)
 
     model = build_seq2point(
         args.window_length, args.learning_rate, args.dropout)
@@ -172,12 +191,16 @@ def train_one(args, dataset_root: Path, manifest: dict, ratio: str,
         "epochs_completed": len(history.history["loss"]),
         "best_validation_loss": float(np.min(history.history["val_loss"])),
         "model_parameters": int(model.count_params()),
+        "experiment_fingerprint": identity["sha256"],
     })
-    with open(metrics_path, "w", encoding="utf-8") as f:
-        json.dump(metrics, f, indent=2, ensure_ascii=False)
     np.savez_compressed(
         output / "test_predictions.npz", target=target,
         prediction=prediction, cycle_lengths=np.asarray(cycle_lengths, dtype=np.int64))
+    with open(output / "experiment_identity.json", "w", encoding="utf-8") as f:
+        json.dump(identity, f, indent=2, ensure_ascii=False)
+    # Write the completion marker only after predictions and their identity.
+    with open(metrics_path, "w", encoding="utf-8") as f:
+        json.dump(metrics, f, indent=2, ensure_ascii=False)
     print(f"[seq2point] {ratio}/{group}: MAE={metrics['mae_watts']:.3f} "
           f"F1={metrics['f1']:.4f} -> {output}")
     return metrics
@@ -206,14 +229,12 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    dataset_root = (Path(args.dataset_dir) if args.dataset_dir else
-                    Path("log") / args.run_id
-                    / "nilm_dataset_cycle_augmentation_on_kmeans_k4_merged")
+    dataset_root = resolve_dataset_root(Path("log") / args.run_id, args.dataset_dir)
     manifest_path = dataset_root / "nilm_dataset_manifest.json"
     with open(manifest_path, encoding="utf-8") as f:
         manifest = json.load(f)
     args.output_root = (args.output_root or
-                        str(Path("log") / args.run_id / "nilm_seq2point"))
+                        str(Path("log") / args.run_id / "nilm_seq2point" / dataset_root.name))
     results = []
     for ratio, group, train_files in experiment_specs(
             manifest, args.experiments):

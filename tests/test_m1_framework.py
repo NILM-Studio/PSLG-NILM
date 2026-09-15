@@ -159,6 +159,30 @@ class TestCLIParsing(unittest.TestCase):
         with self.assertRaises(ValueError):
             mainmod.synthesis_experiment_tag("cycle_neighbors", 0, 42)
 
+    def test_budget_conditioning_defaults_and_cli_reach_builder(self):
+        config = {
+            "primitive_synthesis": {"conditioning_method": "independent", "random_seed": 9},
+            "nilm_dataset": {"aligned_series": "aligned.csv", "synthesis_scope": "budget_local",
+                             "budget_conditioning_method": "cycle_neighbors",
+                             "budget_conditioning_neighbors": 7, "random_seed": 41,
+                             "require_additive_measurement": True},
+        }
+        args = argparse_ns(cluster_tag="kmeans_k4_merged")
+        selected = mainmod.resolve_selection(args, config)
+        step = mainmod._build_nilm_dataset(config, selected)
+        self.assertEqual(step.budget_conditioning_method, "cycle_neighbors")
+        self.assertEqual(step.budget_conditioning_neighbors, 7)
+        self.assertEqual(step.random_seed, 41)
+        self.assertTrue(step.require_additive_measurement)
+        args = argparse_ns(cluster_tag="kmeans_k4_merged", synthesis_conditioning="independent",
+                           conditioning_neighbors=3, synthesis_seed=44)
+        selected = mainmod.resolve_selection(args, config)
+        step = mainmod._build_nilm_dataset(config, selected)
+        self.assertEqual(step.budget_conditioning_method, "independent")
+        self.assertEqual(step.budget_conditioning_neighbors, 3)
+        self.assertEqual(step.random_seed, 44)
+        self.assertIn("independent_k3_seed44", step.variant)
+
 
 def argparse_ns(**over):
     base = dict(segment_method=None, feature_model=None, cluster_method=None,

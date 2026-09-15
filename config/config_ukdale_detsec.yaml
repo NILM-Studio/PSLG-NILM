@@ -112,7 +112,8 @@ synthesis_evaluation:
   waveform_points: 256
   fs: 0.1666667
 nilm_dataset:
-  aligned_series: input/ukdale_house1_mains_washing_machine.csv
+  # Active mains from house_1/mains.dat, not apparent channel_1.dat.
+  aligned_series: input/ukdale_house1_active_mains_washing_machine.csv
   real_ratios: [0.01, 0.02, 0.05, 0.10, 0.20]
   sample_period_seconds: 6
   max_gap_seconds: 150
@@ -122,12 +123,15 @@ nilm_dataset:
   traditional_noise_ratio: 0.01
   active_threshold_watts: 10
   synthesis_scope: budget_local
+  budget_conditioning_method: cycle_neighbors
+  budget_conditioning_neighbors: 10
+  require_additive_measurement: true
   candidate_pool: 32
   within_state_smooth_samples: 3
   boundary_smooth_samples: 3
   require_train_only_structure: true
 nilm_continuous_dataset:
-  aligned_series: input/ukdale_house1_mains_washing_machine.csv
+  aligned_series: input/ukdale_house1_active_mains_washing_machine.csv
   sample_period_seconds: 6
   max_gap_seconds: 150
   active_threshold_watts: 10

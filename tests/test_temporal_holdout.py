@@ -1,3 +1,4 @@
+import csv
 import json
 import os
 import tempfile
@@ -18,6 +19,11 @@ from src.steps.temporal_holdout_step import TemporalHoldoutStep
 class TemporalUpstreamStub(Step):
     step_type = "temporal_upstream_stub"
 
+    def __init__(self, overlap=False, empty_validation=False):
+        super().__init__()
+        self.overlap = overlap
+        self.empty_validation = empty_validation
+
     def run(self, context):
         segments = os.path.join(context["log_root"], "activities")
         os.makedirs(segments)
@@ -25,8 +31,11 @@ class TemporalUpstreamStub(Step):
         for activity_id in range(10):
             start = 1_000 + activity_id * 100
             power = np.asarray([0, 0, 20, 20, 20, 0, 0, 0], dtype=float)
+            period = 18 if self.overlap and activity_id in (5, 7) else 6
+            if self.empty_validation and activity_id == 7:
+                period = 18
             pd.DataFrame({
-                "timestamp": start + np.arange(len(power)) * 6,
+                "timestamp": start + np.arange(len(power)) * period,
                 "power": power,
             }).to_csv(os.path.join(
                 segments, f"activity_{activity_id:02d}.csv"), index=False)
@@ -70,15 +79,16 @@ class TemporalHoldoutTests(unittest.TestCase):
         self.assertTrue(all(result["activities"][str(i)]["class_id"] == -1
                             for i in range(3, 9)))
 
-    def test_strict_workflow_inherits_global_temporal_split(self):
+    def _assert_strict_workflow(self, overlap=False):
         with tempfile.TemporaryDirectory() as tmp:
             cwd = os.getcwd()
             os.chdir(tmp)
             try:
                 wf = Workflow("strict", "washing_machine", {})
-                wf.add(TemporalUpstreamStub())
+                wf.add(TemporalUpstreamStub(overlap=overlap))
+                ratios = (0.6, 0.2, 0.2) if overlap else (0.7, 0.1, 0.2)
                 wf.add(TemporalHoldoutStep(
-                    "kmeans_k2_merged", 0.7, 0.1, 0.2))
+                    "kmeans_k2_merged", *ratios))
                 wf.add(CycleClassificationStep(
                     "kmeans_k2_merged", min_support=1,
                     require_temporal_holdout=True))
@@ -94,7 +104,7 @@ class TemporalHoldoutTests(unittest.TestCase):
                     min_mode_support=2,
                     require_train_only_structure=True))
                 wf.add(CycleSplitStep(
-                    "kmeans_k2_merged", 0.7, 0.1, 0.2,
+                    "kmeans_k2_merged", *ratios,
                     require_temporal_holdout=True))
                 wf.run()
 
@@ -102,12 +112,27 @@ class TemporalHoldoutTests(unittest.TestCase):
                         "temporal_holdout", "summary"), encoding="utf-8") as f:
                     holdout = json.load(f)
                 self.assertEqual(
-                    holdout["counts"], {"train": 7, "validation": 1, "test": 2})
+                    holdout["counts"],
+                    {"train": 5 if overlap else 7, "validation": 1, "test": 2})
+                self.assertFalse(holdout["cross_split_interval_overlap"])
+                ranges = holdout["timestamp_ranges"]
+                self.assertLess(ranges["train"]["end"], ranges["validation"]["start"])
+                self.assertLess(ranges["validation"]["end"], ranges["test"]["start"])
+                excluded = {"5", "7"} if overlap else set()
+                self.assertEqual(set(holdout["excluded_activity_ids"]), excluded)
+                with open(wf.manifest.artifact_path(
+                        "temporal_holdout", "excluded_assignments"),
+                        newline="", encoding="utf-8") as f:
+                    excluded_rows = list(csv.DictReader(f))
+                self.assertEqual({row["activity_id"] for row in excluded_rows}, excluded)
+                self.assertTrue(all(row["purge_reason"] for row in excluded_rows))
 
                 with open(wf.manifest.artifact_path(
                         "cycle_classification", "cycle_classes"), encoding="utf-8") as f:
                     classes = json.load(f)
                 self.assertEqual(classes["fit_scope"], "train_only")
+                self.assertFalse(excluded & set(classes["activities"]))
+                self.assertEqual(set(classes["temporal_excluded_activity_ids"]), excluded)
 
                 with open(wf.manifest.artifact_path(
                         "cycle_split", "summary"), encoding="utf-8") as f:
@@ -124,6 +149,55 @@ class TemporalHoldoutTests(unittest.TestCase):
                 self.assertTrue(all(
                     row["source_split"] == "train"
                     for row in train["activities"].values()))
+                self.assertFalse(excluded & set(train["activities"]))
+            finally:
+                os.chdir(cwd)
+
+    def test_strict_workflow_inherits_global_temporal_split(self):
+        self._assert_strict_workflow()
+
+    def test_purged_activities_are_excluded_from_classification_and_split(self):
+        self._assert_strict_workflow(overlap=True)
+
+    def test_purge_removes_shared_endpoint_and_long_earlier_intervals(self):
+        records = [
+            {"activity_id": "0", "split": "train", "start_timestamp": 0,
+             "end_timestamp": 250},
+            {"activity_id": "1", "split": "train", "start_timestamp": 10,
+             "end_timestamp": 99},
+            {"activity_id": "2", "split": "train", "start_timestamp": 20,
+             "end_timestamp": 100},
+            {"activity_id": "3", "split": "validation", "start_timestamp": 100,
+             "end_timestamp": 150},
+            {"activity_id": "4", "split": "test", "start_timestamp": 200,
+             "end_timestamp": 220},
+        ]
+        result, starts = TemporalHoldoutStep._purge_boundary_overlaps(records)
+        self.assertEqual(starts, {"train": 0, "validation": 100, "test": 200})
+        self.assertEqual([row["split"] for row in result],
+                         ["purged", "train", "purged", "validation", "test"])
+        self.assertEqual(result[0]["original_split"], "train")
+        self.assertEqual(result[0]["boundary_timestamp"], 100)
+        self.assertEqual(records[0]["split"], "train")
+
+    def test_empty_split_after_purge_fails_and_keeps_exclusion_audit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cwd = os.getcwd()
+            os.chdir(tmp)
+            try:
+                wf = Workflow("empty_after_purge", "washing_machine", {})
+                wf.add(TemporalUpstreamStub(empty_validation=True))
+                step = TemporalHoldoutStep("kmeans_k2_merged", 0.7, 0.1, 0.2)
+                wf.add(step)
+                with self.assertRaisesRegex(ValueError, "purge emptied.*validation"):
+                    wf.run()
+                audit_path = os.path.join(
+                    "log", "empty_after_purge", step.log_subdir(),
+                    "temporal_holdout_excluded.csv")
+                with open(audit_path, newline="", encoding="utf-8") as f:
+                    excluded = list(csv.DictReader(f))
+                self.assertEqual([row["activity_id"] for row in excluded], ["7"])
+                self.assertEqual(excluded[0]["boundary_split"], "test")
             finally:
                 os.chdir(cwd)
 

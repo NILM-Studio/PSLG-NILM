@@ -325,7 +325,7 @@ def _build_nilm_dataset(cfg, sel):
         real_ratios=c.get("real_ratios", [0.05, 0.10, 0.20]),
         sample_period_seconds=c.get("sample_period_seconds", 6),
         max_gap_seconds=c.get("max_gap_seconds", 150),
-        random_seed=c.get("random_seed", 42),
+        random_seed=sel.get("budget_seed", c.get("random_seed", 42)),
         expected_conditioning_neighbors=c.get(
             "expected_conditioning_neighbors", 10),
         traditional_scale_range=c.get("traditional_scale_range", [0.9, 1.1]),
@@ -337,6 +337,11 @@ def _build_nilm_dataset(cfg, sel):
         boundary_smooth_samples=c.get("boundary_smooth_samples", 3),
         require_train_only_structure=c.get(
             "require_train_only_structure", False),
+        budget_conditioning_method=sel.get(
+            "budget_conditioning_method", c.get("budget_conditioning_method", "independent")),
+        budget_conditioning_neighbors=sel.get(
+            "budget_conditioning_neighbors", c.get("budget_conditioning_neighbors", 10)),
+        require_additive_measurement=c.get("require_additive_measurement", False),
     )
 
 
@@ -404,6 +409,7 @@ def resolve_selection(args, cfg):
     run = cfg.get("run", {}) or {}
     paths = cfg.get("paths", {}) or {}
     synthesis = cfg.get("primitive_synthesis", {}) or {}
+    budget = cfg.get("nilm_dataset", {}) or {}
     appliance = args.appliance or run.get("appliance") or "appliance"
     run_id = (args.run_id or run.get("run_id")
               or datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
@@ -430,6 +436,15 @@ def resolve_selection(args, cfg):
         "synthesis_conditioning": conditioning,
         "conditioning_neighbors": int(neighbors),
         "synthesis_seed": int(seed),
+        # The same explicit CLI override applies to both generation paths;
+        # absent overrides retain each path's own configured defaults.
+        "budget_conditioning_method": (getattr(args, "synthesis_conditioning", None)
+                                        or budget.get("budget_conditioning_method", "independent")),
+        "budget_conditioning_neighbors": int(
+            neighbors_arg if neighbors_arg is not None
+            else budget.get("budget_conditioning_neighbors", 10)),
+        "budget_seed": int(seed_arg if seed_arg is not None
+                           else budget.get("random_seed", 42)),
         "synthesis_experiment_tag": synthesis_experiment_tag(
             conditioning, int(neighbors), int(seed)),
     }
@@ -486,11 +501,11 @@ def main():
     p.add_argument("--cycle-class", default=None,
                    help="Cycle class for synthesize: all | majority | class id (default: all).")
     p.add_argument("--synthesis-conditioning", default=None,
-                   help="Primitive conditioning: independent | cycle_neighbors.")
+                   help="Conditioning for synthesize and budget-local nilm_dataset: independent | cycle_neighbors.")
     p.add_argument("--conditioning-neighbors", type=int, default=None,
-                   help="Cycle-neighbor pool size for synthesize.")
+                   help="Cycle-neighbor pool size for synthesize and budget-local nilm_dataset.")
     p.add_argument("--synthesis-seed", type=int, default=None,
-                   help="Random seed for structurally paired synthesis.")
+                   help="Random seed for synthesize and budget-local NILM generation.")
     p.add_argument("--appliance", default=None, help="Override run.appliance.")
     p.add_argument("--run-id", default=None, help="Reuse a run directory (enables manifest reuse).")
     p.add_argument("--raw-series", default=None, help="Override paths.raw_series.")
