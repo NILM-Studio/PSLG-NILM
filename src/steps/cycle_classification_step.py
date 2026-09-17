@@ -56,20 +56,22 @@ class CycleClassificationStep(Step):
                 raise ValueError(
                     f"[cycle_classification] {len(missing)} activities lack holdout split")
             invalid_splits = set(split_by_activity.values()) - {
-                "train", "validation", "test", "purged"}
+                "train", "validation", "test", "purged", "outside_cohort"}
             if invalid_splits:
                 raise ValueError(
                     f"[cycle_classification] invalid holdout splits: {sorted(invalid_splits)}")
             excluded_ids = sorted(
-                key for key in sequences if split_by_activity[str(key)] == "purged")
+                key for key in sequences if split_by_activity[str(key)] in ("purged", "outside_cohort"))
             sequences = {key: value for key, value in sequences.items()
-                         if split_by_activity[str(key)] != "purged"}
+                         if split_by_activity[str(key)] not in ("purged", "outside_cohort")}
             if not any(split_by_activity[str(key)] == "train" for key in sequences):
                 raise ValueError("[cycle_classification] no retained training activities")
         fit_ids = ([key for key, split in split_by_activity.items()
                     if split == "train"] if split_by_activity else None)
         result = self.classifier.fit(sequences, fit_ids=fit_ids)
         result["temporal_excluded_activity_ids"] = excluded_ids
+        result["cohort_excluded_activity_ids"] = [
+            key for key in excluded_ids if split_by_activity[key] == "outside_cohort"]
         if split_by_activity:
             for activity_id, record in result["activities"].items():
                 record["source_split"] = split_by_activity[activity_id]

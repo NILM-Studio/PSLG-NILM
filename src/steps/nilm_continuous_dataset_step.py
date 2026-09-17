@@ -219,6 +219,13 @@ class NilmContinuousDatasetStep(Step):
                 holdout_path, holdout_summary_path, cycle_manifest_path)):
             raise FileNotFoundError(
                 "[nilm_continuous_dataset] strict holdout and cycle dataset are required")
+        with open(holdout_summary_path, encoding="utf-8") as f:
+            cohort = json.load(f).get("cohort") or {}
+        if any(cohort.get(key) is not None for key in (
+                "start", "end", "start_timestamp", "end_timestamp")):
+            raise ValueError(
+                "[nilm_continuous_dataset] bounded temporal cohorts are not yet "
+                "supported; use the composition-only workflow")
         split_entry = context["manifest"].get_step("cycle_split") or {}
         structure_fit_scope = (split_entry.get("extra") or {}).get(
             "structure_fit_scope", "unknown")

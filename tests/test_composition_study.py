@@ -11,7 +11,10 @@ import pytest
 from scripts.audit_primitive_composition import audit_composition
 from scripts.prepare_downstream_run import prepare
 from src.generation.primitive_composition import METHODS, LEGACY_METHODS
-from scripts.run_primitive_composition import run_study, write_json
+from scripts.run_primitive_composition import (
+    run_study, write_json, study_status, study_exit_code, validation_availability,
+)
+from src.steps.temporal_holdout_step import TemporalHoldoutStep
 
 
 @pytest.fixture
@@ -222,6 +225,58 @@ def test_legacy_non_train_only_structure_is_rejected(source_run):
     write_json(path, manifest)
     with pytest.raises(ValueError, match="train-only matching"):
         study(source_run)
+
+
+def test_no_validation_is_generation_only_with_nonzero_exit(source_run):
+    path = source_run / "assignments.csv"
+    rows = pd.read_csv(path)
+    rows[rows["split"] != "validation"].to_csv(path, index=False)
+    catalog_path = source_run / "validation_catalog.json"
+    catalog = json.loads(catalog_path.read_text())
+    catalog["activities"] = {}
+    write_json(catalog_path, catalog)
+    summary = study(source_run)
+    assert summary["audit"]["passed"] and summary["paired_cases"] == 3
+    assert summary["status"] == "generation_only_no_validation"
+    assert summary["validation_availability"]["cases_without_matching_validation"] == 3
+    assert summary["source_protocol"]["retained_split_counts"] == {"train": 5, "validation": 0, "test": 1}
+    assert study_exit_code(summary) == 2
+
+
+def test_nonempty_but_disjoint_validation_is_not_ready(source_run):
+    path = source_run / "assignments.csv"
+    rows = pd.read_csv(path)
+    rows.loc[rows["split"] == "validation", "class_id"] = 99
+    rows.to_csv(path, index=False)
+    path = source_run / "validation_catalog.json"
+    catalog = json.loads(path.read_text())
+    catalog["activities"]["5"]["class_id"] = 99
+    write_json(path, catalog)
+    summary = study(source_run)
+    assert summary["status"] == "generation_only_no_matching_validation"
+    assert summary["validation_availability"]["validation_cycles"] == 1
+    assert study_exit_code(summary) == 2
+
+
+def test_partial_validation_coverage_is_explicit():
+    from types import SimpleNamespace
+    cases = [{"class_mode": [0, 0]}, {"class_mode": [1, 0]}]
+    coverage = validation_availability(cases, [SimpleNamespace(group=(0, 0))])
+    assert coverage["cases_with_matching_validation"] == 1
+    assert coverage["groups_without_validation"] == [[1, 0]]
+    assert study_status({"passed": True}, cases, 2, coverage) == "partial_validation_coverage"
+    assert study_status({"passed": False}, cases, 2, coverage) == "integrity_failed"
+
+
+def test_composition_independently_checks_source_cohort_timestamps(source_run):
+    path = source_run / "run_manifest.json"
+    manifest = json.loads(path.read_text())
+    manifest["steps"]["temporal_holdout"]["extra"] = {
+        "cohort": TemporalHoldoutStep.cohort_window(None, "1970-01-01T00:00:50Z")}
+    write_json(path, manifest)
+    with pytest.raises(ValueError, match="outside declared cohort"):
+        study(source_run)
+    assert not (source_run / "study").exists()
 
 
 def test_missing_training_state_coverage_is_not_silently_repaired(source_run):

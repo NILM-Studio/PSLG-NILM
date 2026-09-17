@@ -166,13 +166,30 @@ def _plot_case(root, manifest, case, target):
 
 def _markdown(root, output, manifest, summary, audit, rows, images):
     link = lambda filename: quote(os.path.relpath(root / filename, output).replace(os.sep, "/"))
+    matched_groups = {(row["seed"], row["budget_tag"], tuple(row["class_mode"]))
+                      for row in summary.get("validation_diagnostics", [])
+                      if row.get("validation_cycles", 0) > 0}
+    covered = sum((case["seed"], case["budget_tag"], tuple(case["class_mode"])) in matched_groups
+                  for case in manifest["cases"])
     lines = ["# 基元状态拼接：已有输出的描述性报告", "",
              f"状态：`{summary.get('status', 'not_recorded')}`。本报告读取现有 JSON/NPZ，未重新生成或改变信号。",
              f"本次独立审计：passed={audit['passed']}，检查 {audit['paired_cases_checked']} 个配对案例、"
              f"{audit['waveform_files_checked']} 个波形文件。", "",
              "**审计只证明配对、声明的来源预算、哈希和数值一致性，不证明物理合理、NILM 提升，"
              "也未用原始源 CSV 重构波形核验。状态编号与 Class/Mode 为继承的经验标签，不是人工标注程序。**", "",
-             "## 覆盖与兼容性支持", "",
+             f"同组验证覆盖：{covered}/{len(manifest['cases'])} 个配对案例。", ""]
+    if not covered:
+        lines += ["**现有报告没有可用于这些案例的同组验证数据。只能查看生成诊断，不能据此比较真实分布或评定方法优劣。"
+                  "旧版 ready_for_descriptive_review 状态也不例外。**", ""]
+    elif covered < len(manifest["cases"]):
+        lines += ["**验证集只覆盖部分案例；未覆盖组不能混入验证效果结论。**", ""]
+    protocol = summary.get("source_protocol", {})
+    if protocol:
+        cohort = protocol.get("cohort", {})
+        lines += [f"源数据时期：[ {cohort.get('start') or '不限起点'}, {cohort.get('end') or '不限终点'} )，"
+                  "按完整活动区间筛选后才划分训练/验证/测试，不独立证明设备身份。",
+                  f"筛选后各划分周期数：`{protocol.get('retained_split_counts', {})}`。", ""]
+    lines += ["## 覆盖与兼容性支持", "",
              "full：全部状态转移有足够供体支持；partial：部分边回退；none：全部边回退。"
              "这些是参考模型的支持情况，不是质量等级。", ""]
     coverage = []

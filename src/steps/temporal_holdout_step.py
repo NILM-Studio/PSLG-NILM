@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 import os
 
 import pandas as pd
@@ -16,17 +17,42 @@ class TemporalHoldoutStep(Step):
     step_type = "temporal_holdout"
 
     def __init__(self, cluster_tag: str, train_ratio: float = 0.7,
-                 validation_ratio: float = 0.1, test_ratio: float = 0.2):
+                 validation_ratio: float = 0.1, test_ratio: float = 0.2,
+                 cohort_start: str | None = None, cohort_end: str | None = None):
         if not cluster_tag:
             raise ValueError("temporal holdout requires --cluster-tag")
         ratios = [float(train_ratio), float(validation_ratio), float(test_ratio)]
-        if any(value < 0 for value in ratios) or abs(sum(ratios) - 1.0) > 1e-9:
+        if any(not math.isfinite(value) or value < 0 for value in ratios) or abs(sum(ratios) - 1.0) > 1e-9:
             raise ValueError("temporal_holdout ratios must be non-negative and sum to 1")
         if ratios[0] <= 0:
             raise ValueError("temporal_holdout.train_ratio must be positive")
-        super().__init__(variant=f"global_chronological_on_{cluster_tag}")
+        self.cohort = self.cohort_window(cohort_start, cohort_end)
+        scope = "cohort_chronological" if cohort_start or cohort_end else "global_chronological"
+        super().__init__(variant=f"{scope}_on_{cluster_tag}")
         self.cluster_tag = cluster_tag
         self.train_ratio, self.validation_ratio, self.test_ratio = ratios
+
+    @staticmethod
+    def cohort_window(start=None, end=None):
+        """Explicit timezone-aware [start, end); keep entire extracted intervals."""
+        bounds = {}
+        for name, value in (("start", start), ("end", end)):
+            timestamp = None
+            if value is not None:
+                if not isinstance(value, str) or not value.strip():
+                    raise ValueError("cohort bounds must be timezone-aware ISO timestamps")
+                timestamp = pd.Timestamp(value)
+                if pd.isna(timestamp) or timestamp.tzinfo is None:
+                    raise ValueError("cohort bounds must be timezone-aware ISO timestamps")
+                timestamp = timestamp.tz_convert("UTC")
+            bounds[name] = timestamp.isoformat() if timestamp is not None else None
+            bounds[f"{name}_timestamp"] = timestamp.timestamp() if timestamp is not None else None
+        if (bounds["start_timestamp"] is not None and bounds["end_timestamp"] is not None
+                and bounds["start_timestamp"] >= bounds["end_timestamp"]):
+            raise ValueError("cohort start must precede end")
+        return {**bounds, "interval_policy": "whole_activity_start_inclusive_end_exclusive",
+                "selection_stage": "before_temporal_split_and_structure_fit",
+                "device_identity_verified": False}
 
     @staticmethod
     def _counts(n: int, train_ratio: float, validation_ratio: float,
@@ -69,7 +95,7 @@ class TemporalHoldoutStep(Step):
                 row.update(
                     split="purged", purge_reason="interval_reaches_later_split",
                     boundary_split=boundary_split,
-                    boundary_timestamp=int(starts[boundary_split]))
+                    boundary_timestamp=starts[boundary_split])
             assignments.append(row)
         return assignments, starts
 
@@ -99,14 +125,34 @@ class TemporalHoldoutStep(Step):
             if frame.empty:
                 raise ValueError(
                     f"[temporal_holdout] empty timestamp series: {filename}")
+            times = pd.to_numeric(frame["timestamp"], errors="raise").tolist()
+            if (not all(math.isfinite(value) for value in times)
+                    or any(right <= left for left, right in zip(times, times[1:]))):
+                raise ValueError(f"[temporal_holdout] invalid timestamps: {filename}")
             records.append({
                 "activity_id": str(activity_id),
                 "file": filename,
-                "start_timestamp": int(frame["timestamp"].min()),
-                "end_timestamp": int(frame["timestamp"].max()),
+                # Preserve legacy integer CSV consumers without truncating
+                # genuinely fractional timestamps used for interval checks.
+                "start_timestamp": int(times[0]) if float(times[0]).is_integer() else float(times[0]),
+                "end_timestamp": int(times[-1]) if float(times[-1]).is_integer() else float(times[-1]),
             })
         records.sort(key=lambda row: (
             row["start_timestamp"], row["end_timestamp"], int(row["activity_id"])))
+        source_count = len(records)
+        eligible, outside = [], []
+        for row in records:
+            reasons = []
+            if self.cohort["start_timestamp"] is not None and row["start_timestamp"] < self.cohort["start_timestamp"]:
+                reasons.append("starts_before_cohort")
+            if self.cohort["end_timestamp"] is not None and row["end_timestamp"] >= self.cohort["end_timestamp"]:
+                reasons.append("reaches_or_follows_cohort_end")
+            if reasons:
+                outside.append({**row, "split": "outside_cohort", "original_split": "outside_cohort",
+                                "cohort_exclusion_reason": ";".join(reasons)})
+            else:
+                eligible.append(row)
+        records = eligible
         n_train, n_validation, n_test = self._counts(
             len(records), self.train_ratio, self.validation_ratio, self.test_ratio)
         boundaries = n_train, n_train + n_validation
@@ -127,16 +173,22 @@ class TemporalHoldoutStep(Step):
         assignments_path = os.path.join(log_dir, "temporal_holdout_assignments.csv")
         fields = ["activity_id", "file", "start_timestamp", "end_timestamp",
                   "split", "original_split", "purge_reason", "boundary_split",
-                  "boundary_timestamp"]
+                  "boundary_timestamp", "cohort_exclusion_reason"]
         with open(assignments_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fields)
             writer.writeheader()
-            writer.writerows(records)
+            writer.writerows(sorted(records + outside, key=lambda row: (
+                row["start_timestamp"], row["end_timestamp"], int(row["activity_id"]))))
         exclusions_path = os.path.join(log_dir, "temporal_holdout_excluded.csv")
         with open(exclusions_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fields)
             writer.writeheader()
             writer.writerows(excluded)
+        cohort_exclusions_path = os.path.join(log_dir, "cohort_excluded.csv")
+        with open(cohort_exclusions_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(outside)
         split_rows = {
             split: [row for row in records if row["split"] == split]
             for split in ("train", "validation", "test")
@@ -144,6 +196,11 @@ class TemporalHoldoutStep(Step):
         summary = {
             "method": "global_chronological_cycles_before_structure_fit",
             "cluster_tag": self.cluster_tag,
+            "cohort": self.cohort,
+            "source_activities": source_count,
+            "cohort_activities_before_boundary_purge": len(eligible),
+            "cohort_excluded_count": len(outside),
+            "cohort_excluded_activity_ids": [row["activity_id"] for row in outside],
             "ratios": {"train": self.train_ratio,
                        "validation": self.validation_ratio,
                        "test": self.test_ratio},
@@ -154,8 +211,8 @@ class TemporalHoldoutStep(Step):
             "excluded_count": len(excluded),
             "excluded_activity_ids": [row["activity_id"] for row in excluded],
             "timestamp_ranges": {
-                key: ({"start": int(min(row["start_timestamp"] for row in value)),
-                       "end": int(max(row["end_timestamp"] for row in value))}
+                key: ({"start": min(row["start_timestamp"] for row in value),
+                       "end": max(row["end_timestamp"] for row in value)}
                       if value else None)
                 for key, value in split_rows.items()
             },
@@ -166,6 +223,8 @@ class TemporalHoldoutStep(Step):
         summary_path = os.path.join(log_dir, "temporal_holdout_summary.json")
         with open(summary_path, "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2, ensure_ascii=False)
+        if not eligible:
+            raise ValueError(f"[temporal_holdout] no activities wholly inside cohort; inspect {summary_path}")
         emptied = [split for split, count in nominal_counts.items()
                    if count and not split_rows[split]]
         if emptied:
@@ -176,13 +235,16 @@ class TemporalHoldoutStep(Step):
             "assignments": self.rel(context, assignments_path),
             "summary": self.rel(context, summary_path),
             "excluded_assignments": self.rel(context, exclusions_path),
+            "cohort_excluded_assignments": self.rel(context, cohort_exclusions_path),
         }, extra={
             "cluster_tag": self.cluster_tag,
             "counts": summary["counts"],
             "structure_fit_scope": "train_only",
             "excluded_count": len(excluded),
+            "cohort": self.cohort,
+            "cohort_excluded_count": len(outside),
             "cross_split_interval_overlap": False,
         })
         print(f"[temporal_holdout] train/validation/test={summary['counts']} "
-              f"purged={len(excluded)} -> {log_dir}")
+              f"purged={len(excluded)} outside_cohort={len(outside)} -> {log_dir}")
         return context

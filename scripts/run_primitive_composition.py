@@ -27,6 +27,7 @@ from src.generation.primitive_composition import (
 )
 from src.generation.composition_evaluation import evaluate_composition, transition_observations
 from src.steps.nilm_dataset_step import NilmDatasetStep
+from src.steps.temporal_holdout_step import TemporalHoldoutStep
 
 
 def write_json(path, value):
@@ -93,6 +94,9 @@ def load_inputs(run_root, cluster_tag, device_change_date=None):
     with open(holdout_path, newline="", encoding="utf-8") as source:
         temporal_rows = list(csv.DictReader(source))
     temporal = {int(row["activity_id"]): row for row in temporal_rows}
+    cohort = (manifest.get_step("temporal_holdout") or {}).get("extra", {}).get("cohort", {})
+    if cohort and cohort != TemporalHoldoutStep.cohort_window(cohort.get("start"), cohort.get("end")):
+        raise ValueError("invalid or inconsistent temporal cohort declaration")
     if len(temporal) != len(temporal_rows) or len({row["activity_id"] for row in assignments}) != len(assignments):
         raise ValueError("duplicate activity IDs in assignments")
     for row in assignments:
@@ -108,11 +112,16 @@ def load_inputs(run_root, cluster_tag, device_change_date=None):
     actual_ranges = defaultdict(list)
     for row in assignments:
         activity_id = int(row["activity_id"])
+        if not 0 <= activity_id < len(source_files):
+            raise ValueError(f"source activity out of range: {activity_id}")
         source_path = source_files[activity_id]
         if source_path.name != row["file"]:
             raise ValueError(f"source filename no longer matches activity {activity_id}")
         timestamps = pd.read_csv(source_path, usecols=["timestamp"])["timestamp"].to_numpy()
         start, end = float(timestamps[0]), float(timestamps[-1])
+        if ((cohort.get("start_timestamp") is not None and start < cohort["start_timestamp"])
+                or (cohort.get("end_timestamp") is not None and end >= cohort["end_timestamp"])):
+            raise ValueError(f"source activity {activity_id} falls outside declared cohort")
         declared = temporal[activity_id]
         # Legacy holdout stores integer seconds; allow truncation but not stale
         # source membership. Actual timestamps independently check isolation.
@@ -138,7 +147,50 @@ def load_inputs(run_root, cluster_tag, device_change_date=None):
         path = manifest.artifact_path("cycle_split", f"{split}_catalog")
         if path:
             hashes[f"{split}_catalog"] = sha256_file(Path(path))
-    return training, validation, upstream, hashes
+    temporal_summary = manifest.artifact_path("temporal_holdout", "summary")
+    if temporal_summary:
+        declared = json.loads(Path(temporal_summary).read_text(encoding="utf-8"))
+        if declared.get("cohort", {}) != cohort:
+            raise ValueError("cohort summary differs from temporal manifest")
+        hashes["temporal_summary"] = sha256_file(Path(temporal_summary))
+    protocol = {"cohort": cohort, "retained_split_counts": {
+        split: sum(row["split"] == split for row in assignments) for split in ("train", "validation", "test")}}
+    return training, validation, upstream, hashes, protocol
+
+
+def validation_availability(cases, validation):
+    counts = Counter(cycle.group for cycle in validation)
+    matched = sum(counts[tuple(case["class_mode"])] > 0 for case in cases)
+    return {
+        "validation_cycles": len(validation), "paired_cases": len(cases),
+        "cases_with_matching_validation": matched,
+        "cases_without_matching_validation": len(cases) - matched,
+        "groups_without_validation": [list(group) for group in sorted({
+            tuple(case["class_mode"]) for case in cases if not counts[tuple(case["class_mode"])]})],
+        "note": "Coverage only; nonempty matching validation does not establish statistical sufficiency.",
+    }
+
+
+def study_status(audit, cases, learned_cases, availability):
+    if not audit["passed"]:
+        return "integrity_failed"
+    if not cases:
+        return "no_paired_cases"
+    if not availability["validation_cycles"]:
+        return "generation_only_no_validation"
+    if not availability["cases_with_matching_validation"]:
+        return "generation_only_no_matching_validation"
+    if not learned_cases:
+        return "no_learned_transition_support"
+    if availability["cases_without_matching_validation"]:
+        return "partial_validation_coverage"
+    return "ready_for_descriptive_review"
+
+
+def study_exit_code(summary):
+    if not summary["audit"]["passed"]:
+        return 1
+    return 0 if summary["status"] in ("ready_for_descriptive_review", "partial_validation_coverage") else 2
 
 
 def _distribution(values):
@@ -195,20 +247,22 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
     if len({f"{100 * ratio:g}pct" for ratio in ratios}) != len(ratios):
         raise ValueError("budget ratios produce ambiguous output tags")
     run_root = Path(run_root).resolve()
-    training, validation, upstream, hashes = load_inputs(run_root, cluster_tag, device_change_date)
+    training, validation, upstream, hashes, protocol = load_inputs(run_root, cluster_tag, device_change_date)
     configuration = dict(cluster_tag=cluster_tag, ratios=ratios, seeds=seeds, candidates=candidates,
                          max_warp=max_warp, min_fit_cycles=min_fit_cycles, neighbors=neighbors,
                          window=window, max_anchors=max_anchors, sample_period=sample_period,
                          device_change_date=device_change_date, target_weight=target_weight)
     project = Path(__file__).resolve().parents[1]
     identity = {"configuration": configuration, "source_run": str(run_root), "inputs": hashes,
+                "source_protocol": protocol,
                 "source_signal_digest": upstream["source_digest"],
                 "upstream_artifact_sha256": upstream["artifact_sha256"],
                 "numpy_version": np.__version__, "scipy_version": scipy.__version__,
                 "code": {name: sha256_file(project / name) for name in (
                     "scripts/run_primitive_composition.py", "src/generation/primitive_composition.py",
                     "scripts/audit_primitive_composition.py", "src/steps/nilm_dataset_step.py",
-                    "scripts/validate_generation_run.py", "src/generation/composition_evaluation.py")}}
+                    "scripts/validate_generation_run.py", "src/generation/composition_evaluation.py",
+                    "src/steps/temporal_holdout_step.py")}}
     fingerprint = hashlib.sha256(json.dumps(identity, sort_keys=True, allow_nan=False).encode()).hexdigest()
     output = (Path(output_dir) if output_dir else run_root / f"primitive_composition_{fingerprint[:16]}").resolve()
     # Never overwrite a previous study, even if only partially written.
@@ -328,10 +382,12 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
     from scripts.audit_primitive_composition import audit_composition
     audit = audit_composition(output)
     learned_cases = sum(case["results"]["transition_dp"]["transition_supported_edges"] > 0 for case in cases)
+    availability = validation_availability(cases, validation)
     summary = {
         "output_dir": str(output), "input_fingerprint": fingerprint,
-        "status": ("integrity_failed" if not audit["passed"] else "no_paired_cases" if not cases else "no_learned_transition_support" if not learned_cases
-                   else "ready_for_descriptive_review"),
+        "status": study_status(audit, cases, learned_cases, availability),
+        "source_protocol": protocol, "validation_availability": availability,
+        "distinct_anchor_cycles": len({case["anchor_activity_id"] for case in cases}),
         "paired_cases": len(cases), "cases_with_supported_transitions": learned_cases,
         "skipped_cases": len(skipped), "skip_reasons": dict(Counter(row["reason"] for row in skipped)),
         "audit": audit, "configuration": configuration, "budgets": budgets,
@@ -397,7 +453,7 @@ def main():
     print(json.dumps({key: summary[key] for key in (
         "output_dir", "status", "paired_cases", "cases_with_supported_transitions", "skipped_cases", "audit")},
         indent=2, ensure_ascii=False))
-    raise SystemExit(0 if summary["audit"]["passed"] and summary["paired_cases"] else 2)
+    raise SystemExit(study_exit_code(summary))
 
 
 if __name__ == "__main__":

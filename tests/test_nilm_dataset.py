@@ -285,6 +285,24 @@ class ContinuousDatasetIdentityTests(unittest.TestCase):
             self._build()
         self.assertEqual(list(self.run_root.glob("nilm_continuous_dataset_*")), [])
 
+    def test_bounded_cohort_cannot_silently_extend_continuous_periods(self):
+        for bound in ({"end_timestamp": 170}, {"start_timestamp": 0},
+                      {"end": "1970-01-01T00:02:50Z"}):
+            with self.subTest(bound=bound):
+                (self.run_root / "holdout.json").write_text(json.dumps({
+                    "structure_fit_scope": "train_only", "cohort": bound}), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "bounded temporal cohorts"):
+                    self._build()
+                self.assertEqual(list(self.run_root.glob("nilm_continuous_dataset_*")), [])
+
+    def test_unbounded_cohort_metadata_remains_compatible(self):
+        (self.run_root / "holdout.json").write_text(json.dumps({
+            "structure_fit_scope": "train_only", "cohort": {
+                "start": None, "end": None, "start_timestamp": None, "end_timestamp": None,
+            }}), encoding="utf-8")
+        path, _ = self._build()
+        self.assertTrue(path.is_file())
+
     def test_unverified_structure_is_not_relabelled_train_only(self):
         self.context["manifest"].get_step("cycle_split")["extra"] = {}
         _, manifest = self._build(require_train_only_structure=False)

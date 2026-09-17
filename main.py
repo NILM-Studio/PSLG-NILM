@@ -246,6 +246,8 @@ def _build_temporal_holdout(cfg, sel):
         train_ratio=c.get("train_ratio", 0.7),
         validation_ratio=c.get("validation_ratio", 0.1),
         test_ratio=c.get("test_ratio", 0.2),
+        cohort_start=sel.get("cohort_start", c.get("cohort_start")),
+        cohort_end=sel.get("cohort_end", c.get("cohort_end")),
     )
 
 
@@ -430,6 +432,8 @@ def resolve_selection(args, cfg):
         "cluster_method": args.cluster_method or "kmeans",
         "n_clusters": parse_int_list(args.n_clusters) or [3, 4, 5],
         "cluster_tag": args.cluster_tag,
+        "cohort_start": getattr(args, "cohort_start", None) or (cfg.get("temporal_holdout") or {}).get("cohort_start"),
+        "cohort_end": getattr(args, "cohort_end", None) or (cfg.get("temporal_holdout") or {}).get("cohort_end"),
         "primitive_sampler": getattr(args, "primitive_sampler", None) or "real_resample",
         "sequence_method": getattr(args, "sequence_method", None) or "empirical",
         "cycle_class": getattr(args, "cycle_class", None) or "all",
@@ -494,6 +498,10 @@ def main():
                    help="Candidate cluster counts, e.g. '3,4,5'. Every k gets its own tagged result.")
     p.add_argument("--cluster-tag", default=None,
                    help="Which tagged clustering result downstream steps consume, e.g. 'kmeans_k4'.")
+    p.add_argument("--cohort-start", default=None,
+                   help="Keep whole activities starting at/after this timezone-aware ISO time, before splitting.")
+    p.add_argument("--cohort-end", default=None,
+                   help="Keep whole activities ending strictly before this timezone-aware ISO time, before splitting.")
     p.add_argument("--primitive-sampler", default=None,
                    help="Primitive waveform source for synthesize: real_resample (default).")
     p.add_argument("--sequence-method", default=None,

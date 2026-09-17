@@ -97,6 +97,21 @@ def test_empty_study_still_has_coverage_report(source_run, tmp_path):
     assert "no_paired_cases" in Path(report["report"]).read_text()
 
 
+def test_report_warns_when_legacy_ready_status_has_no_validation(source_run, tmp_path):
+    directory = make_study(source_run)
+    path = directory / "composition_summary.json"
+    summary = json.loads(path.read_text())
+    # Old releases could label this ready despite all validation references missing.
+    summary["status"] = "ready_for_descriptive_review"
+    for row in summary["validation_diagnostics"]:
+        row["validation_cycles"] = 0
+    write_json(path, summary)
+    report = build_report(directory, tmp_path / "no_validation", max_cases=0)
+    text = Path(report["report"]).read_text()
+    assert "同组验证覆盖：0/2" in text
+    assert "不能据此比较真实分布或评定方法优劣" in text
+
+
 def test_plot_sampling_covers_budgets_without_score_selection():
     manifest = {"budgets": [
         {"seed": 42, "budget_tag": tag, "real_ratio": ratio}

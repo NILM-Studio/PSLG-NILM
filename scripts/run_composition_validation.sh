@@ -15,10 +15,20 @@ CLUSTER_TAG="${CLUSTER_TAG:-kmeans_k4_merged}"
 "$PYTHON_BIN" -m scripts.prepare_downstream_run \
   --source-run-id "$SOURCE_RUN_ID" --run-id "$RUN_ID"
 
-exec > >(tee "$PROJECT_DIR/log/$RUN_ID/composition_execution.log") 2>&1
+# A subshell gives the pipeline strict early-exit behavior. The outer shell
+# waits for tee before packaging, without /dev/fd process substitution.
+run_pipeline() (
+set -euo pipefail
 printf 'COMPOSITION_RUN_ID=%s\n' "$RUN_ID"
 git rev-parse HEAD
 "$PYTHON_BIN" --version
+# Run against a recorded copy of the actual server config, including thresholds.
+cp config/config_ukdale_detsec.yaml "log/$RUN_ID/downstream_config.yaml"
+
+cohort_args=()
+if [[ -n "${COHORT_START:-}" ]]; then cohort_args+=(--cohort-start "$COHORT_START"); fi
+if [[ -n "${COHORT_END:-}" ]]; then cohort_args+=(--cohort-end "$COHORT_END"); fi
+printf 'COHORT_START=%s COHORT_END=%s\n' "${COHORT_START:-unbounded}" "${COHORT_END:-unbounded}"
 
 "$PYTHON_BIN" -u -m scripts.validate_generation_run \
   --run-id "$RUN_ID" --cluster-tag "$CLUSTER_TAG" --stage upstream \
@@ -26,10 +36,16 @@ git rev-parse HEAD
   --output "log/$RUN_ID/upstream_validation.json"
 
 "$PYTHON_BIN" -u main.py \
-  --config config/config_ukdale_detsec.yaml \
+  --config "log/$RUN_ID/downstream_config.yaml" \
   --run-id "$RUN_ID" --cluster-tag "$CLUSTER_TAG" \
   --segment-method prim-glr --feature-model detsec \
-  --steps temporal_holdout,cycle_classify,cycle_validate,cycle_split
+  --steps temporal_holdout,cycle_classify,cycle_validate,cycle_split \
+  "${cohort_args[@]}"
+
+# Does not relax class/member thresholds. Empty or disjoint holdouts stop here,
+# with the exclusion funnel recorded for review before any new synthesis.
+"$PYTHON_BIN" -m scripts.audit_cycle_cohort --run-id "$RUN_ID" \
+  --output "log/$RUN_ID/cycle_cohort_audit.json" --require-evaluation-ready
 
 composition_status=0
 "$PYTHON_BIN" -u -m scripts.run_primitive_composition \
@@ -41,7 +57,7 @@ composition_status=0
   --target-weight "${TARGET_WEIGHT:-1}" \
   --device-change-date '2015-09-08T00:00:00+01:00' || composition_status=$?
 
-# Exit 2 still leaves a diagnostic summary when no paired cases were possible.
+# Exit 2 still leaves diagnostic outputs when paired evaluation is unavailable.
 if [[ "$composition_status" -ne 0 && "$composition_status" -ne 2 ]]; then
   exit "$composition_status"
 fi
@@ -55,3 +71,29 @@ printf 'Return: %s\n' "$PROJECT_DIR/log/$RUN_ID/composition/composition_summary.
 printf 'Return: %s\n' "$PROJECT_DIR/log/$RUN_ID/upstream_validation.json"
 printf 'Return: %s\n' "$PROJECT_DIR/log/$RUN_ID/composition_execution.log"
 exit "$composition_status"
+)
+
+set +e
+run_pipeline 2>&1 | tee "$PROJECT_DIR/log/$RUN_ID/composition_execution.log"
+pipeline_status=("${PIPESTATUS[@]}")
+set -e
+run_status=${pipeline_status[0]}
+if [[ "${pipeline_status[1]}" -ne 0 ]]; then run_status=1; fi
+if ! printf 'COMPOSITION_EXIT_STATUS=%s\n' "$run_status" | tee -a "$PROJECT_DIR/log/$RUN_ID/composition_execution.log"; then
+  run_status=1
+fi
+
+# Always leave diagnostics on preflight/study failure, never raw/source arrays.
+# The new run contains downstream outputs and upstream references, not source data.
+archive="$PROJECT_DIR/log/${RUN_ID}_diagnostics.tar.gz"
+if [[ -e "$archive" ]]; then
+  printf 'Existing diagnostic archive left unchanged: %s\n' "$archive"
+  if [[ "$run_status" -eq 0 ]]; then run_status=1; fi
+elif tar --exclude='*.npz' --exclude='*.npy' \
+    -czf "$archive" -C "$PROJECT_DIR/log/$RUN_ID" .; then
+  printf 'Return diagnostic archive: %s\n' "$archive"
+else
+  printf 'Diagnostic packaging failed; return the run directory reports.\n'
+  if [[ "$run_status" -eq 0 ]]; then run_status=1; fi
+fi
+exit "$run_status"
