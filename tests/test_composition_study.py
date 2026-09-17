@@ -10,6 +10,7 @@ import pytest
 
 from scripts.audit_primitive_composition import audit_composition
 from scripts.prepare_downstream_run import prepare
+from src.generation.primitive_composition import METHODS, LEGACY_METHODS
 from scripts.run_primitive_composition import run_study, write_json
 
 
@@ -64,12 +65,12 @@ def study(root, name="study", **options):
     return run_study(root, root / name, ratios=[1.0], max_anchors=3, **options)
 
 
-def test_complete_cpu_study_four_arms_and_readback_audit(source_run):
+def test_complete_cpu_study_all_arms_and_readback_audit(source_run):
     original = (source_run / "run_manifest.json").read_bytes()
     summary = study(source_run)
     assert summary["status"] == "ready_for_descriptive_review"
     assert summary["paired_cases"] == 3 and summary["cases_with_supported_transitions"] == 3
-    assert summary["audit"]["passed"] and summary["audit"]["waveform_files_checked"] == 12
+    assert summary["audit"]["passed"] and summary["audit"]["waveform_files_checked"] == 3 * len(METHODS)
     manifest = json.loads((source_run / "study/composition_manifest.json").read_text())
     for case in manifest["cases"]:
         anchor = case["anchor_activity_id"]
@@ -196,6 +197,7 @@ def test_misaligned_source_filename_is_rejected(source_run):
 @pytest.mark.parametrize("options", [
     {"sample_period": 0}, {"max_warp": float("nan")}, {"min_fit_cycles": 1},
     {"candidates": 0}, {"neighbors": 0}, {"seeds": [-1]},
+    {"target_weight": -1}, {"target_weight": float("nan")},
 ])
 def test_bad_parameters_fail_before_writing(source_run, options):
     with pytest.raises(ValueError, match="invalid composition"):
@@ -295,3 +297,48 @@ def test_actual_downstream_cli_feeds_composition_without_upstream_retraining(tmp
     manifest = json.loads((target / "run_manifest.json").read_text())
     assert manifest["steps"]["extract_active_data"]["artifacts"]["segments_dir"] == str(segments)
     assert not {"time_segmentation", "feature_extract", "state_merge"} & set(manifest["steps"])
+
+
+def test_new_evaluation_is_held_out_and_support_stratified(source_run):
+    summary = study(source_run)
+    evaluation = summary["evaluation"]
+    assert evaluation["coverage"]
+    assert {row["method"] for row in evaluation["cycle_validation"]} == set(METHODS)
+    assert {row["support_status"] for row in evaluation["transition_validation"]} == {"full"}
+    assert {row["validation_cycles"] for row in evaluation["transition_validation"]} == {1}
+    assert all(row["left_state"] == 0 and row["right_state"] == 1
+               for row in evaluation["transition_validation"])
+    json.dumps(evaluation, allow_nan=False)
+
+
+@pytest.mark.parametrize("field", ["duration_target_cost", "unit_selection_objective",
+                                  "largest_donor_sample_fraction", "transition_observations"])
+def test_new_selection_and_diagnostic_tampering_is_detected(source_run, field):
+    study(source_run)
+    path = source_run / "study/composition_manifest.json"
+    manifest = json.loads(path.read_text())
+    row = manifest["cases"][0]["results"]["unit_selection"]
+    if field == "transition_observations":
+        row[field][0]["signed_jump_watts"] += 20
+    else:
+        row[field] += 1
+    write_json(path, manifest)
+    assert not audit_composition(source_run / "study")["passed"]
+
+
+def test_audit_still_accepts_legacy_four_method_schema(source_run):
+    study(source_run)
+    path = source_run / "study/composition_manifest.json"
+    manifest = json.loads(path.read_text())
+    manifest["schema_version"] = 1
+    manifest["methods"] = list(LEGACY_METHODS)
+    manifest.pop("unit_selection")
+    for case in manifest["cases"]:
+        case["results"].pop("unit_selection")
+        for row in case["results"].values():
+            for key in ("duration_target_cost", "unit_selection_objective", "largest_donor_sample_fraction",
+                        "nearest_donor_activity_id", "transition_observations"):
+                row.pop(key)
+    write_json(path, manifest)
+    audit = audit_composition(source_run / "study")
+    assert audit["passed"] and audit["waveform_files_checked"] == 3 * len(LEGACY_METHODS)

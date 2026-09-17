@@ -15,7 +15,8 @@ import json
 import numpy as np
 
 
-METHODS = ("random", "boundary_greedy", "boundary_dp", "transition_dp")
+LEGACY_METHODS = ("random", "boundary_greedy", "boundary_dp", "transition_dp")
+METHODS = LEGACY_METHODS + ("unit_selection",)
 FEATURE_NAMES = (
     "log_left_mean", "log_right_mean", "log_left_std", "log_right_std",
     "signed_log_jump", "signed_log_left_slope", "signed_log_right_slope",
@@ -203,19 +204,27 @@ def boundary_costs(left, right):
                            - np.asarray([b.power[0] for b in right])[None, :]))
 
 
-def shortest_path(costs, sizes, first_index):
-    """Exact layered dynamic programming, with a common fixed first candidate."""
+def shortest_path(costs, sizes, first_index, node_costs=None):
+    """Exact layered DP with a fixed first candidate and optional unary costs."""
     if not sizes or len(costs) != len(sizes) - 1 or not 0 <= first_index < sizes[0]:
         raise ValueError("invalid candidate lattice")
+    if node_costs is None:
+        node_costs = [np.zeros(size) for size in sizes]
+    else:
+        node_costs = [np.asarray(cost, dtype=np.float64) for cost in node_costs]
+        if len(node_costs) != len(sizes) or any(
+                cost.shape != (size,) or not np.isfinite(cost).all()
+                for cost, size in zip(node_costs, sizes)):
+            raise ValueError("invalid node cost vectors")
     current = np.full(sizes[0], np.inf)
-    current[first_index] = 0.0
+    current[first_index] = node_costs[0][first_index]
     parents = []
     for index, edge in enumerate(costs):
         if edge.shape != (sizes[index], sizes[index + 1]) or not np.isfinite(edge).all():
             raise ValueError("invalid transition cost matrix")
         total = current[:, None] + edge
         parent = np.argmin(total, axis=0)
-        current = total[parent, np.arange(sizes[index + 1])]
+        current = total[parent, np.arange(sizes[index + 1])] + node_costs[index + 1]
         parents.append(parent)
     last = int(np.argmin(current))
     result = [last]
@@ -225,9 +234,21 @@ def shortest_path(costs, sizes, first_index):
     return list(reversed(result)), float(np.min(current))
 
 
-def compose(lattice, reference, seed=42, anchor_id=0):
+def compose(lattice, reference, seed=42, anchor_id=0, target_weight=1.0):
+    """Compare selectors on identical candidates, retaining the fixed first unit.
+
+    ``unit_selection`` follows the target + join + Viterbi structure of Hunt
+    and Black (1996), adapted to NILM rather than reproducing their speech
+    features. The target cost is abs(log(target_length / source_length)); it
+    uses the prescribed duration, never the anchor's real power. Join costs
+    reuse the empirical transition reference and its explicit boundary
+    fallback. Their scales are not calibrated to one another, so the weight
+    is an experimental setting, not a validated physical quality metric.
+    """
     if not lattice or any(not options for options in lattice):
         raise ValueError("nonempty candidate lattice required")
+    if not np.isfinite(target_weight) or target_weight < 0:
+        raise ValueError("target_weight must be finite and nonnegative")
     rng = np.random.default_rng(np.random.SeedSequence([seed, anchor_id, 83119]))
     random_path = [int(rng.integers(len(options))) for options in lattice]
     first = random_path[0]
@@ -243,16 +264,28 @@ def compose(lattice, reference, seed=42, anchor_id=0):
     sizes = [len(options) for options in lattice]
     boundary_path, _ = shortest_path(boundary, sizes, first)
     transition_path, _ = shortest_path(transition, sizes, first)
+    duration_costs = [np.asarray([
+        abs(np.log(len(candidate.power) / len(candidate.source.power)))
+        for candidate in options]) for options in lattice]
+    unit_path, _ = shortest_path(transition, sizes, first, node_costs=[
+        target_weight * costs for costs in duration_costs])
     paths = {"random": random_path, "boundary_greedy": greedy,
-             "boundary_dp": boundary_path, "transition_dp": transition_path}
+             "boundary_dp": boundary_path, "transition_dp": transition_path,
+             "unit_selection": unit_path}
     result = {}
     for method, path in paths.items():
         selected = [options[index] for options, index in zip(lattice, path)]
+        transition_objective = float(sum(
+            edge[a, b] for edge, a, b in zip(transition, path, path[1:])))
+        duration_target_cost = float(sum(
+            costs[index] for costs, index in zip(duration_costs, path)))
         result[method] = {
             "power": np.concatenate([item.power for item in selected]),
             "selected": selected, "candidate_indices": path,
             "boundary_objective": float(sum(edge[a, b] for edge, a, b in zip(boundary, path, path[1:]))),
-            "transition_objective": float(sum(edge[a, b] for edge, a, b in zip(transition, path, path[1:]))),
+            "transition_objective": transition_objective,
+            "duration_target_cost": duration_target_cost,
+            "unit_selection_objective": transition_objective + target_weight * duration_target_cost,
             "transition_fallback_edges": [index for index, fallback in enumerate(fallbacks) if fallback],
             "transition_supported_edges": sum(not fallback for fallback in fallbacks),
         }

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -9,7 +10,8 @@ from pathlib import Path
 import numpy as np
 
 from scripts.validate_generation_run import sha256_file
-from src.generation.primitive_composition import METHODS, waveform_metrics
+from src.generation.primitive_composition import LEGACY_METHODS, METHODS, waveform_metrics
+from src.generation.composition_evaluation import transition_observations
 
 
 def audit_composition(directory):
@@ -17,7 +19,11 @@ def audit_composition(directory):
     manifest = json.loads((root / "composition_manifest.json").read_text(encoding="utf-8"))
     identity = json.loads((root / "input_identity.json").read_text(encoding="utf-8"))
     fingerprint = identity.pop("fingerprint")
-    errors, files_checked = [], 0
+    errors, files_checked, references_checked = [], 0, 0
+    schema = manifest.get("schema_version", 1)
+    if schema not in (1, 2):
+        raise ValueError(f"unsupported composition schema: {schema}")
+    methods = LEGACY_METHODS if schema == 1 else METHODS
 
     def check(condition, message):
         if not condition:
@@ -26,9 +32,13 @@ def audit_composition(directory):
     check(hashlib.sha256(json.dumps(identity, sort_keys=True, allow_nan=False).encode()).hexdigest()
           == fingerprint == manifest["input_fingerprint"], "input identity mismatch")
     check(manifest["configuration"] == identity["configuration"], "configuration differs from input identity")
-    check(manifest["methods"] == list(METHODS), "method matrix differs")
+    check(manifest["methods"] == list(methods), "method matrix differs")
     check(manifest.get("seam_smoothing") is False, "unexpected seam smoothing")
     check(manifest.get("first_candidate_shared") is True, "unpaired first-state policy")
+    if schema == 2:
+        weight = manifest["configuration"]["target_weight"]
+        check(np.isfinite(weight) and weight >= 0, "invalid target weight")
+        check(manifest["unit_selection"]["target_weight"] == weight, "unit selection target weight differs")
     budgets = {(row["seed"], row["budget_tag"]): set(row["selected_activity_ids"])
                for row in manifest["budgets"]}
     check(len(budgets) == len(manifest["budgets"]), "duplicate budgets")
@@ -75,6 +85,17 @@ def audit_composition(directory):
         for template, options in zip(case["template"], case["candidates"]):
             check(bool(options), f"{name}: empty candidate pool")
             for option in options:
+                if schema == 2:
+                    source_length = option["source_length"]
+                    target_length = option["target_length"]
+                    valid_lengths = (isinstance(source_length, int) and source_length > 0
+                                     and isinstance(target_length, int) and target_length > 0)
+                    check(valid_lengths, f"{name}: invalid candidate lengths")
+                    if valid_lengths:
+                        ratio = target_length / source_length
+                        check(option["duration_ratio"] == ratio, f"{name}: candidate duration ratio differs")
+                        warp = manifest["configuration"]["max_warp"]
+                        check(1 / warp <= ratio <= warp, f"{name}: candidate exceeds duration bounds")
                 check(option["activity_id"] in donors and option["activity_id"] != anchor,
                       f"{name}: candidate source leak")
                 check(option["state_label"] == template["state_label"]
@@ -82,7 +103,24 @@ def audit_composition(directory):
         lengths = [item["length_samples"] for item in case["template"]]
         expected_states = np.concatenate([np.full(item["length_samples"], item["state_label"], dtype=np.int64)
                                           for item in case["template"]])
-        check(set(case["results"]) == set(METHODS), f"{name}: missing comparison arm")
+        check(set(case["results"]) == set(methods), f"{name}: missing comparison arm")
+        if schema == 2:
+            reference = case["anchor_reference"]
+            reference_path = (root / reference["file"]).resolve()
+            check(reference["activity_id"] == anchor, f"{name}: reference anchor differs")
+            if not reference_path.is_relative_to(root) or not reference_path.is_file():
+                errors.append(f"{name}: missing or external anchor reference")
+            else:
+                check(sha256_file(reference_path) == reference["file_sha256"], f"{name}: anchor reference file changed")
+                with np.load(reference_path, allow_pickle=False) as payload:
+                    reference_power = payload["appliance"]
+                    check(reference_power.ndim == 1 and len(reference_power) == sum(lengths)
+                          and np.isfinite(reference_power).all() and np.all(reference_power >= 0),
+                          f"{name}: invalid anchor reference power")
+                    check(np.array_equal(payload["state_label"], expected_states), f"{name}: anchor reference states differ")
+                    check(np.array_equal(payload["timestamp"], np.arange(sum(lengths)) * manifest["configuration"]["sample_period"]),
+                          f"{name}: anchor reference time differs")
+                references_checked += 1
         first_indices = set()
         for method, row in case["results"].items():
             check(row["transition_fallback_edges"] == expected_fallback
@@ -122,8 +160,42 @@ def audit_composition(directory):
             if power.ndim == 1 and len(power) == sum(lengths) and np.isfinite(power).all() and np.all(power >= 0):
                 expected_metrics = waveform_metrics(power, lengths, manifest["configuration"]["sample_period"])
                 check(expected_metrics == row["metrics"], f"{name}/{method}: waveform metrics differ")
+                if schema == 2:
+                    observations = transition_observations(
+                        power, lengths, [item["state_label"] for item in case["template"]],
+                        sample_period=manifest["configuration"]["sample_period"])
+                    check(observations == row["transition_observations"],
+                          f"{name}/{method}: transition observations differ")
+                    donor_samples = Counter()
+                    for source in row["sources"]:
+                        donor_samples[source["activity_id"]] += source["target_length"]
+                    check(row["largest_donor_sample_fraction"] == max(donor_samples.values()) / sum(lengths),
+                          f"{name}/{method}: donor fraction differs")
+                    check(row["nearest_donor_activity_id"] in donors,
+                          f"{name}/{method}: nearest donor outside budget")
+                    check(np.isfinite(row["nearest_donor_resampled_nrmse"])
+                          and row["nearest_donor_resampled_nrmse"] >= 0,
+                          f"{name}/{method}: invalid donor NRMSE")
+                    target = float(sum(abs(np.log(source["target_length"] / source["source_length"]))
+                                       for source in row["sources"]))
+                    check(np.isclose(target, row["duration_target_cost"], rtol=1e-12, atol=1e-12),
+                          f"{name}/{method}: duration target cost differs")
+                    boundary = float(sum(np.log1p(abs(value))
+                                         for value in expected_metrics["signed_boundary_jumps_watts"]))
+                    check(np.isclose(boundary, row["boundary_objective"], rtol=1e-12, atol=1e-12),
+                          f"{name}/{method}: boundary objective differs")
+                    check(np.isfinite(row["transition_objective"]) and row["transition_objective"] >= 0,
+                          f"{name}/{method}: invalid transition objective")
+                    objective = row["transition_objective"] + weight * target
+                    check(np.isclose(objective, row["unit_selection_objective"], rtol=1e-12, atol=1e-12),
+                          f"{name}/{method}: unit selection objective differs")
+        if schema == 2 and "unit_selection" in case["results"]:
+            selected_cost = case["results"]["unit_selection"]["unit_selection_objective"]
+            check(all(selected_cost <= row["unit_selection_objective"] + 1e-9
+                      for row in case["results"].values()), f"{name}: unit selection dominated by a compared path")
         check(len(first_indices) == 1, f"{name}: initial block is not paired")
     return {"passed": not errors, "paired_cases_checked": len(cases), "waveform_files_checked": files_checked,
+            "reference_files_checked": references_checked,
             "errors": errors, "scope": "Pairing, declared source budgets, file hashes and numerical integrity only."}
 
 

@@ -25,6 +25,7 @@ from src.generation.primitive_composition import (
     METHODS, StateBlock, StateCycle, TransitionReference, candidate_lattice,
     compose, lattice_digest, waveform_metrics,
 )
+from src.generation.composition_evaluation import evaluate_composition, transition_observations
 from src.steps.nilm_dataset_step import NilmDatasetStep
 
 
@@ -181,13 +182,15 @@ def validation_diagnostics(cases, validation, period):
 def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
               ratios=(0.05, 0.1, 0.2, 1.0), seeds=(42,), candidates=8,
               max_warp=2.0, min_fit_cycles=3, neighbors=3, window=5,
-              max_anchors=30, sample_period=6.0, device_change_date=None):
+              max_anchors=30, sample_period=6.0, device_change_date=None,
+              target_weight=1.0):
     ratios, seeds = sorted(set(map(float, ratios))), sorted(set(map(int, seeds)))
     if (not ratios or any(not np.isfinite(ratio) or not 0 < ratio <= 1 for ratio in ratios)
             or not seeds or min(seeds) < 0 or candidates < 1 or max_anchors < 0
             or not np.isfinite(sample_period) or sample_period <= 0
             or not np.isfinite(max_warp) or max_warp < 1 or min_fit_cycles < 2
-            or neighbors < 1 or window < 1):
+            or neighbors < 1 or window < 1
+            or not np.isfinite(target_weight) or target_weight < 0):
         raise ValueError("invalid composition parameters")
     if len({f"{100 * ratio:g}pct" for ratio in ratios}) != len(ratios):
         raise ValueError("budget ratios produce ambiguous output tags")
@@ -196,7 +199,7 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
     configuration = dict(cluster_tag=cluster_tag, ratios=ratios, seeds=seeds, candidates=candidates,
                          max_warp=max_warp, min_fit_cycles=min_fit_cycles, neighbors=neighbors,
                          window=window, max_anchors=max_anchors, sample_period=sample_period,
-                         device_change_date=device_change_date)
+                         device_change_date=device_change_date, target_weight=target_weight)
     project = Path(__file__).resolve().parents[1]
     identity = {"configuration": configuration, "source_run": str(run_root), "inputs": hashes,
                 "source_signal_digest": upstream["source_digest"],
@@ -205,7 +208,7 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
                 "code": {name: sha256_file(project / name) for name in (
                     "scripts/run_primitive_composition.py", "src/generation/primitive_composition.py",
                     "scripts/audit_primitive_composition.py", "src/steps/nilm_dataset_step.py",
-                    "scripts/validate_generation_run.py")}}
+                    "scripts/validate_generation_run.py", "src/generation/composition_evaluation.py")}}
     fingerprint = hashlib.sha256(json.dumps(identity, sort_keys=True, allow_nan=False).encode()).hexdigest()
     output = (Path(output_dir) if output_dir else run_root / f"primitive_composition_{fingerprint[:16]}").resolve()
     # Never overwrite a previous study, even if only partially written.
@@ -236,18 +239,29 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
                     reason = "fewer_than_two_state_blocks"
                 if reason:
                     skipped.append({"case_id": case_id, "seed": seed, "budget_tag": tag,
-                                    "anchor_activity_id": anchor.activity_id, "reason": reason})
+                                    "anchor_activity_id": anchor.activity_id, "reason": reason,
+                                    "class_mode": list(anchor.group),
+                                    "state_blocks_count": len(anchor.blocks)})
                     continue
                 reference = TransitionReference(donors, min_fit_cycles, neighbors, window)
-                results = compose(lattice, reference, seed, anchor.activity_id)
+                results = compose(lattice, reference, seed, anchor.activity_id,
+                                  target_weight=target_weight)
                 case_dir = output / case_id
                 case_dir.mkdir()
                 lengths = [len(block.power) for block in anchor.blocks]
                 states = np.concatenate([np.full(len(block.power), block.state, dtype=np.int64)
                                          for block in anchor.blocks])
                 timestamp = np.arange(len(states), dtype=np.float64) * sample_period
+                # Stored only for visual context after selection, never a reconstruction target.
+                anchor_file = f"{case_id}/anchor_reference.npz"
+                np.savez_compressed(output / anchor_file, timestamp=timestamp,
+                                    appliance=anchor.power, state_label=states)
                 case = {"case_id": case_id, "seed": seed, "budget_tag": tag,
                         "anchor_activity_id": anchor.activity_id, "class_mode": list(anchor.group),
+                        "anchor_reference": {"file": anchor_file,
+                                             "file_sha256": sha256_file(output / anchor_file),
+                                             "activity_id": anchor.activity_id,
+                                             "role": "visual_template_reference_not_reconstruction_target"},
                         "budget_activity_ids": budget_ids,
                         "donor_activity_ids": sorted(cycle.activity_id for cycle in donors),
                         "template": [{"state_label": block.state, "length_samples": len(block.power)}
@@ -265,28 +279,51 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
                     for donor in donors:
                         reference_power = np.interp(np.linspace(0, 1, len(value["power"])),
                                                     np.linspace(0, 1, len(donor.power)), donor.power)
-                        donor_errors.append(float(np.sqrt(np.mean((value["power"] - reference_power) ** 2))
-                                                  / max(float(np.max(reference_power)), 1.0)))
+                        error = float(np.sqrt(np.mean((value["power"] - reference_power) ** 2))
+                                      / max(float(np.max(reference_power)), 1.0))
+                        donor_errors.append((error, donor.activity_id))
+                    nearest_error, nearest_id = min(donor_errors)
+                    donor_samples = Counter()
+                    for item in provenance:
+                        donor_samples[item["activity_id"]] += item["target_length"]
                     case["results"][method] = {
                         "file": relative, "file_sha256": sha256_file(output / relative),
                         "candidate_indices": value["candidate_indices"], "sources": provenance,
                         "source_activity_ids": sources, "single_donor_cycle": len(sources) == 1,
-                        "nearest_donor_resampled_nrmse": min(donor_errors),
+                        "nearest_donor_resampled_nrmse": nearest_error,
+                        "nearest_donor_activity_id": nearest_id,
+                        "largest_donor_sample_fraction": max(donor_samples.values()) / sum(lengths),
                         "boundary_objective": value["boundary_objective"],
                         "transition_objective": value["transition_objective"],
+                        "duration_target_cost": value["duration_target_cost"],
+                        "unit_selection_objective": value["unit_selection_objective"],
                         "transition_supported_edges": value["transition_supported_edges"],
                         "transition_fallback_edges": value["transition_fallback_edges"],
                         "metrics": waveform_metrics(value["power"], lengths, sample_period),
+                        "transition_observations": transition_observations(
+                            value["power"], lengths, [block.state for block in anchor.blocks],
+                            sample_period=sample_period),
                     }
                 cases.append(case)
             print(f"[composition] seed={seed} budget={tag} sources={len(selected)} "
                   f"anchors={len(anchors)} completed_cases={len(cases)}", flush=True)
     write_json(output / "composition_manifest.json", {
-        "schema_version": 1, "input_fingerprint": fingerprint, "methods": list(METHODS),
+        "schema_version": 2, "input_fingerprint": fingerprint, "methods": list(METHODS),
         "configuration": configuration, "budgets": budgets, "cases": cases, "skipped": skipped,
         "waveform_source": "real_contiguous_inherited_state_blocks",
         "duration_adaptation": "shared_linear_interpolation", "seam_smoothing": False,
         "first_candidate_shared": True, "upstream_representation_holdout": "not_verified",
+        "unit_selection": {
+            "framework": "target_cost_plus_join_cost_global_selection",
+            "references": [
+                "https://www.cstr.inf.ed.ac.uk/downloads/publications/1996/Hunt_1996_a.pdf",
+                "https://doi.org/10.1016/j.specom.2007.01.014"],
+            "implementation": "NILM adaptation; not a reproduction of speech acoustic costs or copied Festival code",
+            "target_cost": "sum(abs(log(target_length / source_length)))",
+            "target_weight": target_weight,
+            "join_cost": "existing training-only transition reference including explicit boundary fallback",
+            "limitation": "Target, supported join and fallback costs are not statistically calibrated; report support strata separately.",
+        },
     })
     from scripts.audit_primitive_composition import audit_composition
     audit = audit_composition(output)
@@ -298,12 +335,16 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
         "paired_cases": len(cases), "cases_with_supported_transitions": learned_cases,
         "skipped_cases": len(skipped), "skip_reasons": dict(Counter(row["reason"] for row in skipped)),
         "audit": audit, "configuration": configuration, "budgets": budgets,
+        "evaluation": evaluate_composition(cases, skipped, budgets, validation, sample_period),
         "validation_diagnostics": validation_diagnostics(cases, validation, sample_period),
         "paired_comparisons": [{"case_id": case["case_id"], "method": method,
             "boundary_objective_delta_vs_random": row["boundary_objective"] - case["results"]["random"]["boundary_objective"],
             "transition_objective_delta_vs_boundary_dp": row["transition_objective"] - case["results"]["boundary_dp"]["transition_objective"],
             "single_donor_cycle": row["single_donor_cycle"],
             "nearest_donor_resampled_nrmse": row["nearest_donor_resampled_nrmse"],
+            "largest_donor_sample_fraction": row["largest_donor_sample_fraction"],
+            "duration_target_cost": row["duration_target_cost"],
+            "unit_selection_objective": row["unit_selection_objective"],
             "supported_edges": row["transition_supported_edges"],
             "fallback_edges": len(row["transition_fallback_edges"]),
         } for case in cases for method, row in case["results"].items()],
@@ -315,6 +356,8 @@ def run_study(run_root, output_dir=None, *, cluster_tag="kmeans_k4_merged",
             "Validation is descriptive only; no test-based method selection or reported test performance.",
             "Singletons/missing donors are skipped for all arms; report coverage, not just successful cases.",
             "Same-donor replay and poor transition support can make apparently good scores uninformative.",
+            "Unit selection reuses the target-plus-join framework; its NILM costs and default weight are experimental.",
+            "Prefer evaluation.cycle_validation and transition_validation: these separate class/mode and support strata.",
         ],
     }
     write_json(output / "composition_summary.json", summary)
@@ -333,6 +376,8 @@ def main():
     parser.add_argument("--min-fit-cycles", type=int, default=3)
     parser.add_argument("--neighbors", type=int, default=3)
     parser.add_argument("--window", type=int, default=5)
+    parser.add_argument("--target-weight", type=float, default=1.0,
+                        help="Unit selection duration target weight; fixed diagnostic default, not tuned on test")
     parser.add_argument("--max-anchors", type=int, default=30,
                         help="Per budget/seed diagnostic cap; 0 means all selected cycles")
     parser.add_argument("--sample-period", type=float, default=6)
@@ -345,7 +390,8 @@ def main():
                             candidates=args.candidates, max_warp=args.max_warp,
                             min_fit_cycles=args.min_fit_cycles, neighbors=args.neighbors,
                             window=args.window, max_anchors=args.max_anchors,
-                            sample_period=args.sample_period, device_change_date=args.device_change_date)
+                            sample_period=args.sample_period, device_change_date=args.device_change_date,
+                            target_weight=args.target_weight)
     except (OSError, ValueError, KeyError, TypeError) as exc:
         parser.exit(1, f"[composition] {exc}\n")
     print(json.dumps({key: summary[key] for key in (

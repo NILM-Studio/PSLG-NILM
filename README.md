@@ -1,8 +1,9 @@
 # PSLG-NILM-ADVANCED
 
-当前真实基元组合实验：[2026-09-17 拼接对照交接](docs/primitive_composition_study_20260917.md)。
+当前真实基元组合实验：[Unit Selection、指标与波形报告](docs/primitive_unit_selection_20260917.md)。
+原四组交接基准：[2026-09-17 拼接对照交接](docs/primitive_composition_study_20260917.md)。
 前一轮生成与下游验证：[2026-09-15 服务器交接](docs/server_generation_validation_20260915.md)。
-研究贡献边界：切分与聚类沿用师兄工作；本人的工作在其上构建周期条件生成、数据增强和下游评价。以下框架介绍不等于论文创新声明。
+研究分工：切分、特征提取和聚类沿用师兄工作；师弟负责基元波形生成模型及比较；本人负责基元状态组合，当前先以真实基元比较拼接方法，后续再接入生成基元。以下框架介绍不等于论文创新声明。
 
 > 新手入口：**[docs/TUTORIAL.md](docs/TUTORIAL.md)** —— 从部署到出图的完整教程
 > （含 UK-DALE washing machine 冒烟测试）。
