@@ -1,6 +1,8 @@
 # PSLG-NILM-ADVANCED
 
-当前服务器入口：[按时期修复评价协议（2026-09-17）](docs/cohort_composition_repair_20260917.md)。先排查留出覆盖，再生成；成功或失败均保留诊断包，不覆盖旧实验。
+当前服务器入口：[真实完整周期补充对照（2026-09-17）](docs/real_cycle_controls_20260917.md)。直接读取已完成的时期内拼接实验，补充真实对照；不重跑拼接，不改方法或阈值，根据回传结果再决定修改。
+
+前一轮入口：[按时期修复评价协议（2026-09-17）](docs/cohort_composition_repair_20260917.md)。已完成这轮实验时，无需再次运行。
 
 当前真实基元组合实验：[Unit Selection、指标与波形报告](docs/primitive_unit_selection_20260917.md)。
 原四组交接基准：[2026-09-17 拼接对照交接](docs/primitive_composition_study_20260917.md)。
