@@ -1,6 +1,7 @@
 # PSLG-NILM-ADVANCED
 
-当前生成与下游验证入口：[2026-09-15 服务器交接](docs/server_generation_validation_20260915.md)。
+当前真实基元组合实验：[2026-09-17 拼接对照交接](docs/primitive_composition_study_20260917.md)。
+前一轮生成与下游验证：[2026-09-15 服务器交接](docs/server_generation_validation_20260915.md)。
 研究贡献边界：切分与聚类沿用师兄工作；本人的工作在其上构建周期条件生成、数据增强和下游评价。以下框架介绍不等于论文创新声明。
 
 > 新手入口：**[docs/TUTORIAL.md](docs/TUTORIAL.md)** —— 从部署到出图的完整教程

@@ -247,8 +247,13 @@ class NilmDatasetStep(Step):
             raise ValueError(f"[nilm_dataset] {name} must be a finite integer, got {value!r}")
         return int(value)
 
-    def _budget_resources(self, context: dict, train_ids: set[int]):
-        catalog_path = self.resolve(context, "cycle_split", "train_catalog")
+    def _budget_resources(self, context: dict, train_ids: set[int],
+                          catalog_key: str = "train_catalog"):
+        # The composition diagnostic also reads validation sources for reporting
+        # only; existing synthesis callers retain the train-only default.
+        if catalog_key not in ("train_catalog", "validation_catalog"):
+            raise ValueError("unsupported primitive resource catalog")
+        catalog_path = self.resolve(context, "cycle_split", catalog_key)
         if not (catalog_path and os.path.exists(catalog_path)):
             raise FileNotFoundError(
                 "[nilm_dataset] train catalog is required for budget-local synthesis")
