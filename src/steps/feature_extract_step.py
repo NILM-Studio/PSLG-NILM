@@ -148,6 +148,11 @@ class FeatureExtractStep(Step):
 
     def _compute_features(self, np_data: np.ndarray, lengths):
         model_config = self._model_config()
+        if getattr(self, '_artifact_dir', None):
+            model_config['artifact_dir'] = self._artifact_dir
+            model_config['random_state'] = self._discovery_seed
+            if getattr(self, '_validation_spec', None):
+                model_config['validation_spec'] = self._validation_spec
         if lengths is not None:
             model_config["lengths"] = lengths
 
@@ -179,7 +184,23 @@ class FeatureExtractStep(Step):
 
     def run(self, context: dict) -> dict:
         log_dir = self.log_dir(context)
+        if context.get('config', {}).get('workflow', {}).get('profile') == 'nilm':
+            if self.model_name == 'detsec_pc':
+                if self.cache_enabled:
+                    raise ValueError('Strict S3 export requires cache=false; old caches contain no frozen weights')
+                self._artifact_dir = log_dir
+                self._discovery_seed = int(context['config'].get('state_sequence', {}).get('discovery_seed', 0))
         X, lengths = self._load_input(context)
+        if context.get('config', {}).get('state_sequence', {}).get('temporal_discovery_validation'):
+            from models.feature_extract.discovery_validation import temporal_split
+            with open(self.resolve(context, 'extract_active_data', 'activities'), encoding='utf-8') as handle:
+                activity = json.load(handle)['activities']
+            with open(self.resolve(context, 'nilm_data', 'split_manifest'), encoding='utf-8') as handle:
+                source = json.load(handle)['records']
+            indices = np.load(self.resolve(context, 'time_segmentation', 'indices'))
+            self._validation_spec = temporal_split(indices, activity, source)
+            with open(os.path.join(log_dir, 'internal_split.json'), 'w', encoding='utf-8') as handle:
+                json.dump(self._validation_spec, handle, indent=2)
         print(f"[feature_extract] model={self.model_name}  input={X.shape}")
 
         cache_dir = context.get("cache_dir", ".cache")
@@ -228,6 +249,10 @@ class FeatureExtractStep(Step):
             "cache_hit": cache_hit,
             "cache_key": cache_key,
         })
+        if getattr(self, '_artifact_dir', None):
+            for key, name in [('weights', 'model_weights.npz'), ('normalization', 'normalization.npz'),
+                              ('model_config', 'frozen_model.json')]:
+                context['manifest'].add_step_artifact(self.step_type, key, self.rel(context, os.path.join(log_dir, name)))
 
         # Sliding release: the big segmentation tensor is no longer needed in
         # memory (downstream reads it from the manifest if it must).

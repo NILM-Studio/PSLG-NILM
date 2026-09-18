@@ -1,4 +1,4 @@
-"""M3 tests: all-candidate-k clustering + scan demotion + few-shot by tag.
+"""M3 tests: all-candidate-k clustering + scan demotion.
 
 Uses small synthetic blobs (no TF); sklearn is required (it is a real runtime
 dependency of the clustering step).
@@ -17,7 +17,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.framework.step import Step
 from src.framework.workflow import Workflow
 from src.steps.time_clustering_step import TimeClusteringStep
-from src.steps.few_shot_cluster_extract_step import FewShotClusterExtractStep
 
 CFG = {"paths": {"cache_dir": ".cache"}}
 
@@ -88,7 +87,7 @@ class TestKMeansAllK(ChdirCase):
             self.assertGreater(json.load(f)["silhouette_score"], 0.8)
 
         # no redundant copies / no figures in the step dir
-        step_dir = os.path.join("log", "r1", "TimeClustering_kmeans_on_detsec_on_clasp")
+        step_dir = os.path.join("runs", "r1", "TimeClustering_kmeans_on_detsec_on_clasp")
         top = sorted(os.listdir(step_dir))
         self.assertEqual(top, ["feature_matrix.npy", "kept_rows.npy", "kmeans_k2",
                                "kmeans_k3", "seq_len.npy"])
@@ -122,7 +121,7 @@ class TestScanDemotion(ChdirCase):
         m = wf.manifest
 
         self.assertEqual(m.cluster_tags(), [])  # no results registered
-        scan_path = os.path.join("log", "rscan",
+        scan_path = os.path.join("runs", "rscan",
                                  "TimeClustering_kmeans-scan_on_detsec_on_clasp",
                                  "kmeans_scan.json")
         with open(scan_path) as f:
@@ -145,78 +144,6 @@ class TestDbscan(ChdirCase):
         self.assertEqual(metrics["n_clusters"], 3)
         self.assertEqual(metrics["n_noise"], 0)
 
-
-class TestFewShot(ChdirCase):
-    def _build_scenario(self):
-        """20 segments over 2 CSVs; clusters sized 9/9/2 -> the 2-sample cluster
-        is the few-shot candidate (adjacent samples => not artifact-like)."""
-        csv_dir = os.path.abspath("input_segments")
-        os.makedirs(csv_dir)
-        for fid in range(2):
-            pd.DataFrame({"time": pd.date_range("2024-01-01", periods=100, freq="min"),
-                          "power": np.ones(100) * (fid + 1)}).to_csv(
-                os.path.join(csv_dir, f"file{fid}.csv"), index=False)
-
-        rng = np.random.RandomState(1)
-        feats = np.vstack([
-            rng.randn(9, 4) * 0.01,                        # cluster A (file 0)
-            [10, 10, 10, 10] + rng.randn(8, 4) * 0.01,     # cluster B (f0 tail + f1 head)
-            [5, 20, 5, 20] + rng.randn(2, 4) * 0.01,       # cluster C (small, f1 tail)
-            [10, 10, 10, 10] + rng.randn(1, 4) * 0.01,     # one more B -> 9/9/2
-        ])
-        indices = np.array([[0, s * 10] for s in range(10)] +
-                           [[1, s * 10] for s in range(10)], dtype=np.int64)
-        lengths = np.full((20, 1), 10, dtype=np.int64)
-        return csv_dir, feats, indices, lengths
-
-    def test_fewshot_consumes_tag_and_exports(self):
-        csv_dir, feats, indices, lengths = self._build_scenario()
-        wf = Workflow("rfew", "fridge", CFG)
-        wf.add(FeatureStub(feats, lengths, indices, csv_dir))
-        wf.add(TimeClusteringStep(cluster_method="kmeans", n_clusters=[3]))
-        wf.add(FewShotClusterExtractStep(cluster_tag=None))  # single tag -> auto
-        wf.run()
-
-        m = wf.manifest
-        step = m.data["steps"]["few_shot_cluster_extract"]
-        self.assertEqual(step["extra"]["cluster_tag"], "kmeans_k3")
-        self.assertEqual(step["extra"]["n_exported_segments"], 2)
-        self.assertEqual(len(step["extra"]["true_few_shot_clusters"]), 1)
-        self.assertEqual(step["extra"]["artifact_like_clusters"], [])
-
-        with open(m.artifact_path("few_shot_cluster_extract", "summary")) as f:
-            summary = json.load(f)
-        cid = summary["true_few_shot_clusters"][0]
-        self.assertEqual(summary["cluster_reports"][str(cid)]["cluster_size"], 2)
-
-        with open(m.artifact_path("few_shot_cluster_extract", "export_manifest")) as f:
-            exports = json.load(f)
-        self.assertEqual(len(exports), 2)
-        for e in exports:
-            self.assertTrue(os.path.exists(e["export_path"]))
-            self.assertEqual(e["length"], 10)
-
-    def test_fewshot_standalone_via_manifest(self):
-        csv_dir, feats, indices, lengths = self._build_scenario()
-        Workflow("rfew2", "fridge", CFG).add(
-            FeatureStub(feats, lengths, indices, csv_dir)).add(
-            TimeClusteringStep(cluster_method="kmeans", n_clusters=[3])).run()
-
-        # brand-new workflow, same run-id, ONLY the few-shot step
-        wf2 = Workflow("rfew2", "fridge", CFG)
-        wf2.add(FewShotClusterExtractStep(cluster_tag="kmeans_k3"))
-        wf2.run()
-        self.assertEqual(
-            wf2.manifest.data["steps"]["few_shot_cluster_extract"]["extra"]["n_exported_segments"], 2)
-
-    def test_ambiguous_tags_require_explicit_cluster_tag(self):
-        csv_dir, feats, indices, lengths = self._build_scenario()
-        wf = Workflow("ramb", "fridge", CFG)
-        wf.add(FeatureStub(feats, lengths, indices, csv_dir))
-        wf.add(TimeClusteringStep(cluster_method="kmeans", n_clusters=[2, 3]))
-        wf.add(FewShotClusterExtractStep(cluster_tag=None))
-        with self.assertRaises(ValueError):
-            wf.run()
 
 
 if __name__ == "__main__":

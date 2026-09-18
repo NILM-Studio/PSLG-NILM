@@ -1,0 +1,6 @@
+FROM public.ecr.aws/docker/library/python:3.12.9-slim-bookworm@sha256:48a11b7ba705fd53bf15248d1f94d36c39549903c5d59edcfa2f3f84126e7b44
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 OMP_NUM_THREADS=1
+COPY runtime/requirements-lock.txt /tmp/requirements-lock.txt
+RUN --mount=type=bind,source=runtime/wheelhouse,target=/wheels python -m pip install --no-cache-dir --no-index --find-links=/wheels -r /tmp/requirements-lock.txt && python -m pip check
+WORKDIR /workspace/nilm_experiments
+CMD ["python", "-m", "nilm_lab.cli", "--help"]

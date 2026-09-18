@@ -354,9 +354,12 @@ class TemporalStateMergeStep(Step):
 
         for fid in sorted(per_file):
             rows = sorted(per_file[fid], key=lambda r: int(start[r]))
-            blocks = merge_activity(rows, labels, start, seq_len, feat_norm, feats,
-                                    min_len, self.enable_similar_merge,
-                                    self.similar_feature_tol)
+            from src.utils.state_activity_mapping import contiguous_groups
+            blocks = []
+            for group in contiguous_groups(rows, start, seq_len):
+                blocks.extend(merge_activity(group, labels, start, seq_len, feat_norm, feats,
+                                             min_len, self.enable_similar_merge,
+                                             self.similar_feature_tol))
             blocks_by_fid[fid] = blocks
             for b in blocks:
                 bid = len(blocks_all)

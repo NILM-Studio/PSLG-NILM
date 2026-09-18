@@ -1,0 +1,34 @@
+{
+  "retrieved_at": "2026-09-15",
+  "NILMFormer": {
+    "url": "https://github.com/adrienpetralia/NILMFormer.git",
+    "commit": "e73a975a42fbebed6f9d7e90d75f7f48ae02fed9",
+    "status": "author_official",
+    "used_file": "src/nilmformer/model.py",
+    "local_change": "Optional xformers import only; standard attention enforced by adapter. See git diff."
+  },
+  "FCN": {
+    "url": "https://github.com/adrienpetralia/NILMFormer.git",
+    "commit": "e73a975a42fbebed6f9d7e90d75f7f48ae02fed9",
+    "status": "NILMFormer_author_benchmark_reimplementation_NOT_FCN_author_official",
+    "used_file": "src/baselines/nilm/fcn.py",
+    "local_change": "None; auxiliary head outside upstream repository."
+  },
+  "BERT4NILM": {
+    "url": "https://github.com/Yueeeeeeee/BERT4NILM.git",
+    "commit": "0e6b652b56e26c93c5396e391a4c100304974b18",
+    "status": "author_official",
+    "used_file": "model.py",
+    "local_change": "None; official architecture under standardized regression-only objective, not original masked training recipe."
+  },
+  "SGN": {
+    "url": "https://github.com/nilmtk/nilmtk-contrib.git",
+    "commit": "14efd545e09d836e02159b23444350af92c6ee70",
+    "status": "NILMTK_community_NOT_SGN_author_official",
+    "reference_file": "nilmtk_contrib/torch/sgn.py",
+    "used_file": "../nilm_lab/models.py:SGNAdapter",
+    "local_change": "Repository unmodified. Harness uses an explicit independent paper-architecture seq2seq adaptation, not community seq2point wrapper.",
+    "paper": "https://arxiv.org/html/1811.06692",
+    "limitations": "Author-official SGN source not located. Appendix A six-convolution towers and Eq9 standby gate implemented, but same padding and output_length=window differ from original 32-output protocol. Do not label exact original reproduction."
+  }
+}

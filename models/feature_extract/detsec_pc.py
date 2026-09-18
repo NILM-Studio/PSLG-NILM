@@ -380,11 +380,13 @@ def _train_epoch(model, optimizer, Xn, lengths, nonneg_channels, lambda_phy,
     return tot / max(nb, 1), tot_ae / max(nb, 1), tot_phy / max(nb, 1)
 
 
-def _eval_loss(model, Xn, lengths, nonneg_channels, lambda_phy, batch_size):
+def _eval_loss(model, Xn, lengths, nonneg_channels, lambda_phy, batch_size, teacher_forcing=True):
     tot = 0.0
     nb = 0
     for x, mask, lens in _make_batches(Xn, lengths, batch_size, False):
         keep = _ones_mask(x, mask)  # full teacher forcing for validation
+        if not teacher_forcing:
+            keep = tf.zeros_like(keep)
         loss = _eval_step(model, x, mask, lens, keep,
                           nonneg_channels, lambda_phy)
         tot += float(loss); nb += 1
@@ -406,7 +408,8 @@ def train_feature_extractor(X, lengths, n_features, nonneg_channels,
                             random_state=0, verbose=True,
                             norm_mode="znorm", embed_proj="none",
                             nonneg_activation="softplus", tf_ratio=1.0,
-                            tf_schedule="constant"):
+                            tf_schedule="constant", validation_spec=None, schedule_epochs=None,
+                            refit_full=False):
     """Train the physical-constraint DeTSEC stage-1 feature extractor.
 
     X       : (n, timesteps, F) padded tensor
@@ -423,20 +426,29 @@ def train_feature_extractor(X, lengths, n_features, nonneg_channels,
     Returns (model, Xn, training_history).
     """
     Xn = _normalize(X, lengths, norm_mode)
+    if validation_spec is not None and norm_mode == 'minmax':
+        from .discovery_validation import training_minmax
+        Xn, internal_limits = training_minmax(X, lengths, validation_spec['train_ids'])
     lengths = np.asarray(lengths).reshape(-1).astype(np.int32)
     n = Xn.shape[0]
     model = PhyConstrainedDeTSEC(n_features, embed_dim, nonneg_channels,
                                  embed_proj=embed_proj,
                                  nonneg_activation=nonneg_activation)
     optimizer = tf.keras.optimizers.Adam(learning_rate=lr, clipnorm=1.0)
+    # Build outside cached tf.function when constructing a second source refit.
+    _extract(model, Xn[:1], np.asarray(lengths).ravel()[:1], 1)
+    optimizer.build(model.trainable_variables)
 
     # validation split + early stopping (mirror detsec_model)
     val_ids = None
-    if n >= 5:
+    if n >= 5 and not refit_full and validation_spec is None:
         rng = np.random.RandomState(random_state)
         val_ids = rng.choice(n, size=max(1, n // 5), replace=False)
     train_ids = np.setdiff1d(np.arange(n), val_ids) if val_ids is not None \
         else np.arange(n)
+    if validation_spec is not None:
+        train_ids = np.asarray(validation_spec['train_ids'], int)
+        val_ids = np.asarray(validation_spec['val_ids'], int)
 
     X_tr, len_tr = Xn[train_ids], lengths[train_ids]
     X_va, len_va = (Xn[val_ids], lengths[val_ids]) if val_ids is not None \
@@ -447,12 +459,14 @@ def train_feature_extractor(X, lengths, n_features, nonneg_channels,
 
     def _ratio_for_epoch(epoch):
         if tf_schedule == "linear":
-            frac = (epoch - 1) / max(epochs - 1, 1)   # 0 -> 1 across epochs
+            frac = (epoch - 1) / max((schedule_epochs or epochs) - 1, 1)
             return max(0.0, tf_ratio + (1.0 - tf_ratio) * (1.0 - frac))
         return tf_ratio
 
     history = {"loss": [], "val_loss": [], "l_ae": [], "l_phy": [],
                "tf_ratio_used": [], "epochs_trained": 0, "model_name": "detsec_pc"}
+    if validation_spec is not None and norm_mode == 'minmax':
+        history['internal_normalization_limits'] = internal_limits.tolist()
     best_val, best_weights, best_epoch = float("inf"), None, 0
     for epoch in range(1, epochs + 1):
         ratio = _ratio_for_epoch(epoch)
@@ -467,6 +481,8 @@ def train_feature_extractor(X, lengths, n_features, nonneg_channels,
         history["l_phy"].append(l_phy)
         history["tf_ratio_used"].append(ratio)
         history["epochs_trained"] = epoch
+        if not np.isfinite([l, l_ae, l_phy, val]).all():
+            raise ValueError('Nonfinite discovery loss')
         if val < best_val:
             best_val, best_weights, best_epoch = val, model.get_weights(), epoch
         if verbose and (epoch == 1 or epoch % max(1, epochs // 5) == 0):
@@ -478,8 +494,12 @@ def train_feature_extractor(X, lengths, n_features, nonneg_channels,
                 print(f"[detsec_pc] early stop @ epoch {epoch} (best val "
                       f"{best_val:.4f} @ {best_epoch})")
             break
-    if best_weights is not None:
+    history['best_epoch'] = best_epoch
+    if best_weights is not None and not refit_full:
         model.set_weights(best_weights)
+    if validation_spec is not None:
+        history['validation_z_only_loss'] = _eval_loss(model, X_va, len_va, nonneg_channels,
+                                                       lambda_phy, batch_size, teacher_forcing=False)
     return model, Xn, history
 
 
@@ -508,6 +528,9 @@ def detsec_pc(data, model_config):
     batch_size = int(model_config.get("batch_size", 16))
     epochs = int(model_config.get("epochs", 50))
     patience = int(model_config.get("patience", 5))
+    if model_config.get('artifact_dir'):
+        # Strict NILM export fixes initialization; the discovery algorithm is unchanged.
+        tf.keras.utils.set_random_seed(int(model_config.get('random_state', 0)))
 
     print(f"[detsec_pc] training embed_dim={embed_dim} lambda_phy={lambda_phy} "
           f"nonneg_channels={nonneg_channels} norm_mode={norm_mode} "
@@ -519,8 +542,36 @@ def detsec_pc(data, model_config):
         batch_size=batch_size, epochs=epochs, patience=patience,
         norm_mode=norm_mode, embed_proj=embed_proj,
         nonneg_activation=nonneg_activation, tf_ratio=tf_ratio,
-        tf_schedule=tf_schedule)
+        tf_schedule=tf_schedule, random_state=int(model_config.get('random_state', 0)),
+        validation_spec=model_config.get('validation_spec'))
+
+    if model_config.get('validation_spec'):
+        internal_history = history
+        selected_epochs = history['best_epoch']
+        tf.keras.utils.set_random_seed(int(model_config.get('random_state', 0)))
+        model, Xn, history = train_feature_extractor(
+            X, lengths, n_features, nonneg_channels, embed_dim=embed_dim, lambda_phy=lambda_phy,
+            lr=lr, batch_size=batch_size, epochs=selected_epochs, patience=0, norm_mode=norm_mode,
+            embed_proj=embed_proj, nonneg_activation=nonneg_activation, tf_ratio=tf_ratio,
+            tf_schedule=tf_schedule, schedule_epochs=epochs, refit_full=True,
+            random_state=int(model_config.get('random_state', 0)))
+        history.update(internal_validation=internal_history, selected_refit_epochs=selected_epochs,
+                       schedule_epochs=epochs, refit_all_source=True)
 
     features = _extract(model, Xn, lengths, batch_size)
+    if model_config.get('artifact_dir'):
+        from pathlib import Path
+        import json
+        out = Path(model_config['artifact_dir'])
+        out.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(out / 'model_weights.npz', *model.get_weights())
+        mask = np.arange(timesteps)[None, :] < lengths[:, None]
+        limits = np.stack([np.percentile(X[:, :, i][mask], [1, 99]) for i in range(n_features)])
+        np.savez_compressed(out / 'normalization.npz', percentile_limits=limits, mode=np.asarray(norm_mode))
+        frozen = {k: v for k, v in model_config.items() if k not in {'lengths', 'artifact_dir'}}
+        frozen.update(n_features=n_features, weight_count=len(model.get_weights()),
+                      random_state=int(model_config.get('random_state', 0)),
+                      normalization='original source-global 1/99 percentile minmax' if norm_mode == 'minmax' else 'original per-sequence znorm')
+        (out / 'frozen_model.json').write_text(json.dumps(frozen, indent=2), encoding='utf-8')
     print(f"[detsec_pc] features: {features.shape}")
     return features, history

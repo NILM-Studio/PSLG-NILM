@@ -81,26 +81,22 @@ cluster:  kmeans k=2 → 2 clusters (2/1) → result 'kmeans_k2'
 > 自动估窗，100 点的序列上估出 46，`2*min_seg_size > 100` 会强制单段。
 > 真实规模数据（几千点以上）用 clasp 没问题。
 
-### 3.2 真实规模的完整流水线
+### 3.2 真实规模的发现与 NILM 主线
 
 ```bash
-python main.py --appliance fridge \
-    --steps extract,segment,feature,cluster,fewshot,pam,split \
-    --segment-method clasp --feature-model detsec \
-    --cluster-method kmeans --n-clusters 3,4,5,6
+# 原方法状态发现（独立研究用途）
+python main.py --profile discovery --appliance washing_machine --steps all \
+    --segment-method prim-glr --feature-model detsec_pc \
+    --cluster-method kmeans --n-clusters 5 --cluster-tag kmeans_k5_merged
+
+# 严格 H1 训练 / H5 开发：预先冻结数据，再发现状态与训练 NILM。
+sbatch slurm/run_nilm_sequence.sh
 ```
 
-七步流水线：
-
-| 步骤 | 干什么 | 关键产物 |
-|---|---|---|
-| extract | 原始功率 → 活动段 CSV | `segments/` |
-| segment | 活动段 → 基元张量 | `X.npy / lengths.npy / indices.npy` |
-| feature | 基元 → 潜特征（**唯一缓存的步骤**） | `features.npy` |
-| cluster | 聚类，**每个候选 k 一个结果** | `kmeans_k{k}/cluster_labels.npy + metrics.json` |
-| fewshot | 识别少样本簇并导出 | `few_shot_cluster_summary.json` |
-| pam | 基元↔活动映射，划分少样本活动 | 9 个 JSON/npy |
-| split | 生成 train/test_a/test_b | 三套 branch/mains/mask |
+主线为 `nilm_data → extract → segment → feature → cluster → state_merge → state_sequence
+→ nilm_labels → nilm_train → nilm_select → nilm_report`。
+`nilm_evaluate` 只能显式执行。旧 `fewshot/pam/split` 工作流已移除。
+活动标签、控制组与运行恢复方式见 [新主线运行说明](NILM_sequence_workflow_implementation_20260915.md)。
 
 ### 3.3 窄范围重跑（manifest 复用）
 

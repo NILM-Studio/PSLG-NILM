@@ -31,8 +31,9 @@ class Workflow:
         self.appliance = appliance
         self.config = config
 
-        self.log_root = os.path.join("log", run_id)
-        self.output_root = os.path.join("output", run_id)
+        from src.framework.run_paths import run_directories
+        data_root, figure_root = run_directories(run_id)
+        self.log_root, self.output_root = str(data_root), str(figure_root)
         os.makedirs(self.log_root, exist_ok=True)
         os.makedirs(os.path.join(self.output_root, "figure"), exist_ok=True)
 
@@ -79,6 +80,12 @@ class Workflow:
 
         for step in self.steps:
             print(f"\n[Workflow] >>> {step.step_type}  (variant={step.variant or '-'})")
+            if self.config.get("workflow", {}).get("profile") == "nilm" and step.step_type != "nilm_data":
+                from src.steps.nilm_common import strict_guard
+                strict_guard(context)
+                if (step.step_type in self.manifest.data['steps']
+                        and step.step_type not in {'nilm_train', 'nilm_report'}):
+                    raise FileExistsError('Completed strict NILM step cannot be overwritten; use a new run-id')
             context = step.run(context)
             self.manifest.save()
 

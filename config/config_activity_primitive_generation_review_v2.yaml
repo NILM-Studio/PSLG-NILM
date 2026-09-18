@@ -1,0 +1,174 @@
+# Review specification. Not executable by current main.py.
+schema: activity_primitive_generation_review_v2
+revision: '2.2_house1_full_dual_backbone'
+status: awaiting_user_review
+implementation_ready: false
+jobs_submitted: false
+scope:
+  dataset: ukdale
+  house: 1
+  appliance: washing_machine
+  source_csv: input/ukdale_washing_machine_full.csv
+  source_extent: full_file
+  source_start_inclusive: null
+  source_end_exclusive: null
+  activities: reextract_all_from_raw
+  historical_reference_run_only: primitive_source_20260915_v2
+  restrict_to_historical_activities: false
+  activity_core_only: true
+  generate_off_intervals: false
+  fit_start_time_model: false
+  nilm_augmentation: false
+  h5_access: false
+  h2_access: false
+activity_detection:
+  method: simple
+  threshold_watts: 20
+  t_drop_seconds: 150
+  min_work_seconds: 180
+  t_drop_authorizes_training_interpolation: false
+split:
+  method: chronological_activity_groups
+  cutoff_reference: verified_full_house1_time_extent
+  fractions: [0.6, 0.2, 0.2]
+  guard_seconds_each_side: 3600
+  exclude_crossing_activity: true
+  holdout_open_after_freeze: true
+interpolation:
+  grid_seconds: 6
+  grid_origin: epoch
+  target_semantics: instantaneous_value_at_grid_time
+  method: linear_on_raw_timestamps
+  max_bracket_seconds: 18
+  sensitivity_max_bracket_seconds: [12, 24]
+  preserve_exact_observations: true
+  extrapolate: false
+  cross_activity: false
+  long_gap_action: split_valid_support
+  disable_downstream_reinterpolation: true
+  point_masks: [exact_observed, interpolated, invalid]
+  retain_raw_timestamps_and_values: true
+dictionary:
+  refit_each_interpolation_branch: true
+  fit_scope: train_only
+  k: 5
+  segmenter: prim_glr
+  feature_model: detsec_pc_s3
+  clustering: kmeans
+  cluster_seed: 42
+  n_init: 30
+  controls: [BP, S]
+data_qc:
+  report_by_month: true
+  report_actual_activity_counts_per_split: true
+  stream_raw_input: true
+  silently_subsample_formal_activity_pool: false
+  local_lengths_descending: [128, 64, 32, 16]
+  min_activities_per_class: {train: 5, dev: 3}
+  min_nonoverlap_windows_containing_class: {train: 30, dev: 10}
+  long_lengths_candidates: [600, 1200]
+  min_activities_per_long_length: {train: 20, dev: 5, holdout_for_inference: 5}
+  choose_lengths_before_generation_training: true
+  matched_support_primary_comparison: true
+model:
+  enabled_backbones: [diffusion_ts, conditional_unet_1d]
+  family_field_applies_to: diffusion_ts
+  family: Diffusion-TS
+  source_url: https://github.com/Y-debug-sys/Diffusion-TS
+  source_commit: 566307e6cf2d8095e58de4c6e3a6ae965b69b5b5
+  d_model: 64
+  n_layer_enc: 1
+  n_layer_dec: 2
+  n_heads: 4
+  feature_size: 1
+  timesteps: 500
+  sampling_timesteps: 50
+  beta_schedule: cosine
+  objective: pred_x0
+  conditioning: pointwise_state_path_and_known_prefix
+  scaling: train_q99_without_clipping
+  disable_implicit_minus1_plus1_clipping: true
+  padding: false
+  conditional_unet_1d:
+    provenance: project_engineering_design_not_exact_paper_reproduction
+    channels: [32, 64, 128]
+    downsample_stages: 2
+    residual_blocks_per_scale: 2
+    kernel_size: 3
+    normalization: GroupNorm
+    activation: SiLU
+    attention: false
+    timestep_embedding_dim: 128
+    state_embedding_dim: 16
+    time_conditioning: FiLM
+    state_context_conditioning: input_projection_and_multiscale_features
+    objective: pred_x0
+    tensor_layout: B_C_L
+  cross_backbone_controls:
+    shared_dictionary_and_sample_plan: true
+    shared_noise_schedule_loss_and_sampler: true
+    shared_training_update_cap: true
+    fourier_selection: common_setting_by_dev_U_groups_normalized_rank
+    report_parameters_memory_latency_gpu_hours: true
+    parameter_match_base_channels: [16, 24, 32, 48, 64]
+    parameter_match_target_relative_error: 0.15
+    parameter_match_select_by: parameter_count_only
+    parameter_match_development_conditions: [P_context, Wz]
+training:
+  optimizer: AdamW
+  lr: 0.0001
+  batch_size: 32
+  max_optimizer_updates: 10000
+  validation_interval_updates: 500
+  patience_validations: 5
+  ema_decay: 0.995
+  development_seeds: [101, 102]
+  formal_seeds: [0, 1, 2, 3, 4]
+  fourier_loss_development_candidates: [true, false]
+generation:
+  primary_planner: train_only_local_templates
+  prefix_points_rule: max_2_or_length_div_8
+  preserve_prefix_exact_at_final_step: true
+  stretch_state_blocks: false
+  bridge_network: false
+  independent_hard_splice_control: true
+  formal_windows_per_seed_minimum: 100
+  optional_duration_model:
+    family: smoothed_semi_markov_empirical_duration
+    min_train_multistate_activities: 20
+    min_uncensored_internal_blocks_per_class: 10
+    fallback: templates_only
+experiments:
+  cross_product_with_enabled_backbones: true
+  retrieval_controls: [R0, R1]
+  learned_conditions: [U, BP, S, P_context, W0, Wz]
+  shared_checkpoint_sampling_control: P_hard
+  initial_pilot: [U, P_context, Wz]
+  sensitivity_learned_conditions: [U, P_context]
+  pilot_trial_entries: 12
+  main_development_trials: 24
+  main_formal_trials: 60
+  interpolation_sensitivity_trials: 16
+  auxiliary_search_trials_budgeted_separately: true
+evaluation:
+  primary_metric: rate_distribution_wasserstein_1
+  references: [resampled_6s, raw_irregular_observations]
+  paired_point_error_only_for_reconstruction_tasks: true
+  bootstrap_unit: activity
+  bootstrap_repetitions: 1000
+  preserve_rejected_sample_counts: true
+scheduler:
+  all_heavy_tasks_via_sbatch: true
+  require_slurm_job_id: true
+  project_root: /home/scnu202438025446/pslg-nilm
+  preferred_partition: RTX3090
+  alternate_partition: A6000
+  pin_node: false
+  initial_array_concurrency: 1
+  prepare: {cpus: 4, memory_gb: 16, gpus: 0, time_limit: '02:00:00'}
+  dictionary: {cpus: 4, memory_gb: 24, gpus: 1, time_limit: '12:00:00'}
+  training: {cpus: 4, memory_gb: 24, gpus: 1, time_limit: '12:00:00'}
+  sampling: {cpus: 4, memory_gb: 16, gpus: 1, time_limit: '04:00:00'}
+  evaluation: {cpus: 4, memory_gb: 16, gpus: 0, time_limit: '04:00:00'}
+  tf_environment: /home/scnu202438025446/miniconda3/envs/nilm-discovery-tf-v1
+  torch_environment: /home/scnu202438025446/miniconda3/envs/nilmformer-cu118-v1

@@ -53,25 +53,12 @@ time_clustering:
       min_samples: 10
       cluster_selection_method: eom
       cluster_selection_epsilon: 0.0
-few_shot_cluster_extract:
-  n_percent: 50
-  adj_threshold: 0.6
-  center_margin: 0.1
-  center_support_threshold: 0.6
-  export_format: csv
 temporal_state_merge:
   merge_mode: same_label_plus_similar
   enable_similar_merge: true
   similar_feature_tol: 2.0
   min_block_seconds: 90
   fs: 0.1666667
-dataset_split:
-  mains_series: input/fridge_mains.npy
-  few_train_ratio: 0.5
-  non_few_train_ratio: 0.8
-  random_seed: 42
-  timestamp_tolerance_seconds: 0.0
-  clip_negative_mains_to_zero: true
 visualization:
   language: en
   visualize_noise: true

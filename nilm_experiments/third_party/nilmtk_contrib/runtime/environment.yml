@@ -1,0 +1,21 @@
+name: sgn-cu118-v1
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip=25.0
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu118
+      - torch==2.5.1+cu118
+      - numpy==1.26.4
+      - pandas==2.2.3
+      - scipy==1.14.1
+      - scikit-learn==1.5.2
+      - PyYAML==6.0.2
+      - pytest==8.3.5
+      - einops==0.8.1
+      - einx==0.3.0
+      - omegaconf==2.3.0
+      - matplotlib==3.9.2
+      - tqdm==4.67.1
+      - tensorboard==2.19.0

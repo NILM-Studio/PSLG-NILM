@@ -9,6 +9,9 @@ clustering detector). Changes:
 from __future__ import annotations
 
 import gc
+import json
+import shutil
+from pathlib import Path
 import os
 from datetime import datetime
 from typing import Tuple
@@ -139,6 +142,44 @@ class ExtractActiveDataStep(Step):
     # ── main ─────────────────────────────────────────────────────
 
     def run(self, context: dict) -> dict:
+        if context.get("config", {}).get("workflow", {}).get("profile") == "nilm":
+            return self._run_nilm(context)
+        return self._run_single(context)
+
+    def _run_nilm(self, context):
+        from src.steps.nilm_common import strict_guard, require_artifact, read_json, write_json
+        strict_guard(context)
+        source = require_artifact(context, "nilm_data", "split_manifest")
+        records = read_json(source)["records"]
+        out = Path(self.log_dir(context))
+        segments = out / "segments"
+        segments.mkdir(exist_ok=False)
+        activities, record_meta = [], []
+        for ri, record in enumerate(records):
+            with np.load(source.parent / record["file"]) as z:
+                t, y = z["timestamp"], z["target"]
+            from nilm_experiments.nilm_lab.activity_labels import detect_activities
+            cfg = dict(method=self.method, resample_fs=self.resample_fs, **self.method_kwargs)
+            aa, intervals = detect_activities(t, y, cfg, record["id"], record["sample_seconds"])
+            for a, interval in zip(aa, intervals):
+                name = f"r{ri:04d}_a{a['activity_id']:06d}.csv"
+                f = interval["data"].copy()
+                f["power"] = f["power"].ffill().bfill().fillna(0.)
+                f["datetime"] = pd.to_datetime(f.timestamp, unit="s", utc=True)
+                f.to_csv(segments / name, index=False)
+                a.update(file=name, csv_idx=len(activities))
+                activities.append(a)
+            record_meta.append(record)
+        if not activities:
+            raise ValueError("No source training activities")
+        write_json(out / "activities.json", dict(records=record_meta, activities=activities,
+                   definition="original_activity_core_v1", activity_config=cfg))
+        context["input_root"] = str(segments)
+        self.record(context, {"segments_dir": self.rel(context, str(segments)),
+                              "activities": self.rel(context, str(out / "activities.json"))})
+        return context
+
+    def _run_single(self, context: dict) -> dict:
         if not self.input_file:
             print(f"[{self.step_type}] no input_file set; skipping.")
             return context
@@ -166,6 +207,7 @@ class ExtractActiveDataStep(Step):
         # 3. export one CSV per interval
         app_name = self.appliance_name or context.get("appliance_name", "appliance")
         output_files = []
+        activities = []
         for interval in work_intervals:
             start_dt = datetime.fromtimestamp(interval["start_time"])
             end_dt = datetime.fromtimestamp(interval["end_time"])
@@ -182,11 +224,28 @@ class ExtractActiveDataStep(Step):
             if df["power"].isna().any():
                 df["power"] = df["power"].ffill().bfill().fillna(0.0)
             df.to_csv(os.path.join(segments_dir, fname), index=False)
+            dt = int(round(1 / float(self.resample_fs or self.method_kwargs.get("fs", 1))))
+            activities.append(dict(record_id="discovery", activity_id=len(activities), file=fname,
+                core_start=int(interval["start_time"]), core_end_exclusive=int(interval["end_time"] + dt),
+                context_start=int(df.timestamp.iloc[0]), context_end_exclusive=int(df.timestamp.iloc[-1] + dt),
+                core_start_index=int(np.searchsorted(timestamps, interval["start_time"])),
+                core_end_index=int(np.searchsorted(timestamps, interval["end_time"])) + 1,
+                context_start_index=int(np.searchsorted(timestamps, df.timestamp.iloc[0])),
+                context_end_index=int(np.searchsorted(timestamps, df.timestamp.iloc[-1])) + 1,
+                left_censored=bool(interval["start_time"] == timestamps[0]),
+                right_censored=bool(interval["end_time"] == timestamps[-1])))
             output_files.append(fname)
             if len(output_files) % 50 == 0:
                 print(f"  saved {len(output_files)}/{len(work_intervals)} intervals")
 
         print(f"[{self.step_type}] extracted {len(output_files)} active intervals -> {segments_dir}")
+
+        files_sorted = sorted(output_files)
+        for a in activities:
+            a["csv_idx"] = files_sorted.index(a["file"])
+        with open(os.path.join(log_dir, "activities.json"), "w", encoding="utf-8") as f:
+            json.dump(dict(activities=activities, definition="discovery_only"), f, indent=2)
+        np.savez_compressed(os.path.join(log_dir, "timeline.npz"), timestamp=timestamps, target=powers)
 
         # 4. context handoff (in-memory, for steps running in the same invocation)
         context.setdefault("data", {})["extract_active_data"] = {
@@ -199,7 +258,9 @@ class ExtractActiveDataStep(Step):
 
         # 5. manifest (path relative to log_root) — source of truth for later runs
         self.record(context, artifacts={"segments_dir": self.rel(context, segments_dir),
-                                        "count": str(len(output_files))})
+                                        "count": str(len(output_files)),
+                                        "activities": self.rel(context, os.path.join(log_dir, "activities.json")),
+                                        "timeline": self.rel(context, os.path.join(log_dir, "timeline.npz"))})
 
         del timestamps, powers, work_intervals, detector
         gc.collect()

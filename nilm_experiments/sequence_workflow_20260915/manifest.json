@@ -1,0 +1,61 @@
+{
+  "protocol": "cross_house",
+  "sample_seconds": 6,
+  "min_coverage": 1,
+  "min_train_block_samples": 600,
+  "records": [
+    {
+      "id": "ukdale_h1_washing_machine",
+      "dataset": "ukdale",
+      "house": "1",
+      "split": "train",
+      "format": "paired_csv",
+      "path": "/home/scnu202438025446/pslg-nilm/nilm_experiments/data_review_20260915/native_ukdale_v2/prepared/6s/ukdale/house1_washing_machine.csv.gz",
+      "native_seconds": 6,
+      "columns": {
+        "timestamp": "timestamp",
+        "mains": "mains",
+        "target": "target"
+      },
+      "sha256": "39b6ee3da46d0ce3c792d1ada5c7687eaa44f6a6f5c5caede48a25be20cb442a",
+      "start_timestamp": 1363547562,
+      "end_timestamp": 1366139562,
+      "device_id": "ukdale_h1_washing_machine"
+    },
+    {
+      "id": "ukdale_h5_washing_machine",
+      "dataset": "ukdale",
+      "house": "5",
+      "split": "val",
+      "format": "paired_csv",
+      "path": "/home/scnu202438025446/pslg-nilm/nilm_experiments/data_review_20260915/native_ukdale_v2/prepared/6s/ukdale/house5_washing_machine.csv.gz",
+      "native_seconds": 6,
+      "columns": {
+        "timestamp": "timestamp",
+        "mains": "mains",
+        "target": "target"
+      },
+      "sha256": "a62fb31fac87646b3e98b119c6cc0da6cd7971a44cf26dde110711a0ed1709f7",
+      "start_timestamp": 1404059034,
+      "end_timestamp": 1406651034,
+      "device_id": "ukdale_h5_washing_machine"
+    },
+    {
+      "id": "ukdale_h2_washing_machine",
+      "dataset": "ukdale",
+      "house": "2",
+      "split": "test",
+      "format": "paired_csv",
+      "path": "/home/scnu202438025446/pslg-nilm/nilm_experiments/data_review_20260915/native_ukdale_v2/prepared/6s/ukdale/house2_washing_machine.csv.gz",
+      "native_seconds": 6,
+      "columns": {
+        "timestamp": "timestamp",
+        "mains": "mains",
+        "target": "target"
+      },
+      "device_id": "ukdale_h2_washing_machine"
+    }
+  ],
+  "purpose": "H1/H5 first-30-day sequence engineering pilot. H2 metadata only until explicit final evaluation.",
+  "missing_policy": "aggregate_isolated_context_observed_targets_v2"
+}

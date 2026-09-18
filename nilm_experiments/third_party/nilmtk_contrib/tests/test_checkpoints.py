@@ -1,0 +1,229 @@
+import json
+import sys
+
+import pytest
+
+from nilmtk_contrib.utils.checkpoints import (
+    SCHEMA_VERSION,
+    build_metadata,
+    collect_dependencies,
+    load_json_strict,
+    load_metadata,
+    load_torch_state,
+    managed_checkpoint_path,
+    save_metadata,
+    save_metadata_atomic,
+    save_json_atomic,
+    save_torch_state,
+    temporary_checkpoint,
+    unsupported_persistence,
+)
+
+
+def test_temporary_checkpoint_removes_parent_directory_after_exit():
+    with temporary_checkpoint(".pt") as path:
+        parent = path.parent
+        path.write_text("checkpoint", encoding="utf-8")
+        assert path.exists()
+
+    assert not parent.exists()
+
+
+def test_managed_checkpoint_path_uses_existing_temp_parent():
+    path = managed_checkpoint_path(".pt")
+
+    assert path.name == "checkpoint.pt"
+    assert path.parent.exists()
+
+
+def test_build_save_and_load_metadata(tmp_path):
+    metadata = build_metadata(
+        model_class="DAE",
+        backend="torch",
+        sequence_length=99,
+        appliance_params={"fridge": {"mean": 10, "std": 2}},
+        mains_mean=1000,
+        mains_std=600,
+        dependencies={"torch": "2.0.0"},
+    )
+
+    save_metadata(tmp_path, metadata)
+    loaded = load_metadata(
+        tmp_path,
+        expected_model_class="DAE",
+        expected_backend="torch",
+    )
+
+    assert loaded["schema_version"] == SCHEMA_VERSION
+    assert loaded["model_class"] == "DAE"
+    assert loaded["backend"] == "torch"
+    assert loaded["sequence_length"] == 99
+    assert loaded["appliance_params"] == {"fridge": {"mean": 10, "std": 2}}
+    assert loaded["mains_mean"] == 1000
+    assert loaded["mains_std"] == 600
+    assert loaded["dependencies"] == {"torch": "2.0.0"}
+    assert "created_at" in loaded
+
+
+def test_atomic_metadata_publish_leaves_no_temporary_files(tmp_path):
+    save_metadata_atomic(tmp_path, {"generation": 1})
+    save_metadata_atomic(tmp_path, {"generation": 2})
+
+    assert json.loads((tmp_path / "metadata.json").read_text()) == {"generation": 2}
+    assert list(tmp_path.glob(".metadata.json.*")) == []
+
+
+def test_atomic_json_is_deterministic_host_readable_and_rejects_nan(tmp_path):
+    path = tmp_path / "nested" / "artifact.json"
+
+    save_json_atomic(path, {"z": 2, "a": 1})
+    first = path.read_bytes()
+    save_json_atomic(path, {"a": 1, "z": 2})
+
+    assert path.read_bytes() == first
+    assert path.stat().st_mode & 0o777 == 0o644
+    assert list(path.parent.glob(".artifact.json.*")) == []
+    with pytest.raises(ValueError, match="Out of range float values"):
+        save_json_atomic(path, {"invalid": float("nan")})
+    assert path.read_bytes() == first
+
+
+@pytest.mark.parametrize(
+    ("content", "message"),
+    [
+        ('{"key": 1, "key": 2}', "Duplicate JSON key"),
+        ('{"value": NaN}', "Invalid JSON constant"),
+        ('{"missing":', "Expecting value"),
+    ],
+)
+def test_strict_json_loader_rejects_ambiguous_or_invalid_artifacts(
+    tmp_path, content, message
+):
+    path = tmp_path / "artifact.json"
+    path.write_text(content, encoding="utf-8")
+
+    with pytest.raises(ValueError, match="valid test artifact") as error:
+        load_json_strict(path, description="test artifact")
+
+    assert message in str(error.value)
+
+
+def test_strict_json_loader_returns_valid_content_and_wraps_io_errors(tmp_path):
+    path = tmp_path / "artifact.json"
+    path.write_text('{"value": 3}', encoding="utf-8")
+
+    assert load_json_strict(path) == {"value": 3}
+    with pytest.raises(ValueError, match="valid missing artifact"):
+        load_json_strict(
+            tmp_path / "missing.json", description="missing artifact"
+        )
+
+
+def test_load_metadata_rejects_missing_fields(tmp_path):
+    (tmp_path / "metadata.json").write_text(
+        json.dumps({"schema_version": SCHEMA_VERSION}),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="Missing metadata fields"):
+        load_metadata(tmp_path)
+
+
+def test_load_metadata_rejects_schema_mismatch(tmp_path):
+    metadata = build_metadata(
+        model_class="DAE",
+        backend="torch",
+        sequence_length=99,
+        appliance_params={},
+        mains_mean=1000,
+        mains_std=600,
+    )
+    metadata["schema_version"] = 999
+    save_metadata(tmp_path, metadata)
+
+    with pytest.raises(ValueError, match="Unsupported metadata schema_version"):
+        load_metadata(tmp_path)
+
+
+def test_load_metadata_rejects_wrong_model_or_backend(tmp_path):
+    metadata = build_metadata(
+        model_class="DAE",
+        backend="torch",
+        sequence_length=99,
+        appliance_params={},
+        mains_mean=1000,
+        mains_std=600,
+    )
+    save_metadata(tmp_path, metadata)
+
+    with pytest.raises(ValueError, match="Expected model_class"):
+        load_metadata(tmp_path, expected_model_class="Seq2Point")
+
+    with pytest.raises(ValueError, match="Expected backend"):
+        load_metadata(tmp_path, expected_backend="tensorflow")
+
+
+def test_collect_dependencies_marks_missing_package_as_none():
+    dependencies = collect_dependencies(["definitely-missing-nilmtk-contrib-package"])
+
+    assert dependencies == {"definitely-missing-nilmtk-contrib-package": None}
+
+
+def test_collect_dependencies_reports_installed_package_version():
+    dependencies = collect_dependencies(["pytest"])
+
+    assert dependencies["pytest"]
+
+
+def test_torch_state_wrappers_save_and_load_state_dict(monkeypatch, tmp_path):
+    saved = {}
+    load_calls = []
+
+    class FakeTorch:
+        @staticmethod
+        def save(state, path):
+            saved[str(path)] = state
+
+        @staticmethod
+        def load(path, map_location=None, weights_only=True):
+            load_calls.append(
+                {
+                    "path": str(path),
+                    "map_location": map_location,
+                    "weights_only": weights_only,
+                }
+            )
+            return saved[str(path)]
+
+    class FakeModel:
+        def __init__(self):
+            self.loaded = None
+
+        def state_dict(self):
+            return {"weight": 42}
+
+        def load_state_dict(self, state):
+            self.loaded = state
+
+    monkeypatch.setitem(sys.modules, "torch", FakeTorch)
+    path = tmp_path / "model.pt"
+    model = FakeModel()
+
+    save_torch_state(model, path)
+    loaded_model = load_torch_state(model, path, device="cpu", weights_only=False)
+
+    assert saved[str(path)] == {"weight": 42}
+    assert loaded_model is model
+    assert model.loaded == {"weight": 42}
+    assert load_calls == [
+        {
+            "path": str(path),
+            "map_location": "cpu",
+            "weights_only": False,
+        }
+    ]
+
+
+def test_unsupported_persistence_raises_with_model_name():
+    with pytest.raises(NotImplementedError, match="AFHMM"):
+        unsupported_persistence("AFHMM")

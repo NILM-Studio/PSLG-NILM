@@ -2,8 +2,8 @@
 
 Charts are DECOUPLED from the workflow: compute steps never write figures.
 Every script here is a thin CLI that resolves its inputs through the run
-manifest (``log/<run_id>/run_manifest.json``) and writes figures to a unified
-location: ``output/<run_id>/figure/<chart-kind>/``.
+manifest (``runs/<run_id>/run_manifest.json``) and writes figures to
+``runs/<run_id>/figure/<chart-kind>/``; existing historical runs retain their paths.
 
 All scripts take ``--run-id`` (required) and ``--config`` (default
 ``config/config.yaml`` — only the ``visualization:`` block is read).
@@ -24,7 +24,8 @@ def load_manifest(run_id: str):
     import sys
     sys.path.insert(0, PROJECT_ROOT)
     from src.framework.run_manifest import RunManifest
-    path = os.path.join(PROJECT_ROOT, "log", run_id, "run_manifest.json")
+    from src.framework.run_paths import run_directories
+    path = str(run_directories(run_id, PROJECT_ROOT)[0] / "run_manifest.json")
     if not os.path.exists(path):
         raise SystemExit(
             f"manifest not found: {path}\n"
@@ -43,8 +44,9 @@ def load_viz_config(config_path: str = None) -> dict:
 
 
 def fig_dir(run_id: str, kind: str) -> str:
-    """Unified figure output: output/<run_id>/figure/<kind>/ (created)."""
-    d = os.path.join(PROJECT_ROOT, "output", run_id, "figure", kind)
+    """Figure directory under the resolved current or historical run."""
+    from src.framework.run_paths import run_directories
+    d = str(run_directories(run_id, PROJECT_ROOT)[1] / "figure" / kind)
     os.makedirs(d, exist_ok=True)
     return d
 

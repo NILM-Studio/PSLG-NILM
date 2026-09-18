@@ -1,0 +1,14 @@
+{
+  "approved": true,
+  "authorization": "User: 可以执行 (2026-09-15)",
+  "scope": "Approved proposal stages A-D; 6-second UK-DALE only",
+  "config_sha256": "3d2d3f0fe0d0dbfd24d1a54fe7dfcc8ebb2f24454a2f971b121192fa27397dea",
+  "manifest_sha256": "61034efedd6c59e1be1a3b16252e9052995a43473fee55aa2fe2a88933e989fb",
+  "test_opened": false,
+  "practical_thresholds": {
+    "P_vs_R_mae": 0.05,
+    "P_vs_simple_mae": 0.03,
+    "sequence_mae": 0.03
+  },
+  "source_gate": "Technical QC and nondegenerate source training; efficacy not selected on H2"
+}

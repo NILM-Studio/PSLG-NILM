@@ -86,7 +86,7 @@ class TestWorkflow(unittest.TestCase):
                 wf.add(StubStep()).add(StubDownstream())
                 ctx = wf.run()
                 self.assertEqual(ctx["data"]["b_value"], 42)
-                mpath = os.path.join(td, "log", "testrun", "run_manifest.json")
+                mpath = os.path.join(td, "runs", "testrun", "run_manifest.json")
                 self.assertTrue(os.path.exists(mpath))
                 with open(mpath) as f:
                     data = json.load(f)
@@ -113,7 +113,7 @@ class TestWorkflow(unittest.TestCase):
 class TestCLIParsing(unittest.TestCase):
     def test_parse_steps(self):
         self.assertEqual(mainmod.parse_steps("all", mainmod.IMPLEMENTED_STEPS),
-                         mainmod.IMPLEMENTED_STEPS)
+                         [s for s in mainmod.IMPLEMENTED_STEPS if s != 'nilm_evaluate'])
         self.assertEqual(mainmod.parse_steps("segment,feature", mainmod.IMPLEMENTED_STEPS),
                          ["segment", "feature"])
         self.assertEqual(mainmod.parse_steps("feature,segment", mainmod.IMPLEMENTED_STEPS),

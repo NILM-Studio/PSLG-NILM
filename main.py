@@ -46,7 +46,8 @@ for _p in (project_root, models_dir,
         sys.path.insert(0, _p)
 
 # Canonical step order — all steps are implemented.
-ALL_STEP_ORDER = ["extract", "segment", "feature", "cluster", "state_merge", "fewshot", "pam", "split"]
+DISCOVERY_STEPS = ["extract", "segment", "feature", "cluster", "state_merge", "state_sequence"]
+ALL_STEP_ORDER = ["nilm_data", *DISCOVERY_STEPS, "nilm_labels", "nilm_train", "nilm_select", "nilm_evaluate", "nilm_report"]
 IMPLEMENTED_STEPS = ALL_STEP_ORDER
 
 
@@ -57,8 +58,11 @@ def parse_steps(spec: str, available):
     """
     s = (spec or "").strip().lower()
     if s in ("", "all"):
-        return [t for t in ALL_STEP_ORDER if t in available]
+        return [t for t in ALL_STEP_ORDER if t in available and t != "nilm_evaluate"]
     out = [t.strip() for t in s.split(",") if t.strip()]
+    removed = set(out) & {"fewshot", "pam", "split"}
+    if removed:
+        raise ValueError(f"Removed workflow steps: {sorted(removed)}. Use nilm_data before discovery and state_sequence/nilm_labels after state_merge; historical artifacts remain available.")
     unknown = [t for t in out if t not in ALL_STEP_ORDER]
     if unknown:
         raise ValueError(f"unknown --steps id(s): {unknown}. known: {ALL_STEP_ORDER}")
@@ -177,37 +181,10 @@ def _build_state_merge(cfg, sel):
     )
 
 
-def _build_fewshot(cfg, sel):
-    from src.steps.few_shot_cluster_extract_step import FewShotClusterExtractStep
-    c = cfg.get("few_shot_cluster_extract", {})
-    return FewShotClusterExtractStep(
-        cluster_tag=sel["cluster_tag"],
-        n_percent=c.get("n_percent", 50),
-        adj_threshold=c.get("adj_threshold", 0.6),
-        center_margin=c.get("center_margin", 0.1),
-        center_support_threshold=c.get("center_support_threshold", 0.6),
-        export_format=c.get("export_format", "csv"),
-        normalization_method=cfg.get("time_clustering", {}).get("normalization_method", "zscore"),
-    )
-
-
-def _build_pam(cfg, sel):
-    from src.steps.primitive_activity_mapping_step import PrimitiveActivityMappingStep
-    return PrimitiveActivityMappingStep(cluster_tag=sel["cluster_tag"])
-
-
-def _build_split(cfg, sel):
-    from src.steps.dataset_split_step import DatasetSplitStep
-    c = cfg.get("dataset_split", {})
-    return DatasetSplitStep(
-        raw_series_path=(cfg.get("paths", {}) or {}).get("raw_series"),
-        mains_series_path=c.get("mains_series"),
-        few_train_ratio=c.get("few_train_ratio", 0.5),
-        non_few_train_ratio=c.get("non_few_train_ratio", 0.8),
-        random_seed=c.get("random_seed", 42),
-        timestamp_tolerance_seconds=c.get("timestamp_tolerance_seconds", 0.0),
-        clip_negative_mains_to_zero=c.get("clip_negative_mains_to_zero", True),
-    )
+def _build_nilm_step(name, cfg, sel):
+    import importlib
+    module = importlib.import_module(f"src.steps.{name}_step")
+    return module.build(cfg, sel)
 
 
 STEP_BUILDERS = {
@@ -216,10 +193,9 @@ STEP_BUILDERS = {
     "feature": _build_feature,
     "cluster": _build_cluster,
     "state_merge": _build_state_merge,
-    "fewshot": _build_fewshot,
-    "pam": _build_pam,
-    "split": _build_split,
 }
+for _name in ("nilm_data", "state_sequence", "nilm_labels", "nilm_train", "nilm_select", "nilm_evaluate", "nilm_report"):
+    STEP_BUILDERS[_name] = lambda cfg, sel, name=_name: _build_nilm_step(name, cfg, sel)
 
 
 def resolve_selection(args, cfg):
@@ -233,11 +209,11 @@ def resolve_selection(args, cfg):
         "appliance": appliance,
         "run_id": run_id,
         "raw_series": args.raw_series or paths.get("raw_series", ""),
-        "segment_method": args.segment_method or "clasp",
-        "feature_model": args.feature_model or "detsec",
-        "cluster_method": args.cluster_method or "kmeans",
-        "n_clusters": parse_int_list(args.n_clusters) or [3, 4, 5],
-        "cluster_tag": args.cluster_tag,
+        "segment_method": args.segment_method or run.get("segment_method", "clasp"),
+        "feature_model": args.feature_model or run.get("feature_model", "detsec"),
+        "cluster_method": args.cluster_method or run.get("cluster_method", "kmeans"),
+        "n_clusters": parse_int_list(args.n_clusters) or run.get("n_clusters", [3, 4, 5]),
+        "cluster_tag": args.cluster_tag or run.get("cluster_tag"),
     }
 
 
@@ -246,7 +222,18 @@ def run(args):
         cfg = yaml.safe_load(f) or {}
 
     sel = resolve_selection(args, cfg)
-    selected = parse_steps(args.steps, IMPLEMENTED_STEPS)
+    profile = args.profile or cfg.get("workflow", {}).get("profile", "discovery")
+    cfg.setdefault("workflow", {})["profile"] = profile
+    cfg["_config_path"] = os.path.abspath(args.config)
+    selected = parse_steps(args.steps, IMPLEMENTED_STEPS if profile == "nilm" else DISCOVERY_STEPS)
+    if profile == "discovery" and any(s.startswith("nilm_") for s in selected):
+        raise ValueError("NILM steps require --profile nilm and data_protocol")
+    cfg["_selection"] = sel
+    cfg['workflow']['variants'] = {k: v for k, v in sel.items() if k not in {'run_id', 'raw_series'}}
+    if profile == 'nilm' and sel['raw_series']:
+        raise ValueError('Strict NILM discovery input comes from nilm_data; raw-series overrides are not allowed')
+    if profile == 'nilm' and sel['appliance'] != cfg.get('run', {}).get('appliance'):
+        raise ValueError('Target appliance must match the frozen NILM configuration')
 
     not_impl = [s for s in selected if s not in STEP_BUILDERS]
     if not_impl:
@@ -271,6 +258,7 @@ def run(args):
 def main():
     p = argparse.ArgumentParser(
         description="PSLG-NILM-ADVANCED - linear workflow with CLI step/variant selection.")
+    p.add_argument("--profile", choices=["discovery", "nilm"])
     p.add_argument("--config", default="config/config.yaml",
                    help="Path to the fixed-parameter config file.")
     p.add_argument("--steps", default="extract,segment,feature",
