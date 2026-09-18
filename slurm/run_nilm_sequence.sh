@@ -14,16 +14,20 @@ TF_ENV=/home/scnu202438025446/miniconda3/envs/nilm-discovery-tf-v1
 TORCH_ENV=/home/scnu202438025446/miniconda3/envs/nilmformer-cu118-v1
 CONFIG="${CONFIG:-config/config_nilm_sequence_pilot.yaml}"
 RUN_ID="${RUN_ID:-nilm_sequence_${SLURM_JOB_ID}}"
-# Each main.py invocation and Torch worker is isolated; never mix vendor src with project src.
-"$TF_ENV/bin/python" -m unittest discover -s tests -p 'test_nilm_sequence_labels.py' -v
-(cd nilm_experiments && "$TORCH_ENV/bin/python" -m unittest nilm_lab.test_sequence_models -v)
-for lib in "$TF_ENV"/lib/python3.12/site-packages/nvidia/*/lib; do
-  export LD_LIBRARY_PATH="$lib:${LD_LIBRARY_PATH:-}"
+
+# Freeze NILM source data through the standalone Torch-side module.
+export PYTHONPATH="$PWD:$PWD/nilm_experiments"
+"$TORCH_ENV/bin/python" -m nilm_lab.standalone data \
+  --config "$CONFIG" --run-id "$RUN_ID"
+
+# The main process now owns discovery only; it consumes the frozen NILM data.
+"$TF_ENV/bin/python" -u main.py --config "$CONFIG" --profile nilm --run-id "$RUN_ID" \
+  --steps extract,segment,feature,cluster,state_merge,state_sequence
+
+# NILM numeric stages are independent Slurm module calls; no main.py re-entry.
+for COMMAND in labels train select report; do
+  "$TORCH_ENV/bin/python" -m nilm_lab.standalone "$COMMAND" \
+    --config "$CONFIG" --run-id "$RUN_ID"
 done
-"$TF_ENV/bin/python" -u main.py --config "$CONFIG" --profile nilm --run-id "$RUN_ID" \
-  --steps nilm_data,extract,segment,feature,cluster,state_merge,state_sequence,nilm_labels
-# End the TF process before invoking any NILM model. Training worker uses its own interpreter.
-unset LD_LIBRARY_PATH
-"$TF_ENV/bin/python" -u main.py --config "$CONFIG" --profile nilm --run-id "$RUN_ID" \
-  --steps nilm_train,nilm_select,nilm_report
-# Held-out evaluation is intentionally absent. Invoke nilm_evaluate explicitly after source protocol freeze.
+# Held-out evaluation remains explicit:
+# sbatch --export=ALL,COMMAND=evaluate,CONFIG="$CONFIG",RUN_ID="$RUN_ID" slurm/run_nilm_module.sh

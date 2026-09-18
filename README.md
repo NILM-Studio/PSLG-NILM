@@ -35,3 +35,9 @@ pslg-nilm/
 
 模型和环境目录详见 [nilm_experiments/README.md](nilm_experiments/README.md)。
 仅跟踪现役代码、配置、依赖配方和文档；原始数据、实验结果、虚拟环境及镜像不入 Git。
+
+NILM 数值实验由 `slurm/run_nilm_module.sh` 和
+`nilm_experiments/nilm_lab/standalone.py` 按模块调度；发现阶段才使用
+`main.py`。活动生成实验由 `slurm/run_activity_gen_*_v2.sh` 直接调用
+`generation_lab` 各阶段模块。具体边界见
+[nilm_experiments/README.md](nilm_experiments/README.md)。

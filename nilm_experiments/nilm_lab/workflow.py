@@ -315,14 +315,17 @@ def report(req):
     (out / 'report.md').write_text('\n'.join(lines)+'\n', encoding='utf-8')
 
 
-def main():
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('request')
-    req = read_json(p.parse_args().request)
+def main_request(req):
     if req['config'].get('runtime', {}).get('require_slurm', True) and not os.environ.get('SLURM_JOB_ID'):
         raise RuntimeError('Run data preparation/training/evaluation through Slurm')
     commands = dict(data=prepare_data, labels=prepare_labels, train=train, select=select, evaluate=evaluate, report=report)
     commands[req['command']](req)
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('request')
+    main_request(read_json(p.parse_args().request))
 
 
 if __name__ == '__main__':
