@@ -1,4 +1,4 @@
-"""Compatibility entry into the canonical project Workflow (no duplicate trainer)."""
+"""Standalone CLI for NILM stages and trial-matrix inspection."""
 import argparse
 from pathlib import Path
 from .common import load_config
