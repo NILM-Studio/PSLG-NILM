@@ -1,6 +1,8 @@
 # Use with .venv-generation-torch on zhouslab; install with --no-deps to avoid
 # replacing its pinned NumPy/PyTorch stack. See setup.sh.
 claspy==0.2.8
+aeon==1.1.0
+daproli==0.22
 numba==0.61.2
 llvmlite==0.44.0
 statsmodels==0.14.5

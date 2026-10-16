@@ -1,4 +1,4 @@
-"""Boundary-only adapters for the four methods in proposal experiment 5.3.
+"""Boundary-only adapters for the five methods in proposal experiment 5.3.
 
 Each method receives the same one-dimensional activity power series and returns
 internal, zero-based cut indices. Unsupported inputs raise ``Unsupported``;
@@ -24,7 +24,7 @@ from models.time_segmentation.prim_glr import PrimGLRModel
 
 
 ROOT = Path(__file__).resolve().parents[2]
-METHODS = ("prim-glr", "pelt-rbf", "clasp", "e2usd")
+METHODS = ("prim-glr", "pelt-rbf", "clasp", "clap", "e2usd")
 
 
 class Unsupported(ValueError):
@@ -127,24 +127,56 @@ def run(x, method: str, params: dict | None = None, seed: int = 0):
         cuts = model.predict(pen=penalty)[:-1]
         info = {"source": "ruptures.Pelt(model='rbf')", "penalty": penalty,
                 "gamma": float(model.cost.gamma), "min_size": 5, "jump": 1}
-    elif method == "clasp":
+    elif method in {"clap", "clasp"}:
         if n < 50:
             raise Unsupported("ClaSP's project protocol requires at least 50 samples")
         if importlib.metadata.version("claspy") != "0.2.8":
-            raise RuntimeError("Clasp requires the pinned author package claspy==0.2.8")
+            raise RuntimeError("Clasp/CLaP require the pinned author package claspy==0.2.8")
+        if method == "clap":
+            if importlib.metadata.version("aeon") != "1.1.0":
+                raise RuntimeError("CLaP requires pinned aeon==1.1.0")
+            if importlib.metadata.version("daproli") != "0.22":
+                raise RuntimeError("CLaP requires pinned daproli==0.22")
+        initializer_params = params.pop("initializer_params", {}) if method == "clap" else params
         from claspy.segmentation import BinaryClaSPSegmentation
         kwargs = {"n_jobs": 1, "random_state": int(seed)}
-        kwargs.update(params)
+        kwargs.update(initializer_params)
         model = BinaryClaSPSegmentation(**kwargs)
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter("always")
-            cuts = model.fit_predict(x).tolist()
+            initializer_cuts = model.fit_predict(x).tolist()
         if any("2*min_seg_size" in str(item.message) for item in caught):
             raise Unsupported("ClaSP requires a longer input for its selected window size")
         info = {"source": "official claspy.BinaryClaSPSegmentation",
                 "package": "claspy", "parameters": kwargs,
                 "effective_window": int(model.window_size),
                 "warnings": [str(item.message) for item in caught]}
+        if method == "clasp":
+            cuts = initializer_cuts
+        else:
+            # The official CLaP can only merge initial segments. With no initial
+            # boundary its state sequence has one state, so no classifier is fit.
+            clap_info = {"source": "official claspy.AgglomerativeCLaPDetection",
+                         "initializer": info, "initializer_cuts": initializer_cuts}
+            if not initializer_cuts:
+                cuts = []
+                clap_info.update(state_count=1, state_labels=[1],
+                                 merge_skipped="single initial segment")
+            else:
+                from claspy.state_detection import AgglomerativeCLaPDetection
+                clap_kwargs = {"n_jobs": 1, "random_state": int(seed)}
+                clap_kwargs.update(params)
+                clap = AgglomerativeCLaPDetection(**clap_kwargs)
+                states = np.asarray(clap.fit_predict(x, change_points=np.asarray(initializer_cuts)))
+                if states.shape != (n,):
+                    raise RuntimeError("CLaP state sequence does not cover the input activity")
+                cuts = (np.flatnonzero(states[1:] != states[:-1]) + 1).tolist()
+                if cuts != clap.get_change_points().tolist():
+                    raise RuntimeError("CLaP state transitions disagree with official change points")
+                clap_info.update(parameters=clap_kwargs, state_count=int(len(np.unique(states))),
+                                 state_labels=clap.get_segment_labels().tolist(),
+                                 effective_window=int(clap.window_size))
+            info = clap_info
     else:
         window = int(params.get("window", 64))
         steps = int(params.get("steps", 20))

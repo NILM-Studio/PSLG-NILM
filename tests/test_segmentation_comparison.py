@@ -1,4 +1,4 @@
-"""Protocol checks for the four-method experiment 5.3 adapter."""
+"""Protocol checks for the five-method experiment 5.3 adapter."""
 
 import numpy as np
 import pytest
@@ -7,7 +7,7 @@ from models.time_segmentation.comparison import METHODS, Unsupported, _e2usd_sou
 
 
 def test_registered_methods_exclude_legacy_controls():
-    assert METHODS == ("prim-glr", "pelt-rbf", "clasp", "e2usd")
+    assert METHODS == ("prim-glr", "pelt-rbf", "clasp", "clap", "e2usd")
     with pytest.raises(ValueError):
         run(np.arange(40, dtype=float), "none")
 
@@ -33,6 +33,8 @@ def test_short_activity_is_not_a_successful_zero_cut():
     with pytest.raises(Unsupported):
         run(np.ones(49), "clasp")
     with pytest.raises(Unsupported):
+        run(np.ones(49), "clap")
+    with pytest.raises(Unsupported):
         run(np.ones(127), "e2usd")
 
 
@@ -48,3 +50,27 @@ def test_clasp_calls_official_package():
     direct = BinaryClaSPSegmentation(window_size=10, n_jobs=1, random_state=0)
     assert cuts == direct.fit_predict(x).tolist()
     assert info["source"] == "official claspy.BinaryClaSPSegmentation"
+
+
+def test_clap_matches_official_state_detector_on_fixed_initializer(monkeypatch):
+    pytest.importorskip("aeon")
+    from claspy import segmentation
+    from claspy.state_detection import AgglomerativeCLaPDetection
+
+    class FixedInitializer:
+        window_size = 10
+
+        def __init__(self, **kwargs):
+            pass
+
+        def fit_predict(self, x):
+            return np.array([80, 160])
+
+    monkeypatch.setattr(segmentation, "BinaryClaSPSegmentation", FixedInitializer)
+    x = np.r_[np.full(80, 20.0), np.full(80, 150.0), np.full(80, 20.0)]
+    cuts, info = run(x, "clap", params={"classifier": "dummy"}, seed=0)
+    official = AgglomerativeCLaPDetection(classifier="dummy", n_jobs=1, random_state=0)
+    states = official.fit_predict(x, change_points=np.array([80, 160]))
+    assert cuts == (np.flatnonzero(states[1:] != states[:-1]) + 1).tolist()
+    assert info["initializer_cuts"] == [80, 160]
+    assert info["state_count"] == len(np.unique(states))

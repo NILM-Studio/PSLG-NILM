@@ -48,6 +48,14 @@
       "package": "claspy==0.2.8",
       "algorithm": "BinaryClaSPSegmentation"
     },
+    "clap": {
+      "url": "https://github.com/ermshaua/claspy",
+      "paper": "https://www.vldb.org/pvldb/vol19/p70-ermshaus.pdf",
+      "commit": "e2a918f10c6e198064d4d7efacf1217cc0907fd7",
+      "package": "claspy==0.2.8",
+      "algorithm": "AgglomerativeCLaPDetection with shared official Clasp initialization",
+      "classifier_dependencies": ["aeon==1.1.0", "daproli==0.22"]
+    },
     "e2usd": {
       "url": "https://github.com/AI4CTS/E2Usd",
       "commit": "7fc34e4521a0392f429a988afd0421ad97443464",

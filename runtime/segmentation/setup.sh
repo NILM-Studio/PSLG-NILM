@@ -13,6 +13,6 @@ mkdir -p "$overlay"
 "$python_bin" -m pip install --no-deps --target "$overlay" \
   -r "$repo_root/runtime/segmentation/requirements-overlay.txt"
 PYTHONPATH="$overlay${PYTHONPATH:+:$PYTHONPATH}" "$python_bin" -c \
-  'import claspy, numba, ruptures, statsmodels, torch; print("segmentation imports ready")'
+  'import claspy, numba, ruptures, statsmodels, torch; from claspy.state_detection import AgglomerativeCLaPDetection; print("segmentation imports ready")'
 
 echo "Run with PYTHONPATH=$overlay and $python_bin"
