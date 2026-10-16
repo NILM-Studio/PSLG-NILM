@@ -175,7 +175,7 @@ class StateMergeStepTest(unittest.TestCase):
                 self.assertNotIn("kmeans_k2_merged_merged", tags)
 
                 res = m.data["steps"]["time_clustering"]["results"]["kmeans_k2_merged"]
-                base = os.path.join(tmp, "log", "test_state_merge", res["subdir"])
+                base = os.path.join(wf.log_root, res["subdir"])
                 seg_labels = np.load(os.path.join(base, "cluster_labels.npy"))
                 btb = np.load(os.path.join(base, "segment_to_block.npy"))
                 blocks = json.load(open(os.path.join(base, "blocks.json")))

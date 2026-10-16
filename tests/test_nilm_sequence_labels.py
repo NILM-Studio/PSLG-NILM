@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
-from nilm_experiments.nilm_lab.activity_labels import detect_activities, activity_projection
-from nilm_experiments.nilm_lab.sequence_data import fit_label_bundles
-from nilm_experiments.nilm_lab.data import Record, Windows, validate_manifest
+from src.nilm_lab.activity_labels import detect_activities, activity_projection
+from src.nilm_lab.sequence_data import fit_label_bundles
+from src.nilm_lab.data import Record, Windows, validate_manifest
 from src.utils.state_activity_mapping import contiguous_groups, map_blocks, sequence_statistics
 import main
 

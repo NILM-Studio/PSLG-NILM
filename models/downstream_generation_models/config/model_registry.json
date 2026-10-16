@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-10-15",
+  "updated_at": "2026-10-16",
+  "dataset": "datasets/self_collected/*.csv",
+  "models": [
+    {
+      "name": "Diffusion-TS",
+      "paper": "https://arxiv.org/abs/2403.01742",
+      "deployment_action_20261016": "existing-deployment-skipped",
+      "repo": "https://github.com/Y-debug-sys/Diffusion-TS.git",
+      "commit": "566307e6cf2d8095e58de4c6e3a6ae965b69b5b5",
+      "runtime": "torch-shared-plus-overlay",
+      "status": "deployed-smoke-pass"
+    },
+    {
+      "name": "CSDI",
+      "repo": "https://github.com/ermongroup/CSDI.git",
+      "commit": "7f24a436f08d98853a6b43d4f7f04e5a65ecdf27",
+      "runtime": "torch-shared-plus-overlay",
+      "status": "deployed-smoke-pass"
+    },
+    {
+      "name": "ImagenTime",
+      "repo": "https://github.com/azencot-group/ImagenTime.git",
+      "commit": "f372626ed20a7dc60ae47aa853155a528a3e11b8",
+      "runtime": "torch-shared-plus-overlay",
+      "status": "deployed-smoke-pass"
+    },
+    {
+      "name": "TimeVAE",
+      "repo": "https://github.com/abudesai/timeVAE.git",
+      "commit": "9914576bd44a6facbc94a594a82dd14724969a50",
+      "runtime": "tensorflow-shared",
+      "status": "deployed-smoke-pass"
+    },
+    {
+      "name": "TimeVQVAE",
+      "paper": "https://arxiv.org/abs/2303.04743",
+      "deployment_action_20261016": "existing-deployment-skipped",
+      "repo": "https://github.com/ML4ITS/TimeVQVAE.git",
+      "commit": "39f98e99cb103ea00694d01c65fd6e7a49416d24",
+      "runtime": "torch-shared-plus-overlay",
+      "status": "deployed-two-stage-smoke-pass"
+    },
+    {
+      "name": "TimeGAN",
+      "repo": "https://github.com/jsyoon0823/TimeGAN.git",
+      "commit": "8f6181cb9b9d2fa0c930cd902411d9ac8a308e07",
+      "runtime": "tensorflow-1.15-legacy",
+      "status": "deployed-isolated-smoke-pass"
+    },
+    {
+      "name": "C-TimeGAN",
+      "repo": null,
+      "commit": null,
+      "runtime": null,
+      "status": "blocked-no-public-code",
+      "reason": "The survey explicitly states that source code was not found."
+    },
+    {
+      "name": "COSCI-GAN",
+      "paper": "https://arxiv.org/abs/2205.13741",
+      "paper_venue": "NeurIPS 2022",
+      "repo": "https://github.com/aliseyfi75/COSCI-GAN.git",
+      "commit": "1c2c8b340599c149af44a2bc0e96116025770fe9",
+      "checkout": "sparse: Code plus root README/LICENSE; upstream example datasets and experiment artifacts not downloaded",
+      "runtime": "torch-shared-cpu-no-overlay-required",
+      "status": "deployed-official-trainer-mlp-lstm-smoke-pass",
+      "validation_experiment": "runs/20261016_cosci_gan_validation",
+      "limits": "one epoch; MLP central discriminator only; not a paper-quality reproduction or primitive-conditioned model"
+    },
+    {
+      "name": "Fourier-flows",
+      "repo": "https://github.com/vanderschaarlab/Fourier-flows.git",
+      "commit": "7bd762e0f691b322f8020bffe0aafe3134b7ab7e",
+      "runtime": "torch-shared-plus-overlay",
+      "status": "deployed-smoke-pass"
+    }
+  ]
+}

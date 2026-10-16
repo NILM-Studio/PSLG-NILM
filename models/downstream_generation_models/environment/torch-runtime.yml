@@ -1,0 +1,29 @@
+name: pslg-generation-torch-reference
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pytorch=2.5.1
+  - pytorch-cuda=11.8
+  - numpy=1.26.4
+  - pandas=2.2.3
+  - scipy
+  - scikit-learn=1.5.2
+  - pyyaml
+  - pip
+  - pip:
+      - einops==0.8.2
+      - loguru==0.7.3
+      - omegaconf==2.3.0
+      - linear-attention-transformer==0.19.1
+      - local-attention==1.11.2
+      - axial-positional-embedding==0.3.12
+      - product-key-memory==0.2.11
+      - einops-exts==0.0.4
+      - hyper-connections==0.1.15
+      - linformer==0.2.3
+      - colt5-attention==0.11.1
+      - tqdm==4.67.1
+      - torchaudio==2.5.1

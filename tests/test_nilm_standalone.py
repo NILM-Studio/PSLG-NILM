@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-from nilm_experiments.nilm_lab import standalone
+from src.nilm_lab import standalone
 
 
 def test_standalone_stage_registers_manifest_without_main(tmp_path, monkeypatch):

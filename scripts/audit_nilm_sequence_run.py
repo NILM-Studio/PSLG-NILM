@@ -39,8 +39,8 @@ def main():
         limits = z['percentile_limits']
     mask = np.arange(x.shape[1])[None, :] < lengths[:, None]
     np.testing.assert_allclose(limits, np.stack([np.percentile(x[:,:,i][mask], [1,99]) for i in range(x.shape[2])]))
-    from nilm_experiments.nilm_lab.data import load_records, Windows
-    from nilm_experiments.nilm_lab.activity_metrics import activity_reference, score_record
+    from src.nilm_lab.data import load_records, Windows
+    from src.nilm_lab.activity_metrics import activity_reference, score_record
     source = json.loads(artifact('nilm_data', 'split_manifest').read_text())
     config = json.loads((root / 'nilm_data/request.json').read_text())['config']
     records, _ = load_records(source['input_manifest'], ('val',))
@@ -54,7 +54,7 @@ def main():
         pred = np.where(covered, 0., np.nan)
         baselines.append(score_record(r, pred, pred, reference, config['nilm']['threshold'], config['nilm']['sample_seconds']))
     snapshots = {}
-    for folder in ('src/steps', 'src/utils', 'nilm_experiments/nilm_lab', 'models/feature_extract', 'models/extract_active_data'):
+    for folder in ('src/steps', 'src/utils', 'src/nilm_lab', 'models/feature_extract', 'models/extract_active_data'):
         for path in (PROJECT / folder).glob('*.py'):
             snapshots[path.relative_to(PROJECT).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
     report = dict(discovery_restore_verified=True, features_max_abs_difference=float(np.abs(actual-expected).max()),

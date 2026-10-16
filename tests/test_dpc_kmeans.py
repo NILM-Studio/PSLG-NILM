@@ -58,7 +58,7 @@ class TestDpcKmeansBlobs(unittest.TestCase):
                 m = wf.manifest
                 self.assertEqual(m.cluster_tags(), [])  # no results registered
                 scan_path = os.path.join(
-                    "log", "rdsc",
+                    wf.log_root,
                     "TimeClustering_dpc-kmeans-scan_on_detsec_on_clasp",
                     "dpc_scan.json")
                 with open(scan_path) as f:

@@ -1,8 +1,0 @@
-[tool.pytest.ini_options]
-testpaths = ["nilm_lab"]
-norecursedirs = ["third_party", ".venv", ".venv-gpu-pilot"]
-pythonpath = ["."]
-
-[tool.ruff]
-line-length = 120
-exclude = ["third_party", "FCN", ".venv", ".venv-gpu-pilot"]

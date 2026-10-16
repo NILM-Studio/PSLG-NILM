@@ -6,7 +6,7 @@ import types
 
 import pytest
 
-from nilm_experiments.run_paths import resolve_campaign
+from src.generation_paths import resolve_campaign
 from src.framework.workflow import Workflow
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -41,7 +41,7 @@ def test_new_and_existing_workflows(tmp_path, monkeypatch):
 
 
 def test_third_party_has_no_aliases():
-    exp = PROJECT/'nilm_experiments'
+    exp = PROJECT/'models'
     for path in ['FCN/src', 'NILMFormer', 'BERT4NILM', 'SGN', 'generation_lab/vendor_diffusion_ts']:
         assert not os.path.lexists(exp/path)
     assert (exp/'third_party/nilmformer/src/baselines/nilm/fcn.py').is_file()
@@ -51,7 +51,7 @@ def test_third_party_has_no_aliases():
 @pytest.mark.parametrize('name', ['diffusion_ts', 'conditional_unet_1d'])
 def test_split_preserves_weights_forward_loss_gradients_and_sampling(name):
     import torch
-    from nilm_experiments.generation_lab.models import Diffusion
+    from src.generation_lab.models import Diffusion
     torch.set_num_threads(2)
     archive = PROJECT/'.backups/layout_refactor_20260917/originals.tgz'
     if not archive.exists():
@@ -60,8 +60,8 @@ def test_split_preserves_weights_forward_loss_gradients_and_sampling(name):
         code = original.extractfile('nilm_experiments/generation_lab/models.py').read()
     # The historical source imports a removed alias; redirect just that import.
     code = code.replace(b'from .vendor_diffusion_ts.transformer', b'from ..third_party.diffusion_ts.transformer')
-    old = types.ModuleType('nilm_experiments.generation_lab._before_refactor')
-    old.__package__ = 'nilm_experiments.generation_lab'
+    old = types.ModuleType('src.generation_lab._before_refactor')
+    old.__package__ = 'src.generation_lab'
     exec(compile(code, 'before_refactor/models.py', 'exec'), old.__dict__)
     torch.manual_seed(71)
     before = old.Diffusion(name, 16, fourier=True)

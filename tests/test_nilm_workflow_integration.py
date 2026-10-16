@@ -9,7 +9,7 @@ import unittest
 import numpy as np
 import pandas as pd
 import yaml
-from nilm_experiments.nilm_lab.common import digest, write_json, read_json
+from src.nilm_lab.common import digest, write_json, read_json
 
 PROJECT = Path(__file__).resolve().parents[1]
 
@@ -54,7 +54,7 @@ class WorkflowIntegrationTests(unittest.TestCase):
                 return proc.stdout
 
             run('nilm_data,extract')
-            log = root / 'log/fixture'
+            log = root / 'runs/fixture'
             manifest = read_json(log / 'run_manifest.json')
             ap = log / manifest['steps']['extract_active_data']['artifacts']['activities']
             am = read_json(ap)

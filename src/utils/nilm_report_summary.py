@@ -1,6 +1,6 @@
 """Pair seeds within households; never count random seeds as separate homes."""
 import numpy as np
-from nilm_experiments.nilm_lab.metrics import paired_house_ci
+from src.nilm_lab.metrics import paired_house_ci
 
 COMPARISONS = [('R', 'O'), ('R', 'P'), ('O', 'P'), ('B', 'P'), ('BP', 'P'), ('S', 'P'),
                ('B_full', 'P'), ('P', 'P_gru'), ('P_direct', 'P_gru'), ('P_point', 'P_gru'),

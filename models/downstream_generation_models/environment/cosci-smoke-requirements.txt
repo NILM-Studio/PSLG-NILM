@@ -1,0 +1,6 @@
+# Project-validated CPU smoke on Python 3.12; not an upstream paper environment lock.
+# Install Torch separately from https://download.pytorch.org/whl/cu118 as documented.
+torch==2.5.1
+numpy==1.26.4
+pandas==2.2.3
+matplotlib==3.9.2

@@ -1,0 +1,1 @@
+from src.generation_paths import resolve_campaign

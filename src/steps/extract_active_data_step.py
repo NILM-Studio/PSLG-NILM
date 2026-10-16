@@ -128,8 +128,15 @@ class ExtractActiveDataStep(Step):
         ext = os.path.splitext(input_file)[1].lower()
         if ext == ".csv":
             df = pd.read_csv(input_file)
+            if "datetime" in df.columns and "active power" in df.columns:
+                # Self-collected files store microsecond timestamps alongside
+                # human-readable local datetimes; use an explicit time column.
+                timestamps = pd.to_datetime(df["datetime"], errors="raise")
+                seconds = timestamps.astype("int64").to_numpy() / 1e9
+                return seconds, pd.to_numeric(df["active power"], errors="raise").to_numpy()
             if "datetime" in df.columns and "power" in df.columns:
-                return df["datetime"].values, df["power"].values
+                timestamps = pd.to_datetime(df["datetime"], errors="raise")
+                return timestamps.astype("int64").to_numpy() / 1e9, df["power"].values
             if "timestamp" in df.columns and "power" in df.columns:
                 return df["timestamp"].values, df["power"].values
             return df.iloc[:, 0].values, df.iloc[:, 1].values  # fallback: first two cols
@@ -158,7 +165,7 @@ class ExtractActiveDataStep(Step):
         for ri, record in enumerate(records):
             with np.load(source.parent / record["file"]) as z:
                 t, y = z["timestamp"], z["target"]
-            from nilm_experiments.nilm_lab.activity_labels import detect_activities
+            from src.nilm_lab.activity_labels import detect_activities
             cfg = dict(method=self.method, resample_fs=self.resample_fs, **self.method_kwargs)
             aa, intervals = detect_activities(t, y, cfg, record["id"], record["sample_seconds"])
             for a, interval in zip(aa, intervals):

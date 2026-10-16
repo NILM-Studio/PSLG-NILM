@@ -6,7 +6,7 @@ import sys
 import numpy as np
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(PROJECT))
-from nilm_experiments.nilm_lab.common import read_json,write_json,digest
+from src.nilm_lab.common import read_json,write_json,digest
 
 
 def boundary_f1(first,second,tolerance=2):
@@ -36,7 +36,7 @@ def main():
     cfg = read_json(root/'nilm_data/request.json')['config']
     source = read_json(artifact('nilm_data','split_manifest'))
     from models.feature_extract.detsec_pc import PhyConstrainedDeTSEC,_extract
-    from nilm_experiments.nilm_lab.activity_labels import detect_activities,activity_projection
+    from src.nilm_lab.activity_labels import detect_activities,activity_projection
     from models.time_segmentation.prim_glr import PrimGLRModel
     from src.steps.temporal_state_merge_step import merge_activity
     from src.utils.state_activity_mapping import contiguous_groups

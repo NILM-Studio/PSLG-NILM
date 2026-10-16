@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 from src.framework.step import Step
-from nilm_experiments.nilm_lab.common import digest, signature, read_json, write_json
+from src.nilm_lab.common import digest, signature, read_json, write_json
 
 PROJECT = Path(__file__).resolve().parents[2]
 
@@ -58,7 +58,7 @@ class NilmStep(Step):
             log_root=str(Path(context['log_root']).resolve()), output=str(output.resolve()),
             manifest=context['manifest'].data))
         env = os.environ.copy()
-        env['PYTHONPATH'] = str(PROJECT / 'nilm_experiments')
+        env['PYTHONPATH'] = str(PROJECT / 'src')
         command_line = [python, '-m', 'nilm_lab.workflow', str(request.resolve())]
         # Native CPU kernels avoid nonfinite outputs seen in the host's oneDNN
         # integration checks. GPU workers retain their normal CUDA execution.
@@ -67,4 +67,4 @@ class NilmStep(Step):
                 'import torch; torch.backends.mkldnn.enabled=False; from nilm_lab.workflow import main; main()',
                 str(request.resolve())]
         subprocess.run(command_line,
-                       cwd=PROJECT / 'nilm_experiments', env=env, check=True)
+                       cwd=PROJECT / 'src', env=env, check=True)

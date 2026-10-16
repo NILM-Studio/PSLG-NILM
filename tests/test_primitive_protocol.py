@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
 from models.feature_extract.discovery_validation import temporal_split, training_minmax
-from nilm_experiments.nilm_lab.activity_metrics import score_record
-from nilm_experiments.nilm_lab.data import Record
+from src.nilm_lab.activity_metrics import score_record
+from src.nilm_lab.data import Record
 
 
 class PrimitiveProtocolTests(unittest.TestCase):

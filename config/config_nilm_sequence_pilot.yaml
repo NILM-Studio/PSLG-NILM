@@ -79,7 +79,7 @@ visualization:
 workflow:
   profile: nilm
 data_protocol:
-  manifest: ../nilm_experiments/sequence_workflow_20260915/manifest.json
+  manifest: ../runs/20260915_sequence_workflow/data/legacy_protocol/manifest.json
   sample_seconds: 6
 runtime:
   torch_python: /home/scnu202438025446/miniconda3/envs/nilmformer-cu118-v1/bin/python

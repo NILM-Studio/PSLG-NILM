@@ -1,0 +1,3 @@
+# Dependency checkouts are pinned in the experiment's source manifest.
+/nilmtk_source/
+/nilm_metadata_source/
