@@ -42,6 +42,12 @@
       "package": "ruptures==1.1.10",
       "algorithm": "Pelt(model=rbf)"
     },
+    "fluss_threshold": {
+      "url": "https://github.com/stumpy-dev/stumpy",
+      "package": "stumpy==1.14.1",
+      "algorithm": "stump nearest-neighbor indices and fluss corrected arc curve",
+      "adaptation": "project threshold 0.45 and exclusion-zone local minima; not official fixed-regime output"
+    },
     "clasp": {
       "url": "https://github.com/ermshaua/claspy",
       "commit": "e2a918f10c6e198064d4d7efacf1217cc0907fd7",

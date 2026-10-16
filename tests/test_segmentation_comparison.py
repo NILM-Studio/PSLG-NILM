@@ -1,4 +1,6 @@
-"""Protocol checks for the five-method experiment 5.3 adapter."""
+"""Protocol checks for the six-method experiment 5.3 adapter."""
+
+import importlib.metadata
 
 import numpy as np
 import pytest
@@ -7,7 +9,7 @@ from models.time_segmentation.comparison import METHODS, Unsupported, _e2usd_sou
 
 
 def test_registered_methods_exclude_legacy_controls():
-    assert METHODS == ("prim-glr", "pelt-rbf", "clasp", "clap", "e2usd")
+    assert METHODS == ("prim-glr", "pelt-rbf", "fluss-threshold", "clasp", "clap", "e2usd")
     with pytest.raises(ValueError):
         run(np.arange(40, dtype=float), "none")
 
@@ -36,6 +38,36 @@ def test_short_activity_is_not_a_successful_zero_cut():
         run(np.ones(49), "clap")
     with pytest.raises(Unsupported):
         run(np.ones(127), "e2usd")
+    with pytest.raises(Unsupported):
+        run(np.ones(549), "fluss-threshold")
+
+
+def test_fluss_threshold_uses_official_corrected_arc_curve():
+    try:
+        importlib.metadata.version("stumpy")
+    except importlib.metadata.PackageNotFoundError:
+        pytest.skip("STUMPY is installed in the isolated segmentation overlay")
+    x = np.r_[np.sin(np.arange(300) * .15), np.cos(np.arange(300) * .08)]
+    window, exclusion, threshold = 20, 5, .45
+    cuts, info = run(x, "fluss-threshold", params={"window": window,
+                                                   "threshold": threshold,
+                                                   "excl_factor": exclusion})
+    import stumpy
+    mp = stumpy.stump(x, m=window)
+    cac, fixed_k = stumpy.fluss(mp[:, 1].astype(int), L=window,
+                               n_regimes=2, excl_factor=exclusion)
+    direct = np.asarray(cac, dtype=float).copy()
+    expected = []
+    while direct.min() <= threshold:
+        cut = int(direct.argmin())
+        expected.append(cut)
+        direct[max(0, cut - exclusion * window):
+               min(len(direct), cut + exclusion * window)] = np.inf
+    assert cuts == sorted(expected)
+    assert info["cac_min"] == pytest.approx(float(np.min(cac)))
+    assert info["n_regimes_for_cac"] == 2
+    assert info["adaptation"].startswith("project CAC threshold")
+    assert len(fixed_k) == 1
 
 
 def test_e2usd_vendor_matches_pinned_author_source():

@@ -8,3 +8,4 @@ llvmlite==0.44.0
 statsmodels==0.14.5
 patsy==1.0.1
 ruptures==1.1.10
+stumpy==1.14.1

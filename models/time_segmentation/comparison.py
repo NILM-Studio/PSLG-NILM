@@ -1,4 +1,4 @@
-"""Boundary-only adapters for the five methods in proposal experiment 5.3.
+"""Boundary-only adapters for the six methods in proposal experiment 5.3.
 
 Each method receives the same one-dimensional activity power series and returns
 internal, zero-based cut indices. Unsupported inputs raise ``Unsupported``;
@@ -24,7 +24,7 @@ from models.time_segmentation.prim_glr import PrimGLRModel
 
 
 ROOT = Path(__file__).resolve().parents[2]
-METHODS = ("prim-glr", "pelt-rbf", "clasp", "clap", "e2usd")
+METHODS = ("prim-glr", "pelt-rbf", "fluss-threshold", "clasp", "clap", "e2usd")
 
 
 class Unsupported(ValueError):
@@ -99,7 +99,8 @@ def run(x, method: str, params: dict | None = None, seed: int = 0):
     """Return ``(internal_cuts, metadata)`` without hiding failures.
 
     ``params`` is frozen by the experiment caller. For PrimGLR it contains the
-    resolved point-scale model parameters. For E2USD the default window is 64.
+    resolved point-scale model parameters. FLUSS-threshold defaults to window
+    50, CAC threshold 0.45 and exclusion factor 5. E2USD uses window 64.
     """
     if method not in METHODS:
         raise ValueError(f"Unknown comparison method {method!r}; expected {METHODS}")
@@ -127,6 +128,53 @@ def run(x, method: str, params: dict | None = None, seed: int = 0):
         cuts = model.predict(pen=penalty)[:-1]
         info = {"source": "ruptures.Pelt(model='rbf')", "penalty": penalty,
                 "gamma": float(model.cost.gamma), "min_size": 5, "jump": 1}
+    elif method == "fluss-threshold":
+        window = int(params.get("window", 50))
+        threshold = float(params.get("threshold", 0.45))
+        excl_factor = int(params.get("excl_factor", 5))
+        if window < 3 or excl_factor < 1 or not 0 <= threshold <= 1:
+            raise ValueError("FLUSS requires window >= 3, excl_factor >= 1 and threshold in [0, 1]")
+        if n < 2 * window or n - window + 1 <= 2 * excl_factor * window:
+            raise Unsupported(
+                f"FLUSS needs n >= 2*window and enough subsequences for its "
+                f"fixed exclusion zone; n={n}, window={window}, excl_factor={excl_factor}"
+            )
+        if importlib.metadata.version("stumpy") != "1.14.1":
+            raise RuntimeError("FLUSS requires pinned stumpy==1.14.1")
+        # STUMPY eagerly imports CUDA kernels. On zhouslab, Numba's CUDA
+        # compilation crashes during that import; FLUSS only uses CPU kernels.
+        os.environ["NUMBA_DISABLE_CUDA"] = "1"
+        import numba
+        numba.config.DISABLE_CUDA = 1
+        import stumpy
+        info = {"source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+                "adaptation": "project CAC threshold and exclusion-zone local minima",
+                "window": window, "threshold": threshold, "excl_factor": excl_factor,
+                "n_regimes_for_cac": 2, "cut_coordinate": "subsequence start index"}
+        if np.ptp(x) <= 1e-12:
+            cuts = []
+            info["constant_signal"] = True
+        else:
+            matrix_profile = stumpy.stump(x, m=window)
+            distances = matrix_profile[:, 0].astype(np.float64)
+            if not np.isfinite(distances).any():
+                raise Unsupported("FLUSS matrix profile has no finite nearest-neighbor distances")
+            nearest_neighbors = matrix_profile[:, 1].astype(np.int64)
+            cac, _ = stumpy.fluss(nearest_neighbors, L=window,
+                                  n_regimes=2, excl_factor=excl_factor)
+            profile = np.asarray(cac, dtype=np.float64).copy()
+            if not np.isfinite(profile).all():
+                raise RuntimeError("FLUSS returned a nonfinite corrected arc curve")
+            info["cac_min"] = float(profile.min())
+            info["matrix_profile_subsequences"] = len(profile)
+            cuts = []
+            while profile.min() <= threshold:
+                cut = int(profile.argmin())
+                if not 0 < cut < n:
+                    raise RuntimeError("FLUSS selected an endpoint cut")
+                cuts.append(cut)
+                profile[max(0, cut - excl_factor * window):
+                        min(len(profile), cut + excl_factor * window)] = np.inf
     elif method in {"clap", "clasp"}:
         if n < 50:
             raise Unsupported("ClaSP's project protocol requires at least 50 samples")

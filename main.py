@@ -259,7 +259,7 @@ def main():
     p.add_argument("--steps", default="extract,segment,feature",
                    help="Comma list or 'all'. Known order: " + ",".join(ALL_STEP_ORDER))
     p.add_argument("--segment-method", default=None,
-                   help="prim-glr | pelt-rbf | clasp | clap | e2usd (default: clasp)")
+                   help="prim-glr | pelt-rbf | fluss-threshold | clasp | clap | e2usd (default: clasp)")
     p.add_argument("--feature-model", default=None,
                    help="detsec | detsec_pc | bilstm_ae | lstm_ae | cnn_ae | bilstm_ae_attention | autoencoder | dtw (default: detsec)")
     p.add_argument("--cluster-method", default=None,
