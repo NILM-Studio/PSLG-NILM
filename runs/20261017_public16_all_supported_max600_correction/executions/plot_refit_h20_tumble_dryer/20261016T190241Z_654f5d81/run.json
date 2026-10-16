@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_all_supported_max600_correction",
+  "condition": "plot_refit_h20_tumble_dryer",
+  "execution_id": "20261016T190241Z_654f5d81",
+  "status": "passed",
+  "created_at": "2026-10-16T19:02:41.942987+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T19:02:41.981626+00:00",
+  "completed_at": "2026-10-16T19:02:45.985141+00:00"
+}

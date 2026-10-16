@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_all_supported_max600_correction",
+  "condition": "plot_gap60_refit_h18_bread_maker",
+  "execution_id": "20261016T190230Z_1acd201a",
+  "status": "passed",
+  "created_at": "2026-10-16T19:02:30.317540+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T19:02:30.375588+00:00",
+  "completed_at": "2026-10-16T19:02:35.602298+00:00"
+}

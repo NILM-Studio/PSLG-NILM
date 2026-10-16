@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_all_supported_max600_correction",
+  "condition": "plot_darck_fridge",
+  "execution_id": "20261016T190223Z_74ec1bc4",
+  "status": "passed",
+  "created_at": "2026-10-16T19:02:23.107900+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T19:02:23.148360+00:00",
+  "completed_at": "2026-10-16T19:02:31.326257+00:00"
+}

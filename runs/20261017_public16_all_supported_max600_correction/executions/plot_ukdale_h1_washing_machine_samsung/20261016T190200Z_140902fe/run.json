@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_all_supported_max600_correction",
+  "condition": "plot_ukdale_h1_washing_machine_samsung",
+  "execution_id": "20261016T190200Z_140902fe",
+  "status": "passed",
+  "created_at": "2026-10-16T19:02:00.076831+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T19:02:00.128357+00:00",
+  "completed_at": "2026-10-16T19:02:04.770203+00:00"
+}

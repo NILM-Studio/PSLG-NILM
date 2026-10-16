@@ -1,0 +1,1659 @@
+{
+  "experiment": "20261017_public16_all_supported_max600_correction",
+  "generated_at": "2026-10-16T19:03:50.620400+00:00",
+  "dataset_root": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2",
+  "status": "data_validated_parameters_await_human_review",
+  "object_count": 16,
+  "activity_count": 4202,
+  "time_encoding": "Aware UK-DALE/REFIT timestamps are UTC epoch ns; their displayed effective_start/end strings are UTC. Naive SmartNIALMeter/DARCK timestamps preserve source calendar values, timezone unspecified. source_timezone records original source metadata, not the display timezone.",
+  "main_step_source": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+  "main_step_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868",
+  "objects": [
+    {
+      "number": 1,
+      "object": "ukdale_h2_washing_machine",
+      "selected_interval": {
+        "object": "ukdale_h2_washing_machine",
+        "source_file": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "source_keys": [
+          "/building2/elec/meter12"
+        ],
+        "source_identity": {
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2013-05-20 21:28:39",
+          "2013-10-10 05:15:26"
+        ],
+        "effective_start_ns": 1369085319000000000,
+        "effective_end_exclusive_ns": 1381382126000000000,
+        "effective_start": "2013-05-20 21:28:39",
+        "effective_end_exclusive": "2013-10-10 05:15:26",
+        "actual_first_observation_ns": 1369085319000000000,
+        "actual_last_observation_ns": 1381382120000000000,
+        "rows": 1686220,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 6.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 1686220,
+            "sha256": "4f117263abaa794f695b462c242d2ec654e6dda0b5738f99929059f64051f83f"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/source/power.f64",
+            "dtype": "float64",
+            "rows": 1686220,
+            "sha256": "e8e0eac0a7df57ad5bd41037a9dfb7e9a50bb497e0d384b4c66ac51850f39013"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 20,
+            "t_drop": 160,
+            "t_min_work": 1800,
+            "context_seconds": 60,
+            "fs": 0.16666666666666666,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 54,
+        "effective_supported_count": 54,
+        "selected_activity_count": 54,
+        "cap": 600,
+        "split": {
+          "group_count": 31,
+          "split_counts": {
+            "development": 32,
+            "validation": 11,
+            "evaluation": 11
+          }
+        },
+        "review_case_ids": [
+          32,
+          33,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_ukdale_h2_washing_machine/20261016T190026Z_502aa64e",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h2_washing_machine_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h2_washing_machine_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 2,
+      "object": "ukdale_h2_microwave",
+      "selected_interval": {
+        "object": "ukdale_h2_microwave",
+        "source_file": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "source_keys": [
+          "/building2/elec/meter15"
+        ],
+        "source_identity": {
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2013-05-20 21:28:39",
+          "2013-10-10 05:15:32"
+        ],
+        "effective_start_ns": 1369085319000000000,
+        "effective_end_exclusive_ns": 1381382132000000000,
+        "effective_start": "2013-05-20 21:28:39",
+        "effective_end_exclusive": "2013-10-10 05:15:32",
+        "actual_first_observation_ns": 1369085319000000000,
+        "actual_last_observation_ns": 1381382126000000000,
+        "rows": 1685519,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 6.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 1685519,
+            "sha256": "1092c5db1c19fb71e63270ca099077e2757794c074c5b426c2ca8ab2dfdb7259"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/source/power.f64",
+            "dtype": "float64",
+            "rows": 1685519,
+            "sha256": "efbc05575f0d177e736fbb131cbaad7589ada46734da2fc43e1ed8f8c3a0845c"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 200,
+            "t_drop": 30,
+            "t_min_work": 12,
+            "context_seconds": 60,
+            "fs": 0.16666666666666666,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 439,
+        "effective_supported_count": 439,
+        "selected_activity_count": 439,
+        "cap": 600,
+        "split": {
+          "group_count": 117,
+          "split_counts": {
+            "development": 264,
+            "validation": 86,
+            "evaluation": 89
+          }
+        },
+        "review_case_ids": [
+          271,
+          279,
+          292,
+          297,
+          306,
+          307,
+          321,
+          323,
+          334,
+          346
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_ukdale_h2_microwave/20261016T190039Z_643b6a1e",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h2_microwave_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h2_microwave_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 3,
+      "object": "refit_b13_m5_dish_washer",
+      "selected_interval": {
+        "object": "refit_b13_m5_dish_washer",
+        "source_file": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "source_keys": [
+          "/building13/elec/meter5"
+        ],
+        "source_identity": {
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2014-01-17 22:26:20",
+          "2015-05-31 11:06:15"
+        ],
+        "effective_start_ns": 1389997580000000000,
+        "effective_end_exclusive_ns": 1433070375000000000,
+        "effective_start": "2014-01-17 22:26:20",
+        "effective_end_exclusive": "2015-05-31 11:06:15",
+        "actual_first_observation_ns": 1389997580000000000,
+        "actual_last_observation_ns": 1433070367000000000,
+        "rows": 4737371,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 8.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 4737371,
+            "sha256": "5d090199892de0285fd7091d14f4cb75e0fe8646711d766d864a68a2061ec24c"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/source/power.f64",
+            "dtype": "float64",
+            "rows": 4737371,
+            "sha256": "468ded82b409081f529c4fbe11a88e252c12c69f3d6893b522ba7f6396bdb813"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 10.0,
+            "t_drop": 1800.0,
+            "t_min_work": 14.0,
+            "context_seconds": 60.0,
+            "fs": 0.125,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 101,
+        "effective_supported_count": 101,
+        "selected_activity_count": 101,
+        "cap": 600,
+        "split": {
+          "group_count": 98,
+          "split_counts": {
+            "development": 61,
+            "validation": 20,
+            "evaluation": 20
+          }
+        },
+        "review_case_ids": [
+          62,
+          63,
+          65,
+          68,
+          69,
+          71,
+          74,
+          76,
+          79,
+          80
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_refit_b13_m5_dish_washer/20261016T190026Z_dbf55430",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_b13_m5_dish_washer_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_b13_m5_dish_washer_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 4,
+      "object": "refit_h7_dishwasher",
+      "selected_interval": {
+        "object": "refit_h7_dishwasher",
+        "source_file": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "source_keys": [
+          "/building7/elec/meter7"
+        ],
+        "source_identity": {
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2013-11-01 22:01:18",
+          "2015-07-08 02:11:02"
+        ],
+        "effective_start_ns": 1383343278000000000,
+        "effective_end_exclusive_ns": 1436321462000000000,
+        "effective_start": "2013-11-01 22:01:18",
+        "effective_end_exclusive": "2015-07-08 02:11:02",
+        "actual_first_observation_ns": 1383343278000000000,
+        "actual_last_observation_ns": 1436321454000000000,
+        "rows": 6756034,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 8.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 6756034,
+            "sha256": "68bc9e503b052bca124cdb0d020a1de078bd34ad1c8abfde9a6b1752c1b10d39"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/source/power.f64",
+            "dtype": "float64",
+            "rows": 6756034,
+            "sha256": "0f4c00a1d19c8331690c4927799cdbfbf3eb573e37d93945bd86d8d8539635c6"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 10,
+            "t_drop": 1800,
+            "t_min_work": 600,
+            "context_seconds": 60,
+            "fs": 0.125,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 531,
+        "effective_supported_count": 531,
+        "selected_activity_count": 531,
+        "cap": 600,
+        "split": {
+          "group_count": 394,
+          "split_counts": {
+            "development": 318,
+            "validation": 107,
+            "evaluation": 106
+          }
+        },
+        "review_case_ids": [
+          322,
+          330,
+          340,
+          344,
+          365,
+          374,
+          387,
+          398,
+          413,
+          422
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_refit_h7_dishwasher/20261016T190041Z_b94e9be7",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h7_dishwasher_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h7_dishwasher_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 5,
+      "object": "refit_h9_dishwasher",
+      "selected_interval": {
+        "object": "refit_h9_dishwasher",
+        "source_file": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "source_keys": [
+          "/building9/elec/meter5"
+        ],
+        "source_identity": {
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2013-12-17 17:26:20",
+          "2015-07-08 18:52:58"
+        ],
+        "effective_start_ns": 1387301180000000000,
+        "effective_end_exclusive_ns": 1436381578000000000,
+        "effective_start": "2013-12-17 17:26:20",
+        "effective_end_exclusive": "2015-07-08 18:52:58",
+        "actual_first_observation_ns": 1387301180000000000,
+        "actual_last_observation_ns": 1436381570000000000,
+        "rows": 6169525,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 8.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 6169525,
+            "sha256": "2f42277cc1d319623e63e2ae9e11cec66ebad72e5c12742f83449b4bbca7333e"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/source/power.f64",
+            "dtype": "float64",
+            "rows": 6169525,
+            "sha256": "64061765be6cb7a233d730750a7d4d895264f65472df57a2c2fab54ec3b65473"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 10,
+            "t_drop": 1800,
+            "t_min_work": 600,
+            "context_seconds": 60,
+            "fs": 0.125,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 254,
+        "effective_supported_count": 254,
+        "selected_activity_count": 254,
+        "cap": 600,
+        "split": {
+          "group_count": 220,
+          "split_counts": {
+            "development": 152,
+            "validation": 51,
+            "evaluation": 51
+          }
+        },
+        "review_case_ids": [
+          155,
+          161,
+          165,
+          166,
+          174,
+          175,
+          190,
+          191,
+          196,
+          197
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_refit_h9_dishwasher/20261016T190140Z_0ebda30e",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h9_dishwasher_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h9_dishwasher_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 6,
+      "object": "refit_h18_bread_maker",
+      "selected_interval": {
+        "object": "refit_h18_bread_maker",
+        "source_file": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "source_keys": [
+          "/building18/elec/meter8"
+        ],
+        "source_identity": {
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2014-03-06 16:23:19",
+          "2015-06-20 03:33:02"
+        ],
+        "effective_start_ns": 1394122999000000000,
+        "effective_end_exclusive_ns": 1434771182000000000,
+        "effective_start": "2014-03-06 16:23:19",
+        "effective_end_exclusive": "2015-06-20 03:33:02",
+        "actual_first_observation_ns": 1394122999000000000,
+        "actual_last_observation_ns": 1434771174000000000,
+        "rows": 5622610,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 8.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 5622610,
+            "sha256": "49f7e9942599fc63560e6a094006c7f79ba0966894ffe601cba8d03ddc8c20ae"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/source/power.f64",
+            "dtype": "float64",
+            "rows": 5622610,
+            "sha256": "15a7cdf0a6469cefd144000762415b2be931f4cfe13396fb232535787fb0cf21"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 5,
+            "t_drop": 1800,
+            "t_min_work": 600,
+            "context_seconds": 60,
+            "fs": 0.125,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 211,
+        "effective_supported_count": 211,
+        "selected_activity_count": 211,
+        "cap": 600,
+        "split": {
+          "group_count": 133,
+          "split_counts": {
+            "development": 127,
+            "validation": 41,
+            "evaluation": 43
+          }
+        },
+        "review_case_ids": [
+          129,
+          134,
+          136,
+          142,
+          150,
+          151,
+          155,
+          156,
+          161,
+          162
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_refit_h18_bread_maker/20261016T190206Z_91423a87",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h18_bread_maker_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h18_bread_maker_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 7,
+      "object": "refit_h20_tumble_dryer",
+      "selected_interval": {
+        "object": "refit_h20_tumble_dryer",
+        "source_file": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "source_keys": [
+          "/building20/elec/meter3"
+        ],
+        "source_identity": {
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2014-03-07 16:20:20",
+          "2015-07-10 11:56:43"
+        ],
+        "effective_start_ns": 1394209220000000000,
+        "effective_end_exclusive_ns": 1436529403000000000,
+        "effective_start": "2014-03-07 16:20:20",
+        "effective_end_exclusive": "2015-07-10 11:56:43",
+        "actual_first_observation_ns": 1394209220000000000,
+        "actual_last_observation_ns": 1436529395000000000,
+        "rows": 5383993,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 8.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 5383993,
+            "sha256": "670746fed900c0c69a552ec3f1ef029fc4f53dc0dd2445857ef23254154fbd4c"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/source/power.f64",
+            "dtype": "float64",
+            "rows": 5383993,
+            "sha256": "6365143ae7b3f4e24efa600de831c9a4e0e19dcade8644ab44b28dbe58d11f1a"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 20,
+            "t_drop": 300,
+            "t_min_work": 180,
+            "context_seconds": 60,
+            "fs": 0.125,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 90,
+        "effective_supported_count": 90,
+        "selected_activity_count": 90,
+        "cap": 600,
+        "split": {
+          "group_count": 64,
+          "split_counts": {
+            "development": 54,
+            "validation": 18,
+            "evaluation": 18
+          }
+        },
+        "review_case_ids": [
+          55,
+          56,
+          59,
+          61,
+          62,
+          64,
+          67,
+          68,
+          70,
+          71
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_refit_h20_tumble_dryer/20261016T190235Z_66ff965c",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h20_tumble_dryer_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/refit_h20_tumble_dryer_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 8,
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "selected_interval": {
+        "object": "ukdale_h1_washing_machine_hotpoint",
+        "source_file": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "source_keys": [
+          "/building1/elec/meter5"
+        ],
+        "source_identity": {
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2012-11-09 22:28:18",
+          "2015-09-07 23:00:02"
+        ],
+        "effective_start_ns": 1352500098000000000,
+        "effective_end_exclusive_ns": 1441666802000000000,
+        "effective_start": "2012-11-09 22:28:18",
+        "effective_end_exclusive": "2015-09-07 23:00:02",
+        "actual_first_observation_ns": 1352500098000000000,
+        "actual_last_observation_ns": 1441666796000000000,
+        "rows": 12075935,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 6.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 12075935,
+            "sha256": "f380240427446f1ae70f3f24c027be61e3317369b6239a830551279809500cf9"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/source/power.f64",
+            "dtype": "float64",
+            "rows": 12075935,
+            "sha256": "c4ef1c854aacef8f3e0fc6f70ff7c0e9f9c264eba44d4342548f4bd473c5c9ee"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 20,
+            "t_drop": 160,
+            "t_min_work": 1800,
+            "context_seconds": 60,
+            "fs": 0.16666666666666666,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 223,
+        "effective_supported_count": 223,
+        "selected_activity_count": 223,
+        "cap": 600,
+        "split": {
+          "group_count": 186,
+          "split_counts": {
+            "development": 134,
+            "validation": 44,
+            "evaluation": 45
+          }
+        },
+        "review_case_ids": [
+          135,
+          138,
+          143,
+          151,
+          156,
+          159,
+          161,
+          169,
+          170,
+          177
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_hotpoint/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_ukdale_h1_washing_machine_hotpoint/20261016T190107Z_201ba079",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h1_washing_machine_hotpoint_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h1_washing_machine_hotpoint_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 9,
+      "object": "ukdale_h1_washing_machine_samsung",
+      "selected_interval": {
+        "object": "ukdale_h1_washing_machine_samsung",
+        "source_file": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "source_keys": [
+          "/building1/elec/meter5"
+        ],
+        "source_identity": {
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2015-09-07 23:00:04",
+          "2017-04-26 17:35:30"
+        ],
+        "effective_start_ns": 1441666804000000000,
+        "effective_end_exclusive_ns": 1493228130000000000,
+        "effective_start": "2015-09-07 23:00:04",
+        "effective_end_exclusive": "2017-04-26 17:35:30",
+        "actual_first_observation_ns": 1441666804000000000,
+        "actual_last_observation_ns": 1493228124000000000,
+        "rows": 7480000,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 6.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 7480000,
+            "sha256": "672cf4c7600b000fd0632874a15d49d91f42ad27032916c0cb15d07f0efdf671"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/source/power.f64",
+            "dtype": "float64",
+            "rows": 7480000,
+            "sha256": "c02a7b8fecb932d74335d9b5c0b3fc62e3410fdee4a3d641a6c631058938335c"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 20,
+            "t_drop": 160,
+            "t_min_work": 1800,
+            "context_seconds": 60,
+            "fs": 0.16666666666666666,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 327,
+        "effective_supported_count": 327,
+        "selected_activity_count": 327,
+        "cap": 600,
+        "split": {
+          "group_count": 258,
+          "split_counts": {
+            "development": 196,
+            "validation": 66,
+            "evaluation": 65
+          }
+        },
+        "review_case_ids": [
+          205,
+          208,
+          215,
+          222,
+          230,
+          235,
+          237,
+          243,
+          251,
+          256
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h1_washing_machine_samsung/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_ukdale_h1_washing_machine_samsung/20261016T190136Z_1c1ba053",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h1_washing_machine_samsung_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_h1_washing_machine_samsung_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 10,
+      "object": "ukdale_b1_m6_dish_washer",
+      "selected_interval": {
+        "object": "ukdale_b1_m6_dish_washer",
+        "source_file": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "source_keys": [
+          "/building1/elec/meter6"
+        ],
+        "source_identity": {
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156
+        },
+        "source_timezone": "Europe/London",
+        "requested_interval": [
+          "2012-11-09 22:28:18",
+          "2017-04-26 17:35:36"
+        ],
+        "effective_start_ns": 1352500098000000000,
+        "effective_end_exclusive_ns": 1493228136000000000,
+        "effective_start": "2012-11-09 22:28:18",
+        "effective_end_exclusive": "2017-04-26 17:35:36",
+        "actual_first_observation_ns": 1352500098000000000,
+        "actual_last_observation_ns": 1493228130000000000,
+        "rows": 19819392,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 6.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 19819392,
+            "sha256": "ea5c3ca923590864f96b2dd02a730da4d68178e32a1ecb47c226b763ce3137f7"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/source/power.f64",
+            "dtype": "float64",
+            "rows": 19819392,
+            "sha256": "45d037429fedd1ee01eacf1e4f785aa8967eb673fb1d6a55bb32e4c85841b363"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 10.0,
+            "t_drop": 1800.0,
+            "t_min_work": 1800.0,
+            "context_seconds": 60.0,
+            "fs": 0.16666666666666666,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 184,
+        "effective_supported_count": 184,
+        "selected_activity_count": 184,
+        "cap": 600,
+        "split": {
+          "group_count": 179,
+          "split_counts": {
+            "development": 110,
+            "validation": 37,
+            "evaluation": 37
+          }
+        },
+        "review_case_ids": [
+          110,
+          115,
+          118,
+          125,
+          128,
+          130,
+          135,
+          139,
+          140,
+          146
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_ukdale_b1_m6_dish_washer/20261016T190209Z_f8956794",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_b1_m6_dish_washer_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/ukdale_b1_m6_dish_washer_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 11,
+      "object": "snm_building_01_dishwasher",
+      "selected_interval": {
+        "object": "snm_building_01_dishwasher",
+        "source_file": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_01/dishwasher.h5",
+        "source_keys": "/data",
+        "source_identity": {
+          "bytes": 961283001,
+          "mtime_ns": 1711204452000000000
+        },
+        "source_timezone": null,
+        "requested_interval": [
+          "2018-03-01 13:22:39.799000",
+          "2020-12-03 00:00:01.097000"
+        ],
+        "effective_start_ns": 1519910559799000000,
+        "effective_end_exclusive_ns": 1606953601097000000,
+        "effective_start": "2018-03-01 13:22:39.799000",
+        "effective_end_exclusive": "2020-12-03 00:00:01.097000",
+        "actual_first_observation_ns": 1519910559799000000,
+        "actual_last_observation_ns": 1606953596097000000,
+        "rows": 16023576,
+        "nonfinite_power_count": 5,
+        "nominal_seconds": 5.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 16023576,
+            "sha256": "333c020b0020c9b75ff6826c6d67cb8445ed7dd71feeed0d793953bad1e29627"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/source/power.f64",
+            "dtype": "float64",
+            "rows": 16023576,
+            "sha256": "380f1f4a2b4caf3894d70220ef77e35b44be9e5333d78f65f7653176c36f070d"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 5.18,
+            "t_drop": 1800.0,
+            "t_min_work": 10.0,
+            "context_seconds": 60.0,
+            "fs": 0.2,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 105,
+        "effective_supported_count": 105,
+        "selected_activity_count": 105,
+        "cap": 600,
+        "split": {
+          "group_count": 104,
+          "split_counts": {
+            "development": 63,
+            "validation": 21,
+            "evaluation": 21
+          }
+        },
+        "review_case_ids": [
+          66,
+          67,
+          69,
+          71,
+          72,
+          73,
+          76,
+          77,
+          80,
+          83
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_snm_building_01_dishwasher/20261016T190026Z_469771cd",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/snm_building_01_dishwasher_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/snm_building_01_dishwasher_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 12,
+      "object": "snm_building_05_coffee_maker",
+      "selected_interval": {
+        "object": "snm_building_05_coffee_maker",
+        "source_file": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_05/coffee_maker.h5",
+        "source_keys": "/data",
+        "source_identity": {
+          "bytes": 442640705,
+          "mtime_ns": 1711204586000000000
+        },
+        "source_timezone": null,
+        "requested_interval": [
+          "2020-03-21 00:00:00",
+          "2020-12-03 00:00:00"
+        ],
+        "effective_start_ns": 1584748800000000000,
+        "effective_end_exclusive_ns": 1606953600000000000,
+        "effective_start": "2020-03-21 00:00:00",
+        "effective_end_exclusive": "2020-12-03 00:00:00",
+        "actual_first_observation_ns": 1584748800507000000,
+        "actual_last_observation_ns": 1606953595325000000,
+        "rows": 4417645,
+        "nonfinite_power_count": 2,
+        "nominal_seconds": 5.033,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 4417645,
+            "sha256": "6cefae1a94b87f6efe3dc5e0ba6a81c84681a476c58570a94cbbda6821b31fac"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/source/power.f64",
+            "dtype": "float64",
+            "rows": 4417645,
+            "sha256": "379ea1ffdd40e505c58d46d91d0be7addff774a8fb66b9c29c814de598d693be"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 5.0,
+            "t_drop": 300.0,
+            "t_min_work": 10.066,
+            "context_seconds": 60.0,
+            "fs": 0.19868865487780646,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 599,
+        "effective_supported_count": 599,
+        "selected_activity_count": 599,
+        "cap": 600,
+        "split": {
+          "group_count": 208,
+          "split_counts": {
+            "development": 359,
+            "validation": 121,
+            "evaluation": 119
+          }
+        },
+        "review_case_ids": [
+          362,
+          365,
+          388,
+          395,
+          419,
+          424,
+          434,
+          443,
+          457,
+          476
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_snm_building_05_coffee_maker/20261016T190054Z_7022d5bf",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/snm_building_05_coffee_maker_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/snm_building_05_coffee_maker_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 13,
+      "object": "snm_building_03_boiler",
+      "selected_interval": {
+        "object": "snm_building_03_boiler",
+        "source_file": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_03/boiler.h5",
+        "source_keys": "/data",
+        "source_identity": {
+          "bytes": 204432017,
+          "mtime_ns": 1711204501000000000
+        },
+        "source_timezone": null,
+        "requested_interval": [
+          "2020-02-21 00:00:01.006000",
+          "2020-09-26 08:20:14.976000"
+        ],
+        "effective_start_ns": 1582243201006000000,
+        "effective_end_exclusive_ns": 1601108414976000000,
+        "effective_start": "2020-02-21 00:00:01.006000",
+        "effective_end_exclusive": "2020-09-26 08:20:14.976000",
+        "actual_first_observation_ns": 1582243201006000000,
+        "actual_last_observation_ns": 1601108410018000000,
+        "rows": 3392926,
+        "nonfinite_power_count": 2,
+        "nominal_seconds": 4.958,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 3392926,
+            "sha256": "9e12f844b9bcf6210469eb458c3fae9b87ee8e38d2d985f0e2f3076ffc817941"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/source/power.f64",
+            "dtype": "float64",
+            "rows": 3392926,
+            "sha256": "8d4e50dac2b20e89bd62009e469662d9cb10ca6ad8b0662a66345fd34da95603"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 5.0,
+            "t_drop": 300.0,
+            "t_min_work": 9.916,
+            "context_seconds": 60.0,
+            "fs": 0.20169423154497781,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 104,
+        "effective_supported_count": 104,
+        "selected_activity_count": 104,
+        "cap": 600,
+        "split": {
+          "group_count": 87,
+          "split_counts": {
+            "development": 62,
+            "validation": 21,
+            "evaluation": 21
+          }
+        },
+        "review_case_ids": [
+          64,
+          66,
+          67,
+          69,
+          71,
+          73,
+          75,
+          78,
+          80,
+          82
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_snm_building_03_boiler/20261016T190140Z_0334d109",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/snm_building_03_boiler_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/snm_building_03_boiler_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 14,
+      "object": "darck_kettle",
+      "selected_interval": {
+        "object": "darck_kettle",
+        "source_file": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+        "source_keys": [
+          "kettle"
+        ],
+        "source_identity": {
+          "bytes": 90942384,
+          "mtime_ns": 1792145113192646819
+        },
+        "source_timezone": null,
+        "requested_interval": [
+          "2025-03-05 00:30:00",
+          "2025-09-05 00:00:00"
+        ],
+        "effective_start_ns": 1741134600000000000,
+        "effective_end_exclusive_ns": 1757030400000000000,
+        "effective_start": "2025-03-05 00:30:00",
+        "effective_end_exclusive": "2025-09-05 00:00:00",
+        "actual_first_observation_ns": 1741134600000000000,
+        "actual_last_observation_ns": 1757030399000000000,
+        "rows": 15895800,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 1.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 15895800,
+            "sha256": "0c0d87346e4a45a2c63c5a3ceeb9517a8f871b91a7c49fe4a6e07ca5347b490b"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/source/power.f64",
+            "dtype": "float64",
+            "rows": 15895800,
+            "sha256": "d3a5377bac380e7904ed6837d8af58073ac1d6834959eaae2feb6565bfb3bfeb"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 50.0,
+            "t_drop": 15.0,
+            "t_min_work": 2.0,
+            "context_seconds": 60.0,
+            "fs": 1.0,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 252,
+        "effective_supported_count": 252,
+        "selected_activity_count": 252,
+        "cap": 600,
+        "split": {
+          "group_count": 133,
+          "split_counts": {
+            "development": 151,
+            "validation": 51,
+            "evaluation": 50
+          }
+        },
+        "review_case_ids": [
+          158,
+          159,
+          162,
+          169,
+          175,
+          178,
+          188,
+          189,
+          198,
+          200
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_darck_kettle/20261016T190026Z_83aeacac",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/darck_kettle_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/darck_kettle_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 15,
+      "object": "darck_sherlockhairdryer",
+      "selected_interval": {
+        "object": "darck_sherlockhairdryer",
+        "source_file": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+        "source_keys": [
+          "sherlockhairdryer"
+        ],
+        "source_identity": {
+          "bytes": 90942384,
+          "mtime_ns": 1792145113192646819
+        },
+        "source_timezone": null,
+        "requested_interval": [
+          "2025-03-05 00:30:00",
+          "2025-09-05 00:00:00"
+        ],
+        "effective_start_ns": 1741134600000000000,
+        "effective_end_exclusive_ns": 1757030400000000000,
+        "effective_start": "2025-03-05 00:30:00",
+        "effective_end_exclusive": "2025-09-05 00:00:00",
+        "actual_first_observation_ns": 1741134600000000000,
+        "actual_last_observation_ns": 1757030399000000000,
+        "rows": 15895800,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 1.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 15895800,
+            "sha256": "0c0d87346e4a45a2c63c5a3ceeb9517a8f871b91a7c49fe4a6e07ca5347b490b"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/source/power.f64",
+            "dtype": "float64",
+            "rows": 15895800,
+            "sha256": "0967cf7f246b2d3e1709c686cc328b56de8424782a6ec0daef532cdd4b3df8db"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 20.0,
+            "t_drop": 15.0,
+            "t_min_work": 2.0,
+            "context_seconds": 60.0,
+            "fs": 1.0,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 133,
+        "effective_supported_count": 133,
+        "selected_activity_count": 133,
+        "cap": 600,
+        "split": {
+          "group_count": 75,
+          "split_counts": {
+            "development": 80,
+            "validation": 26,
+            "evaluation": 27
+          }
+        },
+        "review_case_ids": [
+          81,
+          82,
+          87,
+          88,
+          92,
+          94,
+          98,
+          99,
+          102,
+          103
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_darck_sherlockhairdryer/20261016T190105Z_144fd619",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/darck_sherlockhairdryer_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/darck_sherlockhairdryer_10_cases.svg",
+      "case_count": 10
+    },
+    {
+      "number": 16,
+      "object": "darck_fridge",
+      "selected_interval": {
+        "object": "darck_fridge",
+        "source_file": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+        "source_keys": [
+          "fridge"
+        ],
+        "source_identity": {
+          "bytes": 90942384,
+          "mtime_ns": 1792145113192646819
+        },
+        "source_timezone": null,
+        "requested_interval": [
+          "2025-07-20 00:00:00",
+          "2025-09-05 00:00:00"
+        ],
+        "effective_start_ns": 1752969600000000000,
+        "effective_end_exclusive_ns": 1757030400000000000,
+        "effective_start": "2025-07-20 00:00:00",
+        "effective_end_exclusive": "2025-09-05 00:00:00",
+        "actual_first_observation_ns": 1752969600000000000,
+        "actual_last_observation_ns": 1757030399000000000,
+        "rows": 4060800,
+        "nonfinite_power_count": 0,
+        "nominal_seconds": 1.0,
+        "raw": {
+          "timestamp_ns": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/source/timestamp_ns.i64",
+            "dtype": "int64",
+            "rows": 4060800,
+            "sha256": "df63427bad89aefa6e75893755d4eb2a5cb5b27d0ee7661870f6b1da82309e92"
+          },
+          "power": {
+            "path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/source/power.f64",
+            "dtype": "float64",
+            "rows": 4060800,
+            "sha256": "955b05aa75a953bb12a235d5870cd713c3125cd69f9d218c462c23bc6f7a4453"
+          }
+        },
+        "main_extraction": {
+          "method": "simple",
+          "config": {
+            "threshold": 16.7,
+            "t_drop": 30.0,
+            "t_min_work": 2.0,
+            "context_seconds": 60.0,
+            "fs": 1.0,
+            "context_by_time": true,
+            "resample_fs": 0
+          },
+          "source_file": "/home/avis/pslg-nilm/src/steps/extract_active_data_step.py",
+          "source_sha256": "db21af426d4940b636c30285dc882bb093bf6b79b89e4199c1c1a3b8e3a4f868"
+        },
+        "initial_supported_count": 595,
+        "effective_supported_count": 595,
+        "selected_activity_count": 595,
+        "cap": 600,
+        "split": {
+          "group_count": 21,
+          "split_counts": {
+            "development": 363,
+            "validation": 110,
+            "evaluation": 122
+          }
+        },
+        "review_case_ids": [
+          375,
+          376,
+          390,
+          393,
+          413,
+          424,
+          432,
+          444,
+          462,
+          464
+        ]
+      },
+      "raw_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/source",
+      "raw_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/source/selected_interval.json",
+      "activity_directory": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/activities",
+      "activity_manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/activities/activities.json",
+      "copy_QA": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/copy_validation.json",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/executions/extract_darck_fridge/20261016T190141Z_463a96c4",
+      "review_png": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/darck_fridge_10_cases.png",
+      "review_svg": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/figures/darck_fridge_10_cases.svg",
+      "case_count": 10
+    }
+  ],
+  "checks": [
+    {
+      "object": "ukdale_h2_washing_machine",
+      "status": "passed",
+      "activities": 54,
+      "source_rows": 1686220,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 32,
+        "validation": 11,
+        "evaluation": 11
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "status": "passed",
+      "activities": 439,
+      "source_rows": 1685519,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 264,
+        "validation": 86,
+        "evaluation": 89
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "status": "passed",
+      "activities": 101,
+      "source_rows": 4737371,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 61,
+        "validation": 20,
+        "evaluation": 20
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "status": "passed",
+      "activities": 531,
+      "source_rows": 6756034,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 318,
+        "validation": 107,
+        "evaluation": 106
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "status": "passed",
+      "activities": 254,
+      "source_rows": 6169525,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 152,
+        "validation": 51,
+        "evaluation": 51
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "status": "passed",
+      "activities": 211,
+      "source_rows": 5622610,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 127,
+        "validation": 41,
+        "evaluation": 43
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "status": "passed",
+      "activities": 90,
+      "source_rows": 5383993,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 54,
+        "validation": 18,
+        "evaluation": 18
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "status": "passed",
+      "activities": 223,
+      "source_rows": 12075935,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 134,
+        "validation": 44,
+        "evaluation": 45
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "status": "passed",
+      "activities": 327,
+      "source_rows": 7480000,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 196,
+        "validation": 66,
+        "evaluation": 65
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "status": "passed",
+      "activities": 184,
+      "source_rows": 19819392,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 110,
+        "validation": 37,
+        "evaluation": 37
+      },
+      "case_count": 10
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "status": "passed",
+      "activities": 105,
+      "source_rows": 16023576,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 63,
+        "validation": 21,
+        "evaluation": 21
+      },
+      "case_count": 10
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "status": "passed",
+      "activities": 599,
+      "source_rows": 4417645,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 359,
+        "validation": 121,
+        "evaluation": 119
+      },
+      "case_count": 10
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "status": "passed",
+      "activities": 104,
+      "source_rows": 3392926,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 62,
+        "validation": 21,
+        "evaluation": 21
+      },
+      "case_count": 10
+    },
+    {
+      "object": "darck_kettle",
+      "status": "passed",
+      "activities": 252,
+      "source_rows": 15895800,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 151,
+        "validation": 51,
+        "evaluation": 50
+      },
+      "case_count": 10
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "status": "passed",
+      "activities": 133,
+      "source_rows": 15895800,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 80,
+        "validation": 26,
+        "evaluation": 27
+      },
+      "case_count": 10
+    },
+    {
+      "object": "darck_fridge",
+      "status": "passed",
+      "activities": 595,
+      "source_rows": 4060800,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 363,
+        "validation": 110,
+        "evaluation": 122
+      },
+      "case_count": 10
+    }
+  ],
+  "selection_rule": "all_supported_in_interval_max600_no_subsampling",
+  "supersedes": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017/manifest.json"
+}

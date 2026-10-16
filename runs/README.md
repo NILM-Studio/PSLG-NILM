@@ -28,3 +28,7 @@ F4 和含 F4 的混合历史实验移到 `../archive/retired_f4/experiments/`，
 | [20261017_public16_primglr_w120_gap30_case_review](20261017_public16_primglr_w120_gap30_case_review/README.md) | 用户授权16对象原始区间与主步骤活动片段双副本、PrimGLR W120s/gap30s十例图审，执行状态以索引为准 |
 
 - [20261017_public16_primglr_w120_gap60_case_review](20261017_public16_primglr_w120_gap60_case_review/README.md)：同160例PrimGLR W120/gap60图审。
+
+| [20261017_public16_primglr_feature_pca16](20261017_public16_primglr_feature_pca16/README.md) | 待用户审核：16对象2824活动，PrimGLR共同核心片段，七表示＋训练侧PCA16，GPU1/2/6与2的指数监控；未启动计算 |
+
+- [20261017_public16_all_supported_max600_correction](20261017_public16_all_supported_max600_correction/README.md)：纠正100/150限额，16对象全量支持片段<=600及两版图审。

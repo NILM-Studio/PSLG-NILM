@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_all_supported_max600_correction",
+  "condition": "coordinate",
+  "execution_id": "20261016T190026Z_2161d134",
+  "status": "passed",
+  "created_at": "2026-10-16T19:00:26.603695+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T19:00:26.655259+00:00",
+  "completed_at": "2026-10-16T19:03:50.741636+00:00"
+}

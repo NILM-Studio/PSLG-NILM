@@ -1,0 +1,8 @@
+{
+  "dataset_root": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2",
+  "manifest": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/manifest.json",
+  "guide": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/DATA_GUIDE.md",
+  "report": "/home/avis/pslg-nilm/runs/20261017_public16_all_supported_max600_correction/reports/final_20261016T190250Z_808e76c4/report.md",
+  "object_count": 16,
+  "activity_count": 4202
+}

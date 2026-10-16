@@ -502,3 +502,13 @@ Three P adapters passed CPU 512-phase forward/backward/sample/reload checks; Tim
 - 20261017_public16_primglr_w120_gap60_case_review：用户授权，复用gap30同一批片段并注册gap60图审。
 
 - 20261017_public16_primglr_w120_gap60_case_review：16对象160例gap60图审完成；与gap30输入逐例哈希相同，参数待人工审核。
+
+- 2026-10-16T18:49:16.139410+00:00 `20261017_public16_primglr_feature_pca16`：仅方案与只读元数据/资源核查，输入16对象2824活动，继承1700/556/568划分；固定候选PrimGLR、原生表示＋PCA16、两学习率三种子及GPU1/2/6指数监控方案。审核pending，无计算execution/训练；GPU1现有训练和后续分析队列待完成。
+
+- 2026-10-16T18:52:39.288856+00:00 `20261017_public16_primglr_feature_pca16`：用户补充PrimGLR W120s/gap30s、按来源/对象已有采样间隔不统一Hz；指数监控上限改30min，间隔2..1024再1800s，事件重置。仅更新方案、协议、配置与16对象采样率表；整体审核pending，无计算execution。
+
+- 20261017_public16_all_supported_max600_correction：用户要求修正；统一最多600，范围内全部保留；历史限额版保留，新版独立保存。
+
+- 2026-10-16T19:03:50.620400+00:00 `20261017_public16_all_supported_max600_correction`：16对象两组数据独立复制与QA完成，入选4202条；gap30/gap60各16张十例图供人审。数据清单`/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/manifest.json`，未自动冻结PrimGLR论文最终参数。
+
+- 2026-10-16T19:05:27.336646+00:00 `20261017_public16_primglr_feature_pca16`：按用户全量交付目标补充G阶段，参数/训练预算由留出阶段冻结后，在全部2824活动重新拟合编码器、尺度、DTW、PCA和聚类；另保留留出泛化证据。正式神经训练最多672次，整体仍待审核，无计算execution。
