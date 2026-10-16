@@ -1,0 +1,18 @@
+{
+  "upstream": "AI4CTS/E2Usd",
+  "commit": "7fc34e4521a0392f429a988afd0421ad97443464",
+  "normalization": "CRLF to LF",
+  "files": {
+    "abstractions.py": "d1b34ca68b1d1a1aec7a709076b509d91e162841588fdd85c7918995d29e7b99",
+    "adapers.py": "09bca8be1ace234c2d94708bc42b93a5e995e141150b6059ff2098fc500c20ba",
+    "clustering.py": "590983fa3acff02b9983a1429625f7b76f4d30173d6531bc1bc4fb7e86b95d63",
+    "e2usd.py": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+    "encoders.py": "fe19fd9d07479c36196c5653cff1dd034ba3165aa924a6a8c3bf8e46b9f872f7",
+    "networks/__init__.py": "7c9c1b618cd0484de89188b184e5b9c1bd0d3f2d6fde68fa3b84f1eec7c5b8d9",
+    "networks/fncc_loss.py": "c3f73b51b5133a9f49b4d25e37578230d1b30e26d1108443d0deb618bad3fec5",
+    "networks/fncc_loss_byol.py": "f84c7b61fc3c4f5aba82ff1e413f96c71c3302bbbcafc1b9d381a81ddbdc3c33",
+    "networks/network.py": "eb439516a0547b2aa9e8037c39ee8dfac9f0c96a70e3d1d2739fc5ec87a0a1fc",
+    "params.py": "513c9fd6bbdfbe3ab7fed5f3bc57ea30bca177798e7ae17aaaff673d172fd126",
+    "utils.py": "c6a7b350fa0db3349ddbb1351f6ce65a377995ffa2b750228440728a7c67e262"
+  }
+}

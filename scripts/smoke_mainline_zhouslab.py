@@ -19,7 +19,7 @@ cfg = yaml.safe_load((root/'config/config.yaml').read_text())
 cfg['runtime'] = {'require_slurm': False}
 cfg['extract_active_data'].update(threshold=100, t_drop=18, t_min_work=18,
     context_seconds=12, fs=1/6, resample_fs=1/6)
-cfg['time_segmentation'].update(max_seg_len=64, clasp_n_jobs=1)
+cfg['time_segmentation'].update(max_seg_len=64)
 cfg['feature_extract'].update(epochs=1, latent_dim=4, batch_size=8, patience=1, cache=False)
 cfg['temporal_state_merge'].update(fs=1/6, min_block_seconds=12)
 config = work/'config.yaml'

@@ -30,5 +30,28 @@
     "local_change": "Repository unmodified. Harness uses an explicit independent paper-architecture seq2seq adaptation, not community seq2point wrapper.",
     "paper": "https://arxiv.org/html/1811.06692",
     "limitations": "Author-official SGN source not located. Appendix A six-convolution towers and Eq9 standby gate implemented, but same padding and output_length=window differ from original 32-output protocol. Do not label exact original reproduction."
+  },
+  "segmentation_comparison_20261016": {
+    "prim_glr": {
+      "kind": "project_model",
+      "sha256": "ac0a4d8a85ab8bc7adaeb492c49e0a07cb76068128261e7117db119b2f618f68",
+      "verified_run": "20261016_public_activity_segmentation_recalibration"
+    },
+    "pelt_rbf": {
+      "url": "https://github.com/deepcharles/ruptures",
+      "package": "ruptures==1.1.10",
+      "algorithm": "Pelt(model=rbf)"
+    },
+    "clasp": {
+      "url": "https://github.com/ermshaua/claspy",
+      "commit": "e2a918f10c6e198064d4d7efacf1217cc0907fd7",
+      "package": "claspy==0.2.8",
+      "algorithm": "BinaryClaSPSegmentation"
+    },
+    "e2usd": {
+      "url": "https://github.com/AI4CTS/E2Usd",
+      "commit": "7fc34e4521a0392f429a988afd0421ad97443464",
+      "source": "unchanged E2USD Python tree; newline-normalized match with historical vendor"
+    }
   }
 }

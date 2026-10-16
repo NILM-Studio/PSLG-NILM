@@ -33,12 +33,7 @@ extract_active_data:
   resample_fs: 0.1666667     # 对齐目标采样频率 (Hz) - 活动提取前重采样到 UK-DALE 6s 网格
 
 time_segmentation:
-  # segment_method is a CLI choice: clasp | fluss | espresso | clasp-origin | none
-  window_size: 30
-  n_regimes: 2
-  excl_factor: 4
-  clasp_n_jobs: -1           # -1 = all cores
-  clasp_n_segments: learn    # "learn" = auto-detect, or a fixed integer
+  max_seg_len: 0
 
 feature_extract:
   # model_name is a CLI choice: detsec | bilstm_ae | lstm_ae | cnn_ae | bilstm_ae_attention | autoencoder | dtw

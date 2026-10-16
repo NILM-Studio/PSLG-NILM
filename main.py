@@ -102,11 +102,6 @@ def _build_segment(cfg, sel):
     return TimeSegmentationStep(
         segment_method=sel["segment_method"],
         appliance_name=sel["appliance"],
-        window_size=c.get("window_size", 30),
-        n_regimes=c.get("n_regimes", 2),
-        excl_factor=c.get("excl_factor", 4),
-        clasp_n_jobs=c.get("clasp_n_jobs", -1),
-        clasp_n_segments=c.get("clasp_n_segments", "learn"),
         max_seg_len=c.get("max_seg_len", 0),
     )
 
@@ -264,7 +259,7 @@ def main():
     p.add_argument("--steps", default="extract,segment,feature",
                    help="Comma list or 'all'. Known order: " + ",".join(ALL_STEP_ORDER))
     p.add_argument("--segment-method", default=None,
-                   help="clasp | fluss | espresso | clasp-origin | none (default: clasp)")
+                   help="prim-glr | pelt-rbf | clasp | e2usd (default: clasp)")
     p.add_argument("--feature-model", default=None,
                    help="detsec | detsec_pc | bilstm_ae | lstm_ae | cnn_ae | bilstm_ae_attention | autoencoder | dtw (default: detsec)")
     p.add_argument("--cluster-method", default=None,

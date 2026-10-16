@@ -18,12 +18,8 @@ extract_active_data:
   fs: 0.1666667
   resample_fs: 0.1666667
 time_segmentation:
-  window_size: 30
-  n_regimes: 2
-  excl_factor: 4
-  clasp_n_jobs: -1
-  clasp_n_segments: learn
   max_seg_len: 1536
+
 feature_extract:
   latent_dim: 16
   embed_dim: 32

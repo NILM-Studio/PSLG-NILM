@@ -1,7 +1,8 @@
 """TimeSegmentation step: segment each active-data CSV into sub-event regimes.
 
-Behavior is preserved from the legacy project (wavelet separation + a
-changepoint algorithm per file → padded 4-channel tensor). Changes:
+Each input activity is cut once on raw power and encoded as a padded
+4-channel tensor (raw, raw, raw, zero), matching the downstream shape.
+Changes:
 - adapts to the new ``Step`` base + run manifest (registers X/lengths/indices);
 - resolves its input directory from ``context['input_root']`` or, when run in
   isolation, from the manifest's ``extract_active_data.segments_dir`` — no more
@@ -9,8 +10,7 @@ changepoint algorithm per file → padded 4-channel tensor). Changes:
 - drops the dead matplotlib import and the unused ``dataset_split_step`` import;
 - drops the per-N checkpoint .npy files (redundant intermediate artifacts).
 
-Backend libraries (claspy / fluss / espresso) are imported lazily inside their
-branch so importing this module never pulls in numba/stumpy/TF.
+Comparison backends are imported lazily; enhanced ClaSP preprocessing is removed.
 """
 from __future__ import annotations
 
@@ -19,8 +19,6 @@ import os
 
 import numpy as np
 import pandas as pd
-import pywt
-from scipy.signal import medfilt
 
 from src.framework.step import Step
 
@@ -29,17 +27,10 @@ class TimeSegmentationStep(Step):
     step_type = "time_segmentation"
 
     def __init__(self, segment_method: str = "clasp", appliance_name: str = "",
-                 window_size: int = 100, n_regimes: int = 3, excl_factor: int = 5,
-                 clasp_n_jobs: int = 1, clasp_n_segments: str = "learn",
                  max_seg_len: int = 0):
         super().__init__(variant=segment_method)
         self.segment_method = segment_method
         self.appliance_name = appliance_name
-        self.window_size = window_size
-        self.n_regimes = n_regimes
-        self.excl_factor = excl_factor
-        self.clasp_n_jobs = int(clasp_n_jobs)
-        self.clasp_n_segments = str(clasp_n_segments)
         self.max_seg_len = int(max_seg_len or 0)
 
     # ── input resolution ─────────────────────────────────────────
@@ -57,115 +48,13 @@ class TimeSegmentationStep(Step):
                 return c
         return None
 
-    # ── signal processing (unchanged logic) ─────────────────────
+    # ── segmentation ─────────────────────────────────────────────
 
-    def medfilt_outlier_removal(self, series):
-        ts = np.asarray(series)
-        cleaned_series = medfilt(ts, kernel_size=5)
-        outlier_mask = np.zeros_like(ts, dtype=bool)
-        return cleaned_series, outlier_mask
+    def get_segmentation_points(self, time_series, distance=None):
+        from models.time_segmentation.comparison import run
 
-    def get_segmentation_points(self, time_series, distance="znormed_euclidean_distance"):
-        if time_series is None or len(time_series) == 0:
-            print("[time_segmentation] empty signal, skipping.")
-            return []
-        if np.any(np.isnan(time_series)) or np.any(np.isinf(time_series)):
-            time_series = np.nan_to_num(time_series, nan=0.0, posinf=0.0, neginf=0.0)
-
-        method = self.segment_method
-        if method == "none":
-            return []
-
-        if method == "fluss":
-            os.environ.setdefault("NUMBA_NUM_THREADS", "1")
-            os.environ.setdefault("MKL_NUM_THREADS", "1")
-            os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
-            from fluss import fluss
-            try:
-                ts_1d = time_series.flatten().astype(np.float64)
-                min_len = max(self.window_size * 2, self.window_size + self.n_regimes)
-                if len(ts_1d) < min_len:
-                    print(f"[time_segmentation] FLUSS: signal too short ({len(ts_1d)}<{min_len})")
-                    return []
-                _, change_points = fluss(
-                    ts_1d, window_size=self.window_size, n_regimes=self.n_regimes,
-                    excl_factor=self.excl_factor, visualize=False)
-                return change_points
-            except Exception as e:
-                print(f"[time_segmentation] FLUSS error: {e}")
-                return []
-
-        if method == "espresso":
-            from models.time_segmentation.espresso import EspressoModel
-            try:
-                model = EspressoModel(config={"window_size": self.window_size})
-                return model.train(time_series)
-            except Exception as e:
-                print(f"[time_segmentation] ESPRESSO error: {e}")
-                return []
-
-        if method == "clasp-origin":
-            from models.time_segmentation.clasp_origin import ClaspOriginModel
-            try:
-                model = ClaspOriginModel(config={"distance": "euclidean_distance"})
-                return model.train(time_series)
-            except Exception as e:
-                print(f"[time_segmentation] clasp-origin error: {e}")
-                return []
-
-        if method == "prim-glr":
-            from models.time_segmentation.prim_glr import PrimGLRModel
-            try:
-                model = PrimGLRModel()
-                return model.train(time_series)
-            except Exception as e:
-                print(f"[time_segmentation] prim-glr error: {e}")
-                return []
-
-        # default: clasp
-        from claspy.segmentation import BinaryClaSPSegmentation
-        try:
-            clasp = BinaryClaSPSegmentation(
-                n_segments=self.clasp_n_segments, window_size="suss",
-                validation="score_threshold", threshold=0.001,
-                distance=distance, n_jobs=self.clasp_n_jobs)
-            clasp.fit_predict(time_series)
-            return clasp.change_points
-        except Exception as e:
-            print(f"[time_segmentation] Clasp error: {e}")
-            return []
-
-    def synthesize_changepoints(self, orig_cp, low_cp, high_cp):
-        if len(low_cp) == 0 and len(high_cp) == 0:
-            return [], "None"
-        if len(low_cp) >= len(high_cp):
-            ref_cp, others, ref_name = np.sort(low_cp), [np.sort(high_cp)], "Low-Freq"
-        else:
-            ref_cp, others, ref_name = np.sort(high_cp), [np.sort(low_cp)], "High-Freq"
-        if len(ref_cp) == 0:
-            return [], "None"
-        groups = {i: [ref_val] for i, ref_val in enumerate(ref_cp)}
-        for other_list in others:
-            for p in other_list:
-                groups[int(np.argmin(np.abs(ref_cp - p)))].append(p)
-        synthesized_cp = [float(np.mean(groups[i])) for i in sorted(groups.keys())]
-        return sorted(synthesized_cp), ref_name
-
-    def run_wavelet_analysis(self, signal, wavelet, orig_cp):
-        level = 2
-        coeffs = pywt.wavedec(signal, wavelet, level=level)
-        cA2, cD2, cD1 = coeffs
-        low_freq_signal = pywt.waverec([cA2, np.zeros_like(cD2), np.zeros_like(cD1)], wavelet)[:len(signal)]
-        high_freq_combined = pywt.waverec([np.zeros_like(cA2), cD2, cD1], wavelet)[:len(signal)]
-        low_cp = self.get_segmentation_points(low_freq_signal)
-        high_cp = self.get_segmentation_points(high_freq_combined)
-        synthesized_cp, ref_name = self.synthesize_changepoints(orig_cp, low_cp, high_cp)
-        return {
-            "low_freq_signal": low_freq_signal,
-            "high_freq_combined": high_freq_combined,
-            "synthesized_cp": synthesized_cp,
-            "ref_name": ref_name,
-        }
+        cuts, _ = run(np.asarray(time_series).flatten(), self.segment_method)
+        return cuts
 
     # ── main ─────────────────────────────────────────────────────
 
@@ -194,20 +83,9 @@ class TimeSegmentationStep(Step):
                 continue
             signal = df["power"].values
 
-            if self.segment_method == "none":
-                signal_cleaned = signal
-                low_freq, high_freq = signal, np.zeros_like(signal)
-                synth_cp = []
-            elif self.segment_method == "clasp":
-                signal_cleaned, _ = self.medfilt_outlier_removal(signal)
-                orig_cp = self.get_segmentation_points(signal_cleaned)
-                res = self.run_wavelet_analysis(signal_cleaned, "db4", orig_cp)
-                low_freq, high_freq = res["low_freq_signal"], res["high_freq_combined"]
-                synth_cp = res["synthesized_cp"]
-            else:  # fluss / espresso / clasp-origin: direct segmentation, no wavelet
-                signal_cleaned = signal
-                low_freq, high_freq = signal, np.zeros_like(signal)
-                synth_cp = self.get_segmentation_points(signal_cleaned)
+            signal_cleaned = signal
+            low_freq, high_freq = signal, np.zeros_like(signal)
+            synth_cp = self.get_segmentation_points(signal)
 
             cps = sorted({int(round(cp)) for cp in synth_cp})
             boundaries = [0] + cps + [len(signal_cleaned)]
