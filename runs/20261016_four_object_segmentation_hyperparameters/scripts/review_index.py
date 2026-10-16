@@ -7,9 +7,11 @@ import hashlib
 import json
 import os
 import xml.etree.ElementTree as ET
+from collections import defaultdict
 from pathlib import Path
 
 from PIL import Image
+from choose_finalists import score
 
 EXP=Path(__file__).resolve().parents[1]
 METHODS=("prim-glr","pelt-rbf","fluss-threshold","clasp","clap","e2usd")
@@ -25,7 +27,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--require-complete",action="store_true")
     args=parser.parse_args()
-    manifests=[];figures=[];missing=[];review_rows=[]
+    manifests=[];figures=[];missing=[];review_rows=[];validation_rows=[]
     for method in METHODS:
         safe=method.replace("-","_")
         for split in ("development","validation"):
@@ -73,6 +75,27 @@ def main():
                           "validation_finalist":item["config_id"] in shortlist,
                           "is_baseline":item["is_baseline"],
                           "human_decision":"","human_note":""})
+        for obj in OBJECTS:
+            paths=sorted((EXP/"executions"/f"validate_{obj}_{safe}").glob("*/analysis/records.json"))
+            rows=None
+            for path in reversed(paths):
+                run=json.loads((path.parents[1]/"run.json").read_text())
+                if run.get("exit_code")==0:
+                    rows=json.loads(path.read_text());break
+            if rows is None:continue
+            grouped=defaultdict(list)
+            for row in rows:grouped[row["config_id"]].append(row)
+            ranking=[]
+            for config_id,group in grouped.items():
+                value,_=score(group)
+                ranking.append({"object":obj,"method":method,"config_id":config_id,
+                   "params":json.dumps(group[0]["params"],ensure_ascii=False,sort_keys=True),
+                   "validation_success":sum(r["status"]=="success" for r in group),
+                   "validation_unsupported":sum(r["status"]=="unsupported" for r in group),
+                   "validation_score":value,"human_approval":"","human_note":""})
+            ranking.sort(key=lambda r:(-r["validation_success"],r["validation_score"],r["params"]))
+            for rank,row in enumerate(ranking,1):
+                validation_rows.append({"validation_rank":rank,**row})
     if args.require_complete and missing:
         raise RuntimeError("Missing galleries: "+", ".join(missing))
     payload={"experiment":"20261016_four_object_segmentation_hyperparameters",
@@ -85,13 +108,17 @@ def main():
         with (root/"human_review_template.csv").open("w",newline="",encoding="utf-8") as stream:
             writer=csv.DictWriter(stream,fieldnames=list(review_rows[0]))
             writer.writeheader();writer.writerows(review_rows)
+    if validation_rows:
+        with (root/"validation_choices.csv").open("w",newline="",encoding="utf-8") as stream:
+            writer=csv.DictWriter(stream,fieldnames=list(validation_rows[0]))
+            writer.writeheader();writer.writerows(validation_rows)
     lines=["# 四对象切分超参数十子图人工审核", "",
       "**状态：待用户审核。** 所有机器排序只作建议；未写最终冻结配置，正式实验一未启动。", "",
       "每张图固定一条活动原始功率波形，5×2 十格比较不同参数。黑线为功率，红虚线为原始切点，灰区为上下文；各格使用相同坐标。格子不足十组时标为无更多候选。",
       "开发集图覆盖候选排名靠前配置与默认值；验证集图覆盖入围配置。切点是否对应有效运行阶段、是否漏掉长平台转折或过度切碎，须由人判断。", "",
       "CLaP 图若使用 `data/provisional_clasp_initializer.json`，只属于暂定 Clasp 初始化下的探索性对照；Clasp 人审选择不同参数时必须重跑 CLaP。", "",
       f"当前 {len(figures)} 张 PNG + {len(figures)} 张 SVG；缺失：{', '.join(missing) if missing else '无'}。",
-      "逐子图哈希、切点索引、UTC 时间和绘图线数见 `figure_manifest.json`；审核表见 `human_review_template.csv`。",
+      "逐子图哈希、切点索引、UTC 时间和绘图线数见 `figure_manifest.json`；开发候选表见 `human_review_template.csv`，可最终选用的验证候选 ID 见 `validation_choices.csv`。",
       "", "## 图库", ""]
     for obj in OBJECTS:
         lines += [f"### {obj}",""]

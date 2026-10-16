@@ -46,6 +46,8 @@ def read_rows(obj,method,split):
                 "score":value,"is_baseline":baseline(method,group[0]["params"])})
         ranked.sort(key=lambda x:(-x["success"],x["score"],
                          json.dumps(x["params"],sort_keys=True)))
+        if method=="e2usd":
+            ranked=[dict(candidate,seed=seed) for candidate in ranked for seed in (0,1,2)]
     return path,rows,ranked
 
 
@@ -96,7 +98,8 @@ def draw(obj,method,split,activity,ordered,lookup):
             entries.append({"panel":position+1,"status":"unused"})
             continue
         candidate=ordered[position]
-        row=lookup.get((aid,candidate["config_id"]))
+        seed=candidate.get("seed",0)
+        row=lookup.get((aid,candidate["config_id"],seed))
         ax.plot(seconds,power,color="#263238",linewidth=.8)
         ax.axvspan(0,seconds[core_a],color="#b0bec5",alpha=.4)
         ax.axvspan(seconds[core_b-1],seconds[-1],color="#b0bec5",alpha=.4)
@@ -116,12 +119,15 @@ def draw(obj,method,split,activity,ordered,lookup):
                 ax.text(.02,.94,row["reason"][:70],transform=ax.transAxes,
                         color="#b71c1c",fontsize=7,va="top")
         name=label(method,candidate["params"])
+        if method=="e2usd" and split=="validation":
+            name+=f" seed={seed}"
         ax.set_title(f"{position+1}. {name} | {status}",fontsize=8)
         ax.set_xlabel("Elapsed seconds",fontsize=8)
         ax.set_ylabel("Power (W)",fontsize=8)
         ax.tick_params(labelsize=7)
         entries.append({"panel":position+1,"config_id":candidate["config_id"],
             "params":candidate["params"],"is_baseline":candidate["is_baseline"],
+            "seed":seed,
             "status":row["status"] if row else "missing",
             "cuts":row.get("cuts",[]) if row else [],
             "cut_timestamps_utc":[float(timestamps[c]) for c in row.get("cuts",[])] if row else [],
@@ -129,7 +135,12 @@ def draw(obj,method,split,activity,ordered,lookup):
             "source_execution":row.get("source_execution") if row else None})
     flags=" ".join(["CENSORED L" if activity["left_censored"] else "",
                     "CENSORED R" if activity["right_censored"] else ""]).strip() or "uncensored"
-    fig.suptitle(f"{obj} | {method} | {split} activity {aid} | {flags}\n"
+    dependency=""
+    if method=="clap" and ordered:
+        init=ordered[0]["params"]["initializer_params"]
+        dependency=(f" | provisional Clasp init: window={init['window_size']} "
+                    f"p={init['threshold']}")
+    fig.suptitle(f"{obj} | {method} | {split} activity {aid} | {flags}{dependency}\n"
                  f"Same waveform and axes in all ten panels; red dashed lines = original cuts",
                  fontsize=12)
     stem=EXP/"review/figures"/split/obj/method.replace("-","_")/f"activity_{aid}"
@@ -158,7 +169,7 @@ def main():
         path,rows,ranked=read_rows(obj,args.method,args.split)
         sources[obj]=str(path)
         ordered=panel_order(ranked)
-        lookup={(r["activity_id"],r["config_id"]):r for r in rows if r["seed"]==0}
+        lookup={(r["activity_id"],r["config_id"],r["seed"]):r for r in rows}
         activities={row["activity_id"]:row for row in FROZEN["objects"][obj]["records"]}
         for aid in SELECTION[obj][args.split][:10]:
             figures.append(draw(obj,args.method,args.split,activities[aid],ordered,lookup))
