@@ -83,13 +83,19 @@ class SimpleThresholdDetector(BaseActiveDetector):
         
         if duration >= self.t_min_work:
             # 获取上下文范围
-            context_pts = int(self.context_seconds * self.fs)
-            c_start = max(0, start_idx - context_pts)
-            c_end = min(len(powers) - 1, end_idx + context_pts)
+            if self.config.get("context_by_time", False):
+                c_start = int(np.searchsorted(times, times[start_idx] - self.context_seconds, side="left"))
+                c_end = int(np.searchsorted(times, times[end_idx] + self.context_seconds, side="right")) - 1
+            else:
+                context_pts = int(self.context_seconds * self.fs)
+                c_start = max(0, start_idx - context_pts)
+                c_end = min(len(powers) - 1, end_idx + context_pts)
             
             work_intervals.append({
-                "start_time": int(times[start_idx]),
-                "end_time": int(times[end_idx]),
+                "start_time": float(times[start_idx]),
+                "end_time": float(times[end_idx]),
+                "core_end_exclusive": float(times[end_idx + 1] if end_idx + 1 < len(times) else times[end_idx] + 1.0 / self.fs),
+                "context_end_exclusive": float(times[c_end + 1] if c_end + 1 < len(times) else times[c_end] + 1.0 / self.fs),
                 "duration_sec": float(duration),
                 "data": pd.DataFrame({
                     "timestamp": orig_times[c_start:c_end + 1],

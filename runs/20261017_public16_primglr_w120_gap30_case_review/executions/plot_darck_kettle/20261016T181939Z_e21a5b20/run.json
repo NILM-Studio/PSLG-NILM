@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "condition": "plot_darck_kettle",
+  "execution_id": "20261016T181939Z_e21a5b20",
+  "status": "passed",
+  "created_at": "2026-10-16T18:19:39.164968+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:19:39.216365+00:00",
+  "completed_at": "2026-10-16T18:19:43.362355+00:00"
+}

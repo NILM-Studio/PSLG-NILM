@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "condition": "extract_ukdale_h2_microwave",
+  "execution_id": "20261016T181745Z_c091fb26",
+  "status": "passed",
+  "created_at": "2026-10-16T18:17:45.215298+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:17:45.265129+00:00",
+  "completed_at": "2026-10-16T18:17:55.698971+00:00"
+}

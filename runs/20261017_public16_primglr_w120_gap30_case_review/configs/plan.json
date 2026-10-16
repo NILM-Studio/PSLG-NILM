@@ -1,0 +1,1096 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "authorized_at": "2026-10-16T18:17:20.540723+00:00",
+  "authorization": "可以按照你所述完成；注意这两组数据单独复制一份落实到datasets，然后给出所述的清单作为指引",
+  "objects": [
+    {
+      "number": 1,
+      "id": "ukdale_h2_washing_machine",
+      "cap": 54,
+      "source": {
+        "id": "ukdale_h2_washing_machine",
+        "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building2/elec/meter12"
+        ],
+        "dataset": "ukdale",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 6.0,
+      "max_raw_gap_seconds": 12.0,
+      "activity": {
+        "threshold": 20,
+        "t_drop": 160,
+        "t_min_work": 1800,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 2,
+      "id": "ukdale_h2_microwave",
+      "cap": 100,
+      "source": {
+        "id": "ukdale_h2_microwave",
+        "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building2/elec/meter15"
+        ],
+        "dataset": "ukdale",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 6.0,
+      "max_raw_gap_seconds": 12.0,
+      "activity": {
+        "threshold": 200,
+        "t_drop": 30,
+        "t_min_work": 12,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 3,
+      "id": "refit_b13_m5_dish_washer",
+      "cap": 86,
+      "source": {
+        "id": "refit_b13_m5_dish_washer",
+        "dataset": "refit",
+        "house": "House13",
+        "building": 13,
+        "meters": [
+          5
+        ],
+        "keys": [
+          "/building13/elec/meter5"
+        ],
+        "kind": "dish washer",
+        "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "source_identity": {
+          "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "metadata": [
+          {
+            "original_name": "Dishwasher",
+            "type": "dish washer",
+            "instance": 1,
+            "meters": [
+              5
+            ]
+          }
+        ],
+        "reader": "nilm_h5",
+        "units": "W",
+        "timezone": "Europe/London",
+        "start": "2014-01-17 22:26:20+00:00",
+        "end": "2015-05-31 12:06:07+01:00",
+        "nominal_dt": 7.0,
+        "power_columns": [
+          [
+            "power",
+            "active"
+          ]
+        ],
+        "quality_note": "publisher cleaned/missing-mask provenance retained; no zero-fill added",
+        "priority": 0,
+        "windows_ns": [
+          [
+            1391644800000000000,
+            1391731200000000000
+          ],
+          [
+            1395273600000000000,
+            1395360000000000000
+          ],
+          [
+            1398816000000000000,
+            1398902400000000000
+          ],
+          [
+            1402444800000000000,
+            1402531200000000000
+          ],
+          [
+            1406073600000000000,
+            1406160000000000000
+          ],
+          [
+            1409616000000000000,
+            1409702400000000000
+          ],
+          [
+            1413244800000000000,
+            1413331200000000000
+          ],
+          [
+            1416787200000000000,
+            1416873600000000000
+          ],
+          [
+            1420416000000000000,
+            1420502400000000000
+          ],
+          [
+            1424044800000000000,
+            1424131200000000000
+          ],
+          [
+            1427587200000000000,
+            1427673600000000000
+          ],
+          [
+            1431216000000000000,
+            1431302400000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+          "bytes": 7320292291,
+          "mtime_ns": 1792128805688055312,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 8.0,
+      "max_raw_gap_seconds": 16.0,
+      "activity": {
+        "threshold": 10.0,
+        "t_drop": 1800.0,
+        "t_min_work": 14.0,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/refit_b13_m5_dish_washer/result.json"
+    },
+    {
+      "number": 4,
+      "id": "refit_h7_dishwasher",
+      "cap": 150,
+      "source": {
+        "id": "refit_h7_dishwasher",
+        "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building7/elec/meter7"
+        ],
+        "dataset": "refit",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 8.0,
+      "max_raw_gap_seconds": 16.0,
+      "activity": {
+        "threshold": 10,
+        "t_drop": 1800,
+        "t_min_work": 600,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 5,
+      "id": "refit_h9_dishwasher",
+      "cap": 150,
+      "source": {
+        "id": "refit_h9_dishwasher",
+        "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building9/elec/meter5"
+        ],
+        "dataset": "refit",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 8.0,
+      "max_raw_gap_seconds": 16.0,
+      "activity": {
+        "threshold": 10,
+        "t_drop": 1800,
+        "t_min_work": 600,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 6,
+      "id": "refit_h18_bread_maker",
+      "cap": 150,
+      "source": {
+        "id": "refit_h18_bread_maker",
+        "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building18/elec/meter8"
+        ],
+        "dataset": "refit",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 8.0,
+      "max_raw_gap_seconds": 16.0,
+      "activity": {
+        "threshold": 5,
+        "t_drop": 1800,
+        "t_min_work": 600,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 7,
+      "id": "refit_h20_tumble_dryer",
+      "cap": 91,
+      "source": {
+        "id": "refit_h20_tumble_dryer",
+        "path": "/home/avis/pslg-nilm/datasets/refit/refit.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building20/elec/meter3"
+        ],
+        "dataset": "refit",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 8.0,
+      "max_raw_gap_seconds": 16.0,
+      "activity": {
+        "threshold": 20,
+        "t_drop": 300,
+        "t_min_work": 180,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 8,
+      "id": "ukdale_h1_washing_machine_hotpoint",
+      "cap": 150,
+      "source": {
+        "id": "ukdale_h1_washing_machine_hotpoint",
+        "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building1/elec/meter5"
+        ],
+        "dataset": "ukdale",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": [
+        0,
+        12075935
+      ],
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 6.0,
+      "max_raw_gap_seconds": 12.0,
+      "activity": {
+        "threshold": 20,
+        "t_drop": 160,
+        "t_min_work": 1800,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 9,
+      "id": "ukdale_h1_washing_machine_samsung",
+      "cap": 150,
+      "source": {
+        "id": "ukdale_h1_washing_machine_samsung",
+        "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "reader": "nilm_h5",
+        "keys": [
+          "/building1/elec/meter5"
+        ],
+        "dataset": "ukdale",
+        "timezone": "Europe/London"
+      },
+      "source_row_range": [
+        12075935,
+        19555935
+      ],
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 6.0,
+      "max_raw_gap_seconds": 14.0,
+      "activity": {
+        "threshold": 20,
+        "t_drop": 160,
+        "t_min_work": 1800,
+        "context_seconds": 60
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_all_activities_primglr_dtw_kmeans/reports/20261016_all_activities_house1_increment_final_20261016T084158Z_01699ad3/tables/all_activities.config.json"
+    },
+    {
+      "number": 10,
+      "id": "ukdale_b1_m6_dish_washer",
+      "cap": 150,
+      "source": {
+        "id": "ukdale_b1_m6_dish_washer",
+        "dataset": "ukdale",
+        "house": "house_1",
+        "building": 1,
+        "meters": [
+          6
+        ],
+        "keys": [
+          "/building1/elec/meter6"
+        ],
+        "kind": "dish washer",
+        "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+        "source_identity": {
+          "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "metadata": [
+          {
+            "year_of_purchase": 2007,
+            "original_name": "dishwasher",
+            "instance": 1,
+            "min_on_duration": 1800,
+            "max_power": 2500,
+            "meters": [
+              6
+            ],
+            "model": "DWH B10",
+            "on_power_threshold": 10,
+            "type": "dish washer",
+            "min_off_duration": 1800,
+            "manufacturer": "Whirlpool / Ikea",
+            "room": "kitchen"
+          }
+        ],
+        "reader": "nilm_h5",
+        "units": "W",
+        "timezone": "Europe/London",
+        "start": "2012-11-09 22:28:18+00:00",
+        "end": "2017-04-26 18:35:30+01:00",
+        "nominal_dt": 6.0,
+        "power_columns": [
+          [
+            "power",
+            "active"
+          ]
+        ],
+        "quality_note": "publisher cleaned/missing-mask provenance retained; no zero-fill added",
+        "priority": 0,
+        "windows_ns": [
+          [
+            1358208000000000000,
+            1358294400000000000
+          ],
+          [
+            1369958400000000000,
+            1370044800000000000
+          ],
+          [
+            1381708800000000000,
+            1381795200000000000
+          ],
+          [
+            1393459200000000000,
+            1393545600000000000
+          ],
+          [
+            1405123200000000000,
+            1405209600000000000
+          ],
+          [
+            1416873600000000000,
+            1416960000000000000
+          ],
+          [
+            1428624000000000000,
+            1428710400000000000
+          ],
+          [
+            1440374400000000000,
+            1440460800000000000
+          ],
+          [
+            1452038400000000000,
+            1452124800000000000
+          ],
+          [
+            1463788800000000000,
+            1463875200000000000
+          ],
+          [
+            1475539200000000000,
+            1475625600000000000
+          ],
+          [
+            1487289600000000000,
+            1487376000000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/ukdale/ukdale.h5",
+          "bytes": 6330578146,
+          "mtime_ns": 1792129631777296156,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 6.0,
+      "max_raw_gap_seconds": 12.0,
+      "activity": {
+        "threshold": 10.0,
+        "t_drop": 1800.0,
+        "t_min_work": 1800.0,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/ukdale_b1_m6_dish_washer/result.json"
+    },
+    {
+      "number": 11,
+      "id": "snm_building_01_dishwasher",
+      "cap": 100,
+      "source": {
+        "id": "snm_building_01_dishwasher",
+        "dataset": "smartnialmeter",
+        "house": "building_01",
+        "kind": "dishwasher",
+        "path": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_01/dishwasher.h5",
+        "reader": "snm_h5",
+        "key": "/data",
+        "start": "2018-03-01 13:22:39.799000",
+        "end": "2020-12-02 23:59:56.097000",
+        "nominal_dt": 5.0,
+        "timezone": null,
+        "units": "W",
+        "power_columns": [
+          "Active Power L1",
+          "Active Power L2",
+          "Active Power L3"
+        ],
+        "quality_note": "raw native timestamps/NaN retained; same-row phases summed only when all finite",
+        "priority": 0,
+        "windows_ns": [
+          [
+            1523491200000000000,
+            1523577600000000000
+          ],
+          [
+            1530748800000000000,
+            1530835200000000000
+          ],
+          [
+            1538006400000000000,
+            1538092800000000000
+          ],
+          [
+            1545264000000000000,
+            1545350400000000000
+          ],
+          [
+            1552521600000000000,
+            1552608000000000000
+          ],
+          [
+            1559779200000000000,
+            1559865600000000000
+          ],
+          [
+            1567036800000000000,
+            1567123200000000000
+          ],
+          [
+            1574294400000000000,
+            1574380800000000000
+          ],
+          [
+            1581552000000000000,
+            1581638400000000000
+          ],
+          [
+            1588809600000000000,
+            1588896000000000000
+          ],
+          [
+            1596067200000000000,
+            1596153600000000000
+          ],
+          [
+            1603324800000000000,
+            1603411200000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_01/dishwasher.h5",
+          "bytes": 961283001,
+          "mtime_ns": 1711204452000000000,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 5.0,
+      "max_raw_gap_seconds": 10.0,
+      "activity": {
+        "threshold": 5.18,
+        "t_drop": 1800.0,
+        "t_min_work": 10.0,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/snm_building_01_dishwasher/result.json"
+    },
+    {
+      "number": 12,
+      "id": "snm_building_05_coffee_maker",
+      "cap": 599,
+      "source": {
+        "id": "snm_building_05_coffee_maker",
+        "dataset": "smartnialmeter",
+        "house": "building_05",
+        "kind": "coffee_maker",
+        "path": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_05/coffee_maker.h5",
+        "reader": "snm_h5",
+        "key": "/data",
+        "start": "2018-03-21 08:21:16.055000",
+        "end": "2020-12-02 23:59:55.325000",
+        "nominal_dt": 5.033,
+        "timezone": null,
+        "units": "W",
+        "power_columns": [
+          "Active Power"
+        ],
+        "quality_note": "raw native timestamps/NaN retained; same-row phases summed only when all finite",
+        "priority": 2,
+        "windows_ns": [
+          [
+            1525132800000000000,
+            1525219200000000000
+          ],
+          [
+            1532217600000000000,
+            1532304000000000000
+          ],
+          [
+            1539302400000000000,
+            1539388800000000000
+          ],
+          [
+            1546473600000000000,
+            1546560000000000000
+          ],
+          [
+            1553558400000000000,
+            1553644800000000000
+          ],
+          [
+            1560643200000000000,
+            1560729600000000000
+          ],
+          [
+            1567814400000000000,
+            1567900800000000000
+          ],
+          [
+            1574899200000000000,
+            1574985600000000000
+          ],
+          [
+            1581984000000000000,
+            1582070400000000000
+          ],
+          [
+            1589155200000000000,
+            1589241600000000000
+          ],
+          [
+            1596240000000000000,
+            1596326400000000000
+          ],
+          [
+            1603324800000000000,
+            1603411200000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_05/coffee_maker.h5",
+          "bytes": 442640705,
+          "mtime_ns": 1711204586000000000,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        "2020-03-21",
+        "2020-12-03"
+      ],
+      "nominal_seconds": 5.033,
+      "max_raw_gap_seconds": 10.066,
+      "activity": {
+        "threshold": 5.0,
+        "t_drop": 300.0,
+        "t_min_work": 10.066,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/snm_building_05_coffee_maker/result.json"
+    },
+    {
+      "number": 13,
+      "id": "snm_building_03_boiler",
+      "cap": 100,
+      "source": {
+        "id": "snm_building_03_boiler",
+        "dataset": "smartnialmeter",
+        "house": "building_03",
+        "kind": "boiler",
+        "path": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_03/boiler.h5",
+        "reader": "snm_h5",
+        "key": "/data",
+        "start": "2020-02-21 00:00:01.006000",
+        "end": "2020-09-26 08:20:10.018000",
+        "nominal_dt": 4.958,
+        "timezone": null,
+        "units": "W",
+        "power_columns": [
+          "Active Power L1",
+          "Active Power L2",
+          "Active Power L3"
+        ],
+        "quality_note": "raw native timestamps/NaN retained; same-row phases summed only when all finite",
+        "priority": 2,
+        "windows_ns": [
+          [
+            1583020800000000000,
+            1583107200000000000
+          ],
+          [
+            1584576000000000000,
+            1584662400000000000
+          ],
+          [
+            1586131200000000000,
+            1586217600000000000
+          ],
+          [
+            1587686400000000000,
+            1587772800000000000
+          ],
+          [
+            1589328000000000000,
+            1589414400000000000
+          ],
+          [
+            1590883200000000000,
+            1590969600000000000
+          ],
+          [
+            1592438400000000000,
+            1592524800000000000
+          ],
+          [
+            1593993600000000000,
+            1594080000000000000
+          ],
+          [
+            1595635200000000000,
+            1595721600000000000
+          ],
+          [
+            1597190400000000000,
+            1597276800000000000
+          ],
+          [
+            1598745600000000000,
+            1598832000000000000
+          ],
+          [
+            1600300800000000000,
+            1600387200000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/smartnialmeter/native_raw/raw/building_03/boiler.h5",
+          "bytes": 204432017,
+          "mtime_ns": 1711204501000000000,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 4.958,
+      "max_raw_gap_seconds": 9.916,
+      "activity": {
+        "threshold": 5.0,
+        "t_drop": 300.0,
+        "t_min_work": 9.916,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/snm_building_03_boiler/result.json"
+    },
+    {
+      "number": 14,
+      "id": "darck_kettle",
+      "cap": 100,
+      "source": {
+        "id": "darck_kettle",
+        "dataset": "darck",
+        "house": "apartment",
+        "kind": "kettle",
+        "reader": "darck",
+        "path": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+        "columns": [
+          "kettle"
+        ],
+        "start": "2025-03-05 00:30:00",
+        "end": "2025-09-04 23:59:59",
+        "nominal_dt": 1.0,
+        "timezone": null,
+        "units": "W",
+        "quality_note": "publisher-filled 1s grid; original missing mask unavailable",
+        "priority": 2,
+        "windows_ns": [
+          [
+            1741737600000000000,
+            1741824000000000000
+          ],
+          [
+            1743120000000000000,
+            1743206400000000000
+          ],
+          [
+            1744416000000000000,
+            1744502400000000000
+          ],
+          [
+            1745712000000000000,
+            1745798400000000000
+          ],
+          [
+            1747094400000000000,
+            1747180800000000000
+          ],
+          [
+            1748390400000000000,
+            1748476800000000000
+          ],
+          [
+            1749686400000000000,
+            1749772800000000000
+          ],
+          [
+            1751068800000000000,
+            1751155200000000000
+          ],
+          [
+            1752364800000000000,
+            1752451200000000000
+          ],
+          [
+            1753660800000000000,
+            1753747200000000000
+          ],
+          [
+            1755043200000000000,
+            1755129600000000000
+          ],
+          [
+            1756339200000000000,
+            1756425600000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+          "bytes": 90942384,
+          "mtime_ns": 1792145113192646819,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 1.0,
+      "max_raw_gap_seconds": 2.0,
+      "activity": {
+        "threshold": 50.0,
+        "t_drop": 15.0,
+        "t_min_work": 2.0,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/darck_kettle/result.json"
+    },
+    {
+      "number": 15,
+      "id": "darck_sherlockhairdryer",
+      "cap": 100,
+      "source": {
+        "id": "darck_sherlockhairdryer",
+        "dataset": "darck",
+        "house": "apartment",
+        "kind": "sherlockhairdryer",
+        "reader": "darck",
+        "path": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+        "columns": [
+          "sherlockhairdryer"
+        ],
+        "start": "2025-03-05 00:30:00",
+        "end": "2025-09-04 23:59:59",
+        "nominal_dt": 1.0,
+        "timezone": null,
+        "units": "W",
+        "quality_note": "publisher-filled 1s grid; original missing mask unavailable",
+        "priority": 0,
+        "windows_ns": [
+          [
+            1741737600000000000,
+            1741824000000000000
+          ],
+          [
+            1743120000000000000,
+            1743206400000000000
+          ],
+          [
+            1744416000000000000,
+            1744502400000000000
+          ],
+          [
+            1745712000000000000,
+            1745798400000000000
+          ],
+          [
+            1747094400000000000,
+            1747180800000000000
+          ],
+          [
+            1748390400000000000,
+            1748476800000000000
+          ],
+          [
+            1749686400000000000,
+            1749772800000000000
+          ],
+          [
+            1751068800000000000,
+            1751155200000000000
+          ],
+          [
+            1752364800000000000,
+            1752451200000000000
+          ],
+          [
+            1753660800000000000,
+            1753747200000000000
+          ],
+          [
+            1755043200000000000,
+            1755129600000000000
+          ],
+          [
+            1756339200000000000,
+            1756425600000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+          "bytes": 90942384,
+          "mtime_ns": 1792145113192646819,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        null,
+        null
+      ],
+      "nominal_seconds": 1.0,
+      "max_raw_gap_seconds": 2.0,
+      "activity": {
+        "threshold": 20.0,
+        "t_drop": 15.0,
+        "t_min_work": 2.0,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/darck_sherlockhairdryer/result.json"
+    },
+    {
+      "number": 16,
+      "id": "darck_fridge",
+      "cap": 599,
+      "source": {
+        "id": "darck_fridge",
+        "dataset": "darck",
+        "house": "apartment",
+        "kind": "fridge",
+        "reader": "darck",
+        "path": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+        "columns": [
+          "fridge"
+        ],
+        "start": "2025-03-05 00:30:00",
+        "end": "2025-09-04 23:59:59",
+        "nominal_dt": 1.0,
+        "timezone": null,
+        "units": "W",
+        "quality_note": "publisher-filled 1s grid; original missing mask unavailable",
+        "priority": 1,
+        "windows_ns": [
+          [
+            1741737600000000000,
+            1741824000000000000
+          ],
+          [
+            1743120000000000000,
+            1743206400000000000
+          ],
+          [
+            1744416000000000000,
+            1744502400000000000
+          ],
+          [
+            1745712000000000000,
+            1745798400000000000
+          ],
+          [
+            1747094400000000000,
+            1747180800000000000
+          ],
+          [
+            1748390400000000000,
+            1748476800000000000
+          ],
+          [
+            1749686400000000000,
+            1749772800000000000
+          ],
+          [
+            1751068800000000000,
+            1751155200000000000
+          ],
+          [
+            1752364800000000000,
+            1752451200000000000
+          ],
+          [
+            1753660800000000000,
+            1753747200000000000
+          ],
+          [
+            1755043200000000000,
+            1755129600000000000
+          ],
+          [
+            1756339200000000000,
+            1756425600000000000
+          ]
+        ],
+        "identity": {
+          "path": "/home/avis/pslg-nilm/datasets/darck/DARCK.csv.xz",
+          "bytes": 90942384,
+          "mtime_ns": 1792145113192646819,
+          "identity_scope": "current size/mtime and prior publisher hashes; NOT a new full-file SHA reread"
+        },
+        "status": "eligible_metadata_not_yet_screened"
+      },
+      "source_row_range": null,
+      "requested_interval": [
+        "2025-07-20",
+        "2025-09-05"
+      ],
+      "nominal_seconds": 1.0,
+      "max_raw_gap_seconds": 2.0,
+      "activity": {
+        "threshold": 16.7,
+        "t_drop": 30.0,
+        "t_min_work": 2.0,
+        "context_seconds": 60.0
+      },
+      "parameter_provenance": "/home/avis/pslg-nilm/runs/20261016_public_appliance_signature_screening/executions/actual_time_metric_harmonization/20261016T141009Z_69e251aa/analysis/object_results/darck_fridge/result.json"
+    }
+  ],
+  "dataset_root": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017",
+  "segmentation": {
+    "W_seconds": 120,
+    "gap_seconds": 30,
+    "alpha": 0.9,
+    "dur_sigma": 0.35,
+    "g_wf": 16,
+    "g_env": 8,
+    "n_clusters": null
+  },
+  "selection": {
+    "split": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "group": "connected overlapping contexts and calendar dates",
+    "seed": 20261017,
+    "case_count": 10,
+    "cap_rule": "other14 deterministic date strata within time-block splits; coffee/fridge all supported candidates in continuous interval, max599",
+    "range_adjustment": "If changed main-step extraction has >599 supported candidates, advance start to earliest next whole day having <=599; keep end fixed and report requested and effective interval"
+  },
+  "support_rule": {
+    "left_margin_seconds": "min(60,t_drop)",
+    "right_margin_seconds": "t_drop",
+    "finite": true,
+    "no_missing_bridges": true
+  },
+  "context": "preserve up to60s native finite context within valid support; boundary context truncation recorded; required support margins enforced",
+  "raw_policy": "raw copies preserve original ns, power, NaN and gaps; REFIT only detector input uses approved8s grid",
+  "source_main_step": "src/steps/extract_active_data_step.py::ExtractActiveDataStep.run",
+  "pending_human_review": true
+}

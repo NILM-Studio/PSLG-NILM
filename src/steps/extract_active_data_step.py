@@ -231,10 +231,12 @@ class ExtractActiveDataStep(Step):
             if df["power"].isna().any():
                 df["power"] = df["power"].ffill().bfill().fillna(0.0)
             df.to_csv(os.path.join(segments_dir, fname), index=False)
-            dt = int(round(1 / float(self.resample_fs or self.method_kwargs.get("fs", 1))))
+            dt = 1 / float(self.resample_fs or self.method_kwargs.get("fs", 1))
             activities.append(dict(record_id="discovery", activity_id=len(activities), file=fname,
-                core_start=int(interval["start_time"]), core_end_exclusive=int(interval["end_time"] + dt),
-                context_start=int(df.timestamp.iloc[0]), context_end_exclusive=int(df.timestamp.iloc[-1] + dt),
+                core_start=float(interval["start_time"]),
+                core_end_exclusive=float(interval.get("core_end_exclusive", interval["end_time"] + dt)),
+                context_start=float(df.timestamp.iloc[0]),
+                context_end_exclusive=float(interval.get("context_end_exclusive", df.timestamp.iloc[-1] + dt)),
                 core_start_index=int(np.searchsorted(timestamps, interval["start_time"])),
                 core_end_index=int(np.searchsorted(timestamps, interval["end_time"])) + 1,
                 context_start_index=int(np.searchsorted(timestamps, df.timestamp.iloc[0])),

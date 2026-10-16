@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "condition": "plot_refit_h9_dishwasher",
+  "execution_id": "20261016T181905Z_86c1e50f",
+  "status": "passed",
+  "created_at": "2026-10-16T18:19:05.567091+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:19:05.606240+00:00",
+  "completed_at": "2026-10-16T18:19:09.261207+00:00"
+}

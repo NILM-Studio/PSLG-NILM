@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "condition": "finalize_and_QA",
+  "execution_id": "20261016T182058Z_a4c20065",
+  "status": "passed",
+  "created_at": "2026-10-16T18:20:58.129955+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:20:58.173405+00:00",
+  "completed_at": "2026-10-16T18:21:30.229762+00:00"
+}

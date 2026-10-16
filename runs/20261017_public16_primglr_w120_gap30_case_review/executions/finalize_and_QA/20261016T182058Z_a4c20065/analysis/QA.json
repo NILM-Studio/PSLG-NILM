@@ -1,0 +1,214 @@
+{
+  "status": "passed",
+  "objects": [
+    {
+      "object": "ukdale_h2_washing_machine",
+      "status": "passed",
+      "activities": 54,
+      "source_rows": 1686220,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 32,
+        "validation": 11,
+        "evaluation": 11
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "status": "passed",
+      "activities": 100,
+      "source_rows": 1685519,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 60,
+        "validation": 20,
+        "evaluation": 20
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "status": "passed",
+      "activities": 86,
+      "source_rows": 4737371,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 52,
+        "validation": 17,
+        "evaluation": 17
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "status": "passed",
+      "activities": 150,
+      "source_rows": 6756034,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 90,
+        "validation": 30,
+        "evaluation": 30
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "status": "passed",
+      "activities": 150,
+      "source_rows": 6169525,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 90,
+        "validation": 30,
+        "evaluation": 30
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "status": "passed",
+      "activities": 150,
+      "source_rows": 5622610,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 90,
+        "validation": 29,
+        "evaluation": 31
+      },
+      "case_count": 10
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "status": "passed",
+      "activities": 90,
+      "source_rows": 5383993,
+      "refit_independent_raw_to_8s_exact": true,
+      "split_counts": {
+        "development": 54,
+        "validation": 18,
+        "evaluation": 18
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "status": "passed",
+      "activities": 150,
+      "source_rows": 12075935,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 90,
+        "validation": 30,
+        "evaluation": 30
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "status": "passed",
+      "activities": 150,
+      "source_rows": 7480000,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 90,
+        "validation": 30,
+        "evaluation": 30
+      },
+      "case_count": 10
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "status": "passed",
+      "activities": 150,
+      "source_rows": 19819392,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 90,
+        "validation": 30,
+        "evaluation": 30
+      },
+      "case_count": 10
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "status": "passed",
+      "activities": 100,
+      "source_rows": 16023576,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 60,
+        "validation": 20,
+        "evaluation": 20
+      },
+      "case_count": 10
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "status": "passed",
+      "activities": 599,
+      "source_rows": 4417645,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 359,
+        "validation": 121,
+        "evaluation": 119
+      },
+      "case_count": 10
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "status": "passed",
+      "activities": 100,
+      "source_rows": 3392926,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 60,
+        "validation": 20,
+        "evaluation": 20
+      },
+      "case_count": 10
+    },
+    {
+      "object": "darck_kettle",
+      "status": "passed",
+      "activities": 100,
+      "source_rows": 15895800,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 60,
+        "validation": 20,
+        "evaluation": 20
+      },
+      "case_count": 10
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "status": "passed",
+      "activities": 100,
+      "source_rows": 15895800,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 60,
+        "validation": 20,
+        "evaluation": 20
+      },
+      "case_count": 10
+    },
+    {
+      "object": "darck_fridge",
+      "status": "passed",
+      "activities": 595,
+      "source_rows": 4060800,
+      "refit_independent_raw_to_8s_exact": null,
+      "split_counts": {
+        "development": 363,
+        "validation": 110,
+        "evaluation": 122
+      },
+      "case_count": 10
+    }
+  ],
+  "activity_count": 2824
+}

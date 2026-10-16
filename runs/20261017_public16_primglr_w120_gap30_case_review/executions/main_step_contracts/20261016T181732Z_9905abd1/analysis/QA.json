@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "fractional_core",
+    "actual_time_context",
+    "real_main_step",
+    "CSV_array_identity",
+    "legacy_regular_context"
+  ]
+}

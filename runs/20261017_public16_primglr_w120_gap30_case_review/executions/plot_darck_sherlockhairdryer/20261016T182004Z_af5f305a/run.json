@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "condition": "plot_darck_sherlockhairdryer",
+  "execution_id": "20261016T182004Z_af5f305a",
+  "status": "passed",
+  "created_at": "2026-10-16T18:20:04.194872+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:20:04.233453+00:00",
+  "completed_at": "2026-10-16T18:20:07.412542+00:00"
+}

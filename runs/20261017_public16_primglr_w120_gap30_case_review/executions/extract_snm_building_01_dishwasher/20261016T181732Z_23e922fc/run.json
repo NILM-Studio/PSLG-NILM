@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap30_case_review",
+  "condition": "extract_snm_building_01_dishwasher",
+  "execution_id": "20261016T181732Z_23e922fc",
+  "status": "passed",
+  "created_at": "2026-10-16T18:17:32.994312+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:17:33.049488+00:00",
+  "completed_at": "2026-10-16T18:17:45.547708+00:00"
+}
