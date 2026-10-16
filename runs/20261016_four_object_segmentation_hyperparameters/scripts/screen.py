@@ -94,7 +94,8 @@ def candidates(method, obj):
     elif method == "pelt-rbf":
         for penalty, min_size in itertools.product(SPACE["pelt_rbf"]["penalty_multiplier"],
                                                     [5,math.ceil(60/dt)]):
-            yield {"penalty_multiplier": penalty, "min_size": min_size}
+            yield {"penalty_multiplier": penalty, "min_size": min_size,
+                   "jump": SPACE["pelt_rbf"]["fixed"]["jump"]}
     elif method == "fluss-threshold":
         for w, threshold in itertools.product(SPACE["fluss_threshold"]["window_seconds"],
                                                SPACE["fluss_threshold"]["threshold"]):
@@ -107,7 +108,9 @@ def candidates(method, obj):
             yield {"window_size": points, "validation": "significance_test",
                    "threshold": threshold}
     elif method == "clap":
-        selected = json.loads((EXP / "data/selected_clasp.json").read_text(encoding="utf-8"))
+        initializer_path = Path(os.environ.get("PSLG_CLASP_INITIALIZER_FILE",
+                                               EXP / "data/selected_clasp.json"))
+        selected = json.loads(initializer_path.read_text(encoding="utf-8"))
         initializer = selected[obj]["params"]
         for w, splits, size in itertools.product(SPACE["clap"]["window_size"],
                                                   SPACE["clap"]["n_splits"],
@@ -216,11 +219,17 @@ def main():
     activities = [row for row in FROZEN["objects"][obj]["records"] if row["activity_id"] in activity_ids]
     proxy = json.loads((Path(FROZEN["objects"][obj]["source_execution"]) / "proxy_events.json").read_text(encoding="utf-8"))
     configs = list({key(p):p for p in candidates(method,obj)}.values())
-    save(OUT / "inputs.json", {"object":obj,"method":method,"activity_ids":sorted(activity_ids),
+    inputs={"object":obj,"method":method,"activity_ids":sorted(activity_ids),
                                "activity_hashes": {str(a["activity_id"]):a["sha256"] for a in activities},
                                "frozen_split_sha256":sha(EXP/"data/frozen_inputs_and_split.json"),
                                "search_space_path":str(SEARCH_PATH),
-                               "search_space_sha256":sha(SEARCH_PATH)})
+                               "search_space_sha256":sha(SEARCH_PATH)}
+    if method=="clap":
+        initializer_path=Path(os.environ.get("PSLG_CLASP_INITIALIZER_FILE",
+                                                EXP/"data/selected_clasp.json"))
+        inputs["clasp_initializer_path"]=str(initializer_path)
+        inputs["clasp_initializer_sha256"]=sha(initializer_path)
+    save(OUT / "inputs.json", inputs)
     source = [Path(__file__), ROOT/"models/time_segmentation/comparison.py",
               ROOT/"models/time_segmentation/prim_glr.py"]
     snapshots = []

@@ -7,11 +7,6 @@ import json
 import os
 from pathlib import Path
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import numpy as np
-
 from choose_finalists import OBJECTS
 
 EXP = Path(__file__).resolve().parents[1]
@@ -30,45 +25,9 @@ def validation_records(obj,method,entry):
     return json.loads(path.read_text())
 
 
-def ten_panel(obj,method,entry,rows):
-    selected=entry["selected"]["config_id"]
-    record_by_id={row["activity_id"]:row for row in rows
-                  if row["config_id"]==selected and row["seed"]==0}
-    ids=SELECTION[obj]["validation"][:10]
-    source={row["activity_id"]:row for row in FROZEN["objects"][obj]["records"]}
-    proxy=json.loads((Path(FROZEN["objects"][obj]["source_execution"])/"proxy_events.json").read_text())
-    fig,axes=plt.subplots(5,2,figsize=(17,16),layout="constrained")
-    for ax,aid in zip(axes.flat,ids):
-        activity=source[aid]
-        result=record_by_id.get(aid)
-        with np.load(activity["path"]) as data:
-            t=data["timestamp"].copy(); power=data["power"].copy()
-        rel=(t-t[0])/60
-        ax.plot(rel,power,color="#263238",linewidth=.8)
-        ax.axvspan(rel[activity["core_a"]],rel[activity["core_b"]-1],
-                   color="#e9f3ff",alpha=.25)
-        if result and result["status"]=="success":
-            for cut in result["cuts"]:
-                ax.axvline(rel[cut],color="#c62828",alpha=.55,linewidth=.7)
-            status=f"{len(result['cuts'])} cuts"
-        else:
-            status=result["status"] if result else "missing"
-        for event in proxy[str(aid)]["timestamps"]:
-            ax.axvline((event-t[0])/60,color="#1565c0",alpha=.25,
-                       linewidth=.7,linestyle=":")
-        ax.set_title(f"activity {aid} | {len(power)} samples | {status}",fontsize=9)
-        ax.set_xlabel("Minutes from activity start",fontsize=8)
-        ax.set_ylabel("Power (W)",fontsize=8)
-        ax.tick_params(labelsize=7)
-    fig.suptitle(f"{obj} | {method} | validation activities\nRed: cuts; blue dotted: weak transition proxy; pale: core",fontsize=13)
-    dest=EXP/"analysis/ten_panel"/f"{obj}__{method.replace('-','_')}.png"
-    dest.parent.mkdir(parents=True,exist_ok=True)
-    fig.savefig(dest,dpi=130)
-    plt.close(fig)
-    return dest
-
-
 def main():
+    if not (EXP/"review/human_review_decisions.json").exists():
+        raise RuntimeError("Ten-panel human review decisions are required before final report")
     chosen={}
     csv_rows=[]
     candidate_rows=[]
@@ -78,6 +37,8 @@ def main():
         for method in METHODS:
             safe=method.replace("-","_")
             entry=json.loads((EXP/"data"/f"selected_{safe}.json").read_text())[obj]
+            if "human_review" not in entry:
+                raise RuntimeError(f"Unapproved selection: {obj} {method}")
             finalist=json.loads((EXP/"data"/f"finalists_{safe}.json").read_text())[obj]
             selected=entry["selected"]
             chosen[obj][method]={"params":entry["run_params"],
@@ -95,7 +56,6 @@ def main():
                      "chosen_for_validation":any(f["parent_config_id"]==row["config_id"]
                                                   for f in finalist["finalists"])})
             rows=validation_records(obj,method,entry)
-            panels.append(ten_panel(obj,method,entry,rows))
             components={name:selected["score_components"].get(name) for name in
               ("nrmse","cut_density","short30_fraction","proxy_miss_fraction","zero_cut_fraction")}
             csv_rows.append({"object":obj,"method":method,
@@ -106,7 +66,7 @@ def main():
               "validation_execution":entry["validation_execution"]})
     json_write(EXP/"configs/frozen.json",{
       "experiment":"20261016_four_object_segmentation_hyperparameters",
-      "status":"frozen_on_validation",
+      "status":"frozen_after_ten_panel_human_review",
       "methods":list(METHODS),"objects":chosen,
       "stage2_evaluation_split_status":"sealed",
       "selection_rule":"protocol.md: success count, fixed scalar score, runtime, parameter dictionary"})
@@ -139,9 +99,7 @@ def main():
     lines += ["", "完整候选排名：`analysis/candidate_rankings.csv`。验证分量：`analysis/selected_validation_summary.csv`。机器可读冻结配置：`configs/frozen.json`。", 
               "成功/尝试为 0 的行只记录候选配置，不代表方法已可用；正式实验一需单独处理不适用，不能将其作为有效零切点。", 
               "", "## 十子图检查页", "", 
-              "每个对象 × 方法一张 10 子图，展示相同验证活动上的原始功率、切点和弱代理跃迁；共 24 张，位于 `analysis/ten_panel/`。", ""]
-    for obj in OBJECTS:
-        lines.append(f"- `{obj}`："+"、".join(f"[{method}](analysis/ten_panel/{obj}__{method.replace('-','_')}.png)" for method in METHODS))
+              "审核图库位于 `review/figures/`。每张 5×2 十子图固定一条活动，逐格比较候选参数；详见 `review/index.md` 与 `review/figure_manifest.json`。", ""]
     lines += ["", "## 后续", "", 
               "正式实验一使用冻结参数运行封存评价侧，再按论文协议完成活动状态提取与切分对照。若恢复 CSR_SE，需先冻结定义和共享参考；不能根据评价侧结果重新调参。", ""]
     (EXP/"hyperparameters.md").write_text("\n".join(lines),encoding="utf-8")
@@ -149,9 +107,10 @@ def main():
     json_write(out/"analysis/report_manifest.json",{
         "frozen_config_sha256":hashlib.sha256((EXP/"configs/frozen.json").read_bytes()).hexdigest(),
         "hyperparameters_sha256":hashlib.sha256((EXP/"hyperparameters.md").read_bytes()).hexdigest(),
-        "ten_panel_count":len(panels),"candidate_count":len(candidate_rows),
+        "ten_panel_count":len(json.loads((EXP/"review/figure_manifest.json").read_text())["figures"]),
+        "candidate_count":len(candidate_rows),
         "selected_count":len(csv_rows)})
-    print("REPORT",len(csv_rows),"selected configurations",len(panels),"ten-panel figures")
+    print("REPORT",len(csv_rows),"human-approved configurations")
 
 
 if __name__=="__main__":main()

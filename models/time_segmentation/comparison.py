@@ -119,18 +119,21 @@ def run(x, method: str, params: dict | None = None, seed: int = 0):
                 "internal_random_state": 0}
     elif method == "pelt-rbf":
         min_size = int(params.get("min_size", 5))
+        jump = int(params.get("jump", 1))
         if min_size < 2:
             raise ValueError("PELT-RBF min_size must be >= 2")
+        if jump < 1:
+            raise ValueError("PELT-RBF jump must be >= 1")
         if n < 2 * min_size:
             raise Unsupported(f"PELT-RBF requires at least {2 * min_size} samples with min_size={min_size}")
         if importlib.metadata.version("ruptures") != "1.1.10":
             raise RuntimeError("PELT-RBF requires the pinned ruptures==1.1.10")
         import ruptures as rpt
         penalty = float(params.get("penalty_multiplier", 3.0)) * np.log(n)
-        model = rpt.Pelt(model="rbf", min_size=min_size, jump=1).fit(x)
+        model = rpt.Pelt(model="rbf", min_size=min_size, jump=jump).fit(x)
         cuts = model.predict(pen=penalty)[:-1]
         info = {"source": "ruptures.Pelt(model='rbf')", "penalty": penalty,
-                "gamma": float(model.cost.gamma), "min_size": min_size, "jump": 1}
+                "gamma": float(model.cost.gamma), "min_size": min_size, "jump": jump}
     elif method == "fluss-threshold":
         window = int(params.get("window", 50))
         threshold = float(params.get("threshold", 0.45))

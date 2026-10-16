@@ -32,6 +32,12 @@ def score(rows):
 def screen_rows(obj, method):
     if method == "fluss-threshold" and (ROOT / "amendment1_fluss.md").exists():
         condition = "screen_amendment1_" + obj + "_fluss_threshold"
+    elif method == "pelt-rbf" and (ROOT / "amendment2_pelt.md").exists():
+        condition = "screen_amendment2_" + obj + "_pelt_rbf"
+    elif method == "clasp" and (ROOT / "amendment3_clasp.md").exists():
+        condition = "screen_amendment3_" + obj + "_clasp"
+    elif method == "clap" and (ROOT / "data/provisional_clasp_initializer.json").exists():
+        condition = "screen_exploratory_" + obj + "_clap"
     else:
         condition = "screen_" + obj + "_" + method.replace("-", "_")
     paths = sorted((ROOT / "executions" / condition).glob("*/analysis/records.json"))

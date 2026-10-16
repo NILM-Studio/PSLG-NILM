@@ -1,0 +1,158 @@
+{
+  "experiment": "20261016_four_object_segmentation_hyperparameters",
+  "objects": [
+    {
+      "id": "refit_h7_dishwasher",
+      "nominal_seconds": 8,
+      "k_later": 2
+    },
+    {
+      "id": "refit_h20_tumble_dryer",
+      "nominal_seconds": 8,
+      "k_later": 3
+    },
+    {
+      "id": "ukdale_h2_washing_machine",
+      "nominal_seconds": 6,
+      "k_later": 3
+    },
+    {
+      "id": "ukdale_h1_washing_machine_hotpoint",
+      "nominal_seconds": 6,
+      "k_later": 4
+    }
+  ],
+  "prim_glr": {
+    "W_seconds": [
+      60,
+      120,
+      180
+    ],
+    "min_gap_seconds": [
+      12,
+      30,
+      60,
+      90
+    ],
+    "alpha": [
+      0.8,
+      0.9,
+      0.95,
+      0.98
+    ],
+    "dur_sigma_main": 0.35,
+    "dur_sigma_finalists": [
+      0.2,
+      0.35,
+      0.6
+    ],
+    "h20_extra_W_seconds": [
+      240
+    ],
+    "h20_extra_min_gap_seconds": [
+      120
+    ],
+    "fixed": {
+      "g_wf": 16,
+      "g_env": 8,
+      "n_clusters": null,
+      "internal_seed": 0
+    }
+  },
+  "pelt_rbf": {
+    "penalty_multiplier": [
+      1.5,
+      3.0,
+      6.0,
+      12.0
+    ],
+    "min_size": [
+      "5_points",
+      "60_seconds"
+    ],
+    "fixed": {
+      "model": "rbf",
+      "jump": 5
+    }
+  },
+  "fluss_threshold": {
+    "window_seconds": [
+      60,
+      120,
+      180
+    ],
+    "threshold": [
+      0.35,
+      0.45,
+      0.55,
+      0.65,
+      0.75,
+      0.85,
+      0.95
+    ],
+    "fixed": {
+      "excl_factor": 5,
+      "n_regimes_for_cac": 2
+    }
+  },
+  "clasp": {
+    "window_size": [
+      "suss",
+      "60_seconds",
+      "120_seconds"
+    ],
+    "significance_threshold": [
+      "default",
+      1e-08,
+      0.0001,
+      0.01
+    ],
+    "fixed": {
+      "n_segments": "learn",
+      "validation": "significance_test",
+      "n_estimators": 10,
+      "k_neighbours": 3,
+      "distance": "znormed_euclidean_distance",
+      "n_jobs": 1
+    }
+  },
+  "clap": {
+    "window_size": [
+      "suss",
+      "60_seconds"
+    ],
+    "n_splits": [
+      3,
+      5
+    ],
+    "sample_size": [
+      500,
+      1000
+    ],
+    "fixed": {
+      "classifier": "rocket",
+      "n_jobs": 1,
+      "initializer": "selected_clasp_for_object"
+    }
+  },
+  "e2usd": {
+    "window_points": [
+      32,
+      64
+    ],
+    "steps": [
+      20,
+      40
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "fixed": {
+      "step_size": 1,
+      "input": "robust_z_raw_power"
+    }
+  },
+  "amendment": "ClaSP significance p-value grid expanded based on development-screen near-zero cuts before reviewing validation figures"
+}
