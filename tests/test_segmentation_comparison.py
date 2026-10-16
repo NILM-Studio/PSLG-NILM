@@ -29,6 +29,14 @@ def test_pelt_finds_known_step():
     assert info["min_size"] == 5
 
 
+def test_pelt_uses_configured_min_size():
+    pytest.importorskip("ruptures")
+    x = np.r_[np.full(120, 20.0), np.full(120, 150.0)]
+    cuts, info = run(x, "pelt-rbf", params={"min_size": 10})
+    assert cuts == [120]
+    assert info["min_size"] == 10
+
+
 def test_short_activity_is_not_a_successful_zero_cut():
     with pytest.raises(Unsupported):
         run(np.ones(9), "pelt-rbf")
