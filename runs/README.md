@@ -26,3 +26,5 @@ F4 和含 F4 的混合历史实验移到 `../archive/retired_f4/experiments/`，
 | [20261016_primitive_condition_interfaces](20261016_primitive_condition_interfaces/README.md) | 三模型P条件接口及CPU小规模验证；U由独立实验执行 |
 
 | [20261017_public16_primglr_w120_gap30_case_review](20261017_public16_primglr_w120_gap30_case_review/README.md) | 用户授权16对象原始区间与主步骤活动片段双副本、PrimGLR W120s/gap30s十例图审，执行状态以索引为准 |
+
+- [20261017_public16_primglr_w120_gap60_case_review](20261017_public16_primglr_w120_gap60_case_review/README.md)：同160例PrimGLR W120/gap60图审。

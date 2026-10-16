@@ -498,3 +498,7 @@ Three P adapters passed CPU 512-phase forward/backward/sample/reload checks; Tim
 - 2026-10-16T18:17:20.540723+00:00 `20261017_public16_primglr_w120_gap30_case_review`：注册16对象数据导出与十例图审；两组数据独立复制到datasets，图审pending。
 
 - 2026-10-16T18:21:30.157705+00:00 `20261017_public16_primglr_w120_gap30_case_review`：16对象两组数据独立复制与QA完成，入选2824条；16张十例图供人审。数据清单`/home/avis/pslg-nilm/datasets/public16_activity_states_20261017/manifest.json`，未自动冻结PrimGLR论文最终参数。
+
+- 20261017_public16_primglr_w120_gap60_case_review：用户授权，复用gap30同一批片段并注册gap60图审。
+
+- 20261017_public16_primglr_w120_gap60_case_review：16对象160例gap60图审完成；与gap30输入逐例哈希相同，参数待人工审核。

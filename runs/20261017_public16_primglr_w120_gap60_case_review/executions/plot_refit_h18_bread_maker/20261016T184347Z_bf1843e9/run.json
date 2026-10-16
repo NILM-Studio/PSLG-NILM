@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap60_case_review",
+  "condition": "plot_refit_h18_bread_maker",
+  "execution_id": "20261016T184347Z_bf1843e9",
+  "status": "passed",
+  "created_at": "2026-10-16T18:43:47.738461+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:43:47.795738+00:00",
+  "completed_at": "2026-10-16T18:43:52.369883+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "experiment": "20261017_public16_primglr_w120_gap60_case_review",
+  "condition": "plot_ukdale_b1_m6_dish_washer",
+  "execution_id": "20261016T184351Z_ebe68e6f",
+  "status": "passed",
+  "created_at": "2026-10-16T18:43:51.231803+00:00",
+  "exit_code": 0,
+  "started_at": "2026-10-16T18:43:51.278868+00:00",
+  "completed_at": "2026-10-16T18:43:55.322880+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "object_count": 16,
+  "case_count": 160,
+  "same_cases_and_input_hashes": true,
+  "only_segmentation_change": "gap_seconds:30->60",
+  "png_svg_readable": true,
+  "evaluation_cases": 0
+}
