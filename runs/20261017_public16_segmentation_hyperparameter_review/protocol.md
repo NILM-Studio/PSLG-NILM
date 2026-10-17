@@ -14,3 +14,5 @@
 - 资源：CPU最多3个单线程工作进程；E2USD使用启动前核对的物理GPU2，最多2个单线程工作进程。保留其他并行任务，所有计算和QA经create_execution/run_execution登记。
 
 资源补充：启动实测GPU2两工作进程已饱和，GPU6空闲计算且显存余量>5GB；登记新的可续跑协调器，GPU2/GPU6各最多2个E2USD进程。旧协调器受控停止，原工作进程、成功执行、候选及输入哈希全部保留。
+
+最终资源修订（用户要求CPU）：全部后续图审计算使用CPU，最多6个单线程工作进程。E2USD使用经源码核对的作者cuda=False路径，比较API的其他算法不变，作者文件不改动。冻结候选/输入保持原计划SHA256。旧GPU E2USD执行和图形归档于reports/superseded_gpu_review，不混入最终图库；所有16对象E2USD重新以CPU运行。真实活动CPU重放、作者源码哈希、除cuda标志外网络及训练参数一致性核验已通过（validate_author_cpu_runtime/20261017T032520Z_23b1f3e4）。CPU/GPU浮点结果不保证逐点相同；最终图全部采用CPU。

@@ -44,6 +44,10 @@ for obj in plan['objects']:
                     obj['object'], m, a['activity_id'], p['config_id'], p['seed'])
                 assert r['input_sha256'] == fig['input_sha256'] and r['status'] == p['status']
                 assert r.get('cuts', []) == p['cuts']
+                if m == 'e2usd' and p['status'] == 'success':
+                    assert p['metadata']['device'] == 'cpu'
+                    if not p['metadata'].get('constant_signal'):
+                        assert p['metadata']['network']['cuda'] is False
                 assert p['cut_timestamps'] == [float(ts[c]) for c in p['cuts']]
                 assert p['cut_elapsed_seconds'] == [float(ts[c]-ts[0]) for c in p['cuts']]
                 expected_svg_ids.update(f"cut_{p['panel']}_{c}" for c in p['cuts'])

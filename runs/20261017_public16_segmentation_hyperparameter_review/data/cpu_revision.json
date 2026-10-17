@@ -1,0 +1,22 @@
+{
+  "time": "2026-10-17T03:24:39.202494+00:00",
+  "reason": "User requested CPU; author cuda=False supported. Supersede GPU E2USD galleries and recompute CPU consistently.",
+  "stopped_gpu_workers": [
+    269607,
+    269608
+  ],
+  "archived_artifacts": [
+    "reports/superseded_gpu_review/figures/refit_b13_m5_dish_washer/e2usd",
+    "reports/superseded_gpu_review/figures/ukdale_h2_microwave/e2usd",
+    "reports/superseded_gpu_review/figures/refit_h7_dishwasher/e2usd",
+    "reports/superseded_gpu_review/figures/ukdale_h2_washing_machine/e2usd",
+    "reports/superseded_gpu_review/figures/refit_h18_bread_maker/e2usd",
+    "reports/superseded_gpu_review/manifests/refit_b13_m5_dish_washer_e2usd.json",
+    "reports/superseded_gpu_review/manifests/ukdale_h2_microwave_e2usd.json",
+    "reports/superseded_gpu_review/manifests/ukdale_h2_washing_machine_e2usd.json"
+  ],
+  "final_backend": "cpu",
+  "max_workers": 6,
+  "author_cpu_validation": "validate_author_cpu_runtime/20261017T032520Z_23b1f3e4",
+  "same_author_source": true
+}

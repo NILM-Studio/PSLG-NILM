@@ -18,7 +18,7 @@ segmentation packages, including CLaP's `aeon` classifier dependency, without
 changing the shared Torch environment. The FLUSS adapter disables Numba CUDA
 before importing STUMPY because only its CPU kernels are used and GPU kernel
 import crashes on this host; Torch CUDA remains available to E2USD. E2USD
-requires an available CUDA device selected by `CUDA_VISIBLE_DEVICES`.
+uses a CUDA device selected by `CUDA_VISIBLE_DEVICES` in the historical comparison adapter. This is an adapter restriction, not an author-algorithm requirement: the unchanged author encoder supports `cuda=False`. The public16 full-grid review uses that CPU path in `runs/20261017_public16_segmentation_hyperparameter_review/scripts/e2usd_cpu.py`, retaining the same architecture, normalization, training settings and source hashes. Its real-input CPU replay and CPU/GPU configuration consistency checks are recorded in that experiment.
 
 E2USD imports the unchanged `E2USD/` source tree from `PSLG_E2USD_SOURCE`,
 `models/third_party/segmentation_e2usd`, or the preserved 2026-10-13 legacy

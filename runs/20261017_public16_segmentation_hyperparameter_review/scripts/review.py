@@ -89,6 +89,8 @@ def baseline(method, params, dt):
 
 def provenance():
     files = [Path(__file__), ROOT / "models/time_segmentation/comparison.py"]
+    if (Path(__file__).parent / "e2usd_cpu.py").exists():
+        files.append(Path(__file__).parent / "e2usd_cpu.py")
     snap = OUT / "analysis/source_code"
     snap.mkdir(exist_ok=True)
     for path in files:
@@ -103,7 +105,7 @@ def provenance():
     save(OUT / "environment.runtime.json", {"python": sys.version, "host": platform.node(),
          "executable": sys.executable, "packages": versions,
          "environment": {k: os.getenv(k) for k in ("CUDA_VISIBLE_DEVICES", "PYTHONPATH",
-           "OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "NUMBA_NUM_THREADS")}})
+           "OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "NUMBA_NUM_THREADS", "PSLG_E2USD_DEVICE")}})
 
 
 def prepare():
@@ -317,8 +319,12 @@ def worker(ident, method):
                        "record_index": len(records)}
                 start = time.monotonic()
                 try:
-                    cuts, metadata = (cached_fluss(x, p, fluss_cache) if method == "fluss-threshold"
-                                      else run(x, method, p, seed=seed))
+                    if method == "e2usd" and os.getenv("PSLG_E2USD_DEVICE") == "cpu":
+                        from e2usd_cpu import run_cpu
+                        cuts, metadata = run_cpu(x, p, seed=seed)
+                    else:
+                        cuts, metadata = (cached_fluss(x, p, fluss_cache) if method == "fluss-threshold"
+                                          else run(x, method, p, seed=seed))
                     assert cuts == sorted(set(cuts)) and all(0 < c < len(x) for c in cuts)
                     row.update(status="success", cuts=cuts, metadata=metadata,
                                core_cuts=sum(activity["core_a"] < c < activity["core_b"] for c in cuts))
