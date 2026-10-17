@@ -1,179 +1,839 @@
-# public16 v2：五种切分模型完整参数图审
+# 切分模型参数图审
 
-状态：待人工审核；已完成 160/160 张总图，每张提供 PNG / SVG / PDF。
+数据：`public16_activity_states_20261017_v2`。16个对象、5种方法，每组开发/验证各1张，共160张总图，全部采用CPU结果。
 
-每个对象、每种方法合计2张：开发集1条、验证集1条。全部方法共用同一对活动。每张图展示完整参数网格，按参数值排列，无Top-N截断。
-数据直接读取 datasets/public16_activity_states_20261017_v2 的既有活动，保留原时间/功率/核心/上下文。PrimGLR结果仅复用为清单中的参照，未重新切分。
-黑线为原始功率，红虚线为本方法切点，灰区为上下文。BASE是本实验登记基线，不代表所有参数均为作者默认。SVG/PDF可放大检查。
-CLaP使用官方默认Clasp初始化，图标题明确标为provisional；用户另选Clasp后，必须重绘对应CLaP网格。E2USD每组参数并列seed=0/1/2。
-不适用组合显示UNSUPPORTED及原因，不以零切点代替。源未标注时区的SNM/DARCK时间不改称UTC。
-两条活动用于参数目视审核，不提供新队列的完整验证排序；选择后须单独登记补齐验证再冻结，evaluation活动未用于本图审。
+每张总图包含全部候选参数组合。黑线为原始功率，红虚线为切点，灰区为上下文；不适用组合在图内说明。点击总图可打开SVG放大查看。
+
+审核时反馈“对象＋方法＋图中参数或配置编号”即可。CLaP暂用默认Clasp初始化，改选Clasp后需复核对应CLaP结果。
 
 ## ukdale_h2_washing_machine
 
-原采样标称间隔：6.0s；原活动数：54。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #1：[PNG](figures/ukdale_h2_washing_machine/pelt_rbf/development_00001.png) / [SVG](figures/ukdale_h2_washing_machine/pelt_rbf/development_00001.svg) / [PDF](figures/ukdale_h2_washing_machine/pelt_rbf/development_00001.pdf)；validation #40：[PNG](figures/ukdale_h2_washing_machine/pelt_rbf/validation_00040.png) / [SVG](figures/ukdale_h2_washing_machine/pelt_rbf/validation_00040.svg) / [PDF](figures/ukdale_h2_washing_machine/pelt_rbf/validation_00040.pdf)
-- **fluss-threshold**（21组）：development #1：[PNG](figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.png) / [SVG](figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.svg) / [PDF](figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.pdf)；validation #40：[PNG](figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.png) / [SVG](figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.svg) / [PDF](figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.pdf)
-- **clasp**（12组）：development #1：[PNG](figures/ukdale_h2_washing_machine/clasp/development_00001.png) / [SVG](figures/ukdale_h2_washing_machine/clasp/development_00001.svg) / [PDF](figures/ukdale_h2_washing_machine/clasp/development_00001.pdf)；validation #40：[PNG](figures/ukdale_h2_washing_machine/clasp/validation_00040.png) / [SVG](figures/ukdale_h2_washing_machine/clasp/validation_00040.svg) / [PDF](figures/ukdale_h2_washing_machine/clasp/validation_00040.pdf)
-- **clap**（8组）：development #1：[PNG](figures/ukdale_h2_washing_machine/clap/development_00001.png) / [SVG](figures/ukdale_h2_washing_machine/clap/development_00001.svg) / [PDF](figures/ukdale_h2_washing_machine/clap/development_00001.pdf)；validation #40：[PNG](figures/ukdale_h2_washing_machine/clap/validation_00040.png) / [SVG](figures/ukdale_h2_washing_machine/clap/validation_00040.svg) / [PDF](figures/ukdale_h2_washing_machine/clap/validation_00040.pdf)
-- **e2usd**（4组）：development #1：[PNG](figures/ukdale_h2_washing_machine/e2usd/development_00001.png) / [SVG](figures/ukdale_h2_washing_machine/e2usd/development_00001.svg) / [PDF](figures/ukdale_h2_washing_machine/e2usd/development_00001.pdf)；validation #40：[PNG](figures/ukdale_h2_washing_machine/e2usd/validation_00040.png) / [SVG](figures/ukdale_h2_washing_machine/e2usd/validation_00040.svg) / [PDF](figures/ukdale_h2_washing_machine/e2usd/validation_00040.pdf)
+**开发活动 #1**
+
+[![ukdale_h2_washing_machine PELT-RBF 开发活动 1 完整参数总图](figures/ukdale_h2_washing_machine/pelt_rbf/development_00001.png)](figures/ukdale_h2_washing_machine/pelt_rbf/development_00001.svg)
+
+**验证活动 #40**
+
+[![ukdale_h2_washing_machine PELT-RBF 验证活动 40 完整参数总图](figures/ukdale_h2_washing_machine/pelt_rbf/validation_00040.png)](figures/ukdale_h2_washing_machine/pelt_rbf/validation_00040.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #1**
+
+[![ukdale_h2_washing_machine FLUSS-threshold 开发活动 1 完整参数总图](figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.png)](figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.svg)
+
+**验证活动 #40**
+
+[![ukdale_h2_washing_machine FLUSS-threshold 验证活动 40 完整参数总图](figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.png)](figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #1**
+
+[![ukdale_h2_washing_machine Clasp 开发活动 1 完整参数总图](figures/ukdale_h2_washing_machine/clasp/development_00001.png)](figures/ukdale_h2_washing_machine/clasp/development_00001.svg)
+
+**验证活动 #40**
+
+[![ukdale_h2_washing_machine Clasp 验证活动 40 完整参数总图](figures/ukdale_h2_washing_machine/clasp/validation_00040.png)](figures/ukdale_h2_washing_machine/clasp/validation_00040.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #1**
+
+[![ukdale_h2_washing_machine CLaP 开发活动 1 完整参数总图](figures/ukdale_h2_washing_machine/clap/development_00001.png)](figures/ukdale_h2_washing_machine/clap/development_00001.svg)
+
+**验证活动 #40**
+
+[![ukdale_h2_washing_machine CLaP 验证活动 40 完整参数总图](figures/ukdale_h2_washing_machine/clap/validation_00040.png)](figures/ukdale_h2_washing_machine/clap/validation_00040.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #1**
+
+[![ukdale_h2_washing_machine E2USD 开发活动 1 完整参数总图](figures/ukdale_h2_washing_machine/e2usd/development_00001.png)](figures/ukdale_h2_washing_machine/e2usd/development_00001.svg)
+
+**验证活动 #40**
+
+[![ukdale_h2_washing_machine E2USD 验证活动 40 完整参数总图](figures/ukdale_h2_washing_machine/e2usd/validation_00040.png)](figures/ukdale_h2_washing_machine/e2usd/validation_00040.svg)
 
 ## ukdale_h2_microwave
 
-原采样标称间隔：6.0s；原活动数：439。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #50：[PNG](figures/ukdale_h2_microwave/pelt_rbf/development_00050.png) / [SVG](figures/ukdale_h2_microwave/pelt_rbf/development_00050.svg) / [PDF](figures/ukdale_h2_microwave/pelt_rbf/development_00050.pdf)；validation #283：[PNG](figures/ukdale_h2_microwave/pelt_rbf/validation_00283.png) / [SVG](figures/ukdale_h2_microwave/pelt_rbf/validation_00283.svg) / [PDF](figures/ukdale_h2_microwave/pelt_rbf/validation_00283.pdf)
-- **fluss-threshold**（21组）：development #50：[PNG](figures/ukdale_h2_microwave/fluss_threshold/development_00050.png) / [SVG](figures/ukdale_h2_microwave/fluss_threshold/development_00050.svg) / [PDF](figures/ukdale_h2_microwave/fluss_threshold/development_00050.pdf)；validation #283：[PNG](figures/ukdale_h2_microwave/fluss_threshold/validation_00283.png) / [SVG](figures/ukdale_h2_microwave/fluss_threshold/validation_00283.svg) / [PDF](figures/ukdale_h2_microwave/fluss_threshold/validation_00283.pdf)
-- **clasp**（12组）：development #50：[PNG](figures/ukdale_h2_microwave/clasp/development_00050.png) / [SVG](figures/ukdale_h2_microwave/clasp/development_00050.svg) / [PDF](figures/ukdale_h2_microwave/clasp/development_00050.pdf)；validation #283：[PNG](figures/ukdale_h2_microwave/clasp/validation_00283.png) / [SVG](figures/ukdale_h2_microwave/clasp/validation_00283.svg) / [PDF](figures/ukdale_h2_microwave/clasp/validation_00283.pdf)
-- **clap**（8组）：development #50：[PNG](figures/ukdale_h2_microwave/clap/development_00050.png) / [SVG](figures/ukdale_h2_microwave/clap/development_00050.svg) / [PDF](figures/ukdale_h2_microwave/clap/development_00050.pdf)；validation #283：[PNG](figures/ukdale_h2_microwave/clap/validation_00283.png) / [SVG](figures/ukdale_h2_microwave/clap/validation_00283.svg) / [PDF](figures/ukdale_h2_microwave/clap/validation_00283.pdf)
-- **e2usd**（4组）：development #50：[PNG](figures/ukdale_h2_microwave/e2usd/development_00050.png) / [SVG](figures/ukdale_h2_microwave/e2usd/development_00050.svg) / [PDF](figures/ukdale_h2_microwave/e2usd/development_00050.pdf)；validation #283：[PNG](figures/ukdale_h2_microwave/e2usd/validation_00283.png) / [SVG](figures/ukdale_h2_microwave/e2usd/validation_00283.svg) / [PDF](figures/ukdale_h2_microwave/e2usd/validation_00283.pdf)
+**开发活动 #50**
+
+[![ukdale_h2_microwave PELT-RBF 开发活动 50 完整参数总图](figures/ukdale_h2_microwave/pelt_rbf/development_00050.png)](figures/ukdale_h2_microwave/pelt_rbf/development_00050.svg)
+
+**验证活动 #283**
+
+[![ukdale_h2_microwave PELT-RBF 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/pelt_rbf/validation_00283.png)](figures/ukdale_h2_microwave/pelt_rbf/validation_00283.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #50**
+
+[![ukdale_h2_microwave FLUSS-threshold 开发活动 50 完整参数总图](figures/ukdale_h2_microwave/fluss_threshold/development_00050.png)](figures/ukdale_h2_microwave/fluss_threshold/development_00050.svg)
+
+**验证活动 #283**
+
+[![ukdale_h2_microwave FLUSS-threshold 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/fluss_threshold/validation_00283.png)](figures/ukdale_h2_microwave/fluss_threshold/validation_00283.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #50**
+
+[![ukdale_h2_microwave Clasp 开发活动 50 完整参数总图](figures/ukdale_h2_microwave/clasp/development_00050.png)](figures/ukdale_h2_microwave/clasp/development_00050.svg)
+
+**验证活动 #283**
+
+[![ukdale_h2_microwave Clasp 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/clasp/validation_00283.png)](figures/ukdale_h2_microwave/clasp/validation_00283.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #50**
+
+[![ukdale_h2_microwave CLaP 开发活动 50 完整参数总图](figures/ukdale_h2_microwave/clap/development_00050.png)](figures/ukdale_h2_microwave/clap/development_00050.svg)
+
+**验证活动 #283**
+
+[![ukdale_h2_microwave CLaP 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/clap/validation_00283.png)](figures/ukdale_h2_microwave/clap/validation_00283.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #50**
+
+[![ukdale_h2_microwave E2USD 开发活动 50 完整参数总图](figures/ukdale_h2_microwave/e2usd/development_00050.png)](figures/ukdale_h2_microwave/e2usd/development_00050.svg)
+
+**验证活动 #283**
+
+[![ukdale_h2_microwave E2USD 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/e2usd/validation_00283.png)](figures/ukdale_h2_microwave/e2usd/validation_00283.svg)
 
 ## refit_b13_m5_dish_washer
 
-原采样标称间隔：8.0s；原活动数：101。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #28：[PNG](figures/refit_b13_m5_dish_washer/pelt_rbf/development_00028.png) / [SVG](figures/refit_b13_m5_dish_washer/pelt_rbf/development_00028.svg) / [PDF](figures/refit_b13_m5_dish_washer/pelt_rbf/development_00028.pdf)；validation #73：[PNG](figures/refit_b13_m5_dish_washer/pelt_rbf/validation_00073.png) / [SVG](figures/refit_b13_m5_dish_washer/pelt_rbf/validation_00073.svg) / [PDF](figures/refit_b13_m5_dish_washer/pelt_rbf/validation_00073.pdf)
-- **fluss-threshold**（21组）：development #28：[PNG](figures/refit_b13_m5_dish_washer/fluss_threshold/development_00028.png) / [SVG](figures/refit_b13_m5_dish_washer/fluss_threshold/development_00028.svg) / [PDF](figures/refit_b13_m5_dish_washer/fluss_threshold/development_00028.pdf)；validation #73：[PNG](figures/refit_b13_m5_dish_washer/fluss_threshold/validation_00073.png) / [SVG](figures/refit_b13_m5_dish_washer/fluss_threshold/validation_00073.svg) / [PDF](figures/refit_b13_m5_dish_washer/fluss_threshold/validation_00073.pdf)
-- **clasp**（12组）：development #28：[PNG](figures/refit_b13_m5_dish_washer/clasp/development_00028.png) / [SVG](figures/refit_b13_m5_dish_washer/clasp/development_00028.svg) / [PDF](figures/refit_b13_m5_dish_washer/clasp/development_00028.pdf)；validation #73：[PNG](figures/refit_b13_m5_dish_washer/clasp/validation_00073.png) / [SVG](figures/refit_b13_m5_dish_washer/clasp/validation_00073.svg) / [PDF](figures/refit_b13_m5_dish_washer/clasp/validation_00073.pdf)
-- **clap**（8组）：development #28：[PNG](figures/refit_b13_m5_dish_washer/clap/development_00028.png) / [SVG](figures/refit_b13_m5_dish_washer/clap/development_00028.svg) / [PDF](figures/refit_b13_m5_dish_washer/clap/development_00028.pdf)；validation #73：[PNG](figures/refit_b13_m5_dish_washer/clap/validation_00073.png) / [SVG](figures/refit_b13_m5_dish_washer/clap/validation_00073.svg) / [PDF](figures/refit_b13_m5_dish_washer/clap/validation_00073.pdf)
-- **e2usd**（4组）：development #28：[PNG](figures/refit_b13_m5_dish_washer/e2usd/development_00028.png) / [SVG](figures/refit_b13_m5_dish_washer/e2usd/development_00028.svg) / [PDF](figures/refit_b13_m5_dish_washer/e2usd/development_00028.pdf)；validation #73：[PNG](figures/refit_b13_m5_dish_washer/e2usd/validation_00073.png) / [SVG](figures/refit_b13_m5_dish_washer/e2usd/validation_00073.svg) / [PDF](figures/refit_b13_m5_dish_washer/e2usd/validation_00073.pdf)
+**开发活动 #28**
+
+[![refit_b13_m5_dish_washer PELT-RBF 开发活动 28 完整参数总图](figures/refit_b13_m5_dish_washer/pelt_rbf/development_00028.png)](figures/refit_b13_m5_dish_washer/pelt_rbf/development_00028.svg)
+
+**验证活动 #73**
+
+[![refit_b13_m5_dish_washer PELT-RBF 验证活动 73 完整参数总图](figures/refit_b13_m5_dish_washer/pelt_rbf/validation_00073.png)](figures/refit_b13_m5_dish_washer/pelt_rbf/validation_00073.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #28**
+
+[![refit_b13_m5_dish_washer FLUSS-threshold 开发活动 28 完整参数总图](figures/refit_b13_m5_dish_washer/fluss_threshold/development_00028.png)](figures/refit_b13_m5_dish_washer/fluss_threshold/development_00028.svg)
+
+**验证活动 #73**
+
+[![refit_b13_m5_dish_washer FLUSS-threshold 验证活动 73 完整参数总图](figures/refit_b13_m5_dish_washer/fluss_threshold/validation_00073.png)](figures/refit_b13_m5_dish_washer/fluss_threshold/validation_00073.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #28**
+
+[![refit_b13_m5_dish_washer Clasp 开发活动 28 完整参数总图](figures/refit_b13_m5_dish_washer/clasp/development_00028.png)](figures/refit_b13_m5_dish_washer/clasp/development_00028.svg)
+
+**验证活动 #73**
+
+[![refit_b13_m5_dish_washer Clasp 验证活动 73 完整参数总图](figures/refit_b13_m5_dish_washer/clasp/validation_00073.png)](figures/refit_b13_m5_dish_washer/clasp/validation_00073.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #28**
+
+[![refit_b13_m5_dish_washer CLaP 开发活动 28 完整参数总图](figures/refit_b13_m5_dish_washer/clap/development_00028.png)](figures/refit_b13_m5_dish_washer/clap/development_00028.svg)
+
+**验证活动 #73**
+
+[![refit_b13_m5_dish_washer CLaP 验证活动 73 完整参数总图](figures/refit_b13_m5_dish_washer/clap/validation_00073.png)](figures/refit_b13_m5_dish_washer/clap/validation_00073.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #28**
+
+[![refit_b13_m5_dish_washer E2USD 开发活动 28 完整参数总图](figures/refit_b13_m5_dish_washer/e2usd/development_00028.png)](figures/refit_b13_m5_dish_washer/e2usd/development_00028.svg)
+
+**验证活动 #73**
+
+[![refit_b13_m5_dish_washer E2USD 验证活动 73 完整参数总图](figures/refit_b13_m5_dish_washer/e2usd/validation_00073.png)](figures/refit_b13_m5_dish_washer/e2usd/validation_00073.svg)
 
 ## refit_h7_dishwasher
 
-原采样标称间隔：8.0s；原活动数：531。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #171：[PNG](figures/refit_h7_dishwasher/pelt_rbf/development_00171.png) / [SVG](figures/refit_h7_dishwasher/pelt_rbf/development_00171.svg) / [PDF](figures/refit_h7_dishwasher/pelt_rbf/development_00171.pdf)；validation #391：[PNG](figures/refit_h7_dishwasher/pelt_rbf/validation_00391.png) / [SVG](figures/refit_h7_dishwasher/pelt_rbf/validation_00391.svg) / [PDF](figures/refit_h7_dishwasher/pelt_rbf/validation_00391.pdf)
-- **fluss-threshold**（21组）：development #171：[PNG](figures/refit_h7_dishwasher/fluss_threshold/development_00171.png) / [SVG](figures/refit_h7_dishwasher/fluss_threshold/development_00171.svg) / [PDF](figures/refit_h7_dishwasher/fluss_threshold/development_00171.pdf)；validation #391：[PNG](figures/refit_h7_dishwasher/fluss_threshold/validation_00391.png) / [SVG](figures/refit_h7_dishwasher/fluss_threshold/validation_00391.svg) / [PDF](figures/refit_h7_dishwasher/fluss_threshold/validation_00391.pdf)
-- **clasp**（12组）：development #171：[PNG](figures/refit_h7_dishwasher/clasp/development_00171.png) / [SVG](figures/refit_h7_dishwasher/clasp/development_00171.svg) / [PDF](figures/refit_h7_dishwasher/clasp/development_00171.pdf)；validation #391：[PNG](figures/refit_h7_dishwasher/clasp/validation_00391.png) / [SVG](figures/refit_h7_dishwasher/clasp/validation_00391.svg) / [PDF](figures/refit_h7_dishwasher/clasp/validation_00391.pdf)
-- **clap**（8组）：development #171：[PNG](figures/refit_h7_dishwasher/clap/development_00171.png) / [SVG](figures/refit_h7_dishwasher/clap/development_00171.svg) / [PDF](figures/refit_h7_dishwasher/clap/development_00171.pdf)；validation #391：[PNG](figures/refit_h7_dishwasher/clap/validation_00391.png) / [SVG](figures/refit_h7_dishwasher/clap/validation_00391.svg) / [PDF](figures/refit_h7_dishwasher/clap/validation_00391.pdf)
-- **e2usd**（4组）：development #171：[PNG](figures/refit_h7_dishwasher/e2usd/development_00171.png) / [SVG](figures/refit_h7_dishwasher/e2usd/development_00171.svg) / [PDF](figures/refit_h7_dishwasher/e2usd/development_00171.pdf)；validation #391：[PNG](figures/refit_h7_dishwasher/e2usd/validation_00391.png) / [SVG](figures/refit_h7_dishwasher/e2usd/validation_00391.svg) / [PDF](figures/refit_h7_dishwasher/e2usd/validation_00391.pdf)
+**开发活动 #171**
+
+[![refit_h7_dishwasher PELT-RBF 开发活动 171 完整参数总图](figures/refit_h7_dishwasher/pelt_rbf/development_00171.png)](figures/refit_h7_dishwasher/pelt_rbf/development_00171.svg)
+
+**验证活动 #391**
+
+[![refit_h7_dishwasher PELT-RBF 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/pelt_rbf/validation_00391.png)](figures/refit_h7_dishwasher/pelt_rbf/validation_00391.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #171**
+
+[![refit_h7_dishwasher FLUSS-threshold 开发活动 171 完整参数总图](figures/refit_h7_dishwasher/fluss_threshold/development_00171.png)](figures/refit_h7_dishwasher/fluss_threshold/development_00171.svg)
+
+**验证活动 #391**
+
+[![refit_h7_dishwasher FLUSS-threshold 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/fluss_threshold/validation_00391.png)](figures/refit_h7_dishwasher/fluss_threshold/validation_00391.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #171**
+
+[![refit_h7_dishwasher Clasp 开发活动 171 完整参数总图](figures/refit_h7_dishwasher/clasp/development_00171.png)](figures/refit_h7_dishwasher/clasp/development_00171.svg)
+
+**验证活动 #391**
+
+[![refit_h7_dishwasher Clasp 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/clasp/validation_00391.png)](figures/refit_h7_dishwasher/clasp/validation_00391.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #171**
+
+[![refit_h7_dishwasher CLaP 开发活动 171 完整参数总图](figures/refit_h7_dishwasher/clap/development_00171.png)](figures/refit_h7_dishwasher/clap/development_00171.svg)
+
+**验证活动 #391**
+
+[![refit_h7_dishwasher CLaP 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/clap/validation_00391.png)](figures/refit_h7_dishwasher/clap/validation_00391.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #171**
+
+[![refit_h7_dishwasher E2USD 开发活动 171 完整参数总图](figures/refit_h7_dishwasher/e2usd/development_00171.png)](figures/refit_h7_dishwasher/e2usd/development_00171.svg)
+
+**验证活动 #391**
+
+[![refit_h7_dishwasher E2USD 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/e2usd/validation_00391.png)](figures/refit_h7_dishwasher/e2usd/validation_00391.svg)
 
 ## refit_h9_dishwasher
 
-原采样标称间隔：8.0s；原活动数：254。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #122：[PNG](figures/refit_h9_dishwasher/pelt_rbf/development_00122.png) / [SVG](figures/refit_h9_dishwasher/pelt_rbf/development_00122.svg) / [PDF](figures/refit_h9_dishwasher/pelt_rbf/development_00122.pdf)；validation #178：[PNG](figures/refit_h9_dishwasher/pelt_rbf/validation_00178.png) / [SVG](figures/refit_h9_dishwasher/pelt_rbf/validation_00178.svg) / [PDF](figures/refit_h9_dishwasher/pelt_rbf/validation_00178.pdf)
-- **fluss-threshold**（21组）：development #122：[PNG](figures/refit_h9_dishwasher/fluss_threshold/development_00122.png) / [SVG](figures/refit_h9_dishwasher/fluss_threshold/development_00122.svg) / [PDF](figures/refit_h9_dishwasher/fluss_threshold/development_00122.pdf)；validation #178：[PNG](figures/refit_h9_dishwasher/fluss_threshold/validation_00178.png) / [SVG](figures/refit_h9_dishwasher/fluss_threshold/validation_00178.svg) / [PDF](figures/refit_h9_dishwasher/fluss_threshold/validation_00178.pdf)
-- **clasp**（12组）：development #122：[PNG](figures/refit_h9_dishwasher/clasp/development_00122.png) / [SVG](figures/refit_h9_dishwasher/clasp/development_00122.svg) / [PDF](figures/refit_h9_dishwasher/clasp/development_00122.pdf)；validation #178：[PNG](figures/refit_h9_dishwasher/clasp/validation_00178.png) / [SVG](figures/refit_h9_dishwasher/clasp/validation_00178.svg) / [PDF](figures/refit_h9_dishwasher/clasp/validation_00178.pdf)
-- **clap**（8组）：development #122：[PNG](figures/refit_h9_dishwasher/clap/development_00122.png) / [SVG](figures/refit_h9_dishwasher/clap/development_00122.svg) / [PDF](figures/refit_h9_dishwasher/clap/development_00122.pdf)；validation #178：[PNG](figures/refit_h9_dishwasher/clap/validation_00178.png) / [SVG](figures/refit_h9_dishwasher/clap/validation_00178.svg) / [PDF](figures/refit_h9_dishwasher/clap/validation_00178.pdf)
-- **e2usd**（4组）：development #122：[PNG](figures/refit_h9_dishwasher/e2usd/development_00122.png) / [SVG](figures/refit_h9_dishwasher/e2usd/development_00122.svg) / [PDF](figures/refit_h9_dishwasher/e2usd/development_00122.pdf)；validation #178：[PNG](figures/refit_h9_dishwasher/e2usd/validation_00178.png) / [SVG](figures/refit_h9_dishwasher/e2usd/validation_00178.svg) / [PDF](figures/refit_h9_dishwasher/e2usd/validation_00178.pdf)
+**开发活动 #122**
+
+[![refit_h9_dishwasher PELT-RBF 开发活动 122 完整参数总图](figures/refit_h9_dishwasher/pelt_rbf/development_00122.png)](figures/refit_h9_dishwasher/pelt_rbf/development_00122.svg)
+
+**验证活动 #178**
+
+[![refit_h9_dishwasher PELT-RBF 验证活动 178 完整参数总图](figures/refit_h9_dishwasher/pelt_rbf/validation_00178.png)](figures/refit_h9_dishwasher/pelt_rbf/validation_00178.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #122**
+
+[![refit_h9_dishwasher FLUSS-threshold 开发活动 122 完整参数总图](figures/refit_h9_dishwasher/fluss_threshold/development_00122.png)](figures/refit_h9_dishwasher/fluss_threshold/development_00122.svg)
+
+**验证活动 #178**
+
+[![refit_h9_dishwasher FLUSS-threshold 验证活动 178 完整参数总图](figures/refit_h9_dishwasher/fluss_threshold/validation_00178.png)](figures/refit_h9_dishwasher/fluss_threshold/validation_00178.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #122**
+
+[![refit_h9_dishwasher Clasp 开发活动 122 完整参数总图](figures/refit_h9_dishwasher/clasp/development_00122.png)](figures/refit_h9_dishwasher/clasp/development_00122.svg)
+
+**验证活动 #178**
+
+[![refit_h9_dishwasher Clasp 验证活动 178 完整参数总图](figures/refit_h9_dishwasher/clasp/validation_00178.png)](figures/refit_h9_dishwasher/clasp/validation_00178.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #122**
+
+[![refit_h9_dishwasher CLaP 开发活动 122 完整参数总图](figures/refit_h9_dishwasher/clap/development_00122.png)](figures/refit_h9_dishwasher/clap/development_00122.svg)
+
+**验证活动 #178**
+
+[![refit_h9_dishwasher CLaP 验证活动 178 完整参数总图](figures/refit_h9_dishwasher/clap/validation_00178.png)](figures/refit_h9_dishwasher/clap/validation_00178.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #122**
+
+[![refit_h9_dishwasher E2USD 开发活动 122 完整参数总图](figures/refit_h9_dishwasher/e2usd/development_00122.png)](figures/refit_h9_dishwasher/e2usd/development_00122.svg)
+
+**验证活动 #178**
+
+[![refit_h9_dishwasher E2USD 验证活动 178 完整参数总图](figures/refit_h9_dishwasher/e2usd/validation_00178.png)](figures/refit_h9_dishwasher/e2usd/validation_00178.svg)
 
 ## refit_h18_bread_maker
 
-原采样标称间隔：8.0s；原活动数：211。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #105：[PNG](figures/refit_h18_bread_maker/pelt_rbf/development_00105.png) / [SVG](figures/refit_h18_bread_maker/pelt_rbf/development_00105.svg) / [PDF](figures/refit_h18_bread_maker/pelt_rbf/development_00105.pdf)；validation #152：[PNG](figures/refit_h18_bread_maker/pelt_rbf/validation_00152.png) / [SVG](figures/refit_h18_bread_maker/pelt_rbf/validation_00152.svg) / [PDF](figures/refit_h18_bread_maker/pelt_rbf/validation_00152.pdf)
-- **fluss-threshold**（21组）：development #105：[PNG](figures/refit_h18_bread_maker/fluss_threshold/development_00105.png) / [SVG](figures/refit_h18_bread_maker/fluss_threshold/development_00105.svg) / [PDF](figures/refit_h18_bread_maker/fluss_threshold/development_00105.pdf)；validation #152：[PNG](figures/refit_h18_bread_maker/fluss_threshold/validation_00152.png) / [SVG](figures/refit_h18_bread_maker/fluss_threshold/validation_00152.svg) / [PDF](figures/refit_h18_bread_maker/fluss_threshold/validation_00152.pdf)
-- **clasp**（12组）：development #105：[PNG](figures/refit_h18_bread_maker/clasp/development_00105.png) / [SVG](figures/refit_h18_bread_maker/clasp/development_00105.svg) / [PDF](figures/refit_h18_bread_maker/clasp/development_00105.pdf)；validation #152：[PNG](figures/refit_h18_bread_maker/clasp/validation_00152.png) / [SVG](figures/refit_h18_bread_maker/clasp/validation_00152.svg) / [PDF](figures/refit_h18_bread_maker/clasp/validation_00152.pdf)
-- **clap**（8组）：development #105：[PNG](figures/refit_h18_bread_maker/clap/development_00105.png) / [SVG](figures/refit_h18_bread_maker/clap/development_00105.svg) / [PDF](figures/refit_h18_bread_maker/clap/development_00105.pdf)；validation #152：[PNG](figures/refit_h18_bread_maker/clap/validation_00152.png) / [SVG](figures/refit_h18_bread_maker/clap/validation_00152.svg) / [PDF](figures/refit_h18_bread_maker/clap/validation_00152.pdf)
-- **e2usd**（4组）：development #105：[PNG](figures/refit_h18_bread_maker/e2usd/development_00105.png) / [SVG](figures/refit_h18_bread_maker/e2usd/development_00105.svg) / [PDF](figures/refit_h18_bread_maker/e2usd/development_00105.pdf)；validation #152：[PNG](figures/refit_h18_bread_maker/e2usd/validation_00152.png) / [SVG](figures/refit_h18_bread_maker/e2usd/validation_00152.svg) / [PDF](figures/refit_h18_bread_maker/e2usd/validation_00152.pdf)
+**开发活动 #105**
+
+[![refit_h18_bread_maker PELT-RBF 开发活动 105 完整参数总图](figures/refit_h18_bread_maker/pelt_rbf/development_00105.png)](figures/refit_h18_bread_maker/pelt_rbf/development_00105.svg)
+
+**验证活动 #152**
+
+[![refit_h18_bread_maker PELT-RBF 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/pelt_rbf/validation_00152.png)](figures/refit_h18_bread_maker/pelt_rbf/validation_00152.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #105**
+
+[![refit_h18_bread_maker FLUSS-threshold 开发活动 105 完整参数总图](figures/refit_h18_bread_maker/fluss_threshold/development_00105.png)](figures/refit_h18_bread_maker/fluss_threshold/development_00105.svg)
+
+**验证活动 #152**
+
+[![refit_h18_bread_maker FLUSS-threshold 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/fluss_threshold/validation_00152.png)](figures/refit_h18_bread_maker/fluss_threshold/validation_00152.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #105**
+
+[![refit_h18_bread_maker Clasp 开发活动 105 完整参数总图](figures/refit_h18_bread_maker/clasp/development_00105.png)](figures/refit_h18_bread_maker/clasp/development_00105.svg)
+
+**验证活动 #152**
+
+[![refit_h18_bread_maker Clasp 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/clasp/validation_00152.png)](figures/refit_h18_bread_maker/clasp/validation_00152.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #105**
+
+[![refit_h18_bread_maker CLaP 开发活动 105 完整参数总图](figures/refit_h18_bread_maker/clap/development_00105.png)](figures/refit_h18_bread_maker/clap/development_00105.svg)
+
+**验证活动 #152**
+
+[![refit_h18_bread_maker CLaP 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/clap/validation_00152.png)](figures/refit_h18_bread_maker/clap/validation_00152.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #105**
+
+[![refit_h18_bread_maker E2USD 开发活动 105 完整参数总图](figures/refit_h18_bread_maker/e2usd/development_00105.png)](figures/refit_h18_bread_maker/e2usd/development_00105.svg)
+
+**验证活动 #152**
+
+[![refit_h18_bread_maker E2USD 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/e2usd/validation_00152.png)](figures/refit_h18_bread_maker/e2usd/validation_00152.svg)
 
 ## refit_h20_tumble_dryer
 
-原采样标称间隔：8.0s；原活动数：90。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #21：[PNG](figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.png) / [SVG](figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.svg) / [PDF](figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.pdf)；validation #69：[PNG](figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.png) / [SVG](figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.svg) / [PDF](figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.pdf)
-- **fluss-threshold**（21组）：development #21：[PNG](figures/refit_h20_tumble_dryer/fluss_threshold/development_00021.png) / [SVG](figures/refit_h20_tumble_dryer/fluss_threshold/development_00021.svg) / [PDF](figures/refit_h20_tumble_dryer/fluss_threshold/development_00021.pdf)；validation #69：[PNG](figures/refit_h20_tumble_dryer/fluss_threshold/validation_00069.png) / [SVG](figures/refit_h20_tumble_dryer/fluss_threshold/validation_00069.svg) / [PDF](figures/refit_h20_tumble_dryer/fluss_threshold/validation_00069.pdf)
-- **clasp**（12组）：development #21：[PNG](figures/refit_h20_tumble_dryer/clasp/development_00021.png) / [SVG](figures/refit_h20_tumble_dryer/clasp/development_00021.svg) / [PDF](figures/refit_h20_tumble_dryer/clasp/development_00021.pdf)；validation #69：[PNG](figures/refit_h20_tumble_dryer/clasp/validation_00069.png) / [SVG](figures/refit_h20_tumble_dryer/clasp/validation_00069.svg) / [PDF](figures/refit_h20_tumble_dryer/clasp/validation_00069.pdf)
-- **clap**（8组）：development #21：[PNG](figures/refit_h20_tumble_dryer/clap/development_00021.png) / [SVG](figures/refit_h20_tumble_dryer/clap/development_00021.svg) / [PDF](figures/refit_h20_tumble_dryer/clap/development_00021.pdf)；validation #69：[PNG](figures/refit_h20_tumble_dryer/clap/validation_00069.png) / [SVG](figures/refit_h20_tumble_dryer/clap/validation_00069.svg) / [PDF](figures/refit_h20_tumble_dryer/clap/validation_00069.pdf)
-- **e2usd**（4组）：development #21：[PNG](figures/refit_h20_tumble_dryer/e2usd/development_00021.png) / [SVG](figures/refit_h20_tumble_dryer/e2usd/development_00021.svg) / [PDF](figures/refit_h20_tumble_dryer/e2usd/development_00021.pdf)；validation #69：[PNG](figures/refit_h20_tumble_dryer/e2usd/validation_00069.png) / [SVG](figures/refit_h20_tumble_dryer/e2usd/validation_00069.svg) / [PDF](figures/refit_h20_tumble_dryer/e2usd/validation_00069.pdf)
+**开发活动 #21**
+
+[![refit_h20_tumble_dryer PELT-RBF 开发活动 21 完整参数总图](figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.png)](figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.svg)
+
+**验证活动 #69**
+
+[![refit_h20_tumble_dryer PELT-RBF 验证活动 69 完整参数总图](figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.png)](figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #21**
+
+[![refit_h20_tumble_dryer FLUSS-threshold 开发活动 21 完整参数总图](figures/refit_h20_tumble_dryer/fluss_threshold/development_00021.png)](figures/refit_h20_tumble_dryer/fluss_threshold/development_00021.svg)
+
+**验证活动 #69**
+
+[![refit_h20_tumble_dryer FLUSS-threshold 验证活动 69 完整参数总图](figures/refit_h20_tumble_dryer/fluss_threshold/validation_00069.png)](figures/refit_h20_tumble_dryer/fluss_threshold/validation_00069.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #21**
+
+[![refit_h20_tumble_dryer Clasp 开发活动 21 完整参数总图](figures/refit_h20_tumble_dryer/clasp/development_00021.png)](figures/refit_h20_tumble_dryer/clasp/development_00021.svg)
+
+**验证活动 #69**
+
+[![refit_h20_tumble_dryer Clasp 验证活动 69 完整参数总图](figures/refit_h20_tumble_dryer/clasp/validation_00069.png)](figures/refit_h20_tumble_dryer/clasp/validation_00069.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #21**
+
+[![refit_h20_tumble_dryer CLaP 开发活动 21 完整参数总图](figures/refit_h20_tumble_dryer/clap/development_00021.png)](figures/refit_h20_tumble_dryer/clap/development_00021.svg)
+
+**验证活动 #69**
+
+[![refit_h20_tumble_dryer CLaP 验证活动 69 完整参数总图](figures/refit_h20_tumble_dryer/clap/validation_00069.png)](figures/refit_h20_tumble_dryer/clap/validation_00069.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #21**
+
+[![refit_h20_tumble_dryer E2USD 开发活动 21 完整参数总图](figures/refit_h20_tumble_dryer/e2usd/development_00021.png)](figures/refit_h20_tumble_dryer/e2usd/development_00021.svg)
+
+**验证活动 #69**
+
+[![refit_h20_tumble_dryer E2USD 验证活动 69 完整参数总图](figures/refit_h20_tumble_dryer/e2usd/validation_00069.png)](figures/refit_h20_tumble_dryer/e2usd/validation_00069.svg)
 
 ## ukdale_h1_washing_machine_hotpoint
 
-原采样标称间隔：6.0s；原活动数：223。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #74：[PNG](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/development_00074.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/development_00074.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/development_00074.pdf)；validation #139：[PNG](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/validation_00139.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/validation_00139.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/validation_00139.pdf)
-- **fluss-threshold**（21组）：development #74：[PNG](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/development_00074.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/development_00074.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/development_00074.pdf)；validation #139：[PNG](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/validation_00139.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/validation_00139.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/validation_00139.pdf)
-- **clasp**（12组）：development #74：[PNG](figures/ukdale_h1_washing_machine_hotpoint/clasp/development_00074.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/clasp/development_00074.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/clasp/development_00074.pdf)；validation #139：[PNG](figures/ukdale_h1_washing_machine_hotpoint/clasp/validation_00139.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/clasp/validation_00139.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/clasp/validation_00139.pdf)
-- **clap**（8组）：development #74：[PNG](figures/ukdale_h1_washing_machine_hotpoint/clap/development_00074.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/clap/development_00074.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/clap/development_00074.pdf)；validation #139：[PNG](figures/ukdale_h1_washing_machine_hotpoint/clap/validation_00139.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/clap/validation_00139.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/clap/validation_00139.pdf)
-- **e2usd**（4组）：development #74：[PNG](figures/ukdale_h1_washing_machine_hotpoint/e2usd/development_00074.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/e2usd/development_00074.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/e2usd/development_00074.pdf)；validation #139：[PNG](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.png) / [SVG](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.svg) / [PDF](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.pdf)
+**开发活动 #74**
+
+[![ukdale_h1_washing_machine_hotpoint PELT-RBF 开发活动 74 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/development_00074.png)](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/development_00074.svg)
+
+**验证活动 #139**
+
+[![ukdale_h1_washing_machine_hotpoint PELT-RBF 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/pelt_rbf/validation_00139.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #74**
+
+[![ukdale_h1_washing_machine_hotpoint FLUSS-threshold 开发活动 74 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/development_00074.png)](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/development_00074.svg)
+
+**验证活动 #139**
+
+[![ukdale_h1_washing_machine_hotpoint FLUSS-threshold 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/fluss_threshold/validation_00139.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #74**
+
+[![ukdale_h1_washing_machine_hotpoint Clasp 开发活动 74 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/clasp/development_00074.png)](figures/ukdale_h1_washing_machine_hotpoint/clasp/development_00074.svg)
+
+**验证活动 #139**
+
+[![ukdale_h1_washing_machine_hotpoint Clasp 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/clasp/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/clasp/validation_00139.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #74**
+
+[![ukdale_h1_washing_machine_hotpoint CLaP 开发活动 74 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/clap/development_00074.png)](figures/ukdale_h1_washing_machine_hotpoint/clap/development_00074.svg)
+
+**验证活动 #139**
+
+[![ukdale_h1_washing_machine_hotpoint CLaP 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/clap/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/clap/validation_00139.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #74**
+
+[![ukdale_h1_washing_machine_hotpoint E2USD 开发活动 74 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/e2usd/development_00074.png)](figures/ukdale_h1_washing_machine_hotpoint/e2usd/development_00074.svg)
+
+**验证活动 #139**
+
+[![ukdale_h1_washing_machine_hotpoint E2USD 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.svg)
 
 ## ukdale_h1_washing_machine_samsung
 
-原采样标称间隔：6.0s；原活动数：327。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #85：[PNG](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/development_00085.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/development_00085.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/development_00085.pdf)；validation #244：[PNG](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/validation_00244.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/validation_00244.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/validation_00244.pdf)
-- **fluss-threshold**（21组）：development #85：[PNG](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/development_00085.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/development_00085.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/development_00085.pdf)；validation #244：[PNG](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/validation_00244.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/validation_00244.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/validation_00244.pdf)
-- **clasp**（12组）：development #85：[PNG](figures/ukdale_h1_washing_machine_samsung/clasp/development_00085.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/clasp/development_00085.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/clasp/development_00085.pdf)；validation #244：[PNG](figures/ukdale_h1_washing_machine_samsung/clasp/validation_00244.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/clasp/validation_00244.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/clasp/validation_00244.pdf)
-- **clap**（8组）：development #85：[PNG](figures/ukdale_h1_washing_machine_samsung/clap/development_00085.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/clap/development_00085.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/clap/development_00085.pdf)；validation #244：[PNG](figures/ukdale_h1_washing_machine_samsung/clap/validation_00244.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/clap/validation_00244.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/clap/validation_00244.pdf)
-- **e2usd**（4组）：development #85：[PNG](figures/ukdale_h1_washing_machine_samsung/e2usd/development_00085.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/e2usd/development_00085.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/e2usd/development_00085.pdf)；validation #244：[PNG](figures/ukdale_h1_washing_machine_samsung/e2usd/validation_00244.png) / [SVG](figures/ukdale_h1_washing_machine_samsung/e2usd/validation_00244.svg) / [PDF](figures/ukdale_h1_washing_machine_samsung/e2usd/validation_00244.pdf)
+**开发活动 #85**
+
+[![ukdale_h1_washing_machine_samsung PELT-RBF 开发活动 85 完整参数总图](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/development_00085.png)](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/development_00085.svg)
+
+**验证活动 #244**
+
+[![ukdale_h1_washing_machine_samsung PELT-RBF 验证活动 244 完整参数总图](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/validation_00244.png)](figures/ukdale_h1_washing_machine_samsung/pelt_rbf/validation_00244.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #85**
+
+[![ukdale_h1_washing_machine_samsung FLUSS-threshold 开发活动 85 完整参数总图](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/development_00085.png)](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/development_00085.svg)
+
+**验证活动 #244**
+
+[![ukdale_h1_washing_machine_samsung FLUSS-threshold 验证活动 244 完整参数总图](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/validation_00244.png)](figures/ukdale_h1_washing_machine_samsung/fluss_threshold/validation_00244.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #85**
+
+[![ukdale_h1_washing_machine_samsung Clasp 开发活动 85 完整参数总图](figures/ukdale_h1_washing_machine_samsung/clasp/development_00085.png)](figures/ukdale_h1_washing_machine_samsung/clasp/development_00085.svg)
+
+**验证活动 #244**
+
+[![ukdale_h1_washing_machine_samsung Clasp 验证活动 244 完整参数总图](figures/ukdale_h1_washing_machine_samsung/clasp/validation_00244.png)](figures/ukdale_h1_washing_machine_samsung/clasp/validation_00244.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #85**
+
+[![ukdale_h1_washing_machine_samsung CLaP 开发活动 85 完整参数总图](figures/ukdale_h1_washing_machine_samsung/clap/development_00085.png)](figures/ukdale_h1_washing_machine_samsung/clap/development_00085.svg)
+
+**验证活动 #244**
+
+[![ukdale_h1_washing_machine_samsung CLaP 验证活动 244 完整参数总图](figures/ukdale_h1_washing_machine_samsung/clap/validation_00244.png)](figures/ukdale_h1_washing_machine_samsung/clap/validation_00244.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #85**
+
+[![ukdale_h1_washing_machine_samsung E2USD 开发活动 85 完整参数总图](figures/ukdale_h1_washing_machine_samsung/e2usd/development_00085.png)](figures/ukdale_h1_washing_machine_samsung/e2usd/development_00085.svg)
+
+**验证活动 #244**
+
+[![ukdale_h1_washing_machine_samsung E2USD 验证活动 244 完整参数总图](figures/ukdale_h1_washing_machine_samsung/e2usd/validation_00244.png)](figures/ukdale_h1_washing_machine_samsung/e2usd/validation_00244.svg)
 
 ## ukdale_b1_m6_dish_washer
 
-原采样标称间隔：6.0s；原活动数：184。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #69：[PNG](figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.png) / [SVG](figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.pdf)；validation #140：[PNG](figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.png) / [SVG](figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.pdf)
-- **fluss-threshold**（21组）：development #69：[PNG](figures/ukdale_b1_m6_dish_washer/fluss_threshold/development_00069.png) / [SVG](figures/ukdale_b1_m6_dish_washer/fluss_threshold/development_00069.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/fluss_threshold/development_00069.pdf)；validation #140：[PNG](figures/ukdale_b1_m6_dish_washer/fluss_threshold/validation_00140.png) / [SVG](figures/ukdale_b1_m6_dish_washer/fluss_threshold/validation_00140.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/fluss_threshold/validation_00140.pdf)
-- **clasp**（12组）：development #69：[PNG](figures/ukdale_b1_m6_dish_washer/clasp/development_00069.png) / [SVG](figures/ukdale_b1_m6_dish_washer/clasp/development_00069.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/clasp/development_00069.pdf)；validation #140：[PNG](figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.png) / [SVG](figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.pdf)
-- **clap**（8组）：development #69：[PNG](figures/ukdale_b1_m6_dish_washer/clap/development_00069.png) / [SVG](figures/ukdale_b1_m6_dish_washer/clap/development_00069.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/clap/development_00069.pdf)；validation #140：[PNG](figures/ukdale_b1_m6_dish_washer/clap/validation_00140.png) / [SVG](figures/ukdale_b1_m6_dish_washer/clap/validation_00140.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/clap/validation_00140.pdf)
-- **e2usd**（4组）：development #69：[PNG](figures/ukdale_b1_m6_dish_washer/e2usd/development_00069.png) / [SVG](figures/ukdale_b1_m6_dish_washer/e2usd/development_00069.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/e2usd/development_00069.pdf)；validation #140：[PNG](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.png) / [SVG](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.svg) / [PDF](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.pdf)
+**开发活动 #69**
+
+[![ukdale_b1_m6_dish_washer PELT-RBF 开发活动 69 完整参数总图](figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.png)](figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.svg)
+
+**验证活动 #140**
+
+[![ukdale_b1_m6_dish_washer PELT-RBF 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #69**
+
+[![ukdale_b1_m6_dish_washer FLUSS-threshold 开发活动 69 完整参数总图](figures/ukdale_b1_m6_dish_washer/fluss_threshold/development_00069.png)](figures/ukdale_b1_m6_dish_washer/fluss_threshold/development_00069.svg)
+
+**验证活动 #140**
+
+[![ukdale_b1_m6_dish_washer FLUSS-threshold 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/fluss_threshold/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/fluss_threshold/validation_00140.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #69**
+
+[![ukdale_b1_m6_dish_washer Clasp 开发活动 69 完整参数总图](figures/ukdale_b1_m6_dish_washer/clasp/development_00069.png)](figures/ukdale_b1_m6_dish_washer/clasp/development_00069.svg)
+
+**验证活动 #140**
+
+[![ukdale_b1_m6_dish_washer Clasp 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #69**
+
+[![ukdale_b1_m6_dish_washer CLaP 开发活动 69 完整参数总图](figures/ukdale_b1_m6_dish_washer/clap/development_00069.png)](figures/ukdale_b1_m6_dish_washer/clap/development_00069.svg)
+
+**验证活动 #140**
+
+[![ukdale_b1_m6_dish_washer CLaP 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/clap/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/clap/validation_00140.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #69**
+
+[![ukdale_b1_m6_dish_washer E2USD 开发活动 69 完整参数总图](figures/ukdale_b1_m6_dish_washer/e2usd/development_00069.png)](figures/ukdale_b1_m6_dish_washer/e2usd/development_00069.svg)
+
+**验证活动 #140**
+
+[![ukdale_b1_m6_dish_washer E2USD 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.svg)
 
 ## snm_building_01_dishwasher
 
-原采样标称间隔：5.0s；原活动数：105。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #10：[PNG](figures/snm_building_01_dishwasher/pelt_rbf/development_00010.png) / [SVG](figures/snm_building_01_dishwasher/pelt_rbf/development_00010.svg) / [PDF](figures/snm_building_01_dishwasher/pelt_rbf/development_00010.pdf)；validation #75：[PNG](figures/snm_building_01_dishwasher/pelt_rbf/validation_00075.png) / [SVG](figures/snm_building_01_dishwasher/pelt_rbf/validation_00075.svg) / [PDF](figures/snm_building_01_dishwasher/pelt_rbf/validation_00075.pdf)
-- **fluss-threshold**（21组）：development #10：[PNG](figures/snm_building_01_dishwasher/fluss_threshold/development_00010.png) / [SVG](figures/snm_building_01_dishwasher/fluss_threshold/development_00010.svg) / [PDF](figures/snm_building_01_dishwasher/fluss_threshold/development_00010.pdf)；validation #75：[PNG](figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.png) / [SVG](figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.svg) / [PDF](figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.pdf)
-- **clasp**（12组）：development #10：[PNG](figures/snm_building_01_dishwasher/clasp/development_00010.png) / [SVG](figures/snm_building_01_dishwasher/clasp/development_00010.svg) / [PDF](figures/snm_building_01_dishwasher/clasp/development_00010.pdf)；validation #75：[PNG](figures/snm_building_01_dishwasher/clasp/validation_00075.png) / [SVG](figures/snm_building_01_dishwasher/clasp/validation_00075.svg) / [PDF](figures/snm_building_01_dishwasher/clasp/validation_00075.pdf)
-- **clap**（8组）：development #10：[PNG](figures/snm_building_01_dishwasher/clap/development_00010.png) / [SVG](figures/snm_building_01_dishwasher/clap/development_00010.svg) / [PDF](figures/snm_building_01_dishwasher/clap/development_00010.pdf)；validation #75：[PNG](figures/snm_building_01_dishwasher/clap/validation_00075.png) / [SVG](figures/snm_building_01_dishwasher/clap/validation_00075.svg) / [PDF](figures/snm_building_01_dishwasher/clap/validation_00075.pdf)
-- **e2usd**（4组）：development #10：[PNG](figures/snm_building_01_dishwasher/e2usd/development_00010.png) / [SVG](figures/snm_building_01_dishwasher/e2usd/development_00010.svg) / [PDF](figures/snm_building_01_dishwasher/e2usd/development_00010.pdf)；validation #75：[PNG](figures/snm_building_01_dishwasher/e2usd/validation_00075.png) / [SVG](figures/snm_building_01_dishwasher/e2usd/validation_00075.svg) / [PDF](figures/snm_building_01_dishwasher/e2usd/validation_00075.pdf)
+**开发活动 #10**
+
+[![snm_building_01_dishwasher PELT-RBF 开发活动 10 完整参数总图](figures/snm_building_01_dishwasher/pelt_rbf/development_00010.png)](figures/snm_building_01_dishwasher/pelt_rbf/development_00010.svg)
+
+**验证活动 #75**
+
+[![snm_building_01_dishwasher PELT-RBF 验证活动 75 完整参数总图](figures/snm_building_01_dishwasher/pelt_rbf/validation_00075.png)](figures/snm_building_01_dishwasher/pelt_rbf/validation_00075.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #10**
+
+[![snm_building_01_dishwasher FLUSS-threshold 开发活动 10 完整参数总图](figures/snm_building_01_dishwasher/fluss_threshold/development_00010.png)](figures/snm_building_01_dishwasher/fluss_threshold/development_00010.svg)
+
+**验证活动 #75**
+
+[![snm_building_01_dishwasher FLUSS-threshold 验证活动 75 完整参数总图](figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.png)](figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #10**
+
+[![snm_building_01_dishwasher Clasp 开发活动 10 完整参数总图](figures/snm_building_01_dishwasher/clasp/development_00010.png)](figures/snm_building_01_dishwasher/clasp/development_00010.svg)
+
+**验证活动 #75**
+
+[![snm_building_01_dishwasher Clasp 验证活动 75 完整参数总图](figures/snm_building_01_dishwasher/clasp/validation_00075.png)](figures/snm_building_01_dishwasher/clasp/validation_00075.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #10**
+
+[![snm_building_01_dishwasher CLaP 开发活动 10 完整参数总图](figures/snm_building_01_dishwasher/clap/development_00010.png)](figures/snm_building_01_dishwasher/clap/development_00010.svg)
+
+**验证活动 #75**
+
+[![snm_building_01_dishwasher CLaP 验证活动 75 完整参数总图](figures/snm_building_01_dishwasher/clap/validation_00075.png)](figures/snm_building_01_dishwasher/clap/validation_00075.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #10**
+
+[![snm_building_01_dishwasher E2USD 开发活动 10 完整参数总图](figures/snm_building_01_dishwasher/e2usd/development_00010.png)](figures/snm_building_01_dishwasher/e2usd/development_00010.svg)
+
+**验证活动 #75**
+
+[![snm_building_01_dishwasher E2USD 验证活动 75 完整参数总图](figures/snm_building_01_dishwasher/e2usd/validation_00075.png)](figures/snm_building_01_dishwasher/e2usd/validation_00075.svg)
 
 ## snm_building_05_coffee_maker
 
-原采样标称间隔：5.033s；原活动数：599。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #150：[PNG](figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.png) / [SVG](figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.svg) / [PDF](figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.pdf)；validation #418：[PNG](figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.png) / [SVG](figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.svg) / [PDF](figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.pdf)
-- **fluss-threshold**（21组）：development #150：[PNG](figures/snm_building_05_coffee_maker/fluss_threshold/development_00150.png) / [SVG](figures/snm_building_05_coffee_maker/fluss_threshold/development_00150.svg) / [PDF](figures/snm_building_05_coffee_maker/fluss_threshold/development_00150.pdf)；validation #418：[PNG](figures/snm_building_05_coffee_maker/fluss_threshold/validation_00418.png) / [SVG](figures/snm_building_05_coffee_maker/fluss_threshold/validation_00418.svg) / [PDF](figures/snm_building_05_coffee_maker/fluss_threshold/validation_00418.pdf)
-- **clasp**（12组）：development #150：[PNG](figures/snm_building_05_coffee_maker/clasp/development_00150.png) / [SVG](figures/snm_building_05_coffee_maker/clasp/development_00150.svg) / [PDF](figures/snm_building_05_coffee_maker/clasp/development_00150.pdf)；validation #418：[PNG](figures/snm_building_05_coffee_maker/clasp/validation_00418.png) / [SVG](figures/snm_building_05_coffee_maker/clasp/validation_00418.svg) / [PDF](figures/snm_building_05_coffee_maker/clasp/validation_00418.pdf)
-- **clap**（8组）：development #150：[PNG](figures/snm_building_05_coffee_maker/clap/development_00150.png) / [SVG](figures/snm_building_05_coffee_maker/clap/development_00150.svg) / [PDF](figures/snm_building_05_coffee_maker/clap/development_00150.pdf)；validation #418：[PNG](figures/snm_building_05_coffee_maker/clap/validation_00418.png) / [SVG](figures/snm_building_05_coffee_maker/clap/validation_00418.svg) / [PDF](figures/snm_building_05_coffee_maker/clap/validation_00418.pdf)
-- **e2usd**（4组）：development #150：[PNG](figures/snm_building_05_coffee_maker/e2usd/development_00150.png) / [SVG](figures/snm_building_05_coffee_maker/e2usd/development_00150.svg) / [PDF](figures/snm_building_05_coffee_maker/e2usd/development_00150.pdf)；validation #418：[PNG](figures/snm_building_05_coffee_maker/e2usd/validation_00418.png) / [SVG](figures/snm_building_05_coffee_maker/e2usd/validation_00418.svg) / [PDF](figures/snm_building_05_coffee_maker/e2usd/validation_00418.pdf)
+**开发活动 #150**
+
+[![snm_building_05_coffee_maker PELT-RBF 开发活动 150 完整参数总图](figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.png)](figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.svg)
+
+**验证活动 #418**
+
+[![snm_building_05_coffee_maker PELT-RBF 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.png)](figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #150**
+
+[![snm_building_05_coffee_maker FLUSS-threshold 开发活动 150 完整参数总图](figures/snm_building_05_coffee_maker/fluss_threshold/development_00150.png)](figures/snm_building_05_coffee_maker/fluss_threshold/development_00150.svg)
+
+**验证活动 #418**
+
+[![snm_building_05_coffee_maker FLUSS-threshold 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/fluss_threshold/validation_00418.png)](figures/snm_building_05_coffee_maker/fluss_threshold/validation_00418.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #150**
+
+[![snm_building_05_coffee_maker Clasp 开发活动 150 完整参数总图](figures/snm_building_05_coffee_maker/clasp/development_00150.png)](figures/snm_building_05_coffee_maker/clasp/development_00150.svg)
+
+**验证活动 #418**
+
+[![snm_building_05_coffee_maker Clasp 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/clasp/validation_00418.png)](figures/snm_building_05_coffee_maker/clasp/validation_00418.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #150**
+
+[![snm_building_05_coffee_maker CLaP 开发活动 150 完整参数总图](figures/snm_building_05_coffee_maker/clap/development_00150.png)](figures/snm_building_05_coffee_maker/clap/development_00150.svg)
+
+**验证活动 #418**
+
+[![snm_building_05_coffee_maker CLaP 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/clap/validation_00418.png)](figures/snm_building_05_coffee_maker/clap/validation_00418.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #150**
+
+[![snm_building_05_coffee_maker E2USD 开发活动 150 完整参数总图](figures/snm_building_05_coffee_maker/e2usd/development_00150.png)](figures/snm_building_05_coffee_maker/e2usd/development_00150.svg)
+
+**验证活动 #418**
+
+[![snm_building_05_coffee_maker E2USD 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/e2usd/validation_00418.png)](figures/snm_building_05_coffee_maker/e2usd/validation_00418.svg)
 
 ## snm_building_03_boiler
 
-原采样标称间隔：4.958s；原活动数：104。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #51：[PNG](figures/snm_building_03_boiler/pelt_rbf/development_00051.png) / [SVG](figures/snm_building_03_boiler/pelt_rbf/development_00051.svg) / [PDF](figures/snm_building_03_boiler/pelt_rbf/development_00051.pdf)；validation #78：[PNG](figures/snm_building_03_boiler/pelt_rbf/validation_00078.png) / [SVG](figures/snm_building_03_boiler/pelt_rbf/validation_00078.svg) / [PDF](figures/snm_building_03_boiler/pelt_rbf/validation_00078.pdf)
-- **fluss-threshold**（21组）：development #51：[PNG](figures/snm_building_03_boiler/fluss_threshold/development_00051.png) / [SVG](figures/snm_building_03_boiler/fluss_threshold/development_00051.svg) / [PDF](figures/snm_building_03_boiler/fluss_threshold/development_00051.pdf)；validation #78：[PNG](figures/snm_building_03_boiler/fluss_threshold/validation_00078.png) / [SVG](figures/snm_building_03_boiler/fluss_threshold/validation_00078.svg) / [PDF](figures/snm_building_03_boiler/fluss_threshold/validation_00078.pdf)
-- **clasp**（12组）：development #51：[PNG](figures/snm_building_03_boiler/clasp/development_00051.png) / [SVG](figures/snm_building_03_boiler/clasp/development_00051.svg) / [PDF](figures/snm_building_03_boiler/clasp/development_00051.pdf)；validation #78：[PNG](figures/snm_building_03_boiler/clasp/validation_00078.png) / [SVG](figures/snm_building_03_boiler/clasp/validation_00078.svg) / [PDF](figures/snm_building_03_boiler/clasp/validation_00078.pdf)
-- **clap**（8组）：development #51：[PNG](figures/snm_building_03_boiler/clap/development_00051.png) / [SVG](figures/snm_building_03_boiler/clap/development_00051.svg) / [PDF](figures/snm_building_03_boiler/clap/development_00051.pdf)；validation #78：[PNG](figures/snm_building_03_boiler/clap/validation_00078.png) / [SVG](figures/snm_building_03_boiler/clap/validation_00078.svg) / [PDF](figures/snm_building_03_boiler/clap/validation_00078.pdf)
-- **e2usd**（4组）：development #51：[PNG](figures/snm_building_03_boiler/e2usd/development_00051.png) / [SVG](figures/snm_building_03_boiler/e2usd/development_00051.svg) / [PDF](figures/snm_building_03_boiler/e2usd/development_00051.pdf)；validation #78：[PNG](figures/snm_building_03_boiler/e2usd/validation_00078.png) / [SVG](figures/snm_building_03_boiler/e2usd/validation_00078.svg) / [PDF](figures/snm_building_03_boiler/e2usd/validation_00078.pdf)
+**开发活动 #51**
+
+[![snm_building_03_boiler PELT-RBF 开发活动 51 完整参数总图](figures/snm_building_03_boiler/pelt_rbf/development_00051.png)](figures/snm_building_03_boiler/pelt_rbf/development_00051.svg)
+
+**验证活动 #78**
+
+[![snm_building_03_boiler PELT-RBF 验证活动 78 完整参数总图](figures/snm_building_03_boiler/pelt_rbf/validation_00078.png)](figures/snm_building_03_boiler/pelt_rbf/validation_00078.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #51**
+
+[![snm_building_03_boiler FLUSS-threshold 开发活动 51 完整参数总图](figures/snm_building_03_boiler/fluss_threshold/development_00051.png)](figures/snm_building_03_boiler/fluss_threshold/development_00051.svg)
+
+**验证活动 #78**
+
+[![snm_building_03_boiler FLUSS-threshold 验证活动 78 完整参数总图](figures/snm_building_03_boiler/fluss_threshold/validation_00078.png)](figures/snm_building_03_boiler/fluss_threshold/validation_00078.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #51**
+
+[![snm_building_03_boiler Clasp 开发活动 51 完整参数总图](figures/snm_building_03_boiler/clasp/development_00051.png)](figures/snm_building_03_boiler/clasp/development_00051.svg)
+
+**验证活动 #78**
+
+[![snm_building_03_boiler Clasp 验证活动 78 完整参数总图](figures/snm_building_03_boiler/clasp/validation_00078.png)](figures/snm_building_03_boiler/clasp/validation_00078.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #51**
+
+[![snm_building_03_boiler CLaP 开发活动 51 完整参数总图](figures/snm_building_03_boiler/clap/development_00051.png)](figures/snm_building_03_boiler/clap/development_00051.svg)
+
+**验证活动 #78**
+
+[![snm_building_03_boiler CLaP 验证活动 78 完整参数总图](figures/snm_building_03_boiler/clap/validation_00078.png)](figures/snm_building_03_boiler/clap/validation_00078.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #51**
+
+[![snm_building_03_boiler E2USD 开发活动 51 完整参数总图](figures/snm_building_03_boiler/e2usd/development_00051.png)](figures/snm_building_03_boiler/e2usd/development_00051.svg)
+
+**验证活动 #78**
+
+[![snm_building_03_boiler E2USD 验证活动 78 完整参数总图](figures/snm_building_03_boiler/e2usd/validation_00078.png)](figures/snm_building_03_boiler/e2usd/validation_00078.svg)
 
 ## darck_kettle
 
-原采样标称间隔：1.0s；原活动数：252。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #132：[PNG](figures/darck_kettle/pelt_rbf/development_00132.png) / [SVG](figures/darck_kettle/pelt_rbf/development_00132.svg) / [PDF](figures/darck_kettle/pelt_rbf/development_00132.pdf)；validation #157：[PNG](figures/darck_kettle/pelt_rbf/validation_00157.png) / [SVG](figures/darck_kettle/pelt_rbf/validation_00157.svg) / [PDF](figures/darck_kettle/pelt_rbf/validation_00157.pdf)
-- **fluss-threshold**（21组）：development #132：[PNG](figures/darck_kettle/fluss_threshold/development_00132.png) / [SVG](figures/darck_kettle/fluss_threshold/development_00132.svg) / [PDF](figures/darck_kettle/fluss_threshold/development_00132.pdf)；validation #157：[PNG](figures/darck_kettle/fluss_threshold/validation_00157.png) / [SVG](figures/darck_kettle/fluss_threshold/validation_00157.svg) / [PDF](figures/darck_kettle/fluss_threshold/validation_00157.pdf)
-- **clasp**（12组）：development #132：[PNG](figures/darck_kettle/clasp/development_00132.png) / [SVG](figures/darck_kettle/clasp/development_00132.svg) / [PDF](figures/darck_kettle/clasp/development_00132.pdf)；validation #157：[PNG](figures/darck_kettle/clasp/validation_00157.png) / [SVG](figures/darck_kettle/clasp/validation_00157.svg) / [PDF](figures/darck_kettle/clasp/validation_00157.pdf)
-- **clap**（8组）：development #132：[PNG](figures/darck_kettle/clap/development_00132.png) / [SVG](figures/darck_kettle/clap/development_00132.svg) / [PDF](figures/darck_kettle/clap/development_00132.pdf)；validation #157：[PNG](figures/darck_kettle/clap/validation_00157.png) / [SVG](figures/darck_kettle/clap/validation_00157.svg) / [PDF](figures/darck_kettle/clap/validation_00157.pdf)
-- **e2usd**（4组）：development #132：[PNG](figures/darck_kettle/e2usd/development_00132.png) / [SVG](figures/darck_kettle/e2usd/development_00132.svg) / [PDF](figures/darck_kettle/e2usd/development_00132.pdf)；validation #157：[PNG](figures/darck_kettle/e2usd/validation_00157.png) / [SVG](figures/darck_kettle/e2usd/validation_00157.svg) / [PDF](figures/darck_kettle/e2usd/validation_00157.pdf)
+**开发活动 #132**
+
+[![darck_kettle PELT-RBF 开发活动 132 完整参数总图](figures/darck_kettle/pelt_rbf/development_00132.png)](figures/darck_kettle/pelt_rbf/development_00132.svg)
+
+**验证活动 #157**
+
+[![darck_kettle PELT-RBF 验证活动 157 完整参数总图](figures/darck_kettle/pelt_rbf/validation_00157.png)](figures/darck_kettle/pelt_rbf/validation_00157.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #132**
+
+[![darck_kettle FLUSS-threshold 开发活动 132 完整参数总图](figures/darck_kettle/fluss_threshold/development_00132.png)](figures/darck_kettle/fluss_threshold/development_00132.svg)
+
+**验证活动 #157**
+
+[![darck_kettle FLUSS-threshold 验证活动 157 完整参数总图](figures/darck_kettle/fluss_threshold/validation_00157.png)](figures/darck_kettle/fluss_threshold/validation_00157.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #132**
+
+[![darck_kettle Clasp 开发活动 132 完整参数总图](figures/darck_kettle/clasp/development_00132.png)](figures/darck_kettle/clasp/development_00132.svg)
+
+**验证活动 #157**
+
+[![darck_kettle Clasp 验证活动 157 完整参数总图](figures/darck_kettle/clasp/validation_00157.png)](figures/darck_kettle/clasp/validation_00157.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #132**
+
+[![darck_kettle CLaP 开发活动 132 完整参数总图](figures/darck_kettle/clap/development_00132.png)](figures/darck_kettle/clap/development_00132.svg)
+
+**验证活动 #157**
+
+[![darck_kettle CLaP 验证活动 157 完整参数总图](figures/darck_kettle/clap/validation_00157.png)](figures/darck_kettle/clap/validation_00157.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #132**
+
+[![darck_kettle E2USD 开发活动 132 完整参数总图](figures/darck_kettle/e2usd/development_00132.png)](figures/darck_kettle/e2usd/development_00132.svg)
+
+**验证活动 #157**
+
+[![darck_kettle E2USD 验证活动 157 完整参数总图](figures/darck_kettle/e2usd/validation_00157.png)](figures/darck_kettle/e2usd/validation_00157.svg)
 
 ## darck_sherlockhairdryer
 
-原采样标称间隔：1.0s；原活动数：133。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #68：[PNG](figures/darck_sherlockhairdryer/pelt_rbf/development_00068.png) / [SVG](figures/darck_sherlockhairdryer/pelt_rbf/development_00068.svg) / [PDF](figures/darck_sherlockhairdryer/pelt_rbf/development_00068.pdf)；validation #91：[PNG](figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.png) / [SVG](figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.svg) / [PDF](figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.pdf)
-- **fluss-threshold**（21组）：development #68：[PNG](figures/darck_sherlockhairdryer/fluss_threshold/development_00068.png) / [SVG](figures/darck_sherlockhairdryer/fluss_threshold/development_00068.svg) / [PDF](figures/darck_sherlockhairdryer/fluss_threshold/development_00068.pdf)；validation #91：[PNG](figures/darck_sherlockhairdryer/fluss_threshold/validation_00091.png) / [SVG](figures/darck_sherlockhairdryer/fluss_threshold/validation_00091.svg) / [PDF](figures/darck_sherlockhairdryer/fluss_threshold/validation_00091.pdf)
-- **clasp**（12组）：development #68：[PNG](figures/darck_sherlockhairdryer/clasp/development_00068.png) / [SVG](figures/darck_sherlockhairdryer/clasp/development_00068.svg) / [PDF](figures/darck_sherlockhairdryer/clasp/development_00068.pdf)；validation #91：[PNG](figures/darck_sherlockhairdryer/clasp/validation_00091.png) / [SVG](figures/darck_sherlockhairdryer/clasp/validation_00091.svg) / [PDF](figures/darck_sherlockhairdryer/clasp/validation_00091.pdf)
-- **clap**（8组）：development #68：[PNG](figures/darck_sherlockhairdryer/clap/development_00068.png) / [SVG](figures/darck_sherlockhairdryer/clap/development_00068.svg) / [PDF](figures/darck_sherlockhairdryer/clap/development_00068.pdf)；validation #91：[PNG](figures/darck_sherlockhairdryer/clap/validation_00091.png) / [SVG](figures/darck_sherlockhairdryer/clap/validation_00091.svg) / [PDF](figures/darck_sherlockhairdryer/clap/validation_00091.pdf)
-- **e2usd**（4组）：development #68：[PNG](figures/darck_sherlockhairdryer/e2usd/development_00068.png) / [SVG](figures/darck_sherlockhairdryer/e2usd/development_00068.svg) / [PDF](figures/darck_sherlockhairdryer/e2usd/development_00068.pdf)；validation #91：[PNG](figures/darck_sherlockhairdryer/e2usd/validation_00091.png) / [SVG](figures/darck_sherlockhairdryer/e2usd/validation_00091.svg) / [PDF](figures/darck_sherlockhairdryer/e2usd/validation_00091.pdf)
+**开发活动 #68**
+
+[![darck_sherlockhairdryer PELT-RBF 开发活动 68 完整参数总图](figures/darck_sherlockhairdryer/pelt_rbf/development_00068.png)](figures/darck_sherlockhairdryer/pelt_rbf/development_00068.svg)
+
+**验证活动 #91**
+
+[![darck_sherlockhairdryer PELT-RBF 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.png)](figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.svg)
+
+### FLUSS-threshold（21组参数）
+
+**开发活动 #68**
+
+[![darck_sherlockhairdryer FLUSS-threshold 开发活动 68 完整参数总图](figures/darck_sherlockhairdryer/fluss_threshold/development_00068.png)](figures/darck_sherlockhairdryer/fluss_threshold/development_00068.svg)
+
+**验证活动 #91**
+
+[![darck_sherlockhairdryer FLUSS-threshold 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/fluss_threshold/validation_00091.png)](figures/darck_sherlockhairdryer/fluss_threshold/validation_00091.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #68**
+
+[![darck_sherlockhairdryer Clasp 开发活动 68 完整参数总图](figures/darck_sherlockhairdryer/clasp/development_00068.png)](figures/darck_sherlockhairdryer/clasp/development_00068.svg)
+
+**验证活动 #91**
+
+[![darck_sherlockhairdryer Clasp 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/clasp/validation_00091.png)](figures/darck_sherlockhairdryer/clasp/validation_00091.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #68**
+
+[![darck_sherlockhairdryer CLaP 开发活动 68 完整参数总图](figures/darck_sherlockhairdryer/clap/development_00068.png)](figures/darck_sherlockhairdryer/clap/development_00068.svg)
+
+**验证活动 #91**
+
+[![darck_sherlockhairdryer CLaP 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/clap/validation_00091.png)](figures/darck_sherlockhairdryer/clap/validation_00091.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #68**
+
+[![darck_sherlockhairdryer E2USD 开发活动 68 完整参数总图](figures/darck_sherlockhairdryer/e2usd/development_00068.png)](figures/darck_sherlockhairdryer/e2usd/development_00068.svg)
+
+**验证活动 #91**
+
+[![darck_sherlockhairdryer E2USD 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/e2usd/validation_00091.png)](figures/darck_sherlockhairdryer/e2usd/validation_00091.svg)
 
 ## darck_fridge
 
-原采样标称间隔：1.0s；原活动数：595。
+### PELT-RBF（8组参数）
 
-- **pelt-rbf**（8组）：development #11：[PNG](figures/darck_fridge/pelt_rbf/development_00011.png) / [SVG](figures/darck_fridge/pelt_rbf/development_00011.svg) / [PDF](figures/darck_fridge/pelt_rbf/development_00011.pdf)；validation #378：[PNG](figures/darck_fridge/pelt_rbf/validation_00378.png) / [SVG](figures/darck_fridge/pelt_rbf/validation_00378.svg) / [PDF](figures/darck_fridge/pelt_rbf/validation_00378.pdf)
-- **fluss-threshold**（21组）：development #11：[PNG](figures/darck_fridge/fluss_threshold/development_00011.png) / [SVG](figures/darck_fridge/fluss_threshold/development_00011.svg) / [PDF](figures/darck_fridge/fluss_threshold/development_00011.pdf)；validation #378：[PNG](figures/darck_fridge/fluss_threshold/validation_00378.png) / [SVG](figures/darck_fridge/fluss_threshold/validation_00378.svg) / [PDF](figures/darck_fridge/fluss_threshold/validation_00378.pdf)
-- **clasp**（12组）：development #11：[PNG](figures/darck_fridge/clasp/development_00011.png) / [SVG](figures/darck_fridge/clasp/development_00011.svg) / [PDF](figures/darck_fridge/clasp/development_00011.pdf)；validation #378：[PNG](figures/darck_fridge/clasp/validation_00378.png) / [SVG](figures/darck_fridge/clasp/validation_00378.svg) / [PDF](figures/darck_fridge/clasp/validation_00378.pdf)
-- **clap**（8组）：development #11：[PNG](figures/darck_fridge/clap/development_00011.png) / [SVG](figures/darck_fridge/clap/development_00011.svg) / [PDF](figures/darck_fridge/clap/development_00011.pdf)；validation #378：[PNG](figures/darck_fridge/clap/validation_00378.png) / [SVG](figures/darck_fridge/clap/validation_00378.svg) / [PDF](figures/darck_fridge/clap/validation_00378.pdf)
-- **e2usd**（4组）：development #11：[PNG](figures/darck_fridge/e2usd/development_00011.png) / [SVG](figures/darck_fridge/e2usd/development_00011.svg) / [PDF](figures/darck_fridge/e2usd/development_00011.pdf)；validation #378：[PNG](figures/darck_fridge/e2usd/validation_00378.png) / [SVG](figures/darck_fridge/e2usd/validation_00378.svg) / [PDF](figures/darck_fridge/e2usd/validation_00378.pdf)
+**开发活动 #11**
 
-完整候选记录见 [all_parameter_choices.csv](all_parameter_choices.csv)，逐格切点、来源与文件哈希见 [figure_manifest.json](figure_manifest.json)。
+[![darck_fridge PELT-RBF 开发活动 11 完整参数总图](figures/darck_fridge/pelt_rbf/development_00011.png)](figures/darck_fridge/pelt_rbf/development_00011.svg)
 
+**验证活动 #378**
 
-## 交付核验
+[![darck_fridge PELT-RBF 验证活动 378 完整参数总图](figures/darck_fridge/pelt_rbf/validation_00378.png)](figures/darck_fridge/pelt_rbf/validation_00378.svg)
 
-独立核验通过：160张总图、1952个参数×种子子图、32条既有活动、每条活动五种方法使用相同输入；所有切点均已与源记录及SVG线条核对。PNG/SVG/PDF三格式齐全，E2USD最终图均为作者CPU路径。
+### FLUSS-threshold（21组参数）
 
-[打开可筛选并放大的图库](index.html)；[独立QA记录](independent_qa.json)；[不适用组合及原因](unsupported_combinations.json)。参数仍待用户审核。
+**开发活动 #11**
+
+[![darck_fridge FLUSS-threshold 开发活动 11 完整参数总图](figures/darck_fridge/fluss_threshold/development_00011.png)](figures/darck_fridge/fluss_threshold/development_00011.svg)
+
+**验证活动 #378**
+
+[![darck_fridge FLUSS-threshold 验证活动 378 完整参数总图](figures/darck_fridge/fluss_threshold/validation_00378.png)](figures/darck_fridge/fluss_threshold/validation_00378.svg)
+
+### Clasp（12组参数）
+
+**开发活动 #11**
+
+[![darck_fridge Clasp 开发活动 11 完整参数总图](figures/darck_fridge/clasp/development_00011.png)](figures/darck_fridge/clasp/development_00011.svg)
+
+**验证活动 #378**
+
+[![darck_fridge Clasp 验证活动 378 完整参数总图](figures/darck_fridge/clasp/validation_00378.png)](figures/darck_fridge/clasp/validation_00378.svg)
+
+### CLaP（8组参数）
+
+**开发活动 #11**
+
+[![darck_fridge CLaP 开发活动 11 完整参数总图](figures/darck_fridge/clap/development_00011.png)](figures/darck_fridge/clap/development_00011.svg)
+
+**验证活动 #378**
+
+[![darck_fridge CLaP 验证活动 378 完整参数总图](figures/darck_fridge/clap/validation_00378.png)](figures/darck_fridge/clap/validation_00378.svg)
+
+### E2USD（4组参数）
+
+**开发活动 #11**
+
+[![darck_fridge E2USD 开发活动 11 完整参数总图](figures/darck_fridge/e2usd/development_00011.png)](figures/darck_fridge/e2usd/development_00011.svg)
+
+**验证活动 #378**
+
+[![darck_fridge E2USD 验证活动 378 完整参数总图](figures/darck_fridge/e2usd/validation_00378.png)](figures/darck_fridge/e2usd/validation_00378.svg)

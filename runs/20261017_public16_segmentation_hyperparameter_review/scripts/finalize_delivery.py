@@ -13,7 +13,7 @@ while review.load(coordinator/'run.json')['status'] in ('registered', 'running')
     time.sleep(3)
 assert review.load(coordinator/'run.json')['exit_code'] == 0, coordinator
 executions = []
-for condition, script in [('independent_complete_grid_qa', 'delivery_qa.py'), ('build_local_gallery_viewer', 'build_viewer.py')]:
+for condition, script in [('independent_complete_grid_qa', 'delivery_qa.py'), ('render_markdown_review', 'build_markdown_report.py')]:
     execution = register(review.EXP.name, condition, dict(plan_sha256=review.sha(review.PLAN), backend='cpu'))
     code = subprocess.call([sys.executable, str(review.ROOT/'scripts/run_execution.py'), str(execution), '--',
                             sys.executable, str(Path(__file__).with_name(script))], cwd=review.ROOT)
@@ -23,14 +23,13 @@ qa = review.load(review.REPORT/'independent_qa.json')
 footer = ('\n\n## 交付核验\n\n'
           '独立核验通过：160张总图、1952个参数×种子子图、32条既有活动、每条活动五种方法使用相同输入；'
           '所有切点均已与源记录及SVG线条核对。PNG/SVG/PDF三格式齐全，E2USD最终图均为作者CPU路径。\n\n'
-          '[打开可筛选并放大的图库](index.html)；[独立QA记录](independent_qa.json)；'
-          '[不适用组合及原因](unsupported_combinations.json)。参数仍待用户审核。\n')
-for name in ('index.md', 'report.md'):
+          '参数仍待用户审核。\n')
+for name in ('report.md',):
     with (review.REPORT/name).open('a', encoding='utf-8') as f:
         f.write(footer)
 with (review.EXP/'README.md').open('a', encoding='utf-8') as f:
     f.write('\n完成：160张总图（PNG/SVG/PDF）、1952格，32条既有活动跨模型输入一致与原始切点核验通过。'
-            '浏览入口 [index.html](reports/full_grid_review/index.html)，全部切分参数待人工审核。\n')
+            '审核入口 [report.md](reports/full_grid_review/report.md)，全部切分参数待人工审核。\n')
 with (review.ROOT/'runs/EXPERIMENT_LOG.md').open('a', encoding='utf-8') as f:
     f.write(f'\n- {datetime.datetime.now(datetime.timezone.utc).isoformat()} `{review.EXP.name}`：'
             'CPU完整参数图库完成，16对象×5模型×开发/验证各1图=160张，1952格；'
