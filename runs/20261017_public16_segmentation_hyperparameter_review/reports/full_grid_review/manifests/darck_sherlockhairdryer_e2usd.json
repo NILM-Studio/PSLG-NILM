@@ -1,0 +1,1526 @@
+{
+  "object": "darck_sherlockhairdryer",
+  "method": "e2usd",
+  "config_count": 4,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "e2usd",
+      "split": "development",
+      "activity_id": 68,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/00068.npz",
+      "input_sha256": "b1ff4864cf632035415e9d60dde32a27add46e2b9a8b3a890865f9aa864a57b3",
+      "n_points": 151,
+      "core_a": 60,
+      "core_b": 91,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          61,
+          91
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            48,
+            76,
+            104
+          ],
+          "cut_timestamps": [
+            1745711379.0,
+            1745711407.0,
+            1745711435.0
+          ],
+          "cut_elapsed_seconds": [
+            48.0,
+            76.0,
+            104.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 120,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            48,
+            76,
+            104
+          ],
+          "cut_timestamps": [
+            1745711379.0,
+            1745711407.0,
+            1745711435.0
+          ],
+          "cut_elapsed_seconds": [
+            48.0,
+            76.0,
+            104.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 120,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            48,
+            76,
+            104
+          ],
+          "cut_timestamps": [
+            1745711379.0,
+            1745711407.0,
+            1745711435.0
+          ],
+          "cut_elapsed_seconds": [
+            48.0,
+            76.0,
+            104.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 120,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            77,
+            104
+          ],
+          "cut_timestamps": [
+            1745711378.0,
+            1745711408.0,
+            1745711435.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            77.0,
+            104.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 120,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            48,
+            76,
+            104
+          ],
+          "cut_timestamps": [
+            1745711379.0,
+            1745711407.0,
+            1745711435.0
+          ],
+          "cut_elapsed_seconds": [
+            48.0,
+            76.0,
+            104.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 120,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            48,
+            75,
+            104
+          ],
+          "cut_timestamps": [
+            1745711379.0,
+            1745711406.0,
+            1745711435.0
+          ],
+          "cut_elapsed_seconds": [
+            48.0,
+            75.0,
+            104.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 120,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            4,
+            55,
+            96
+          ],
+          "cut_timestamps": [
+            1745711335.0,
+            1745711386.0,
+            1745711427.0
+          ],
+          "cut_elapsed_seconds": [
+            4.0,
+            55.0,
+            96.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 88,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            3,
+            55,
+            98,
+            150
+          ],
+          "cut_timestamps": [
+            1745711334.0,
+            1745711386.0,
+            1745711429.0,
+            1745711481.0
+          ],
+          "cut_elapsed_seconds": [
+            3.0,
+            55.0,
+            98.0,
+            150.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 88,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            3,
+            55,
+            98,
+            150
+          ],
+          "cut_timestamps": [
+            1745711334.0,
+            1745711386.0,
+            1745711429.0,
+            1745711481.0
+          ],
+          "cut_elapsed_seconds": [
+            3.0,
+            55.0,
+            98.0,
+            150.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 88,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            3,
+            55,
+            97,
+            150
+          ],
+          "cut_timestamps": [
+            1745711334.0,
+            1745711386.0,
+            1745711428.0,
+            1745711481.0
+          ],
+          "cut_elapsed_seconds": [
+            3.0,
+            55.0,
+            97.0,
+            150.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 88,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            3,
+            55,
+            98,
+            150
+          ],
+          "cut_timestamps": [
+            1745711334.0,
+            1745711386.0,
+            1745711429.0,
+            1745711481.0
+          ],
+          "cut_elapsed_seconds": [
+            3.0,
+            55.0,
+            98.0,
+            150.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 88,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            3,
+            55,
+            98,
+            150
+          ],
+          "cut_timestamps": [
+            1745711334.0,
+            1745711386.0,
+            1745711429.0,
+            1745711481.0
+          ],
+          "cut_elapsed_seconds": [
+            3.0,
+            55.0,
+            98.0,
+            150.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 88,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/darck_sherlockhairdryer/e2usd/development_00068.png",
+      "png_sha256": "b5594c591628916cb3383f5d275c94c12f71949866823f066e3fbd496a6acde7",
+      "svg": "figures/darck_sherlockhairdryer/e2usd/development_00068.svg",
+      "svg_sha256": "b4f6230ca35afaa8a697076b9d1c2d444610a06057b56ea076d706be8b8007a3",
+      "pdf": "figures/darck_sherlockhairdryer/e2usd/development_00068.pdf",
+      "pdf_sha256": "141acaa9d49fbe16e492aed58497a102ada7926cb10beaa8274dd24fe31045ee"
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "e2usd",
+      "split": "validation",
+      "activity_id": 91,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/00091.npz",
+      "input_sha256": "c38c7cc6b146d7439391c9821e9eb643585f076a8fdf15ad3b1825202ebf403c",
+      "n_points": 209,
+      "core_a": 60,
+      "core_b": 149,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          149
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            106,
+            135,
+            163
+          ],
+          "cut_timestamps": [
+            1748388281.0,
+            1748388309.0,
+            1748388341.0,
+            1748388370.0,
+            1748388398.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            106.0,
+            135.0,
+            163.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 178,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            105,
+            135,
+            162
+          ],
+          "cut_timestamps": [
+            1748388281.0,
+            1748388309.0,
+            1748388340.0,
+            1748388370.0,
+            1748388397.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            105.0,
+            135.0,
+            162.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 178,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            106,
+            135,
+            162
+          ],
+          "cut_timestamps": [
+            1748388281.0,
+            1748388309.0,
+            1748388341.0,
+            1748388370.0,
+            1748388397.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            106.0,
+            135.0,
+            162.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 178,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            106,
+            135,
+            162
+          ],
+          "cut_timestamps": [
+            1748388281.0,
+            1748388309.0,
+            1748388341.0,
+            1748388370.0,
+            1748388397.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            106.0,
+            135.0,
+            162.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 178,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            105,
+            135,
+            163
+          ],
+          "cut_timestamps": [
+            1748388281.0,
+            1748388309.0,
+            1748388340.0,
+            1748388370.0,
+            1748388398.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            105.0,
+            135.0,
+            163.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 178,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            106,
+            134,
+            163
+          ],
+          "cut_timestamps": [
+            1748388281.0,
+            1748388309.0,
+            1748388341.0,
+            1748388369.0,
+            1748388398.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            106.0,
+            134.0,
+            163.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 178,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            94,
+            116,
+            156
+          ],
+          "cut_timestamps": [
+            1748388237.0,
+            1748388329.0,
+            1748388351.0,
+            1748388391.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            94.0,
+            116.0,
+            156.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 146,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            95,
+            116,
+            158,
+            208
+          ],
+          "cut_timestamps": [
+            1748388330.0,
+            1748388351.0,
+            1748388393.0,
+            1748388443.0
+          ],
+          "cut_elapsed_seconds": [
+            95.0,
+            116.0,
+            158.0,
+            208.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 146,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            95,
+            115
+          ],
+          "cut_timestamps": [
+            1748388330.0,
+            1748388350.0
+          ],
+          "cut_elapsed_seconds": [
+            95.0,
+            115.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 146,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            94,
+            116,
+            157,
+            208
+          ],
+          "cut_timestamps": [
+            1748388237.0,
+            1748388329.0,
+            1748388351.0,
+            1748388392.0,
+            1748388443.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            94.0,
+            116.0,
+            157.0,
+            208.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 146,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            95,
+            116,
+            158,
+            208
+          ],
+          "cut_timestamps": [
+            1748388330.0,
+            1748388351.0,
+            1748388393.0,
+            1748388443.0
+          ],
+          "cut_elapsed_seconds": [
+            95.0,
+            116.0,
+            158.0,
+            208.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 146,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            95,
+            115
+          ],
+          "cut_timestamps": [
+            1748388330.0,
+            1748388350.0
+          ],
+          "cut_elapsed_seconds": [
+            95.0,
+            115.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 146,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/darck_sherlockhairdryer/e2usd/validation_00091.png",
+      "png_sha256": "d64a2cb30ed3b4d1f6226bbe59cb75c9153f489ecc6b275a6f9f36870b1251e7",
+      "svg": "figures/darck_sherlockhairdryer/e2usd/validation_00091.svg",
+      "svg_sha256": "8b4c2892c0bbc67764ad43ba2d2d3add38793c54e1204855b34c89fc8743af3e",
+      "pdf": "figures/darck_sherlockhairdryer/e2usd/validation_00091.pdf",
+      "pdf_sha256": "f1e418ef1cfc857a33fe0aa110942f26800419e9f1ba6c864d1e5eac1a1abbce"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+  "records_sha256": "70562f105e579b34f18090c0ca6bd759b76cfc664b2f6e95f0b8d682ec05cb33",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

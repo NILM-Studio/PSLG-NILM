@@ -1,0 +1,677 @@
+{
+  "object": "darck_fridge",
+  "method": "clap",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_fridge",
+      "method": "clap",
+      "split": "development",
+      "activity_id": 11,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/activities/00011.npz",
+      "input_sha256": "3915d7eb34e0369b221ff20cc15cc7cf35a06be588eb3529d6ed1b0b24e62c3a",
+      "n_points": 136,
+      "core_a": 60,
+      "core_b": 76,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 13
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 0,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 1,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 2,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 3,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "d2e14b0b7eaa",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 4,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "b6eb94423367",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 5,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "3e9ec494552d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "523159f58fc1",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 7,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/darck_fridge/clap/development_00011.png",
+      "png_sha256": "c5d98073db2ef4d31e3d8d54e5c5c91950aa210b5d211decee7afef47db39ba2",
+      "svg": "figures/darck_fridge/clap/development_00011.svg",
+      "svg_sha256": "c640851204b3ad0f5b9f5646d4c6c1a0173628f1814602c49a1bf5d2c94f31ac",
+      "pdf": "figures/darck_fridge/clap/development_00011.pdf",
+      "pdf_sha256": "952d3f99e3d1579f7e72a98c2785620e9901f3e254a9eb49cd1cb86bc77cf099"
+    },
+    {
+      "object": "darck_fridge",
+      "method": "clap",
+      "split": "validation",
+      "activity_id": 378,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/activities/00378.npz",
+      "input_sha256": "81642ded50ae2e1201179f30c0a83be18b1cd995cc0fa0e899a24a7a8dfeaae9",
+      "n_points": 7971,
+      "core_a": 60,
+      "core_b": 7911,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          121,
+          735,
+          2055,
+          2115,
+          2415,
+          2595,
+          2655,
+          2774,
+          2894,
+          3308,
+          3568,
+          4575,
+          4645,
+          5955,
+          6028,
+          7850
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 120
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "d2e14b0b7eaa",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b6eb94423367",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "3e9ec494552d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "523159f58fc1",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 60,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 82,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        }
+      ],
+      "png": "figures/darck_fridge/clap/validation_00378.png",
+      "png_sha256": "fc99e20cc0f42bde9df4b99a9b243fc363b609d56871e9d69935d8f0875f2d0e",
+      "svg": "figures/darck_fridge/clap/validation_00378.svg",
+      "svg_sha256": "8fe8577172d8b2393d49363ad140ccf5544cb92b27c8b70319ac82ef7a4c1c3f",
+      "pdf": "figures/darck_fridge/clap/validation_00378.pdf",
+      "pdf_sha256": "ba04b736b2118fc9db703c1bb09ce4155529b0b99c115973bad816711c06873c"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+  "records_sha256": "49c4f022d21c3a1ef5069a15ff11145df7efaac4d3785c4558ea82bb2f25a21f",
+  "status_counts": {
+    "success": 8,
+    "unsupported": 8,
+    "failed": 0
+  }
+}

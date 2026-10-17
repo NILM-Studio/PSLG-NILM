@@ -32,3 +32,5 @@ F4 和含 F4 的混合历史实验移到 `../archive/retired_f4/experiments/`，
 | [20261017_public16_primglr_feature_pca16](20261017_public16_primglr_feature_pca16/README.md) | 待用户审核：16对象2824活动，PrimGLR共同核心片段，七表示＋训练侧PCA16，GPU1/2/6与2的指数监控；未启动计算 |
 
 - [20261017_public16_all_supported_max600_correction](20261017_public16_all_supported_max600_correction/README.md)：纠正100/150限额，16对象全量支持片段<=600及两版图审。
+
+| [20261017_public16_segmentation_hyperparameter_review](20261017_public16_segmentation_hyperparameter_review/README.md) | 用户授权：public16 v2已有活动，PrimGLR已选定；五模型全参数图审，每对象每模型开发/验证各1条，共160张，参数待人审 |

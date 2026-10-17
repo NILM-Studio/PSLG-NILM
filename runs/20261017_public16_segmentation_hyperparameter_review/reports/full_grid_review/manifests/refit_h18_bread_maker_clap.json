@@ -1,0 +1,880 @@
+{
+  "object": "refit_h18_bread_maker",
+  "method": "clap",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "clap",
+      "split": "development",
+      "activity_id": 105,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/activities/00105.npz",
+      "input_sha256": "f3fbf10aba147f5964faec52b8c27b988a4a0478b922daef57a8168bd4e6f0f6",
+      "n_points": 277,
+      "core_a": 7,
+      "core_b": 270,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          15,
+          19,
+          50,
+          112,
+          140,
+          195,
+          243
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 0,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 1,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 2,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 3,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "f3ac0fb4125e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 4,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "b5c1b9d2d91f",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 5,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "ce34c00e9d66",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "2b4a3e353cd5",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 7,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/refit_h18_bread_maker/clap/development_00105.png",
+      "png_sha256": "ba775c39f088f118d50b698f212aa88649463730d44544803ef09459bd342306",
+      "svg": "figures/refit_h18_bread_maker/clap/development_00105.svg",
+      "svg_sha256": "e93d5c5e937a51e32d3218894d2bf4f408de1694b6d79432045887755e35a746",
+      "pdf": "figures/refit_h18_bread_maker/clap/development_00105.pdf",
+      "pdf_sha256": "5030889814f952abe22357a9d77d678751d1f0750453ea99942a048c4ba4157a"
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "clap",
+      "split": "validation",
+      "activity_id": 152,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/activities/00152.npz",
+      "input_sha256": "95ba582db4071d4ca0e8eed9d2027920f81ecb98b48fc9ed94d0ad041a2c33ce",
+      "n_points": 1539,
+      "core_a": 7,
+      "core_b": 1532,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          15,
+          243,
+          258,
+          355,
+          371,
+          466,
+          489,
+          571,
+          598,
+          667,
+          702,
+          771,
+          789,
+          830,
+          949,
+          972,
+          1274,
+          1438,
+          1472,
+          1490,
+          1519
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "n_splits": 3,
+              "sample_size": 500
+            },
+            "state_count": 3,
+            "state_labels": [
+              1,
+              2,
+              3
+            ],
+            "effective_window": 60
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "n_splits": 3,
+              "sample_size": 1000
+            },
+            "state_count": 3,
+            "state_labels": [
+              1,
+              2,
+              3
+            ],
+            "effective_window": 60
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "n_splits": 5,
+              "sample_size": 500
+            },
+            "state_count": 3,
+            "state_labels": [
+              1,
+              2,
+              3
+            ],
+            "effective_window": 60
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "n_splits": 5,
+              "sample_size": 1000
+            },
+            "state_count": 3,
+            "state_labels": [
+              1,
+              2,
+              3
+            ],
+            "effective_window": 60
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "f3ac0fb4125e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            964,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425191648.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            7712.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "n_splits": 3,
+              "sample_size": 500
+            },
+            "state_count": 4,
+            "state_labels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "effective_window": 8
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b5c1b9d2d91f",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            964,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425191648.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            7712.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "n_splits": 3,
+              "sample_size": 1000
+            },
+            "state_count": 4,
+            "state_labels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "effective_window": 8
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "ce34c00e9d66",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            964,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425191648.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            7712.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "n_splits": 5,
+              "sample_size": 500
+            },
+            "state_count": 4,
+            "state_labels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "effective_window": 8
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2b4a3e353cd5",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 8,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            811,
+            964,
+            1204
+          ],
+          "cut_timestamps": [
+            1425190424.0,
+            1425191648.0,
+            1425193568.0
+          ],
+          "cut_elapsed_seconds": [
+            6488.0,
+            7712.0,
+            9632.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 30,
+              "warnings": []
+            },
+            "initializer_cuts": [
+              811,
+              964,
+              1204
+            ],
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "n_splits": 5,
+              "sample_size": 1000
+            },
+            "state_count": 4,
+            "state_labels": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "effective_window": 8
+          }
+        }
+      ],
+      "png": "figures/refit_h18_bread_maker/clap/validation_00152.png",
+      "png_sha256": "263831e66ab638cc7c0d544a2427a2733a710ed181d1c4b25f33bf14eb169700",
+      "svg": "figures/refit_h18_bread_maker/clap/validation_00152.svg",
+      "svg_sha256": "655af1e2c3682483f5dda23bedabfe8ffa068509b3acc250caad423951c34fee",
+      "pdf": "figures/refit_h18_bread_maker/clap/validation_00152.pdf",
+      "pdf_sha256": "4d3e4dc5a80bcedebc0554368e7d206d350d14135c62507f908fe088bfb9e0f4"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+  "records_sha256": "9d922537dfc2ac6fefab6add0dbd344e352654a062a6f2cb7a402adb4a0e16b3",
+  "status_counts": {
+    "success": 8,
+    "unsupported": 8,
+    "failed": 0
+  }
+}

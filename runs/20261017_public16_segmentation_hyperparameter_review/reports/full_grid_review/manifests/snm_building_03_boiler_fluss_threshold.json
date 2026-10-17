@@ -1,0 +1,1178 @@
+{
+  "object": "snm_building_03_boiler",
+  "method": "fluss-threshold",
+  "config_count": 21,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_03_boiler",
+      "method": "fluss-threshold",
+      "split": "development",
+      "activity_id": 51,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00051.npz",
+      "input_sha256": "7cf0a68b302e16c67b3cb46c1600f57e4affeba880fecf644ab4bcff6aac0208",
+      "n_points": 100,
+      "core_a": 12,
+      "core_b": 88,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          88
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 10
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9b4a346357a9",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 0,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "46b9c6282951",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 1,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "7be121201a06",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 2,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "ae99e41bebe4",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 3,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "9b1bbf6c4102",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 4,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "b40c48e3d9e9",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 5,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "90c8471b4e44",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "9c7d6074135e",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 7,
+          "metadata": {}
+        },
+        {
+          "panel": 9,
+          "config_id": "6e378def1175",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 8,
+          "metadata": {}
+        },
+        {
+          "panel": 10,
+          "config_id": "a566ec8bbdab",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 9,
+          "metadata": {}
+        },
+        {
+          "panel": 11,
+          "config_id": "4925a1f4cb39",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 10,
+          "metadata": {}
+        },
+        {
+          "panel": 12,
+          "config_id": "a79934a00602",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 11,
+          "metadata": {}
+        },
+        {
+          "panel": 13,
+          "config_id": "af2278380807",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 12,
+          "metadata": {}
+        },
+        {
+          "panel": 14,
+          "config_id": "4f5a9b441ecd",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 13,
+          "metadata": {}
+        },
+        {
+          "panel": 15,
+          "config_id": "72ab5c73db66",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 14,
+          "metadata": {}
+        },
+        {
+          "panel": 16,
+          "config_id": "5c20c1fce54d",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 15,
+          "metadata": {}
+        },
+        {
+          "panel": 17,
+          "config_id": "714bdc4237a2",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 16,
+          "metadata": {}
+        },
+        {
+          "panel": 18,
+          "config_id": "6d5a675a1c96",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 17,
+          "metadata": {}
+        },
+        {
+          "panel": 19,
+          "config_id": "421fdc83de7b",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 18,
+          "metadata": {}
+        },
+        {
+          "panel": 20,
+          "config_id": "319bbfdf5137",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 19,
+          "metadata": {}
+        },
+        {
+          "panel": 21,
+          "config_id": "bcc5412fdd71",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 20,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/fluss_threshold/development_00051.png",
+      "png_sha256": "d6d0af4dcb8f41dbd866b7e31dd4129052c349255083d7c67fd527f4aa550524",
+      "svg": "figures/snm_building_03_boiler/fluss_threshold/development_00051.svg",
+      "svg_sha256": "521340f8be80f3fecccc0027aa746241a14769c7e2bdf05ac35639bdc67a97b9",
+      "pdf": "figures/snm_building_03_boiler/fluss_threshold/development_00051.pdf",
+      "pdf_sha256": "a4b5e4979b9ea231a45ac2efe2b5bba4b3b5dbb90110356d2985916594f72ed1"
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "fluss-threshold",
+      "split": "validation",
+      "activity_id": 78,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00078.npz",
+      "input_sha256": "d19deb2977ee6500b51c9733e2bb5aeb503fd796713e2af3d9502bcdf791b825",
+      "n_points": 323,
+      "core_a": 11,
+      "core_b": 312,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          256
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 25
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9b4a346357a9",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "46b9c6282951",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "7be121201a06",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ae99e41bebe4",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            66,
+            147
+          ],
+          "cut_timestamps": [
+            1597291265.625,
+            1597291670.358
+          ],
+          "cut_elapsed_seconds": [
+            330.24700021743774,
+            734.9800002574921
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 24,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "9b1bbf6c4102",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            66,
+            147
+          ],
+          "cut_timestamps": [
+            1597291265.625,
+            1597291670.358
+          ],
+          "cut_elapsed_seconds": [
+            330.24700021743774,
+            734.9800002574921
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 25,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b40c48e3d9e9",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            66,
+            147,
+            222
+          ],
+          "cut_timestamps": [
+            1597291265.625,
+            1597291670.358,
+            1597292045.3820002
+          ],
+          "cut_elapsed_seconds": [
+            330.24700021743774,
+            734.9800002574921,
+            1110.0040004253387
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 26,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "90c8471b4e44",
+          "params": {
+            "window": 13,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            66,
+            147,
+            222
+          ],
+          "cut_timestamps": [
+            1597291265.625,
+            1597291670.358,
+            1597292045.3820002
+          ],
+          "cut_elapsed_seconds": [
+            330.24700021743774,
+            734.9800002574921,
+            1110.0040004253387
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 27,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 13,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6191396468362761,
+            "matrix_profile_subsequences": 311
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "9c7d6074135e",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 28,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "6e378def1175",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 29,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "a566ec8bbdab",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 30,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "4925a1f4cb39",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 31,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "a79934a00602",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            149
+          ],
+          "cut_timestamps": [
+            1597291680.424
+          ],
+          "cut_elapsed_seconds": [
+            745.0460002422333
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 32,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "af2278380807",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            149
+          ],
+          "cut_timestamps": [
+            1597291680.424
+          ],
+          "cut_elapsed_seconds": [
+            745.0460002422333
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 33,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "4f5a9b441ecd",
+          "params": {
+            "window": 25,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            149
+          ],
+          "cut_timestamps": [
+            1597291680.424
+          ],
+          "cut_elapsed_seconds": [
+            745.0460002422333
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 34,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 25,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7148145961770994,
+            "matrix_profile_subsequences": 299
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "72ab5c73db66",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 35,
+          "metadata": {}
+        },
+        {
+          "panel": 16,
+          "config_id": "5c20c1fce54d",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 36,
+          "metadata": {}
+        },
+        {
+          "panel": 17,
+          "config_id": "714bdc4237a2",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 37,
+          "metadata": {}
+        },
+        {
+          "panel": 18,
+          "config_id": "6d5a675a1c96",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 38,
+          "metadata": {}
+        },
+        {
+          "panel": 19,
+          "config_id": "421fdc83de7b",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 39,
+          "metadata": {}
+        },
+        {
+          "panel": 20,
+          "config_id": "319bbfdf5137",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 40,
+          "metadata": {}
+        },
+        {
+          "panel": 21,
+          "config_id": "bcc5412fdd71",
+          "params": {
+            "window": 37,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+          "source_record_index": 41,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/fluss_threshold/validation_00078.png",
+      "png_sha256": "fbb4d4b0cfb5c6e2921ee773d97a8c9899cf3a842830e21c962e3a4c10c54468",
+      "svg": "figures/snm_building_03_boiler/fluss_threshold/validation_00078.svg",
+      "svg_sha256": "5acd3d8478022cbc1a2f0623e89db87094834a4c193830690d30c8ea576a3343",
+      "pdf": "figures/snm_building_03_boiler/fluss_threshold/validation_00078.pdf",
+      "pdf_sha256": "32816ccde47947ba274ad2bad330819d931e2a8d673454df633f6e40051dcb09"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+  "records_sha256": "b8301b05de0ccb12cc60bae127df17a8ad324cd3d7f8607dee36164fde9db645",
+  "status_counts": {
+    "success": 14,
+    "unsupported": 28,
+    "failed": 0
+  }
+}

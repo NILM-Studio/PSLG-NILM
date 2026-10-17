@@ -1,0 +1,1791 @@
+{
+  "object": "refit_b13_m5_dish_washer",
+  "method": "e2usd",
+  "config_count": 4,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "e2usd",
+      "split": "development",
+      "activity_id": 28,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/activities/00028.npz",
+      "input_sha256": "dd60e7c1544111a83d4eaad916b3c618b1ea137d3e58e374cf2e644dc956ef39",
+      "n_points": 440,
+      "core_a": 7,
+      "core_b": 433,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          17,
+          24,
+          32,
+          190,
+          198,
+          239,
+          270,
+          278,
+          286,
+          293,
+          378
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            176,
+            204,
+            272,
+            300,
+            364,
+            392
+          ],
+          "cut_timestamps": [
+            1409769160.0,
+            1409770256.0,
+            1409770480.0,
+            1409771024.0,
+            1409771248.0,
+            1409771760.0,
+            1409771984.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1408.0,
+            1632.0,
+            2176.0,
+            2400.0,
+            2912.0,
+            3136.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 409,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            176,
+            204,
+            272,
+            300,
+            364,
+            392
+          ],
+          "cut_timestamps": [
+            1409769160.0,
+            1409770256.0,
+            1409770480.0,
+            1409771024.0,
+            1409771248.0,
+            1409771760.0,
+            1409771984.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1408.0,
+            1632.0,
+            2176.0,
+            2400.0,
+            2912.0,
+            3136.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 409,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            177,
+            204,
+            272,
+            300,
+            365,
+            392
+          ],
+          "cut_timestamps": [
+            1409769160.0,
+            1409770264.0,
+            1409770480.0,
+            1409771024.0,
+            1409771248.0,
+            1409771768.0,
+            1409771984.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1416.0,
+            1632.0,
+            2176.0,
+            2400.0,
+            2920.0,
+            3136.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 409,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            176,
+            204,
+            272,
+            300,
+            364,
+            392
+          ],
+          "cut_timestamps": [
+            1409769160.0,
+            1409770256.0,
+            1409770480.0,
+            1409771024.0,
+            1409771248.0,
+            1409771760.0,
+            1409771984.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1408.0,
+            1632.0,
+            2176.0,
+            2400.0,
+            2912.0,
+            3136.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 409,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            176,
+            204,
+            272,
+            300,
+            364,
+            392
+          ],
+          "cut_timestamps": [
+            1409769160.0,
+            1409770256.0,
+            1409770480.0,
+            1409771024.0,
+            1409771248.0,
+            1409771760.0,
+            1409771984.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1408.0,
+            1632.0,
+            2176.0,
+            2400.0,
+            2912.0,
+            3136.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 409,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            177,
+            204,
+            272,
+            300,
+            365,
+            392
+          ],
+          "cut_timestamps": [
+            1409769160.0,
+            1409770264.0,
+            1409770480.0,
+            1409771024.0,
+            1409771248.0,
+            1409771768.0,
+            1409771984.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1416.0,
+            1632.0,
+            2176.0,
+            2400.0,
+            2920.0,
+            3136.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 409,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            160,
+            220,
+            256,
+            317,
+            347,
+            435,
+            439
+          ],
+          "cut_timestamps": [
+            1409769216.0,
+            1409770128.0,
+            1409770608.0,
+            1409770896.0,
+            1409771384.0,
+            1409771624.0,
+            1409772328.0,
+            1409772360.0
+          ],
+          "cut_elapsed_seconds": [
+            368.0,
+            1280.0,
+            1760.0,
+            2048.0,
+            2536.0,
+            2776.0,
+            3480.0,
+            3512.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 377,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            160,
+            220,
+            256,
+            318,
+            347,
+            436
+          ],
+          "cut_timestamps": [
+            1409769224.0,
+            1409770128.0,
+            1409770608.0,
+            1409770896.0,
+            1409771392.0,
+            1409771624.0,
+            1409772336.0
+          ],
+          "cut_elapsed_seconds": [
+            376.0,
+            1280.0,
+            1760.0,
+            2048.0,
+            2544.0,
+            2776.0,
+            3488.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 377,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            161,
+            220,
+            256,
+            318,
+            348,
+            435,
+            439
+          ],
+          "cut_timestamps": [
+            1409769224.0,
+            1409770136.0,
+            1409770608.0,
+            1409770896.0,
+            1409771392.0,
+            1409771632.0,
+            1409772328.0,
+            1409772360.0
+          ],
+          "cut_elapsed_seconds": [
+            376.0,
+            1288.0,
+            1760.0,
+            2048.0,
+            2544.0,
+            2784.0,
+            3480.0,
+            3512.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 377,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            160,
+            220,
+            256,
+            317,
+            347,
+            436,
+            439
+          ],
+          "cut_timestamps": [
+            1409769216.0,
+            1409770128.0,
+            1409770608.0,
+            1409770896.0,
+            1409771384.0,
+            1409771624.0,
+            1409772336.0,
+            1409772360.0
+          ],
+          "cut_elapsed_seconds": [
+            368.0,
+            1280.0,
+            1760.0,
+            2048.0,
+            2536.0,
+            2776.0,
+            3488.0,
+            3512.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 377,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            160,
+            220,
+            256,
+            318,
+            347,
+            437,
+            439
+          ],
+          "cut_timestamps": [
+            1409769224.0,
+            1409770128.0,
+            1409770608.0,
+            1409770896.0,
+            1409771392.0,
+            1409771624.0,
+            1409772344.0,
+            1409772360.0
+          ],
+          "cut_elapsed_seconds": [
+            376.0,
+            1280.0,
+            1760.0,
+            2048.0,
+            2544.0,
+            2776.0,
+            3496.0,
+            3512.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 377,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            161,
+            220,
+            256,
+            318,
+            348,
+            435,
+            439
+          ],
+          "cut_timestamps": [
+            1409769224.0,
+            1409770136.0,
+            1409770608.0,
+            1409770896.0,
+            1409771392.0,
+            1409771632.0,
+            1409772328.0,
+            1409772360.0
+          ],
+          "cut_elapsed_seconds": [
+            376.0,
+            1288.0,
+            1760.0,
+            2048.0,
+            2544.0,
+            2784.0,
+            3480.0,
+            3512.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 377,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/refit_b13_m5_dish_washer/e2usd/development_00028.png",
+      "png_sha256": "46c240b7d8b9dd5ad29c1bcc4ac5df26cbac67edb4f8c0217211d375861eaed1",
+      "svg": "figures/refit_b13_m5_dish_washer/e2usd/development_00028.svg",
+      "svg_sha256": "b8d217878e56f6d5b07f987f497dc0af1aee8b6d53174df2be1e0bb0b00ec20c",
+      "pdf": "figures/refit_b13_m5_dish_washer/e2usd/development_00028.pdf",
+      "pdf_sha256": "98799b2601ebadc87ecfef8ae9605c327c1ba846429b6374d2cfbfeb46ed0f09"
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "e2usd",
+      "split": "validation",
+      "activity_id": 73,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/activities/00073.npz",
+      "input_sha256": "e071237aedeb68b6e7aa73c0ef6ad3c264632a3fda43cdf43ac9c4789c7eca95",
+      "n_points": 529,
+      "core_a": 7,
+      "core_b": 522,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          16,
+          23,
+          31,
+          194,
+          202,
+          241,
+          248,
+          264,
+          280,
+          296,
+          304,
+          398,
+          406,
+          413,
+          506
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            188,
+            216,
+            282,
+            310,
+            392,
+            420
+          ],
+          "cut_timestamps": [
+            1426617024.0,
+            1426618232.0,
+            1426618456.0,
+            1426618984.0,
+            1426619208.0,
+            1426619864.0,
+            1426620088.0
+          ],
+          "cut_elapsed_seconds": [
+            296.0,
+            1504.0,
+            1728.0,
+            2256.0,
+            2480.0,
+            3136.0,
+            3360.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 498,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            38,
+            187,
+            216,
+            282,
+            311,
+            392,
+            420
+          ],
+          "cut_timestamps": [
+            1426617032.0,
+            1426618224.0,
+            1426618456.0,
+            1426618984.0,
+            1426619216.0,
+            1426619864.0,
+            1426620088.0
+          ],
+          "cut_elapsed_seconds": [
+            304.0,
+            1496.0,
+            1728.0,
+            2256.0,
+            2488.0,
+            3136.0,
+            3360.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 498,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            38,
+            188,
+            216,
+            282,
+            311,
+            392,
+            421
+          ],
+          "cut_timestamps": [
+            1426617032.0,
+            1426618232.0,
+            1426618456.0,
+            1426618984.0,
+            1426619216.0,
+            1426619864.0,
+            1426620096.0
+          ],
+          "cut_elapsed_seconds": [
+            304.0,
+            1504.0,
+            1728.0,
+            2256.0,
+            2488.0,
+            3136.0,
+            3368.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 498,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            188,
+            216,
+            282,
+            310,
+            392,
+            420
+          ],
+          "cut_timestamps": [
+            1426617024.0,
+            1426618232.0,
+            1426618456.0,
+            1426618984.0,
+            1426619208.0,
+            1426619864.0,
+            1426620088.0
+          ],
+          "cut_elapsed_seconds": [
+            296.0,
+            1504.0,
+            1728.0,
+            2256.0,
+            2480.0,
+            3136.0,
+            3360.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 498,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            38,
+            187,
+            216,
+            282,
+            311,
+            392,
+            420
+          ],
+          "cut_timestamps": [
+            1426617032.0,
+            1426618224.0,
+            1426618456.0,
+            1426618984.0,
+            1426619216.0,
+            1426619864.0,
+            1426620088.0
+          ],
+          "cut_elapsed_seconds": [
+            304.0,
+            1496.0,
+            1728.0,
+            2256.0,
+            2488.0,
+            3136.0,
+            3360.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 498,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            188,
+            217,
+            282,
+            312,
+            392,
+            421
+          ],
+          "cut_timestamps": [
+            1426617040.0,
+            1426618232.0,
+            1426618464.0,
+            1426618984.0,
+            1426619224.0,
+            1426619864.0,
+            1426620096.0
+          ],
+          "cut_elapsed_seconds": [
+            312.0,
+            1504.0,
+            1736.0,
+            2256.0,
+            2496.0,
+            3136.0,
+            3368.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 498,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            43,
+            172,
+            233,
+            266,
+            326,
+            377,
+            436
+          ],
+          "cut_timestamps": [
+            1426617072.0,
+            1426618104.0,
+            1426618592.0,
+            1426618856.0,
+            1426619336.0,
+            1426619744.0,
+            1426620216.0
+          ],
+          "cut_elapsed_seconds": [
+            344.0,
+            1376.0,
+            1864.0,
+            2128.0,
+            2608.0,
+            3016.0,
+            3488.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 466,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            43,
+            172,
+            232,
+            266,
+            326,
+            376,
+            436
+          ],
+          "cut_timestamps": [
+            1426617072.0,
+            1426618104.0,
+            1426618584.0,
+            1426618856.0,
+            1426619336.0,
+            1426619736.0,
+            1426620216.0
+          ],
+          "cut_elapsed_seconds": [
+            344.0,
+            1376.0,
+            1856.0,
+            2128.0,
+            2608.0,
+            3008.0,
+            3488.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 466,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            44,
+            172,
+            232,
+            266,
+            327,
+            376,
+            435
+          ],
+          "cut_timestamps": [
+            1426617080.0,
+            1426618104.0,
+            1426618584.0,
+            1426618856.0,
+            1426619344.0,
+            1426619736.0,
+            1426620208.0
+          ],
+          "cut_elapsed_seconds": [
+            352.0,
+            1376.0,
+            1856.0,
+            2128.0,
+            2616.0,
+            3008.0,
+            3480.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 466,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            43,
+            172,
+            233,
+            266,
+            326,
+            377,
+            436
+          ],
+          "cut_timestamps": [
+            1426617072.0,
+            1426618104.0,
+            1426618592.0,
+            1426618856.0,
+            1426619336.0,
+            1426619744.0,
+            1426620216.0
+          ],
+          "cut_elapsed_seconds": [
+            344.0,
+            1376.0,
+            1864.0,
+            2128.0,
+            2608.0,
+            3016.0,
+            3488.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 466,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            43,
+            172,
+            232,
+            266,
+            326,
+            376,
+            436
+          ],
+          "cut_timestamps": [
+            1426617072.0,
+            1426618104.0,
+            1426618584.0,
+            1426618856.0,
+            1426619336.0,
+            1426619736.0,
+            1426620216.0
+          ],
+          "cut_elapsed_seconds": [
+            344.0,
+            1376.0,
+            1856.0,
+            2128.0,
+            2608.0,
+            3008.0,
+            3488.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 466,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            44,
+            172,
+            232,
+            266,
+            327,
+            376,
+            436
+          ],
+          "cut_timestamps": [
+            1426617080.0,
+            1426618104.0,
+            1426618584.0,
+            1426618856.0,
+            1426619344.0,
+            1426619736.0,
+            1426620216.0
+          ],
+          "cut_elapsed_seconds": [
+            352.0,
+            1376.0,
+            1856.0,
+            2128.0,
+            2616.0,
+            3008.0,
+            3488.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 466,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/refit_b13_m5_dish_washer/e2usd/validation_00073.png",
+      "png_sha256": "e2c69666bb08cbe3355f6bcbecc5241cb7200c5079ef77f22263e088f5549250",
+      "svg": "figures/refit_b13_m5_dish_washer/e2usd/validation_00073.svg",
+      "svg_sha256": "43e2d3514c58c5d01b44b35898dd31ce915957593730ed476b8e76ce900728eb",
+      "pdf": "figures/refit_b13_m5_dish_washer/e2usd/validation_00073.pdf",
+      "pdf_sha256": "5d0da032ec69bcdb57b0f675303b2af84a4fb2707b0defcf034519c9a42b4901"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+  "records_sha256": "b11ba97178e201d9350ac8da860696b263023a3d84ddd658a4578bf8e70407d8",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

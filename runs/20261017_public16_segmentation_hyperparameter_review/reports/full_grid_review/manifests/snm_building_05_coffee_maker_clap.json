@@ -1,0 +1,831 @@
+{
+  "object": "snm_building_05_coffee_maker",
+  "method": "clap",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "clap",
+      "split": "development",
+      "activity_id": 150,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/00150.npz",
+      "input_sha256": "aec2878abc3f87a999ea61fc71e24b4ee6c1ffcec876ddd21d198b45ad53f4f9",
+      "n_points": 124,
+      "core_a": 12,
+      "core_b": 113,
+      "nominal_seconds": 5.033,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          34
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 12
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "342f6f0db508",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "6e0c32b29c67",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "6b6b8d897e82",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "a4e7d68044e7",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 11,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        }
+      ],
+      "png": "figures/snm_building_05_coffee_maker/clap/development_00150.png",
+      "png_sha256": "cc8c7ef106118b0086499df47f829e3081825284990d68dd9ba8760c41b0cac6",
+      "svg": "figures/snm_building_05_coffee_maker/clap/development_00150.svg",
+      "svg_sha256": "b1463debdeab5d19593779b40188448a6ebe3f1e3afe752eae7760427b6998ba",
+      "pdf": "figures/snm_building_05_coffee_maker/clap/development_00150.pdf",
+      "pdf_sha256": "6a89af005aa4c4f57a05febf82394c127f011bd679ab8885d41fd64d59d46a34"
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "clap",
+      "split": "validation",
+      "activity_id": 418,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/00418.npz",
+      "input_sha256": "2e14fe405b963cb38109f2199bb855f22bd3e6dbc1cb57f951222d6d0678961b",
+      "n_points": 264,
+      "core_a": 12,
+      "core_b": 253,
+      "nominal_seconds": 5.033,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          35
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "342f6f0db508",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "6e0c32b29c67",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "6b6b8d897e82",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "a4e7d68044e7",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 12,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 13,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        }
+      ],
+      "png": "figures/snm_building_05_coffee_maker/clap/validation_00418.png",
+      "png_sha256": "242ea2f42d0b16707cfec395ad7bc0ec16156a9e96d882373006f3a657144676",
+      "svg": "figures/snm_building_05_coffee_maker/clap/validation_00418.svg",
+      "svg_sha256": "8493d4172d37ab68533cce8f9e9b34797091cb2c0cd41eea88baf80511158c6f",
+      "pdf": "figures/snm_building_05_coffee_maker/clap/validation_00418.pdf",
+      "pdf_sha256": "5341f9cdf1d19f2520462babb567ec09c4e01ff068e74d6aa0684d03876e6128"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+  "records_sha256": "d5deb23d2512d5874b9830bb76f9723f6405a32997d5f80cba87918e9af3d7d8",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

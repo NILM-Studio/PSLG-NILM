@@ -1,0 +1,489 @@
+{
+  "status": "passed",
+  "completed": 80,
+  "total": 80,
+  "backend": "cpu",
+  "jobs": [
+    {
+      "object": "darck_fridge",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clap/20261017T033200Z_acd13eac",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_fridge",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_clasp/20261017T033156Z_025f84a4",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_fridge",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_fridge_e2usd/20261017T033228Z_cdd89b5d",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_fridge",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_fluss_threshold/20261017T033155Z_a7c5e041",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_fridge",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_kettle",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_clap/20261017T033124Z_32bbe67a",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_kettle",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_clasp/20261017T033117Z_ac022076",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_kettle",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_kettle",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_fluss_threshold/20261017T032329Z_340e01c2",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_kettle",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clap/20261017T033154Z_b3040f9e",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_sherlockhairdryer_e2usd/20261017T033154Z_a6672868",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_fluss_threshold/20261017T033136Z_d03c55c7",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clap/20261017T031724Z_a82b9e18",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_b13_m5_dish_washer_e2usd/20261017T032622Z_dada8ac0",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_fluss_threshold/20261017T031721Z_d43377b3",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_pelt_rbf/20261017T031719Z_ae2c26e2",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clap/20261017T031909Z_56772e13",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_clasp/20261017T031857Z_d57d2554",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_h18_bread_maker_e2usd/20261017T032622Z_51e2b349",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_fluss_threshold/20261017T031853Z_d5ad61a6",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_clap/20261017T032002Z_0991398c",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_clasp/20261017T031937Z_b4c1a855",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_h20_tumble_dryer_e2usd/20261017T032629Z_98668bab",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_fluss_threshold/20261017T031930Z_b5bc96b4",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_clap/20261017T031756Z_3ece43e9",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_clasp/20261017T031754Z_6b68e653",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_h7_dishwasher_e2usd/20261017T032622Z_f083dabf",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_fluss_threshold/20261017T031747Z_a9c404af",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_clap/20261017T031836Z_b1b97884",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_clasp/20261017T031822Z_c35dca6f",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_refit_h9_dishwasher_e2usd/20261017T032622Z_7dc06088",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_pelt_rbf/20261017T031818Z_06163608",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clap/20261017T032223Z_6f120ac9",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_01_dishwasher_e2usd/20261017T032907Z_8447b5e8",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_pelt_rbf/20261017T032216Z_a325fc14",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clasp/20261017T032318Z_b4512599",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_fluss_threshold/20261017T032315Z_e6f7dfd2",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clap/20261017T032252Z_dd9038b3",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_clasp/20261017T032250Z_204eb1ff",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_fluss_threshold/20261017T032246Z_84bdd867",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clap/20261017T032156Z_74df408d",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_b1_m6_dish_washer_e2usd/20261017T032907Z_3106603f",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_fluss_threshold/20261017T032141Z_729e6a56",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_hotpoint_clap/20261017T032050Z_259cbcba",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_hotpoint_clasp/20261017T032025Z_9994a9df",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h1_washing_machine_hotpoint_e2usd/20261017T032906Z_efc4c60c",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_hotpoint_fluss_threshold/20261017T032024Z_705eacd1",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_hotpoint_pelt_rbf/20261017T032006Z_52b46887",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_samsung_clap/20261017T032125Z_9abaae33",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_samsung_clasp/20261017T032116Z_fbbd1ed6",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h1_washing_machine_samsung_e2usd/20261017T032906Z_ce4232e4",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_samsung_fluss_threshold/20261017T032106Z_af3a6e7d",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_samsung_pelt_rbf/20261017T032100Z_ed889f67",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_clap/20261017T031716Z_df0fb4c2",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_clasp/20261017T031712Z_8dbf4805",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_microwave_e2usd/20261017T032622Z_885e2e05",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_fluss_threshold/20261017T031711Z_3d93140c",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "clap",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "clasp",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clasp/20261017T031643Z_594743fa",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "e2usd",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "fluss-threshold",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "pelt-rbf",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_pelt_rbf/20261017T031643Z_ca2c565d",
+      "exit_code": 0
+    }
+  ],
+  "final_delivery": "data/final_delivery.json"
+}

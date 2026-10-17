@@ -1,0 +1,926 @@
+{
+  "object": "darck_fridge",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_fridge",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 11,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/activities/00011.npz",
+      "input_sha256": "3915d7eb34e0369b221ff20cc15cc7cf35a06be588eb3529d6ed1b0b24e62c3a",
+      "n_points": 136,
+      "core_a": 60,
+      "core_b": 76,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 13
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            10,
+            60,
+            75
+          ],
+          "cut_timestamps": [
+            1753032241.0,
+            1753032291.0,
+            1753032306.0
+          ],
+          "cut_elapsed_seconds": [
+            10.0,
+            60.0,
+            75.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 7.368982328604077,
+            "gamma": 99.99999999999893,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            75
+          ],
+          "cut_timestamps": [
+            1753032291.0,
+            1753032306.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            75.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 14.737964657208154,
+            "gamma": 99.99999999999893,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 29.47592931441631,
+            "gamma": 99.99999999999893,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 58.95185862883262,
+            "gamma": 99.99999999999893,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e67aab6d9862",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            75
+          ],
+          "cut_timestamps": [
+            1753032306.0
+          ],
+          "cut_elapsed_seconds": [
+            75.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 7.368982328604077,
+            "gamma": 99.99999999999893,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "29eba98f5840",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            75
+          ],
+          "cut_timestamps": [
+            1753032306.0
+          ],
+          "cut_elapsed_seconds": [
+            75.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 14.737964657208154,
+            "gamma": 99.99999999999893,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "70d050f8a7e7",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 29.47592931441631,
+            "gamma": 99.99999999999893,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "5b3c1e3d740c",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 58.95185862883262,
+            "gamma": 99.99999999999893,
+            "min_size": 60,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/darck_fridge/pelt_rbf/development_00011.png",
+      "png_sha256": "79cc5c0037187c00f28db3c1350d7caa847d2db11155e861162cde5fd58c12ba",
+      "svg": "figures/darck_fridge/pelt_rbf/development_00011.svg",
+      "svg_sha256": "b32ba2d98cfb5a5833d4d0fecdf0aff2dec053af9784336443584d7b06223121",
+      "pdf": "figures/darck_fridge/pelt_rbf/development_00011.pdf",
+      "pdf_sha256": "292ff7abdb12320241acf3b9e98a1dd93c94627dd463d793a17030e1496cb35e"
+    },
+    {
+      "object": "darck_fridge",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 378,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_fridge/activities/00378.npz",
+      "input_sha256": "81642ded50ae2e1201179f30c0a83be18b1cd995cc0fa0e899a24a7a8dfeaae9",
+      "n_points": 7971,
+      "core_a": 60,
+      "core_b": 7911,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          121,
+          735,
+          2055,
+          2115,
+          2415,
+          2595,
+          2655,
+          2774,
+          2894,
+          3308,
+          3568,
+          4575,
+          4645,
+          5955,
+          6028,
+          7850
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 120
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            135,
+            315,
+            495,
+            615,
+            735,
+            915,
+            1010,
+            1155,
+            1395,
+            1695,
+            2055,
+            2415,
+            2895,
+            3795,
+            4930,
+            6795,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294225.0,
+            1755294300.0,
+            1755294480.0,
+            1755294660.0,
+            1755294780.0,
+            1755294900.0,
+            1755295080.0,
+            1755295175.0,
+            1755295320.0,
+            1755295560.0,
+            1755295860.0,
+            1755296220.0,
+            1755296580.0,
+            1755297060.0,
+            1755297960.0,
+            1755299095.0,
+            1755300960.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            135.0,
+            315.0,
+            495.0,
+            615.0,
+            735.0,
+            915.0,
+            1010.0,
+            1155.0,
+            1395.0,
+            1695.0,
+            2055.0,
+            2415.0,
+            2895.0,
+            3795.0,
+            4930.0,
+            6795.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 18,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 13.475347851641885,
+            "gamma": 0.25,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            135,
+            375,
+            555,
+            735,
+            915,
+            1095,
+            1395,
+            1695,
+            2055,
+            2415,
+            2895,
+            3795,
+            4930,
+            6795,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294225.0,
+            1755294300.0,
+            1755294540.0,
+            1755294720.0,
+            1755294900.0,
+            1755295080.0,
+            1755295260.0,
+            1755295560.0,
+            1755295860.0,
+            1755296220.0,
+            1755296580.0,
+            1755297060.0,
+            1755297960.0,
+            1755299095.0,
+            1755300960.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            135.0,
+            375.0,
+            555.0,
+            735.0,
+            915.0,
+            1095.0,
+            1395.0,
+            1695.0,
+            2055.0,
+            2415.0,
+            2895.0,
+            3795.0,
+            4930.0,
+            6795.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 16,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 26.95069570328377,
+            "gamma": 0.25,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            135,
+            375,
+            555,
+            735,
+            975,
+            1275,
+            1635,
+            2115,
+            2895,
+            4695,
+            6795,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294225.0,
+            1755294300.0,
+            1755294540.0,
+            1755294720.0,
+            1755294900.0,
+            1755295140.0,
+            1755295440.0,
+            1755295800.0,
+            1755296280.0,
+            1755297060.0,
+            1755298860.0,
+            1755300960.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            135.0,
+            375.0,
+            555.0,
+            735.0,
+            975.0,
+            1275.0,
+            1635.0,
+            2115.0,
+            2895.0,
+            4695.0,
+            6795.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 13,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official ruptures.Pelt + official CostRbf Gram",
+            "penalty": 53.90139140656754,
+            "gamma": 0.25,
+            "min_size": 5,
+            "jump": 5,
+            "cost_evaluation": "cached prefix sums of unchanged official RBF Gram"
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            135,
+            495,
+            735,
+            1010,
+            1395,
+            2055,
+            2895,
+            4930,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294300.0,
+            1755294660.0,
+            1755294900.0,
+            1755295175.0,
+            1755295560.0,
+            1755296220.0,
+            1755297060.0,
+            1755299095.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            135.0,
+            495.0,
+            735.0,
+            1010.0,
+            1395.0,
+            2055.0,
+            2895.0,
+            4930.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official ruptures.Pelt + official CostRbf Gram",
+            "penalty": 107.80278281313508,
+            "gamma": 0.25,
+            "min_size": 5,
+            "jump": 5,
+            "cost_evaluation": "cached prefix sums of unchanged official RBF Gram"
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e67aab6d9862",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            135,
+            315,
+            495,
+            615,
+            735,
+            915,
+            1010,
+            1155,
+            1395,
+            1695,
+            2055,
+            2415,
+            2895,
+            3795,
+            4930,
+            6795,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294225.0,
+            1755294300.0,
+            1755294480.0,
+            1755294660.0,
+            1755294780.0,
+            1755294900.0,
+            1755295080.0,
+            1755295175.0,
+            1755295320.0,
+            1755295560.0,
+            1755295860.0,
+            1755296220.0,
+            1755296580.0,
+            1755297060.0,
+            1755297960.0,
+            1755299095.0,
+            1755300960.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            135.0,
+            315.0,
+            495.0,
+            615.0,
+            735.0,
+            915.0,
+            1010.0,
+            1155.0,
+            1395.0,
+            1695.0,
+            2055.0,
+            2415.0,
+            2895.0,
+            3795.0,
+            4930.0,
+            6795.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 18,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official ruptures.Pelt + official CostRbf Gram",
+            "penalty": 13.475347851641885,
+            "gamma": 0.25,
+            "min_size": 60,
+            "jump": 5,
+            "cost_evaluation": "cached prefix sums of unchanged official RBF Gram"
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "29eba98f5840",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            135,
+            375,
+            555,
+            735,
+            915,
+            1095,
+            1395,
+            1695,
+            2055,
+            2415,
+            2895,
+            3795,
+            4930,
+            6795,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294225.0,
+            1755294300.0,
+            1755294540.0,
+            1755294720.0,
+            1755294900.0,
+            1755295080.0,
+            1755295260.0,
+            1755295560.0,
+            1755295860.0,
+            1755296220.0,
+            1755296580.0,
+            1755297060.0,
+            1755297960.0,
+            1755299095.0,
+            1755300960.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            135.0,
+            375.0,
+            555.0,
+            735.0,
+            915.0,
+            1095.0,
+            1395.0,
+            1695.0,
+            2055.0,
+            2415.0,
+            2895.0,
+            3795.0,
+            4930.0,
+            6795.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 16,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official ruptures.Pelt + official CostRbf Gram",
+            "penalty": 26.95069570328377,
+            "gamma": 0.25,
+            "min_size": 60,
+            "jump": 5,
+            "cost_evaluation": "cached prefix sums of unchanged official RBF Gram"
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "70d050f8a7e7",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            135,
+            375,
+            555,
+            735,
+            975,
+            1275,
+            1635,
+            2115,
+            2895,
+            4695,
+            6795,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294225.0,
+            1755294300.0,
+            1755294540.0,
+            1755294720.0,
+            1755294900.0,
+            1755295140.0,
+            1755295440.0,
+            1755295800.0,
+            1755296280.0,
+            1755297060.0,
+            1755298860.0,
+            1755300960.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            135.0,
+            375.0,
+            555.0,
+            735.0,
+            975.0,
+            1275.0,
+            1635.0,
+            2115.0,
+            2895.0,
+            4695.0,
+            6795.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 13,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official ruptures.Pelt + official CostRbf Gram",
+            "penalty": 53.90139140656754,
+            "gamma": 0.25,
+            "min_size": 60,
+            "jump": 5,
+            "cost_evaluation": "cached prefix sums of unchanged official RBF Gram"
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "5b3c1e3d740c",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            135,
+            495,
+            735,
+            1010,
+            1395,
+            2055,
+            2895,
+            4930,
+            7910
+          ],
+          "cut_timestamps": [
+            1755294300.0,
+            1755294660.0,
+            1755294900.0,
+            1755295175.0,
+            1755295560.0,
+            1755296220.0,
+            1755297060.0,
+            1755299095.0,
+            1755302075.0
+          ],
+          "cut_elapsed_seconds": [
+            135.0,
+            495.0,
+            735.0,
+            1010.0,
+            1395.0,
+            2055.0,
+            2895.0,
+            4930.0,
+            7910.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official ruptures.Pelt + official CostRbf Gram",
+            "penalty": 107.80278281313508,
+            "gamma": 0.25,
+            "min_size": 60,
+            "jump": 5,
+            "cost_evaluation": "cached prefix sums of unchanged official RBF Gram"
+          }
+        }
+      ],
+      "png": "figures/darck_fridge/pelt_rbf/validation_00378.png",
+      "png_sha256": "f9b52dc39d4573faa097537c193329494c7a6d86ee89c5b6ed12c1c6887dab4d",
+      "svg": "figures/darck_fridge/pelt_rbf/validation_00378.svg",
+      "svg_sha256": "7696f5f51dc6a7ea76cdf80e8916835ae0413cc0c52f0d35f48960e10efa9a06",
+      "pdf": "figures/darck_fridge/pelt_rbf/validation_00378.pdf",
+      "pdf_sha256": "f66e87fd527b3510c4a4e7839dad123ce3523da47b95399a1c9db30d7e4f62f1"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/complete_last_pelt_record_contract_fix/20261017T034216Z_bd90e5ae",
+  "records_sha256": "a42e700a01a071bdc329e4d7ce7b8a344f61551a72aafa5cb9cd723be96b0bf8",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  },
+  "cache_validation_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/validate_official_rbf_sum_cache/20261017T033838Z_34bc99d4",
+  "official_existing_comparisons": 250
+}

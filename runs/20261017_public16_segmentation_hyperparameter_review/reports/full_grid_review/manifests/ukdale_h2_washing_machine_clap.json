@@ -1,0 +1,841 @@
+{
+  "object": "ukdale_h2_washing_machine",
+  "method": "clap",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "clap",
+      "split": "development",
+      "activity_id": 1,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/00001.npz",
+      "input_sha256": "8d72e6c53303b8425d9b5a5a766aff7153697c65e57098bd77807080a981f7c3",
+      "n_points": 384,
+      "core_a": 10,
+      "core_b": 375,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          84,
+          118,
+          255,
+          275,
+          305,
+          327,
+          358
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "aa4cf661492e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "535a7d3bc491",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b21ba263a170",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "678feba1be04",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 38,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_washing_machine/clap/development_00001.png",
+      "png_sha256": "834bca63df0a63924daff58bd0c19a4214df1c03a2396167dfc7286ef3fad443",
+      "svg": "figures/ukdale_h2_washing_machine/clap/development_00001.svg",
+      "svg_sha256": "9f92e52f65320d0fcbf8c6306b588c392ab49f190b2033581990efe69e81e686",
+      "pdf": "figures/ukdale_h2_washing_machine/clap/development_00001.pdf",
+      "pdf_sha256": "d26c6df74ea473502000d5aeca8215ca54d9c711ed7e168f4bf343aa28cd3bf5"
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "clap",
+      "split": "validation",
+      "activity_id": 40,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/00040.npz",
+      "input_sha256": "36671be912d1ee9100a784cd0a9ce9e2e38c76218ca00f552a332049beaa3e40",
+      "n_points": 435,
+      "core_a": 9,
+      "core_b": 426,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          131,
+          141,
+          330,
+          377,
+          407
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "aa4cf661492e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "535a7d3bc491",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b21ba263a170",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "678feba1be04",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 10,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.AgglomerativeCLaPDetection",
+            "initializer": {
+              "source": "official claspy.BinaryClaSPSegmentation",
+              "package": "claspy",
+              "parameters": {
+                "n_jobs": 1,
+                "random_state": 0,
+                "window_size": "suss",
+                "validation": "significance_test",
+                "threshold": "default"
+              },
+              "effective_window": 42,
+              "warnings": []
+            },
+            "initializer_cuts": [],
+            "state_count": 1,
+            "state_labels": [
+              1
+            ],
+            "merge_skipped": "single initial segment"
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_washing_machine/clap/validation_00040.png",
+      "png_sha256": "c82aad638ea68f96b02e04acb8aeb2179044e6739c9d27582485a27f7c18613b",
+      "svg": "figures/ukdale_h2_washing_machine/clap/validation_00040.svg",
+      "svg_sha256": "68c4bcf143f6df3b86e6e29e3220567f738a8e74410dd532d6e47081a48ee697",
+      "pdf": "figures/ukdale_h2_washing_machine/clap/validation_00040.pdf",
+      "pdf_sha256": "063ddfc7292dfad2b557c74f7300f6c2085c6779352502cc4852fa7aa44dd03f"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_clap/20261017T031647Z_82e23b0b",
+  "records_sha256": "fa82df31227eb949d596df85dfa921121fa890f72e7f9d72a113b8c90d60612d",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

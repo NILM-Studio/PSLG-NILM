@@ -1,0 +1,496 @@
+{
+  "object": "snm_building_03_boiler",
+  "method": "clap",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_03_boiler",
+      "method": "clap",
+      "split": "development",
+      "activity_id": 51,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00051.npz",
+      "input_sha256": "7cf0a68b302e16c67b3cb46c1600f57e4affeba880fecf644ab4bcff6aac0208",
+      "n_points": 100,
+      "core_a": 12,
+      "core_b": 88,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          88
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 10
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 0,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 1,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 2,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 3,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "0198f121219d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 4,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "996be8dcdded",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 5,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "d1c893dfe389",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "5001a29eaa52",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 7,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/clap/development_00051.png",
+      "png_sha256": "ef30ba287ddb20ffcff5e9bec8ce6a3a4a969b297432d332a894b841ca84665c",
+      "svg": "figures/snm_building_03_boiler/clap/development_00051.svg",
+      "svg_sha256": "d31808d8edeac6a2c533a27f8f0a7c7fceb45cb425b9caabfba7977e6b5875f7",
+      "pdf": "figures/snm_building_03_boiler/clap/development_00051.pdf",
+      "pdf_sha256": "b76e3f5a065a9409aaa41df175f197cea553a89919dab607348665ef6ff049e4"
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "clap",
+      "split": "validation",
+      "activity_id": 78,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00078.npz",
+      "input_sha256": "d19deb2977ee6500b51c9733e2bb5aeb503fd796713e2af3d9502bcdf791b825",
+      "n_points": 323,
+      "core_a": 11,
+      "core_b": 312,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          256
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 25
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "6d161797f924",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 8,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "93507a508d7d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 9,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "b47008c89b8b",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 10,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "095f9826e51e",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": "suss",
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 11,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "0198f121219d",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 3,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 12,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "996be8dcdded",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 3,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 13,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "d1c893dfe389",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 5,
+            "sample_size": 500
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 14,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "5001a29eaa52",
+          "params": {
+            "initializer_params": {
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "window_size": 13,
+            "n_splits": 5,
+            "sample_size": 1000
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+          "source_record_index": 15,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/clap/validation_00078.png",
+      "png_sha256": "a8f62a0306671086d60aac8b2ce5742b6253045a8b0bd5c4b806017027fe133b",
+      "svg": "figures/snm_building_03_boiler/clap/validation_00078.svg",
+      "svg_sha256": "11304726a50992d6c3846147845e4f9887f87a4d40a607f9c04be8a83e1eaf80",
+      "pdf": "figures/snm_building_03_boiler/clap/validation_00078.pdf",
+      "pdf_sha256": "b003c9121301b6831d91c5700d6a325a44d089cf3be6c3475112cb11b399204a"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_clap/20261017T032318Z_3b885c5a",
+  "records_sha256": "6a32d22d31b1d55731d9e4eb0eceee7e474de6d0147cb11325b069072093f9fa",
+  "status_counts": {
+    "success": 0,
+    "unsupported": 16,
+    "failed": 0
+  }
+}

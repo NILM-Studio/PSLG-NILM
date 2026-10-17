@@ -1,0 +1,821 @@
+{
+  "object": "ukdale_b1_m6_dish_washer",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 69,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/activities/00069.npz",
+      "input_sha256": "c92e034566c4065e4d29e9adf5c84439c913dbdb1334fde0d0cdc2a7844c276a",
+      "n_points": 863,
+      "core_a": 8,
+      "core_b": 855,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          29,
+          39,
+          151,
+          180,
+          268,
+          278,
+          325,
+          380,
+          402,
+          596,
+          625,
+          712,
+          780,
+          800,
+          842
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            160,
+            180,
+            270,
+            700,
+            710,
+            845
+          ],
+          "cut_timestamps": [
+            1400363433.0,
+            1400364364.0,
+            1400364500.0,
+            1400365104.0,
+            1400368196.0,
+            1400368267.0,
+            1400369178.0
+          ],
+          "cut_elapsed_seconds": [
+            214.0,
+            1145.0,
+            1281.0,
+            1885.0,
+            4977.0,
+            5048.0,
+            5959.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.140622036625142,
+            "gamma": 0.0001417233560090703,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            180,
+            270,
+            710,
+            845
+          ],
+          "cut_timestamps": [
+            1400363433.0,
+            1400364500.0,
+            1400365104.0,
+            1400368267.0,
+            1400369178.0
+          ],
+          "cut_elapsed_seconds": [
+            214.0,
+            1281.0,
+            1885.0,
+            5048.0,
+            5959.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.281244073250285,
+            "gamma": 0.0001417233560090703,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            180,
+            270,
+            700
+          ],
+          "cut_timestamps": [
+            1400364500.0,
+            1400365104.0,
+            1400368196.0
+          ],
+          "cut_elapsed_seconds": [
+            1281.0,
+            1885.0,
+            4977.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 40.56248814650057,
+            "gamma": 0.0001417233560090703,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            710
+          ],
+          "cut_timestamps": [
+            1400368267.0
+          ],
+          "cut_elapsed_seconds": [
+            5048.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 81.12497629300114,
+            "gamma": 0.0001417233560090703,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "b29fb3a68500",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            160,
+            180,
+            270,
+            700,
+            710,
+            845
+          ],
+          "cut_timestamps": [
+            1400363433.0,
+            1400364364.0,
+            1400364500.0,
+            1400365104.0,
+            1400368196.0,
+            1400368267.0,
+            1400369178.0
+          ],
+          "cut_elapsed_seconds": [
+            214.0,
+            1145.0,
+            1281.0,
+            1885.0,
+            4977.0,
+            5048.0,
+            5959.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.140622036625142,
+            "gamma": 0.0001417233560090703,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b4acecaf63a6",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            180,
+            270,
+            710,
+            845
+          ],
+          "cut_timestamps": [
+            1400363433.0,
+            1400364500.0,
+            1400365104.0,
+            1400368267.0,
+            1400369178.0
+          ],
+          "cut_elapsed_seconds": [
+            214.0,
+            1281.0,
+            1885.0,
+            5048.0,
+            5959.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.281244073250285,
+            "gamma": 0.0001417233560090703,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "39461534c679",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            180,
+            270,
+            700
+          ],
+          "cut_timestamps": [
+            1400364500.0,
+            1400365104.0,
+            1400368196.0
+          ],
+          "cut_elapsed_seconds": [
+            1281.0,
+            1885.0,
+            4977.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 40.56248814650057,
+            "gamma": 0.0001417233560090703,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "8c1f6d0e90ad",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            710
+          ],
+          "cut_timestamps": [
+            1400368267.0
+          ],
+          "cut_elapsed_seconds": [
+            5048.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 81.12497629300114,
+            "gamma": 0.0001417233560090703,
+            "min_size": 10,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.png",
+      "png_sha256": "d667b956ae250140b13ec998fadb886681da542ef3ce7c00ad4b64b003f95159",
+      "svg": "figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.svg",
+      "svg_sha256": "6525d1ba957ac3b961e10ed823ae925eafdb56564443a2461f6d8a438b37f62c",
+      "pdf": "figures/ukdale_b1_m6_dish_washer/pelt_rbf/development_00069.pdf",
+      "pdf_sha256": "86154721c3edb5b4d08958600461bd599cfd306242ea0b524adbd014cb3bf6fe"
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 140,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/activities/00140.npz",
+      "input_sha256": "3cc60f2e68a6c37fbe2664d9d230349ee45ecc4d8a3b06c02b9e35b3537a2ce5",
+      "n_points": 950,
+      "core_a": 8,
+      "core_b": 942,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          29,
+          80,
+          90,
+          232,
+          242,
+          297,
+          363,
+          422,
+          451,
+          504,
+          515,
+          664,
+          715,
+          736,
+          745,
+          756
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            90,
+            230,
+            295,
+            365,
+            505,
+            665,
+            745
+          ],
+          "cut_timestamps": [
+            1461223608.0,
+            1461224119.0,
+            1461225058.0,
+            1461225534.0,
+            1461226000.0,
+            1461227009.0,
+            1461228082.0,
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            146.0,
+            657.0,
+            1596.0,
+            2072.0,
+            2538.0,
+            3547.0,
+            4620.0,
+            5203.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.28469297689188,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            90,
+            230,
+            295,
+            365,
+            505,
+            665,
+            745
+          ],
+          "cut_timestamps": [
+            1461224119.0,
+            1461225058.0,
+            1461225534.0,
+            1461226000.0,
+            1461227009.0,
+            1461228082.0,
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            657.0,
+            1596.0,
+            2072.0,
+            2538.0,
+            3547.0,
+            4620.0,
+            5203.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.56938595378376,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            90,
+            230,
+            295,
+            365,
+            505,
+            665,
+            745
+          ],
+          "cut_timestamps": [
+            1461224119.0,
+            1461225058.0,
+            1461225534.0,
+            1461226000.0,
+            1461227009.0,
+            1461228082.0,
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            657.0,
+            1596.0,
+            2072.0,
+            2538.0,
+            3547.0,
+            4620.0,
+            5203.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 41.13877190756752,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            745
+          ],
+          "cut_timestamps": [
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            5203.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 82.27754381513503,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "b29fb3a68500",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            90,
+            230,
+            295,
+            365,
+            505,
+            665,
+            745
+          ],
+          "cut_timestamps": [
+            1461223608.0,
+            1461224119.0,
+            1461225058.0,
+            1461225534.0,
+            1461226000.0,
+            1461227009.0,
+            1461228082.0,
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            146.0,
+            657.0,
+            1596.0,
+            2072.0,
+            2538.0,
+            3547.0,
+            4620.0,
+            5203.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.28469297689188,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b4acecaf63a6",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            90,
+            230,
+            295,
+            365,
+            505,
+            665,
+            745
+          ],
+          "cut_timestamps": [
+            1461224119.0,
+            1461225058.0,
+            1461225534.0,
+            1461226000.0,
+            1461227009.0,
+            1461228082.0,
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            657.0,
+            1596.0,
+            2072.0,
+            2538.0,
+            3547.0,
+            4620.0,
+            5203.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.56938595378376,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "39461534c679",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            90,
+            230,
+            295,
+            365,
+            505,
+            665,
+            745
+          ],
+          "cut_timestamps": [
+            1461224119.0,
+            1461225058.0,
+            1461225534.0,
+            1461226000.0,
+            1461227009.0,
+            1461228082.0,
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            657.0,
+            1596.0,
+            2072.0,
+            2538.0,
+            3547.0,
+            4620.0,
+            5203.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 41.13877190756752,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "8c1f6d0e90ad",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            745
+          ],
+          "cut_timestamps": [
+            1461228665.0
+          ],
+          "cut_elapsed_seconds": [
+            5203.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 82.27754381513503,
+            "gamma": 6.830134553650706e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.png",
+      "png_sha256": "cb98feacb8518ec6cc56fc4a66ee37fbad900ef65b6ac2883f3d0d562816b865",
+      "svg": "figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.svg",
+      "svg_sha256": "a51109e2e9d920d24752dda99d8285ba4a08b422bfc02e5949c48e72b1f01a8e",
+      "pdf": "figures/ukdale_b1_m6_dish_washer/pelt_rbf/validation_00140.pdf",
+      "pdf_sha256": "47c5175ac0bd17c89690dfb60cf0307a99d298cc1bb677ad1481d00abae30c8d"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_pelt_rbf/20261017T032141Z_a51b6df8",
+  "records_sha256": "2971ada40dcfb90fc38218f54db26df870dccf4eba30ee84e39db52baecb1070",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

@@ -1,0 +1,630 @@
+{
+  "object": "darck_kettle",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_kettle",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 132,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/activities/00132.npz",
+      "input_sha256": "95edd57ffdc284969ba80f1dcb7f7d5b7c1583706e3dd93f1afeedc9a7880e94",
+      "n_points": 261,
+      "core_a": 60,
+      "core_b": 201,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          199
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 26
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            200
+          ],
+          "cut_timestamps": [
+            1750051077.0,
+            1750051217.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            200.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.34678061098404,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            200
+          ],
+          "cut_timestamps": [
+            1750051077.0,
+            1750051217.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            200.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.69356122196808,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            200
+          ],
+          "cut_timestamps": [
+            1750051077.0,
+            1750051217.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            200.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 33.38712244393616,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 66.77424488787231,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e67aab6d9862",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            200
+          ],
+          "cut_timestamps": [
+            1750051077.0,
+            1750051217.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            200.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.34678061098404,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "29eba98f5840",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            200
+          ],
+          "cut_timestamps": [
+            1750051077.0,
+            1750051217.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            200.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.69356122196808,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "70d050f8a7e7",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            200
+          ],
+          "cut_timestamps": [
+            1750051077.0,
+            1750051217.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            200.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 33.38712244393616,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "5b3c1e3d740c",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 66.77424488787231,
+            "gamma": 2.14807409369156e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/darck_kettle/pelt_rbf/development_00132.png",
+      "png_sha256": "36dce28d4eb40c980ce7733f6d61b96e6b80d3e8b9c40d2b00d0247e33c63172",
+      "svg": "figures/darck_kettle/pelt_rbf/development_00132.svg",
+      "svg_sha256": "0e066be3f8d053263b3104866268493817442f1e231241fd1006dee720c5509b",
+      "pdf": "figures/darck_kettle/pelt_rbf/development_00132.pdf",
+      "pdf_sha256": "2548eadbac9e2e48651b6aacbf1f4c575a8f475c3b801cdee3457d3e3b63be5b"
+    },
+    {
+      "object": "darck_kettle",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 157,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/activities/00157.npz",
+      "input_sha256": "f2de34cbaa52e8f7dc15e52bbea9eab0cbfeb8251f780d07241726ec3f3b4bbc",
+      "n_points": 323,
+      "core_a": 60,
+      "core_b": 263,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          210,
+          263
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 32
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            90,
+            265
+          ],
+          "cut_timestamps": [
+            1751430930.0,
+            1751430960.0,
+            1751431135.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            90.0,
+            265.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.666478484833984,
+            "gamma": 0.001020731047576277,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            90,
+            265
+          ],
+          "cut_timestamps": [
+            1751430930.0,
+            1751430960.0,
+            1751431135.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            90.0,
+            265.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 17.33295696966797,
+            "gamma": 0.001020731047576277,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            265
+          ],
+          "cut_timestamps": [
+            1751430930.0,
+            1751431135.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            265.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 34.66591393933594,
+            "gamma": 0.001020731047576277,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 69.33182787867187,
+            "gamma": 0.001020731047576277,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e67aab6d9862",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            120,
+            260
+          ],
+          "cut_timestamps": [
+            1751430930.0,
+            1751430990.0,
+            1751431130.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            120.0,
+            260.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.666478484833984,
+            "gamma": 0.001020731047576277,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "29eba98f5840",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            260
+          ],
+          "cut_timestamps": [
+            1751430930.0,
+            1751431130.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            260.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 17.33295696966797,
+            "gamma": 0.001020731047576277,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "70d050f8a7e7",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            260
+          ],
+          "cut_timestamps": [
+            1751430930.0,
+            1751431130.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            260.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 34.66591393933594,
+            "gamma": 0.001020731047576277,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "5b3c1e3d740c",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 69.33182787867187,
+            "gamma": 0.001020731047576277,
+            "min_size": 60,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/darck_kettle/pelt_rbf/validation_00157.png",
+      "png_sha256": "53d0b3f9198204aee8a3a5f09d0019a38470026a74d917a2c196732cdaf64431",
+      "svg": "figures/darck_kettle/pelt_rbf/validation_00157.svg",
+      "svg_sha256": "af0b88a1dec732efc8cea17c1e38a32bdb62e96b82dac9a6dcbffdfab4447c3d",
+      "pdf": "figures/darck_kettle/pelt_rbf/validation_00157.pdf",
+      "pdf_sha256": "887b7a7c7774bc363776def201bad0c3d55c8f09e487be2a81962d14a3b59dd6"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_pelt_rbf/20261017T032324Z_d2ba82b3",
+  "records_sha256": "965b814f261aae87d5a1cfa17dc80c1609bda463c423d7c326fff093697821e6",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

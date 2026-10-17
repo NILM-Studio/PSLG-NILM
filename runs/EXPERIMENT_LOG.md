@@ -512,3 +512,9 @@ Three P adapters passed CPU 512-phase forward/backward/sample/reload checks; Tim
 - 2026-10-16T19:03:50.620400+00:00 `20261017_public16_all_supported_max600_correction`：16对象两组数据独立复制与QA完成，入选4202条；gap30/gap60各16张十例图供人审。数据清单`/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/manifest.json`，未自动冻结PrimGLR论文最终参数。
 
 - 2026-10-16T19:05:27.336646+00:00 `20261017_public16_primglr_feature_pca16`：按用户全量交付目标补充G阶段，参数/训练预算由留出阶段冻结后，在全部2824活动重新拟合编码器、尺度、DTW、PCA和聚类；另保留留出泛化证据。正式神经训练最多672次，整体仍待审核，无计算execution。
+
+- 2026-10-17T03:16:42.936128+00:00 `20261017_public16_segmentation_hyperparameter_review`：用户确认public16_activity_states_20261017_v2，16对象4202既有活动；每对象每方法合计2图（开发1、验证1），共160张完整参数总图。冻结32条输入及既有PrimGLR边界，不重跑提取/PrimGLR；已登记准备执行通过，五方法切分与图审开始，尚无人审冻结。
+
+- 2026-10-17T03:26:21.935429+00:00 `20261017_public16_segmentation_hyperparameter_review`：用户指定CPU；已停止E2USD GPU工作进程并归档旧图，全部E2USD改用作者cuda=False路径重算。真实数据CPU两次重放切点一致，作者源码与除cuda外网络/训练配置同原GPU配置核验通过；其余四方法既有CPU结果复用。六个单线程CPU进程推进160图，候选/输入/划分哈希不变，参数仍待人审。
+
+- 2026-10-17T03:42:24.973307+00:00 `20261017_public16_segmentation_hyperparameter_review`：CPU完整参数图库完成，16对象×5模型×开发/验证各1图=160张，1952格；32条public16 v2既有活动，不重新提取或重跑PrimGLR。三格式、全网格、源记录/SVG切点、Clasp/CLaP初始化一致性和E2USD CPU核验通过。人工审核pending，未冻结其他模型或运行正式实验一。

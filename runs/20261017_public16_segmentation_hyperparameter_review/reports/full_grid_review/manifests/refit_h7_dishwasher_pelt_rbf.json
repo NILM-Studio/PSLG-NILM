@@ -1,0 +1,822 @@
+{
+  "object": "refit_h7_dishwasher",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 171,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/activities/00171.npz",
+      "input_sha256": "b6561b897d5f59da78b15e40c5265a30d5411efdb1ccf9ed35b49ae0d4b1941a",
+      "n_points": 720,
+      "core_a": 7,
+      "core_b": 713,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          49,
+          100,
+          121,
+          194,
+          202,
+          211,
+          226,
+          233,
+          262,
+          270,
+          328,
+          366,
+          373,
+          388,
+          395,
+          419,
+          525,
+          542,
+          567,
+          593,
+          611,
+          700
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            165,
+            195,
+            270,
+            300,
+            330,
+            525,
+            610,
+            645,
+            700
+          ],
+          "cut_timestamps": [
+            1401890784.0,
+            1401891144.0,
+            1401891384.0,
+            1401891984.0,
+            1401892224.0,
+            1401892464.0,
+            1401894024.0,
+            1401894704.0,
+            1401894984.0,
+            1401895424.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1320.0,
+            1560.0,
+            2160.0,
+            2400.0,
+            2640.0,
+            4200.0,
+            4880.0,
+            5160.0,
+            5600.0
+          ],
+          "drawn_cut_lines": 10,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 9.868876818015153,
+            "gamma": 0.00026014568158168577,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            195,
+            270,
+            330,
+            610,
+            700
+          ],
+          "cut_timestamps": [
+            1401890784.0,
+            1401891384.0,
+            1401891984.0,
+            1401892464.0,
+            1401894704.0,
+            1401895424.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1560.0,
+            2160.0,
+            2640.0,
+            4880.0,
+            5600.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 19.737753636030305,
+            "gamma": 0.00026014568158168577,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            195,
+            610
+          ],
+          "cut_timestamps": [
+            1401890784.0,
+            1401891384.0,
+            1401894704.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1560.0,
+            4880.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 39.47550727206061,
+            "gamma": 0.00026014568158168577,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 78.95101454412122,
+            "gamma": 0.00026014568158168577,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e6ece29385e3",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            165,
+            195,
+            270,
+            300,
+            330,
+            525,
+            610,
+            645,
+            700
+          ],
+          "cut_timestamps": [
+            1401890784.0,
+            1401891144.0,
+            1401891384.0,
+            1401891984.0,
+            1401892224.0,
+            1401892464.0,
+            1401894024.0,
+            1401894704.0,
+            1401894984.0,
+            1401895424.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1320.0,
+            1560.0,
+            2160.0,
+            2400.0,
+            2640.0,
+            4200.0,
+            4880.0,
+            5160.0,
+            5600.0
+          ],
+          "drawn_cut_lines": 10,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 9.868876818015153,
+            "gamma": 0.00026014568158168577,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "eccdfa10f1ed",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            195,
+            270,
+            330,
+            610,
+            700
+          ],
+          "cut_timestamps": [
+            1401890784.0,
+            1401891384.0,
+            1401891984.0,
+            1401892464.0,
+            1401894704.0,
+            1401895424.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1560.0,
+            2160.0,
+            2640.0,
+            4880.0,
+            5600.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 19.737753636030305,
+            "gamma": 0.00026014568158168577,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "98b114b8f992",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            195,
+            610
+          ],
+          "cut_timestamps": [
+            1401890784.0,
+            1401891384.0,
+            1401894704.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1560.0,
+            4880.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 39.47550727206061,
+            "gamma": 0.00026014568158168577,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2682099d14af",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 78.95101454412122,
+            "gamma": 0.00026014568158168577,
+            "min_size": 8,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/refit_h7_dishwasher/pelt_rbf/development_00171.png",
+      "png_sha256": "037740d4ba00cd0b25ca8124a698eb685e7ac83396a83d43e50c0d3498069ab9",
+      "svg": "figures/refit_h7_dishwasher/pelt_rbf/development_00171.svg",
+      "svg_sha256": "5758965dd196b44b6d7e56996bce805fa52b11f76ea329e78d78a10ab02f952f",
+      "pdf": "figures/refit_h7_dishwasher/pelt_rbf/development_00171.pdf",
+      "pdf_sha256": "bec9f465f94572bd349f9eb89e0cf72cc82688aa1a40ba2829d86f60f9bceed5"
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 391,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h7_dishwasher/activities/00391.npz",
+      "input_sha256": "3c6ab8a3080597a2413d7eb1c629c1e75395dd9c747069347406642bef3304ea",
+      "n_points": 784,
+      "core_a": 7,
+      "core_b": 777,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          47,
+          55,
+          96,
+          102,
+          114,
+          122,
+          201,
+          209,
+          228,
+          258,
+          279,
+          286,
+          342,
+          365,
+          382,
+          403,
+          434,
+          472,
+          488,
+          503,
+          656,
+          762
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            165,
+            210,
+            285,
+            345,
+            540,
+            655,
+            700,
+            760
+          ],
+          "cut_timestamps": [
+            1423040296.0,
+            1423040656.0,
+            1423041016.0,
+            1423041616.0,
+            1423042096.0,
+            1423043656.0,
+            1423044576.0,
+            1423044936.0,
+            1423045416.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1320.0,
+            1680.0,
+            2280.0,
+            2760.0,
+            4320.0,
+            5240.0,
+            5600.0,
+            6080.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 9.996613530525611,
+            "gamma": 0.00023851761303498754,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            165,
+            210,
+            285,
+            340,
+            655,
+            700,
+            760
+          ],
+          "cut_timestamps": [
+            1423040296.0,
+            1423040656.0,
+            1423041016.0,
+            1423041616.0,
+            1423042056.0,
+            1423044576.0,
+            1423044936.0,
+            1423045416.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1320.0,
+            1680.0,
+            2280.0,
+            2720.0,
+            5240.0,
+            5600.0,
+            6080.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 19.993227061051222,
+            "gamma": 0.00023851761303498754,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            210,
+            655
+          ],
+          "cut_timestamps": [
+            1423040296.0,
+            1423041016.0,
+            1423044576.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1680.0,
+            5240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 39.986454122102444,
+            "gamma": 0.00023851761303498754,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 79.97290824420489,
+            "gamma": 0.00023851761303498754,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e6ece29385e3",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            165,
+            210,
+            285,
+            345,
+            540,
+            655,
+            700,
+            760
+          ],
+          "cut_timestamps": [
+            1423040296.0,
+            1423040656.0,
+            1423041016.0,
+            1423041616.0,
+            1423042096.0,
+            1423043656.0,
+            1423044576.0,
+            1423044936.0,
+            1423045416.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1320.0,
+            1680.0,
+            2280.0,
+            2760.0,
+            4320.0,
+            5240.0,
+            5600.0,
+            6080.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 9.996613530525611,
+            "gamma": 0.00023851761303498754,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "eccdfa10f1ed",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            165,
+            210,
+            285,
+            340,
+            655,
+            700,
+            760
+          ],
+          "cut_timestamps": [
+            1423040296.0,
+            1423040656.0,
+            1423041016.0,
+            1423041616.0,
+            1423042056.0,
+            1423044576.0,
+            1423044936.0,
+            1423045416.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1320.0,
+            1680.0,
+            2280.0,
+            2720.0,
+            5240.0,
+            5600.0,
+            6080.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 19.993227061051222,
+            "gamma": 0.00023851761303498754,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "98b114b8f992",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            210,
+            655
+          ],
+          "cut_timestamps": [
+            1423040296.0,
+            1423041016.0,
+            1423044576.0
+          ],
+          "cut_elapsed_seconds": [
+            960.0,
+            1680.0,
+            5240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 39.986454122102444,
+            "gamma": 0.00023851761303498754,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2682099d14af",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 79.97290824420489,
+            "gamma": 0.00023851761303498754,
+            "min_size": 8,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/refit_h7_dishwasher/pelt_rbf/validation_00391.png",
+      "png_sha256": "5bb2bbc9397b1e4df46a9f4db2f641c1f15fc9beabd0afff76fce4229072684e",
+      "svg": "figures/refit_h7_dishwasher/pelt_rbf/validation_00391.svg",
+      "svg_sha256": "7fa543ab27945ea30575012ed2770c823b40ff6a6239e05b528f4eb58399e413",
+      "pdf": "figures/refit_h7_dishwasher/pelt_rbf/validation_00391.pdf",
+      "pdf_sha256": "72ef00eba71f4d8d379b7e875c0493bc6da7193e0f7cfc3772da197ae64eca3b"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_pelt_rbf/20261017T031746Z_dd97cba2",
+  "records_sha256": "fb29faf2c51a4b1b70cfb86c1730fd1feb384d57800d17bc11ec7906807b4769",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

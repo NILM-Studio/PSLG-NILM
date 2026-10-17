@@ -1,0 +1,1408 @@
+{
+  "object": "snm_building_05_coffee_maker",
+  "method": "e2usd",
+  "config_count": 4,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "e2usd",
+      "split": "development",
+      "activity_id": 150,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/00150.npz",
+      "input_sha256": "aec2878abc3f87a999ea61fc71e24b4ee6c1ffcec876ddd21d198b45ad53f4f9",
+      "n_points": 124,
+      "core_a": 12,
+      "core_b": 113,
+      "nominal_seconds": 5.033,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          34
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 12
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            50,
+            93,
+            105
+          ],
+          "cut_timestamps": [
+            1588662565.3630002,
+            1588662665.2710001,
+            1588662881.1169999,
+            1588662940.714
+          ],
+          "cut_elapsed_seconds": [
+            149.57299995422363,
+            249.48099994659424,
+            465.32699966430664,
+            524.923999786377
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 93,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            94,
+            107
+          ],
+          "cut_timestamps": [
+            1588662565.3630002,
+            1588662885.1590002,
+            1588662950.856
+          ],
+          "cut_elapsed_seconds": [
+            149.57299995422363,
+            469.36899995803833,
+            535.0659997463226
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 93,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            32,
+            50,
+            93,
+            105
+          ],
+          "cut_timestamps": [
+            1588662515.839,
+            1588662575.4390001,
+            1588662665.2710001,
+            1588662881.1169999,
+            1588662940.714
+          ],
+          "cut_elapsed_seconds": [
+            100.04899978637695,
+            159.6489999294281,
+            249.48099994659424,
+            465.32699966430664,
+            524.923999786377
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 93,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            29,
+            50,
+            93,
+            106
+          ],
+          "cut_timestamps": [
+            1588662560.32,
+            1588662665.2710001,
+            1588662881.1169999,
+            1588662945.7870002
+          ],
+          "cut_elapsed_seconds": [
+            144.5299997329712,
+            249.48099994659424,
+            465.32699966430664,
+            529.9969999790192
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 93,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            92,
+            105
+          ],
+          "cut_timestamps": [
+            1588662565.3630002,
+            1588662876.08,
+            1588662940.714
+          ],
+          "cut_elapsed_seconds": [
+            149.57299995422363,
+            460.28999972343445,
+            524.923999786377
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 93,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            28,
+            53,
+            90,
+            105
+          ],
+          "cut_timestamps": [
+            1588662555.258,
+            1588662680.372,
+            1588662865.992,
+            1588662940.714
+          ],
+          "cut_elapsed_seconds": [
+            139.46799969673157,
+            264.58199977874756,
+            450.2019999027252,
+            524.923999786377
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 93,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=124, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=124, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 7,
+          "metadata": {}
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=124, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 8,
+          "metadata": {}
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=124, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 9,
+          "metadata": {}
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=124, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 10,
+          "metadata": {}
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=124, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 11,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/snm_building_05_coffee_maker/e2usd/development_00150.png",
+      "png_sha256": "347ff8da4f03a71269e0b5989fd46bccb416c30cb9dedda47988f3b3c799648a",
+      "svg": "figures/snm_building_05_coffee_maker/e2usd/development_00150.svg",
+      "svg_sha256": "74ca38be90ddf039d32df72791eeb54051a83a6af743a86a3a1514910bc03caf",
+      "pdf": "figures/snm_building_05_coffee_maker/e2usd/development_00150.pdf",
+      "pdf_sha256": "eb315de198eea2ed37d4c0ac706fcdfaed686de29a9b8aa2f838a8e87ff96cc1"
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "e2usd",
+      "split": "validation",
+      "activity_id": 418,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/00418.npz",
+      "input_sha256": "2e14fe405b963cb38109f2199bb855f22bd3e6dbc1cb57f951222d6d0678961b",
+      "n_points": 264,
+      "core_a": 12,
+      "core_b": 253,
+      "nominal_seconds": 5.033,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          35
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            22,
+            39,
+            87,
+            103,
+            155,
+            182,
+            202,
+            216,
+            250
+          ],
+          "cut_timestamps": [
+            1600400981.078,
+            1600401065.957,
+            1600401306.127,
+            1600401385.795,
+            1600401646.1,
+            1600401781.197,
+            1600401881.032,
+            1600401950.6569998,
+            1600402121.1299999
+          ],
+          "cut_elapsed_seconds": [
+            110.17400002479553,
+            195.05299997329712,
+            435.22300004959106,
+            514.8910000324249,
+            775.1959998607635,
+            910.2929999828339,
+            1010.1280000209808,
+            1079.7529997825623,
+            1250.2259998321533
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 8,
+            "embeddings": 233,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            41,
+            88,
+            104,
+            120,
+            197,
+            215,
+            250
+          ],
+          "cut_timestamps": [
+            1600400970.9,
+            1600401076.036,
+            1600401311.174,
+            1600401390.828,
+            1600401470.537,
+            1600401855.808,
+            1600401945.6230001,
+            1600402121.1299999
+          ],
+          "cut_elapsed_seconds": [
+            99.99600005149841,
+            205.13199996948242,
+            440.2699999809265,
+            519.9240000247955,
+            599.6329998970032,
+            984.904000043869,
+            1074.7190001010895,
+            1250.2259998321533
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 8,
+            "embeddings": 233,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            42,
+            104,
+            115,
+            217,
+            249
+          ],
+          "cut_timestamps": [
+            1600400970.9,
+            1600401081.069,
+            1600401390.828,
+            1600401445.277,
+            1600401955.689,
+            1600402116.0809999
+          ],
+          "cut_elapsed_seconds": [
+            99.99600005149841,
+            210.16499996185303,
+            519.9240000247955,
+            574.3729999065399,
+            1084.784999847412,
+            1245.1769998073578
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 233,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            40,
+            86,
+            103,
+            154,
+            182,
+            201,
+            217,
+            251
+          ],
+          "cut_timestamps": [
+            1600400976.01,
+            1600401070.9889998,
+            1600401301.048,
+            1600401385.795,
+            1600401641.066,
+            1600401781.197,
+            1600401875.984,
+            1600401955.689,
+            1600402125.162
+          ],
+          "cut_elapsed_seconds": [
+            105.10599994659424,
+            200.0849997997284,
+            430.14400005340576,
+            514.8910000324249,
+            770.1619999408722,
+            910.2929999828339,
+            1005.079999923706,
+            1084.784999847412,
+            1254.2579998970032
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 8,
+            "embeddings": 233,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            19,
+            42,
+            87,
+            101,
+            120,
+            147,
+            197,
+            215,
+            252
+          ],
+          "cut_timestamps": [
+            1600400965.819,
+            1600401081.069,
+            1600401306.127,
+            1600401375.712,
+            1600401470.537,
+            1600401605.731,
+            1600401855.808,
+            1600401945.6230001,
+            1600402130.225
+          ],
+          "cut_elapsed_seconds": [
+            94.91499996185303,
+            210.16499996185303,
+            435.22300004959106,
+            504.80799984931946,
+            599.6329998970032,
+            734.8269999027252,
+            984.904000043869,
+            1074.7190001010895,
+            1259.3209998607635
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 8,
+            "embeddings": 233,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            38,
+            104,
+            115,
+            197,
+            217,
+            249
+          ],
+          "cut_timestamps": [
+            1600400976.01,
+            1600401060.911,
+            1600401390.828,
+            1600401445.277,
+            1600401855.808,
+            1600401955.689,
+            1600402116.0809999
+          ],
+          "cut_elapsed_seconds": [
+            105.10599994659424,
+            190.00699996948242,
+            519.9240000247955,
+            574.3729999065399,
+            984.904000043869,
+            1084.784999847412,
+            1245.1769998073578
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 233,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            45,
+            119,
+            215,
+            242,
+            251
+          ],
+          "cut_timestamps": [
+            1600400970.9,
+            1600401095.241,
+            1600401465.521,
+            1600401945.6230001,
+            1600402082.794,
+            1600402125.162
+          ],
+          "cut_elapsed_seconds": [
+            99.99600005149841,
+            224.33699989318848,
+            594.6169998645782,
+            1074.7190001010895,
+            1211.8899998664856,
+            1254.2579998970032
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 201,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            36,
+            37,
+            38,
+            53,
+            55,
+            117,
+            215,
+            243,
+            252
+          ],
+          "cut_timestamps": [
+            1600400976.01,
+            1600401050.784,
+            1600401057.8630002,
+            1600401060.911,
+            1600401135.6390002,
+            1600401145.7510002,
+            1600401455.4220002,
+            1600401945.6230001,
+            1600402085.8409998,
+            1600402130.225
+          ],
+          "cut_elapsed_seconds": [
+            105.10599994659424,
+            179.87999987602234,
+            186.95900011062622,
+            190.00699996948242,
+            264.7350001335144,
+            274.8470001220703,
+            584.518000125885,
+            1074.7190001010895,
+            1214.936999797821,
+            1259.3209998607635
+          ],
+          "drawn_cut_lines": 10,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 201,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            38,
+            52,
+            119,
+            217,
+            242
+          ],
+          "cut_timestamps": [
+            1600400970.9,
+            1600401060.911,
+            1600401130.576,
+            1600401465.521,
+            1600401955.689,
+            1600402082.794
+          ],
+          "cut_elapsed_seconds": [
+            99.99600005149841,
+            190.00699996948242,
+            259.67199993133545,
+            594.6169998645782,
+            1084.784999847412,
+            1211.8899998664856
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 201,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            43,
+            44,
+            45,
+            119,
+            194,
+            249
+          ],
+          "cut_timestamps": [
+            1600400970.9,
+            1600401086.1,
+            1600401090.147,
+            1600401095.241,
+            1600401465.521,
+            1600401840.7289999,
+            1600402116.0809999
+          ],
+          "cut_elapsed_seconds": [
+            99.99600005149841,
+            215.19599986076355,
+            219.24300003051758,
+            224.33699989318848,
+            594.6169998645782,
+            969.8249998092651,
+            1245.1769998073578
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 201,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            19,
+            41,
+            117,
+            208,
+            252
+          ],
+          "cut_timestamps": [
+            1600400965.819,
+            1600401076.036,
+            1600401455.4220002,
+            1600401910.32,
+            1600402130.225
+          ],
+          "cut_elapsed_seconds": [
+            94.91499996185303,
+            205.13199996948242,
+            584.518000125885,
+            1039.4159998893738,
+            1259.3209998607635
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 201,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            38,
+            52,
+            119,
+            216,
+            242
+          ],
+          "cut_timestamps": [
+            1600400970.9,
+            1600401060.911,
+            1600401130.576,
+            1600401465.521,
+            1600401950.6569998,
+            1600402082.794
+          ],
+          "cut_elapsed_seconds": [
+            99.99600005149841,
+            190.00699996948242,
+            259.67199993133545,
+            594.6169998645782,
+            1079.7529997825623,
+            1211.8899998664856
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 201,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/snm_building_05_coffee_maker/e2usd/validation_00418.png",
+      "png_sha256": "516db812408b55590e3487163e7f3381d018f613188a3f436a480dee0ee652c0",
+      "svg": "figures/snm_building_05_coffee_maker/e2usd/validation_00418.svg",
+      "svg_sha256": "93cb90fd82e64a26914d956e8ea345c95105de7762c6bc091900b771ee1a610a",
+      "pdf": "figures/snm_building_05_coffee_maker/e2usd/validation_00418.pdf",
+      "pdf_sha256": "1132113b011255f80df15a5b2d892ea469e8119cc3c0bc4588c78446ed8e367f"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_05_coffee_maker_e2usd/20261017T032910Z_72bb7890",
+  "records_sha256": "aa1b89acbf46d04029ab5a6cd32226b93705f979246072321806ec571d739a64",
+  "status_counts": {
+    "success": 18,
+    "unsupported": 6,
+    "failed": 0
+  }
+}

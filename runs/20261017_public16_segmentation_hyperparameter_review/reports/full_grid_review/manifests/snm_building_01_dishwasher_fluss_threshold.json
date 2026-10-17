@@ -1,0 +1,1627 @@
+{
+  "object": "snm_building_01_dishwasher",
+  "method": "fluss-threshold",
+  "config_count": 21,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "fluss-threshold",
+      "split": "development",
+      "activity_id": 10,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/activities/00010.npz",
+      "input_sha256": "6e6f791690f56ed09b2c9125abe2c104f19cc83eda0a378e292536290051543d",
+      "n_points": 932,
+      "core_a": 12,
+      "core_b": 921,
+      "nominal_seconds": 5.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          37,
+          137,
+          177,
+          190,
+          315,
+          327,
+          339,
+          440,
+          468,
+          505,
+          539,
+          550,
+          563,
+          691,
+          703,
+          715,
+          749,
+          820
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "c2259e9b7570",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "027b3aa0268d",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "e56f8abd5ef1",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "bb824d533b63",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "3a2da676b9c4",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            672,
+            738,
+            812
+          ],
+          "cut_timestamps": [
+            1536006815.8969998,
+            1536007145.977,
+            1536007516.008
+          ],
+          "cut_elapsed_seconds": [
+            3359.7799999713898,
+            3689.8600001335144,
+            4059.891000032425
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "80d650732798",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            587,
+            672,
+            738,
+            812
+          ],
+          "cut_timestamps": [
+            1536006390.889,
+            1536006815.8969998,
+            1536007145.977,
+            1536007516.008
+          ],
+          "cut_elapsed_seconds": [
+            2934.7720000743866,
+            3359.7799999713898,
+            3689.8600001335144,
+            4059.891000032425
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "8b017f0c6e60",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            461,
+            587,
+            672,
+            738,
+            812
+          ],
+          "cut_timestamps": [
+            1536005760.9329998,
+            1536006390.889,
+            1536006815.8969998,
+            1536007145.977,
+            1536007516.008
+          ],
+          "cut_elapsed_seconds": [
+            2304.815999984741,
+            2934.7720000743866,
+            3359.7799999713898,
+            3689.8600001335144,
+            4059.891000032425
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6643626424768988,
+            "matrix_profile_subsequences": 921
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "1f87e5b11137",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "0a7ec14faf3e",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "8d9bf630c401",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "5b8c8fa5fa6d",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            711
+          ],
+          "cut_timestamps": [
+            1536007011.0259998
+          ],
+          "cut_elapsed_seconds": [
+            3554.9089999198914
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "13d05e0d99d3",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            587,
+            711
+          ],
+          "cut_timestamps": [
+            1536006390.889,
+            1536007011.0259998
+          ],
+          "cut_elapsed_seconds": [
+            2934.7720000743866,
+            3554.9089999198914
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "710e18e0b399",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            587,
+            711
+          ],
+          "cut_timestamps": [
+            1536006390.889,
+            1536007011.0259998
+          ],
+          "cut_elapsed_seconds": [
+            2934.7720000743866,
+            3554.9089999198914
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "fe2a7b9d9ea8",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            461,
+            587,
+            711
+          ],
+          "cut_timestamps": [
+            1536005760.9329998,
+            1536006390.889,
+            1536007011.0259998
+          ],
+          "cut_elapsed_seconds": [
+            2304.815999984741,
+            2934.7720000743866,
+            3554.9089999198914
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6462643643259915,
+            "matrix_profile_subsequences": 909
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "a6b1235e96ac",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        },
+        {
+          "panel": 16,
+          "config_id": "f9f97eebfbce",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        },
+        {
+          "panel": 17,
+          "config_id": "a81d2f65bfa4",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        },
+        {
+          "panel": 18,
+          "config_id": "96fe7c8f3913",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            679
+          ],
+          "cut_timestamps": [
+            1536006850.98
+          ],
+          "cut_elapsed_seconds": [
+            3394.8630001544952
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        },
+        {
+          "panel": 19,
+          "config_id": "583fda6a8daa",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            679
+          ],
+          "cut_timestamps": [
+            1536006850.98
+          ],
+          "cut_elapsed_seconds": [
+            3394.8630001544952
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        },
+        {
+          "panel": 20,
+          "config_id": "55a4e27e0d0c",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            464,
+            679
+          ],
+          "cut_timestamps": [
+            1536005775.9459999,
+            1536006850.98
+          ],
+          "cut_elapsed_seconds": [
+            2319.8289999961853,
+            3394.8630001544952
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        },
+        {
+          "panel": 21,
+          "config_id": "b8ae8e37b149",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            464,
+            679
+          ],
+          "cut_timestamps": [
+            1536005775.9459999,
+            1536006850.98
+          ],
+          "cut_elapsed_seconds": [
+            2319.8289999961853,
+            3394.8630001544952
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6312831650942148,
+            "matrix_profile_subsequences": 897
+          }
+        }
+      ],
+      "png": "figures/snm_building_01_dishwasher/fluss_threshold/development_00010.png",
+      "png_sha256": "472760fcd339b25cb31a9eab1f138e5a9ecc107eda509d0f1711e8ea4d0c45cb",
+      "svg": "figures/snm_building_01_dishwasher/fluss_threshold/development_00010.svg",
+      "svg_sha256": "d8794ddee818a4c9c08e5982cf974853c1c1eeb455b6d25d3dda0b18d4710969",
+      "pdf": "figures/snm_building_01_dishwasher/fluss_threshold/development_00010.pdf",
+      "pdf_sha256": "650dfe2e3d541fa26199f2cbb8954504fe6ccddf8ca166b1b74caa8358662b8d"
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "fluss-threshold",
+      "split": "validation",
+      "activity_id": 75,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/activities/00075.npz",
+      "input_sha256": "c7b8361e79f727bb3021d75fcd4887d79cbe18e09055fb9529c541e126547e4e",
+      "n_points": 986,
+      "core_a": 12,
+      "core_b": 975,
+      "nominal_seconds": 5.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          28,
+          128,
+          168,
+          181,
+          290,
+          340,
+          453,
+          482,
+          518,
+          564,
+          589,
+          746,
+          793,
+          864
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "c2259e9b7570",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "027b3aa0268d",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "e56f8abd5ef1",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "bb824d533b63",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 24,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "3a2da676b9c4",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 25,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "80d650732798",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            77,
+            428,
+            507
+          ],
+          "cut_timestamps": [
+            1579640001.037,
+            1579641755.984,
+            1579642151.037
+          ],
+          "cut_elapsed_seconds": [
+            385.08899998664856,
+            2140.0360000133514,
+            2535.0889999866486
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 26,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "8b017f0c6e60",
+          "params": {
+            "window": 12,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            77,
+            147,
+            256,
+            325,
+            428,
+            507,
+            615,
+            724
+          ],
+          "cut_timestamps": [
+            1579640001.037,
+            1579640350.927,
+            1579640895.996,
+            1579641240.855,
+            1579641755.984,
+            1579642151.037,
+            1579642690.854,
+            1579643236.012
+          ],
+          "cut_elapsed_seconds": [
+            385.08899998664856,
+            734.9790000915527,
+            1280.0480000972748,
+            1624.9070000648499,
+            2140.0360000133514,
+            2535.0889999866486,
+            3074.906000137329,
+            3620.0640001296997
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 27,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 12,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.806488338815065,
+            "matrix_profile_subsequences": 975
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "1f87e5b11137",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 28,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "0a7ec14faf3e",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 29,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "8d9bf630c401",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 30,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "5b8c8fa5fa6d",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 31,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "13d05e0d99d3",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 32,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "710e18e0b399",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            541
+          ],
+          "cut_timestamps": [
+            1579642320.838
+          ],
+          "cut_elapsed_seconds": [
+            2704.890000104904
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 33,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "fe2a7b9d9ea8",
+          "params": {
+            "window": 24,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            120,
+            259,
+            397,
+            541,
+            737
+          ],
+          "cut_timestamps": [
+            1579640215.799,
+            1579640911.018,
+            1579641600.9689999,
+            1579642320.838,
+            1579643305.854
+          ],
+          "cut_elapsed_seconds": [
+            599.8510000705719,
+            1295.0699999332428,
+            1985.0209999084473,
+            2704.890000104904,
+            3689.906000137329
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 34,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 24,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7908828128168581,
+            "matrix_profile_subsequences": 963
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "a6b1235e96ac",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 35,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        },
+        {
+          "panel": 16,
+          "config_id": "f9f97eebfbce",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 36,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        },
+        {
+          "panel": 17,
+          "config_id": "a81d2f65bfa4",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 37,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        },
+        {
+          "panel": 18,
+          "config_id": "96fe7c8f3913",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 38,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        },
+        {
+          "panel": 19,
+          "config_id": "583fda6a8daa",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            736
+          ],
+          "cut_timestamps": [
+            1579643300.8609998
+          ],
+          "cut_elapsed_seconds": [
+            3684.912999868393
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 39,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        },
+        {
+          "panel": 20,
+          "config_id": "55a4e27e0d0c",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            478,
+            736
+          ],
+          "cut_timestamps": [
+            1579642005.9539998,
+            1579643300.8609998
+          ],
+          "cut_elapsed_seconds": [
+            2390.005999803543,
+            3684.912999868393
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 40,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        },
+        {
+          "panel": 21,
+          "config_id": "b8ae8e37b149",
+          "params": {
+            "window": 36,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            278,
+            478,
+            736
+          ],
+          "cut_timestamps": [
+            1579641005.96,
+            1579642005.9539998,
+            1579643300.8609998
+          ],
+          "cut_elapsed_seconds": [
+            1390.0120000839233,
+            2390.005999803543,
+            3684.912999868393
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+          "source_record_index": 41,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 36,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6964205730825634,
+            "matrix_profile_subsequences": 951
+          }
+        }
+      ],
+      "png": "figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.png",
+      "png_sha256": "a1e253f5281cb86d8b2a7c2c996623c38ff9a6f578201545756bcf786d6fe5a6",
+      "svg": "figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.svg",
+      "svg_sha256": "797a58de6b3f189b9d9ee89c0e94ced85ca54660fa9dc32b911296f2034441d2",
+      "pdf": "figures/snm_building_01_dishwasher/fluss_threshold/validation_00075.pdf",
+      "pdf_sha256": "71303dfdd5a2b76682959a2e978471eef7fac3dcc355b33ebbcd6eb24fa44092"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_fluss_threshold/20261017T032220Z_49440410",
+  "records_sha256": "14abbbec80a10afbffdbbe4ee3f6f5456c400a1fba7c8e652e8f0d2116380233",
+  "status_counts": {
+    "success": 42,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

@@ -1,0 +1,576 @@
+{
+  "object": "darck_sherlockhairdryer",
+  "method": "clasp",
+  "config_count": 12,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "clasp",
+      "split": "development",
+      "activity_id": 68,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/00068.npz",
+      "input_sha256": "b1ff4864cf632035415e9d60dde32a27add46e2b9a8b3a890865f9aa864a57b3",
+      "n_points": 151,
+      "core_a": 60,
+      "core_b": 91,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          61,
+          91
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 0,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 1,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 2,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 3,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "428766ae4b81",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 4,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "612dfd326753",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 5,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "0bb96a8c62ee",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "1ae8ab775e42",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 7,
+          "metadata": {}
+        },
+        {
+          "panel": 9,
+          "config_id": "f4e39aa54bcd",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 8,
+          "metadata": {}
+        },
+        {
+          "panel": 10,
+          "config_id": "9c66e1b31ace",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 9,
+          "metadata": {}
+        },
+        {
+          "panel": 11,
+          "config_id": "9cb65c487f0c",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 10,
+          "metadata": {}
+        },
+        {
+          "panel": 12,
+          "config_id": "b06fc2066959",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 11,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/darck_sherlockhairdryer/clasp/development_00068.png",
+      "png_sha256": "4105728dfde1da11bddf5d6a710b62ed8054184eb0acb5cfaa01980b96161e49",
+      "svg": "figures/darck_sherlockhairdryer/clasp/development_00068.svg",
+      "svg_sha256": "e51cb23aca9a09c71e301b04fa8f44f9388e224444a4854644c164f647f1efe9",
+      "pdf": "figures/darck_sherlockhairdryer/clasp/development_00068.pdf",
+      "pdf_sha256": "dd3c683d8a26f16682f89fbb10516f9b9dc213f828b230575da61dcd2e8a1ba9"
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "clasp",
+      "split": "validation",
+      "activity_id": 91,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/00091.npz",
+      "input_sha256": "c38c7cc6b146d7439391c9821e9eb643585f076a8fdf15ad3b1825202ebf403c",
+      "n_points": 209,
+      "core_a": 60,
+      "core_b": 149,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          149
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 12,
+          "metadata": {}
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 13,
+          "metadata": {}
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 14,
+          "metadata": {}
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 15,
+          "metadata": {}
+        },
+        {
+          "panel": 5,
+          "config_id": "428766ae4b81",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 16,
+          "metadata": {}
+        },
+        {
+          "panel": 6,
+          "config_id": "612dfd326753",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 17,
+          "metadata": {}
+        },
+        {
+          "panel": 7,
+          "config_id": "0bb96a8c62ee",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 18,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "1ae8ab775e42",
+          "params": {
+            "window_size": 60,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 19,
+          "metadata": {}
+        },
+        {
+          "panel": 9,
+          "config_id": "f4e39aa54bcd",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 20,
+          "metadata": {}
+        },
+        {
+          "panel": 10,
+          "config_id": "9c66e1b31ace",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 21,
+          "metadata": {}
+        },
+        {
+          "panel": 11,
+          "config_id": "9cb65c487f0c",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 22,
+          "metadata": {}
+        },
+        {
+          "panel": 12,
+          "config_id": "b06fc2066959",
+          "params": {
+            "window_size": 120,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "ClaSP requires a longer input for its selected window size",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+          "source_record_index": 23,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/darck_sherlockhairdryer/clasp/validation_00091.png",
+      "png_sha256": "5d772ccf0afa6f421222f2aa1051847723b12f1dc2f98ce41142a66abb4ac839",
+      "svg": "figures/darck_sherlockhairdryer/clasp/validation_00091.svg",
+      "svg_sha256": "513c36c55c2237f217adf878a0dbfc332fc93d3a845db6c04bc7faeb25df0d21",
+      "pdf": "figures/darck_sherlockhairdryer/clasp/validation_00091.pdf",
+      "pdf_sha256": "7e39816a5603269cd957f51e3b519644ea300fd0c1eeac694e624d093ded5095"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_clasp/20261017T033146Z_1f44baf2",
+  "records_sha256": "3bbc7242197b7df4e672f925c6e96ee3484026ea9f1bcceb19c97fa259b6cda7",
+  "status_counts": {
+    "success": 0,
+    "unsupported": 24,
+    "failed": 0
+  }
+}

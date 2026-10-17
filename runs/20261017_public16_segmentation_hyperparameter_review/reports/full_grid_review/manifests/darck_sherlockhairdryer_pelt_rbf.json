@@ -1,0 +1,572 @@
+{
+  "object": "darck_sherlockhairdryer",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 68,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/00068.npz",
+      "input_sha256": "b1ff4864cf632035415e9d60dde32a27add46e2b9a8b3a890865f9aa864a57b3",
+      "n_points": 151,
+      "core_a": 60,
+      "core_b": 91,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          61,
+          91
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            90
+          ],
+          "cut_timestamps": [
+            1745711391.0,
+            1745711421.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            90.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 7.525919755222386,
+            "gamma": 1.0,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            90
+          ],
+          "cut_timestamps": [
+            1745711391.0,
+            1745711421.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            90.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 15.051839510444772,
+            "gamma": 1.0,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 30.103679020889544,
+            "gamma": 1.0,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 60.20735804177909,
+            "gamma": 1.0,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e67aab6d9862",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 7.525919755222386,
+            "gamma": 1.0,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "29eba98f5840",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 15.051839510444772,
+            "gamma": 1.0,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "70d050f8a7e7",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 30.103679020889544,
+            "gamma": 1.0,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "5b3c1e3d740c",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 60.20735804177909,
+            "gamma": 1.0,
+            "min_size": 60,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/darck_sherlockhairdryer/pelt_rbf/development_00068.png",
+      "png_sha256": "02894393b6215ffa91df7617d4a165973d60530c4db036075f64cc7da003b78d",
+      "svg": "figures/darck_sherlockhairdryer/pelt_rbf/development_00068.svg",
+      "svg_sha256": "bead341fdaead3ff1839b56f35086eca7defa1ac814343df51384e55a8a0b43a",
+      "pdf": "figures/darck_sherlockhairdryer/pelt_rbf/development_00068.pdf",
+      "pdf_sha256": "065e4359c13d4e4e0dced4ed87ce488f2f14fcde27302e97a4b89dec527bdb28"
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 91,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_sherlockhairdryer/activities/00091.npz",
+      "input_sha256": "c38c7cc6b146d7439391c9821e9eb643585f076a8fdf15ad3b1825202ebf403c",
+      "n_points": 209,
+      "core_a": 60,
+      "core_b": 149,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          149
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            120,
+            150
+          ],
+          "cut_timestamps": [
+            1748388295.0,
+            1748388355.0,
+            1748388385.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            120.0,
+            150.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.013501377947216,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            120,
+            150
+          ],
+          "cut_timestamps": [
+            1748388295.0,
+            1748388355.0,
+            1748388385.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            120.0,
+            150.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.027002755894433,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 32.054005511788866,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 64.10801102357773,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e67aab6d9862",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            145
+          ],
+          "cut_timestamps": [
+            1748388295.0,
+            1748388380.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            145.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.013501377947216,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "29eba98f5840",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            60,
+            145
+          ],
+          "cut_timestamps": [
+            1748388295.0,
+            1748388380.0
+          ],
+          "cut_elapsed_seconds": [
+            60.0,
+            145.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.027002755894433,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "70d050f8a7e7",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 32.054005511788866,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "5b3c1e3d740c",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 60,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 64.10801102357773,
+            "gamma": 1.1012992566967886e-06,
+            "min_size": 60,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.png",
+      "png_sha256": "6e23df8ad48c9c5b64f2a5a12c58a0d1d54b9d3303b974bc2809a79153bdf97d",
+      "svg": "figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.svg",
+      "svg_sha256": "631593a3a7cf40bb9f30006e392e20657edec2a84c2726254abc07ad7d6c4f87",
+      "pdf": "figures/darck_sherlockhairdryer/pelt_rbf/validation_00091.pdf",
+      "pdf_sha256": "b5378f289554f56967b5cf9c39151ac79d7d8dc5955dc50f320bd1f2179f0241"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_pelt_rbf/20261017T033131Z_e74e3f4d",
+  "records_sha256": "b1c0209d822eaeab395e4d28b0cafdce5ebfa5fb5721cff61a8005691adb9cab",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

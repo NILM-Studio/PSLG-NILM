@@ -1,0 +1,623 @@
+{
+  "object": "refit_h20_tumble_dryer",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 21,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/activities/00021.npz",
+      "input_sha256": "cf8c0963b11639ad38f2f492a8ec5807559fa095c6f843a5fd65b513b797f9c7",
+      "n_points": 540,
+      "core_a": 7,
+      "core_b": 533,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          15,
+          64,
+          206,
+          358,
+          426,
+          479
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            150,
+            475
+          ],
+          "cut_timestamps": [
+            1407068632.0,
+            1407071232.0
+          ],
+          "cut_elapsed_seconds": [
+            1200.0,
+            3800.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 9.43735370933748,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            475
+          ],
+          "cut_timestamps": [
+            1407071232.0
+          ],
+          "cut_elapsed_seconds": [
+            3800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 18.87470741867496,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            475
+          ],
+          "cut_timestamps": [
+            1407071232.0
+          ],
+          "cut_elapsed_seconds": [
+            3800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 37.74941483734992,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 75.49882967469983,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e6ece29385e3",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            150,
+            475
+          ],
+          "cut_timestamps": [
+            1407068632.0,
+            1407071232.0
+          ],
+          "cut_elapsed_seconds": [
+            1200.0,
+            3800.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 9.43735370933748,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "eccdfa10f1ed",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            475
+          ],
+          "cut_timestamps": [
+            1407071232.0
+          ],
+          "cut_elapsed_seconds": [
+            3800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 18.87470741867496,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "98b114b8f992",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            475
+          ],
+          "cut_timestamps": [
+            1407071232.0
+          ],
+          "cut_elapsed_seconds": [
+            3800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 37.74941483734992,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2682099d14af",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 75.49882967469983,
+            "gamma": 4.64977731925807e-06,
+            "min_size": 8,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.png",
+      "png_sha256": "3cfbe424e4efd8bc5f5178f1cec87d6d573ceda9abd789ced2c71dba4ac6d2d2",
+      "svg": "figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.svg",
+      "svg_sha256": "20ef594265febafe90f6e79365150b2202c62431bb4b1de52f84e4aedc0c22fb",
+      "pdf": "figures/refit_h20_tumble_dryer/pelt_rbf/development_00021.pdf",
+      "pdf_sha256": "c705752d0f2d54e63a83506f55c09374fb659fa684d6d04f8275e3011a224008"
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 69,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h20_tumble_dryer/activities/00069.npz",
+      "input_sha256": "70fa8956335c40b1fc6ade73ab0d4812044ee754b2f966d1a04b7d6259410628",
+      "n_points": 915,
+      "core_a": 7,
+      "core_b": 908,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          15,
+          46,
+          179,
+          194,
+          277,
+          292,
+          397,
+          412,
+          532,
+          547,
+          577,
+          727,
+          742,
+          811,
+          843,
+          851,
+          869,
+          888,
+          899
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            170,
+            380,
+            850
+          ],
+          "cut_timestamps": [
+            1422205072.0,
+            1422206752.0,
+            1422210512.0
+          ],
+          "cut_elapsed_seconds": [
+            1360.0,
+            3040.0,
+            6800.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.228386097913281,
+            "gamma": 0.002379535990481856,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            850
+          ],
+          "cut_timestamps": [
+            1422210512.0
+          ],
+          "cut_elapsed_seconds": [
+            6800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.456772195826563,
+            "gamma": 0.002379535990481856,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            850
+          ],
+          "cut_timestamps": [
+            1422210512.0
+          ],
+          "cut_elapsed_seconds": [
+            6800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 40.913544391653126,
+            "gamma": 0.002379535990481856,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 81.82708878330625,
+            "gamma": 0.002379535990481856,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e6ece29385e3",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            170,
+            380,
+            850
+          ],
+          "cut_timestamps": [
+            1422205072.0,
+            1422206752.0,
+            1422210512.0
+          ],
+          "cut_elapsed_seconds": [
+            1360.0,
+            3040.0,
+            6800.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.228386097913281,
+            "gamma": 0.002379535990481856,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "eccdfa10f1ed",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            850
+          ],
+          "cut_timestamps": [
+            1422210512.0
+          ],
+          "cut_elapsed_seconds": [
+            6800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.456772195826563,
+            "gamma": 0.002379535990481856,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "98b114b8f992",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            850
+          ],
+          "cut_timestamps": [
+            1422210512.0
+          ],
+          "cut_elapsed_seconds": [
+            6800.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 40.913544391653126,
+            "gamma": 0.002379535990481856,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2682099d14af",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 81.82708878330625,
+            "gamma": 0.002379535990481856,
+            "min_size": 8,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.png",
+      "png_sha256": "b8fa2b8d3c789719be3b344dab772555665ec5d1282ff2786326380b9835415c",
+      "svg": "figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.svg",
+      "svg_sha256": "975b216715da7fad42a4e42fb9aab166793ce451c4d76e7873b47a72a7afdaf8",
+      "pdf": "figures/refit_h20_tumble_dryer/pelt_rbf/validation_00069.pdf",
+      "pdf_sha256": "4debb24fe3e88f23c56681c549b01d4b422ab85f5727fa58b941c5879a6a2f42"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_pelt_rbf/20261017T031923Z_061716e6",
+  "records_sha256": "c9ada9da8553068bd2697d7c729ff370d534983adc144fdd56786033a0edf90f",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

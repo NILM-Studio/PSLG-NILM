@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "archive": "/tmp/public16_segmentation_review_20261017.tar.gz",
+  "bytes": 64265834,
+  "archive_sha256": "7de394d3f043a5346d369f020d828d4647abebc3e59038a2da4b1c970db4355a",
+  "final_qa_executions": [
+    "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/independent_complete_grid_qa/20261017T034223Z_8a06190d",
+    "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/build_local_gallery_viewer/20261017T034224Z_858d7c05"
+  ],
+  "gallery_qa": {
+    "status": "passed",
+    "figures": 160,
+    "formats": [
+      "png",
+      "svg",
+      "pdf"
+    ],
+    "panels": 1952,
+    "unique_inputs": 32,
+    "models_per_input": 5,
+    "evaluation_inputs": 0,
+    "complete_grid_coverage": true,
+    "exact_record_svg_cut_timestamps": true,
+    "exact_default_Clasp_CLaP_initializer_consistency": true,
+    "unsupported_panel_counts": {
+      "fluss-threshold": 203,
+      "clasp": 108,
+      "clap": 80,
+      "e2usd": 36
+    },
+    "parameters_frozen": false,
+    "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+    "gallery_manifest_sha256": "1caf8fc7f8760ea7c4e75ae846ec7d2f11a12bd83d4e34e6b1030febc4cf862a"
+  }
+}

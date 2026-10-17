@@ -1,0 +1,1590 @@
+{
+  "object": "darck_kettle",
+  "method": "e2usd",
+  "config_count": 4,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "darck_kettle",
+      "method": "e2usd",
+      "split": "development",
+      "activity_id": 132,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/activities/00132.npz",
+      "input_sha256": "95edd57ffdc284969ba80f1dcb7f7d5b7c1583706e3dd93f1afeedc9a7880e94",
+      "n_points": 261,
+      "core_a": 60,
+      "core_b": 201,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          199
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 26
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            185,
+            213
+          ],
+          "cut_timestamps": [
+            1750051064.0,
+            1750051091.0,
+            1750051202.0,
+            1750051230.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            185.0,
+            213.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 230,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            185,
+            212
+          ],
+          "cut_timestamps": [
+            1750051064.0,
+            1750051091.0,
+            1750051202.0,
+            1750051229.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            185.0,
+            212.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 230,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            186,
+            212
+          ],
+          "cut_timestamps": [
+            1750051064.0,
+            1750051091.0,
+            1750051203.0,
+            1750051229.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            186.0,
+            212.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 230,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            185,
+            213
+          ],
+          "cut_timestamps": [
+            1750051064.0,
+            1750051091.0,
+            1750051202.0,
+            1750051230.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            185.0,
+            213.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 230,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            185,
+            212
+          ],
+          "cut_timestamps": [
+            1750051064.0,
+            1750051091.0,
+            1750051202.0,
+            1750051229.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            185.0,
+            212.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 230,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            186,
+            212
+          ],
+          "cut_timestamps": [
+            1750051064.0,
+            1750051091.0,
+            1750051203.0,
+            1750051229.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            186.0,
+            212.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 230,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            170,
+            260
+          ],
+          "cut_timestamps": [
+            1750051019.0,
+            1750051107.0,
+            1750051187.0,
+            1750051277.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            170.0,
+            260.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 198,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            163,
+            257,
+            260
+          ],
+          "cut_timestamps": [
+            1750051019.0,
+            1750051107.0,
+            1750051180.0,
+            1750051274.0,
+            1750051277.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            163.0,
+            257.0,
+            260.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 198,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            170,
+            257,
+            260
+          ],
+          "cut_timestamps": [
+            1750051019.0,
+            1750051107.0,
+            1750051187.0,
+            1750051274.0,
+            1750051277.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            170.0,
+            257.0,
+            260.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 198,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            170,
+            259,
+            260
+          ],
+          "cut_timestamps": [
+            1750051019.0,
+            1750051107.0,
+            1750051187.0,
+            1750051276.0,
+            1750051277.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            170.0,
+            259.0,
+            260.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 198,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            163,
+            257,
+            260
+          ],
+          "cut_timestamps": [
+            1750051019.0,
+            1750051107.0,
+            1750051180.0,
+            1750051274.0,
+            1750051277.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            163.0,
+            257.0,
+            260.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 198,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            163,
+            257,
+            260
+          ],
+          "cut_timestamps": [
+            1750051019.0,
+            1750051107.0,
+            1750051180.0,
+            1750051274.0,
+            1750051277.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            163.0,
+            257.0,
+            260.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 198,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/darck_kettle/e2usd/development_00132.png",
+      "png_sha256": "d41298a4afe4efb3b06a269be83708d8ee09d1750be415d3e7a2f007c1d6ebd0",
+      "svg": "figures/darck_kettle/e2usd/development_00132.svg",
+      "svg_sha256": "55b9495193252de02ddf9de63ddee95e218927a0bceb1c44d6be6c697e3cf777",
+      "pdf": "figures/darck_kettle/e2usd/development_00132.pdf",
+      "pdf_sha256": "dbd292bca300015bfec6a0b5fcde6a300489afbe7189586d52f5e5218257dbaf"
+    },
+    {
+      "object": "darck_kettle",
+      "method": "e2usd",
+      "split": "validation",
+      "activity_id": 157,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/darck_kettle/activities/00157.npz",
+      "input_sha256": "f2de34cbaa52e8f7dc15e52bbea9eab0cbfeb8251f780d07241726ec3f3b4bbc",
+      "n_points": 323,
+      "core_a": 60,
+      "core_b": 263,
+      "nominal_seconds": 1.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          60,
+          210,
+          263
+        ],
+        "params": {
+          "W": 120,
+          "min_gap": 30,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 32
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            248,
+            277
+          ],
+          "cut_timestamps": [
+            1751430917.0,
+            1751430944.0,
+            1751431118.0,
+            1751431147.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            248.0,
+            277.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            106,
+            249,
+            276
+          ],
+          "cut_timestamps": [
+            1751430917.0,
+            1751430944.0,
+            1751430976.0,
+            1751431119.0,
+            1751431146.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            106.0,
+            249.0,
+            276.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            106,
+            249,
+            276
+          ],
+          "cut_timestamps": [
+            1751430917.0,
+            1751430944.0,
+            1751430976.0,
+            1751431119.0,
+            1751431146.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            106.0,
+            249.0,
+            276.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            248,
+            276
+          ],
+          "cut_timestamps": [
+            1751430917.0,
+            1751430944.0,
+            1751431118.0,
+            1751431146.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            248.0,
+            276.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            46,
+            74,
+            106,
+            249,
+            276
+          ],
+          "cut_timestamps": [
+            1751430916.0,
+            1751430944.0,
+            1751430976.0,
+            1751431119.0,
+            1751431146.0
+          ],
+          "cut_elapsed_seconds": [
+            46.0,
+            74.0,
+            106.0,
+            249.0,
+            276.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            47,
+            74,
+            106,
+            249,
+            276
+          ],
+          "cut_timestamps": [
+            1751430917.0,
+            1751430944.0,
+            1751430976.0,
+            1751431119.0,
+            1751431146.0
+          ],
+          "cut_elapsed_seconds": [
+            47.0,
+            74.0,
+            106.0,
+            249.0,
+            276.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            120,
+            233
+          ],
+          "cut_timestamps": [
+            1751430872.0,
+            1751430960.0,
+            1751430990.0,
+            1751431103.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            120.0,
+            233.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            120,
+            233,
+            321,
+            322
+          ],
+          "cut_timestamps": [
+            1751430872.0,
+            1751430960.0,
+            1751430990.0,
+            1751431103.0,
+            1751431191.0,
+            1751431192.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            120.0,
+            233.0,
+            321.0,
+            322.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            120,
+            233,
+            319
+          ],
+          "cut_timestamps": [
+            1751430872.0,
+            1751430960.0,
+            1751430990.0,
+            1751431103.0,
+            1751431189.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            120.0,
+            233.0,
+            319.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            120,
+            233,
+            322
+          ],
+          "cut_timestamps": [
+            1751430872.0,
+            1751430960.0,
+            1751430990.0,
+            1751431103.0,
+            1751431192.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            120.0,
+            233.0,
+            322.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            90,
+            120,
+            233,
+            321,
+            322
+          ],
+          "cut_timestamps": [
+            1751430872.0,
+            1751430960.0,
+            1751430990.0,
+            1751431103.0,
+            1751431191.0,
+            1751431192.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            90.0,
+            120.0,
+            233.0,
+            321.0,
+            322.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            92,
+            118,
+            233,
+            320,
+            322
+          ],
+          "cut_timestamps": [
+            1751430872.0,
+            1751430962.0,
+            1751430988.0,
+            1751431103.0,
+            1751431190.0,
+            1751431192.0
+          ],
+          "cut_elapsed_seconds": [
+            2.0,
+            92.0,
+            118.0,
+            233.0,
+            320.0,
+            322.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/darck_kettle/e2usd/validation_00157.png",
+      "png_sha256": "ce1a91663ee7c54da522b5e5ea293094167af2839dbd304a3ac4d021404fcb12",
+      "svg": "figures/darck_kettle/e2usd/validation_00157.svg",
+      "svg_sha256": "9ab5e0e4c438cf9f265ceb73da3939d3c232ec28fadb4226835c50348245c4f2",
+      "pdf": "figures/darck_kettle/e2usd/validation_00157.pdf",
+      "pdf_sha256": "52f47914c6eca3b216a8b39ea9c3a899df9bd3a98b560880f47daf5e1513ece3"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_darck_kettle_e2usd/20261017T033130Z_10ef68dc",
+  "records_sha256": "ad57e1711cb135685e71653023c8080d74d1215f81d2bd54dd2b4f27b0c2bdc2",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

@@ -65,6 +65,11 @@ for obj in plan['objects']:
             activity_keys[obj['object'], a['split'], a['activity_id'], a['npz_sha256']] += 1
 assert len(activity_keys) == 32 and set(activity_keys.values()) == {5}
 assert panels == 1952
+cache_proof = review.REPORT/'pelt_cache_validation.json'
+if cache_proof.exists():
+    proof = review.load(cache_proof)
+    assert proof['status'] == 'passed' and proof['exact_existing_results'] >= 250
+    assert proof['total_conditions'] == 256
 summary = dict(status='passed', figures=160, formats=['png', 'svg', 'pdf'], panels=panels,
                unique_inputs=32, models_per_input=5, evaluation_inputs=0,
                complete_grid_coverage=True, exact_record_svg_cut_timestamps=True,

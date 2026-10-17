@@ -1,0 +1,3418 @@
+[
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "f155ca345847",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "fdbfdc701fa6",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "1151f9fea728",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "40600f0e3934",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "ae59447a1884",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "de1348be16aa",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "f564e271efec",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "51f3f98cd2b7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "24fa78b71a44",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "8ec2028842e8",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "dbd2ab626c36",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "afe93eb0bd53",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "9678ea17d61d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "d0cedb59add8",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "6bb8d4531823",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "d3ab4162ea12",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "571d066337c6",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "038129b1c5f3",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "2528928fdc32",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "6167806e4af0",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 50,
+    "config_id": "8018b6d4ea4d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=29 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "706c4814a905",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "acd111988e38",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "6744346691f7",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "44e8e4ddaeba",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "ab5fec1fb2eb",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "ccd5c4ab9ca6",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "c97a3a7793b5",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 50,
+    "config_id": "398ee06490b6",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "aa4cf661492e",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "535a7d3bc491",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "b21ba263a170",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 50,
+    "config_id": "678feba1be04",
+    "seed": 0,
+    "reason": "ClaSP's project protocol requires at least 50 samples"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "9619c8beba7c",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=29, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "9619c8beba7c",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=29, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "9619c8beba7c",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=29, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "912749cc69af",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=29, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "912749cc69af",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=29, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "912749cc69af",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=29, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "b2303ab509cd",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=29, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "b2303ab509cd",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=29, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "b2303ab509cd",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=29, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "18629cc406f1",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=29, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "18629cc406f1",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=29, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 50,
+    "config_id": "18629cc406f1",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=29, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "f155ca345847",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "fdbfdc701fa6",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "1151f9fea728",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "40600f0e3934",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "ae59447a1884",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "de1348be16aa",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "f564e271efec",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=10 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "51f3f98cd2b7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "24fa78b71a44",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "8ec2028842e8",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "dbd2ab626c36",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "afe93eb0bd53",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "9678ea17d61d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "d0cedb59add8",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=20 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "6bb8d4531823",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "d3ab4162ea12",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "571d066337c6",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "038129b1c5f3",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "2528928fdc32",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "6167806e4af0",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "fluss-threshold",
+    "activity_id": 283,
+    "config_id": "8018b6d4ea4d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=51 window=30 excl_factor=5"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "706c4814a905",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "acd111988e38",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "6744346691f7",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "44e8e4ddaeba",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "ab5fec1fb2eb",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "ccd5c4ab9ca6",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "c97a3a7793b5",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clasp",
+    "activity_id": 283,
+    "config_id": "398ee06490b6",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "aa4cf661492e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "535a7d3bc491",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "b21ba263a170",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "clap",
+    "activity_id": 283,
+    "config_id": "678feba1be04",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "9619c8beba7c",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=51, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "9619c8beba7c",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=51, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "9619c8beba7c",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=51, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "912749cc69af",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=51, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "912749cc69af",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=51, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "912749cc69af",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=51, window=32"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "b2303ab509cd",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=51, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "b2303ab509cd",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=51, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "b2303ab509cd",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=51, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "18629cc406f1",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=51, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "18629cc406f1",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=51, window=64"
+  },
+  {
+    "object": "ukdale_h2_microwave",
+    "method": "e2usd",
+    "activity_id": 283,
+    "config_id": "18629cc406f1",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=51, window=64"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clasp",
+    "activity_id": 105,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clasp",
+    "activity_id": 105,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clasp",
+    "activity_id": 105,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clasp",
+    "activity_id": 105,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "f3ac0fb4125e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "b5c1b9d2d91f",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "ce34c00e9d66",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "refit_h18_bread_maker",
+    "method": "clap",
+    "activity_id": 105,
+    "config_id": "2b4a3e353cd5",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "c2259e9b7570",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "027b3aa0268d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "e56f8abd5ef1",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "bb824d533b63",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "3a2da676b9c4",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "80d650732798",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "8b017f0c6e60",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=12 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "1f87e5b11137",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "0a7ec14faf3e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "8d9bf630c401",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "5b8c8fa5fa6d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "13d05e0d99d3",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "710e18e0b399",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "fe2a7b9d9ea8",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=24 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "a6b1235e96ac",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "f9f97eebfbce",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "a81d2f65bfa4",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "96fe7c8f3913",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "583fda6a8daa",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "55a4e27e0d0c",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 150,
+    "config_id": "b8ae8e37b149",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=124 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "clasp",
+    "activity_id": 150,
+    "config_id": "befd2d1e6310",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "clasp",
+    "activity_id": 150,
+    "config_id": "9306effc185e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "clasp",
+    "activity_id": 150,
+    "config_id": "3240c41f0575",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "clasp",
+    "activity_id": 150,
+    "config_id": "4bf21f018d52",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "e2usd",
+    "activity_id": 150,
+    "config_id": "b2303ab509cd",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=124, window=64"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "e2usd",
+    "activity_id": 150,
+    "config_id": "b2303ab509cd",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=124, window=64"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "e2usd",
+    "activity_id": 150,
+    "config_id": "b2303ab509cd",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=124, window=64"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "e2usd",
+    "activity_id": 150,
+    "config_id": "18629cc406f1",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=124, window=64"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "e2usd",
+    "activity_id": 150,
+    "config_id": "18629cc406f1",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=124, window=64"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "e2usd",
+    "activity_id": 150,
+    "config_id": "18629cc406f1",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=124, window=64"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "a6b1235e96ac",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "f9f97eebfbce",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "a81d2f65bfa4",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "96fe7c8f3913",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "583fda6a8daa",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "55a4e27e0d0c",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_05_coffee_maker",
+    "method": "fluss-threshold",
+    "activity_id": 418,
+    "config_id": "b8ae8e37b149",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=264 window=36 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "9b4a346357a9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "46b9c6282951",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "7be121201a06",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "ae99e41bebe4",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "9b1bbf6c4102",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "b40c48e3d9e9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "90c8471b4e44",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=13 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "9c7d6074135e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "6e378def1175",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "a566ec8bbdab",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "4925a1f4cb39",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "a79934a00602",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "af2278380807",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "4f5a9b441ecd",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=25 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "72ab5c73db66",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "5c20c1fce54d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "714bdc4237a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "6d5a675a1c96",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "421fdc83de7b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "319bbfdf5137",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 51,
+    "config_id": "bcc5412fdd71",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=100 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "375a24d5f3d1",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "d44861878867",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "bdea041404a0",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "9a261d9c45ec",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "6922935a2a32",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "b5a5172bde39",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "10e0f7a1c00b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 51,
+    "config_id": "f01b186560bc",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "0198f121219d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "996be8dcdded",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "d1c893dfe389",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 51,
+    "config_id": "5001a29eaa52",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "e2usd",
+    "activity_id": 51,
+    "config_id": "b2303ab509cd",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=100, window=64"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "e2usd",
+    "activity_id": 51,
+    "config_id": "b2303ab509cd",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=100, window=64"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "e2usd",
+    "activity_id": 51,
+    "config_id": "b2303ab509cd",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=100, window=64"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "e2usd",
+    "activity_id": 51,
+    "config_id": "18629cc406f1",
+    "seed": 0,
+    "reason": "E2USD requires n >= 2*window; n=100, window=64"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "e2usd",
+    "activity_id": 51,
+    "config_id": "18629cc406f1",
+    "seed": 1,
+    "reason": "E2USD requires n >= 2*window; n=100, window=64"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "e2usd",
+    "activity_id": 51,
+    "config_id": "18629cc406f1",
+    "seed": 2,
+    "reason": "E2USD requires n >= 2*window; n=100, window=64"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "72ab5c73db66",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "5c20c1fce54d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "714bdc4237a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "6d5a675a1c96",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "421fdc83de7b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "319bbfdf5137",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "fluss-threshold",
+    "activity_id": 78,
+    "config_id": "bcc5412fdd71",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=37 excl_factor=5"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 78,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 78,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 78,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clasp",
+    "activity_id": 78,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "0198f121219d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "996be8dcdded",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "d1c893dfe389",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "snm_building_03_boiler",
+    "method": "clap",
+    "activity_id": 78,
+    "config_id": "5001a29eaa52",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "e9d70c2f65b9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "057e00556e90",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "f70f8ca8501d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "01fc45eb8247",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "69418fa1875d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "1d944d037991",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "c2ec4a067e9a",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "74160f88867b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "9e6535596aed",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "b0f8efca1619",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "630e7534b52f",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "9f81f8a21290",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "a4c7b3bbd374",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "86bf9594ac7e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "ae7d42617cdd",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "00ba017950a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "7159e2838dc7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "bd37e122a7de",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "5fff96a75724",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "c5a66f192f20",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 132,
+    "config_id": "c9ff06e24077",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=261 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "428766ae4b81",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "612dfd326753",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "0bb96a8c62ee",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "1ae8ab775e42",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "f4e39aa54bcd",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "9c66e1b31ace",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "9cb65c487f0c",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 132,
+    "config_id": "b06fc2066959",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "d2e14b0b7eaa",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "b6eb94423367",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "3e9ec494552d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 132,
+    "config_id": "523159f58fc1",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "e9d70c2f65b9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "057e00556e90",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "f70f8ca8501d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "01fc45eb8247",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "69418fa1875d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "1d944d037991",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "c2ec4a067e9a",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "74160f88867b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "9e6535596aed",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "b0f8efca1619",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "630e7534b52f",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "9f81f8a21290",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "a4c7b3bbd374",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "86bf9594ac7e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "ae7d42617cdd",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "00ba017950a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "7159e2838dc7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "bd37e122a7de",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "5fff96a75724",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "c5a66f192f20",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "fluss-threshold",
+    "activity_id": 157,
+    "config_id": "c9ff06e24077",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=323 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "428766ae4b81",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "612dfd326753",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "0bb96a8c62ee",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "1ae8ab775e42",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "f4e39aa54bcd",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "9c66e1b31ace",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "9cb65c487f0c",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clasp",
+    "activity_id": 157,
+    "config_id": "b06fc2066959",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "d2e14b0b7eaa",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "b6eb94423367",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "3e9ec494552d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_kettle",
+    "method": "clap",
+    "activity_id": 157,
+    "config_id": "523159f58fc1",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "e9d70c2f65b9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "057e00556e90",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "f70f8ca8501d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "01fc45eb8247",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "69418fa1875d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "1d944d037991",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "c2ec4a067e9a",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "74160f88867b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "9e6535596aed",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "b0f8efca1619",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "630e7534b52f",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "9f81f8a21290",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "a4c7b3bbd374",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "86bf9594ac7e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "ae7d42617cdd",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "00ba017950a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "7159e2838dc7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "bd37e122a7de",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "5fff96a75724",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "c5a66f192f20",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 68,
+    "config_id": "c9ff06e24077",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=151 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "428766ae4b81",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "612dfd326753",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "0bb96a8c62ee",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "1ae8ab775e42",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "f4e39aa54bcd",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "9c66e1b31ace",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "9cb65c487f0c",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 68,
+    "config_id": "b06fc2066959",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "d2e14b0b7eaa",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "b6eb94423367",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "3e9ec494552d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 68,
+    "config_id": "523159f58fc1",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "e9d70c2f65b9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "057e00556e90",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "f70f8ca8501d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "01fc45eb8247",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "69418fa1875d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "1d944d037991",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "c2ec4a067e9a",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "74160f88867b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "9e6535596aed",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "b0f8efca1619",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "630e7534b52f",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "9f81f8a21290",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "a4c7b3bbd374",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "86bf9594ac7e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "ae7d42617cdd",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "00ba017950a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "7159e2838dc7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "bd37e122a7de",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "5fff96a75724",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "c5a66f192f20",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "fluss-threshold",
+    "activity_id": 91,
+    "config_id": "c9ff06e24077",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=209 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "428766ae4b81",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "612dfd326753",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "0bb96a8c62ee",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "1ae8ab775e42",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "f4e39aa54bcd",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "9c66e1b31ace",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "9cb65c487f0c",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clasp",
+    "activity_id": 91,
+    "config_id": "b06fc2066959",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "d2e14b0b7eaa",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "b6eb94423367",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "3e9ec494552d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_sherlockhairdryer",
+    "method": "clap",
+    "activity_id": 91,
+    "config_id": "523159f58fc1",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "e9d70c2f65b9",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "057e00556e90",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "f70f8ca8501d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "01fc45eb8247",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "69418fa1875d",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "1d944d037991",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "c2ec4a067e9a",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=60 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "74160f88867b",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "9e6535596aed",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "b0f8efca1619",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "630e7534b52f",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "9f81f8a21290",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "a4c7b3bbd374",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "86bf9594ac7e",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=120 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "ae7d42617cdd",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "00ba017950a2",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "7159e2838dc7",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "bd37e122a7de",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "5fff96a75724",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "c5a66f192f20",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "fluss-threshold",
+    "activity_id": 11,
+    "config_id": "c9ff06e24077",
+    "seed": 0,
+    "reason": "FLUSS insufficient length n=136 window=180 excl_factor=5"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "de2961479205",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "975330479a00",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "b67b4084ebf2",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "ce9ab7b92e61",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "428766ae4b81",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "612dfd326753",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "0bb96a8c62ee",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "1ae8ab775e42",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "f4e39aa54bcd",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "9c66e1b31ace",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "9cb65c487f0c",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clasp",
+    "activity_id": 11,
+    "config_id": "b06fc2066959",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "6d161797f924",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "93507a508d7d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "b47008c89b8b",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "095f9826e51e",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "d2e14b0b7eaa",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "b6eb94423367",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "3e9ec494552d",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  },
+  {
+    "object": "darck_fridge",
+    "method": "clap",
+    "activity_id": 11,
+    "config_id": "523159f58fc1",
+    "seed": 0,
+    "reason": "ClaSP requires a longer input for its selected window size"
+  }
+]

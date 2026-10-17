@@ -1,0 +1,2313 @@
+{
+  "object": "refit_h9_dishwasher",
+  "method": "fluss-threshold",
+  "config_count": 21,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "fluss-threshold",
+      "split": "development",
+      "activity_id": 122,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/activities/00122.npz",
+      "input_sha256": "377bb0614648913dca7025c7abc72a0198d5bb14565de217e4d0f4e6b524cdd7",
+      "n_points": 1111,
+      "core_a": 7,
+      "core_b": 1104,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          20,
+          89,
+          96,
+          149,
+          157,
+          196,
+          203,
+          312,
+          319,
+          327,
+          379,
+          386,
+          688,
+          711,
+          744,
+          766,
+          773,
+          799,
+          825,
+          918,
+          943,
+          951
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "96e5d091d6b6",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            938,
+            980
+          ],
+          "cut_timestamps": [
+            1419525208.0,
+            1419525544.0
+          ],
+          "cut_elapsed_seconds": [
+            7504.0,
+            7840.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "ac787982484f",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            897,
+            938,
+            980,
+            1020
+          ],
+          "cut_timestamps": [
+            1419524880.0,
+            1419525208.0,
+            1419525544.0,
+            1419525864.0
+          ],
+          "cut_elapsed_seconds": [
+            7176.0,
+            7504.0,
+            7840.0,
+            8160.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "e5795a353662",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            745,
+            843,
+            897,
+            938,
+            980,
+            1020
+          ],
+          "cut_timestamps": [
+            1419523664.0,
+            1419524448.0,
+            1419524880.0,
+            1419525208.0,
+            1419525544.0,
+            1419525864.0
+          ],
+          "cut_elapsed_seconds": [
+            5960.0,
+            6744.0,
+            7176.0,
+            7504.0,
+            7840.0,
+            8160.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aea193cd5503",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            696,
+            745,
+            802,
+            843,
+            897,
+            938,
+            980,
+            1020
+          ],
+          "cut_timestamps": [
+            1419523272.0,
+            1419523664.0,
+            1419524120.0,
+            1419524448.0,
+            1419524880.0,
+            1419525208.0,
+            1419525544.0,
+            1419525864.0
+          ],
+          "cut_elapsed_seconds": [
+            5568.0,
+            5960.0,
+            6416.0,
+            6744.0,
+            7176.0,
+            7504.0,
+            7840.0,
+            8160.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "a3d45f0b2cb0",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            566,
+            611,
+            655,
+            696,
+            745,
+            802,
+            843,
+            897,
+            938,
+            980,
+            1020,
+            1060
+          ],
+          "cut_timestamps": [
+            1419522232.0,
+            1419522592.0,
+            1419522944.0,
+            1419523272.0,
+            1419523664.0,
+            1419524120.0,
+            1419524448.0,
+            1419524880.0,
+            1419525208.0,
+            1419525544.0,
+            1419525864.0,
+            1419526184.0
+          ],
+          "cut_elapsed_seconds": [
+            4528.0,
+            4888.0,
+            5240.0,
+            5568.0,
+            5960.0,
+            6416.0,
+            6744.0,
+            7176.0,
+            7504.0,
+            7840.0,
+            8160.0,
+            8480.0
+          ],
+          "drawn_cut_lines": 12,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "5d89f79344a0",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            227,
+            298,
+            381,
+            455,
+            496,
+            566,
+            611,
+            655,
+            696,
+            745,
+            802,
+            843,
+            897,
+            938,
+            980,
+            1020,
+            1060
+          ],
+          "cut_timestamps": [
+            1419519520.0,
+            1419520088.0,
+            1419520752.0,
+            1419521344.0,
+            1419521672.0,
+            1419522232.0,
+            1419522592.0,
+            1419522944.0,
+            1419523272.0,
+            1419523664.0,
+            1419524120.0,
+            1419524448.0,
+            1419524880.0,
+            1419525208.0,
+            1419525544.0,
+            1419525864.0,
+            1419526184.0
+          ],
+          "cut_elapsed_seconds": [
+            1816.0,
+            2384.0,
+            3048.0,
+            3640.0,
+            3968.0,
+            4528.0,
+            4888.0,
+            5240.0,
+            5568.0,
+            5960.0,
+            6416.0,
+            6744.0,
+            7176.0,
+            7504.0,
+            7840.0,
+            8160.0,
+            8480.0
+          ],
+          "drawn_cut_lines": 17,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "deb3b67b746f",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            78,
+            118,
+            179,
+            227,
+            298,
+            338,
+            381,
+            455,
+            496,
+            566,
+            611,
+            655,
+            696,
+            745,
+            802,
+            843,
+            897,
+            938,
+            980,
+            1020,
+            1060
+          ],
+          "cut_timestamps": [
+            1419518328.0,
+            1419518648.0,
+            1419519136.0,
+            1419519520.0,
+            1419520088.0,
+            1419520408.0,
+            1419520752.0,
+            1419521344.0,
+            1419521672.0,
+            1419522232.0,
+            1419522592.0,
+            1419522944.0,
+            1419523272.0,
+            1419523664.0,
+            1419524120.0,
+            1419524448.0,
+            1419524880.0,
+            1419525208.0,
+            1419525544.0,
+            1419525864.0,
+            1419526184.0
+          ],
+          "cut_elapsed_seconds": [
+            624.0,
+            944.0,
+            1432.0,
+            1816.0,
+            2384.0,
+            2704.0,
+            3048.0,
+            3640.0,
+            3968.0,
+            4528.0,
+            4888.0,
+            5240.0,
+            5568.0,
+            5960.0,
+            6416.0,
+            6744.0,
+            7176.0,
+            7504.0,
+            7840.0,
+            8160.0,
+            8480.0
+          ],
+          "drawn_cut_lines": 21,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.23907417107289677,
+            "matrix_profile_subsequences": 1104
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "e09433233ba5",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            981
+          ],
+          "cut_timestamps": [
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            7848.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "38a3f9a1de3b",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            981
+          ],
+          "cut_timestamps": [
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            7848.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "d31f6ea4f79a",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            735,
+            827,
+            905,
+            981
+          ],
+          "cut_timestamps": [
+            1419523584.0,
+            1419524320.0,
+            1419524944.0,
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            5880.0,
+            6616.0,
+            7240.0,
+            7848.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "2494eefce1c2",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            577,
+            659,
+            735,
+            827,
+            905,
+            981
+          ],
+          "cut_timestamps": [
+            1419522320.0,
+            1419522976.0,
+            1419523584.0,
+            1419524320.0,
+            1419524944.0,
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            4616.0,
+            5272.0,
+            5880.0,
+            6616.0,
+            7240.0,
+            7848.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "a1e5ad346298",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            281,
+            474,
+            577,
+            659,
+            735,
+            827,
+            905,
+            981
+          ],
+          "cut_timestamps": [
+            1419519256.0,
+            1419519952.0,
+            1419521496.0,
+            1419522320.0,
+            1419522976.0,
+            1419523584.0,
+            1419524320.0,
+            1419524944.0,
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            2248.0,
+            3792.0,
+            4616.0,
+            5272.0,
+            5880.0,
+            6616.0,
+            7240.0,
+            7848.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "ed914c6e044b",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            281,
+            378,
+            474,
+            577,
+            659,
+            735,
+            827,
+            905,
+            981
+          ],
+          "cut_timestamps": [
+            1419519256.0,
+            1419519952.0,
+            1419520728.0,
+            1419521496.0,
+            1419522320.0,
+            1419522976.0,
+            1419523584.0,
+            1419524320.0,
+            1419524944.0,
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            2248.0,
+            3024.0,
+            3792.0,
+            4616.0,
+            5272.0,
+            5880.0,
+            6616.0,
+            7240.0,
+            7848.0
+          ],
+          "drawn_cut_lines": 10,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "a0feca2cb416",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            281,
+            378,
+            474,
+            577,
+            659,
+            735,
+            827,
+            905,
+            981
+          ],
+          "cut_timestamps": [
+            1419519256.0,
+            1419519952.0,
+            1419520728.0,
+            1419521496.0,
+            1419522320.0,
+            1419522976.0,
+            1419523584.0,
+            1419524320.0,
+            1419524944.0,
+            1419525552.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            2248.0,
+            3024.0,
+            3792.0,
+            4616.0,
+            5272.0,
+            5880.0,
+            6616.0,
+            7240.0,
+            7848.0
+          ],
+          "drawn_cut_lines": 10,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.25483584385219016,
+            "matrix_profile_subsequences": 1097
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "04d027d8f47f",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            973
+          ],
+          "cut_timestamps": [
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            7784.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        },
+        {
+          "panel": 16,
+          "config_id": "ec3f7500a9ba",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            973
+          ],
+          "cut_timestamps": [
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            7784.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        },
+        {
+          "panel": 17,
+          "config_id": "56f9f91a64f0",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            728,
+            847,
+            973
+          ],
+          "cut_timestamps": [
+            1419523528.0,
+            1419524480.0,
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            5824.0,
+            6776.0,
+            7784.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        },
+        {
+          "panel": 18,
+          "config_id": "bbd184f862b1",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            728,
+            847,
+            973
+          ],
+          "cut_timestamps": [
+            1419523528.0,
+            1419524480.0,
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            5824.0,
+            6776.0,
+            7784.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        },
+        {
+          "panel": 19,
+          "config_id": "ce06db597839",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            604,
+            728,
+            847,
+            973
+          ],
+          "cut_timestamps": [
+            1419519256.0,
+            1419522536.0,
+            1419523528.0,
+            1419524480.0,
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            4832.0,
+            5824.0,
+            6776.0,
+            7784.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        },
+        {
+          "panel": 20,
+          "config_id": "6bd4a1f1e6f0",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            482,
+            604,
+            728,
+            847,
+            973
+          ],
+          "cut_timestamps": [
+            1419519256.0,
+            1419521560.0,
+            1419522536.0,
+            1419523528.0,
+            1419524480.0,
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            3856.0,
+            4832.0,
+            5824.0,
+            6776.0,
+            7784.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        },
+        {
+          "panel": 21,
+          "config_id": "184082efb732",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            365,
+            482,
+            604,
+            728,
+            847,
+            973
+          ],
+          "cut_timestamps": [
+            1419519256.0,
+            1419520624.0,
+            1419521560.0,
+            1419522536.0,
+            1419523528.0,
+            1419524480.0,
+            1419525488.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            2920.0,
+            3856.0,
+            4832.0,
+            5824.0,
+            6776.0,
+            7784.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2536318525121398,
+            "matrix_profile_subsequences": 1089
+          }
+        }
+      ],
+      "png": "figures/refit_h9_dishwasher/fluss_threshold/development_00122.png",
+      "png_sha256": "2c36a0c41ab4ca6c4fbacf66d0842b5afbeadc5bb68116565fb9eba9cd7d25ae",
+      "svg": "figures/refit_h9_dishwasher/fluss_threshold/development_00122.svg",
+      "svg_sha256": "88831083f6d627c9ec025c94fa5cf114d190d324cf07b08c3b8125153b4c751d",
+      "pdf": "figures/refit_h9_dishwasher/fluss_threshold/development_00122.pdf",
+      "pdf_sha256": "cfccc0839380b643e2d38656b84c71b6250bef86a464fa4f3bfe717a44d697fa"
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "method": "fluss-threshold",
+      "split": "validation",
+      "activity_id": 178,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h9_dishwasher/activities/00178.npz",
+      "input_sha256": "f91f145c2ef63b5384baba9ab197eadff3820c2cb9c05b19d7228b2930700e48",
+      "n_points": 1160,
+      "core_a": 7,
+      "core_b": 1153,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          20,
+          28,
+          94,
+          102,
+          162,
+          170,
+          199,
+          207,
+          329,
+          337,
+          393,
+          401,
+          789,
+          805,
+          845,
+          858,
+          866,
+          873,
+          986,
+          994,
+          1001
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "96e5d091d6b6",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "ac787982484f",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            995,
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425735504.0,
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            7960.0,
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "e5795a353662",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            995,
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425735504.0,
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            7960.0,
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aea193cd5503",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            863,
+            904,
+            945,
+            995,
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425734448.0,
+            1425734776.0,
+            1425735104.0,
+            1425735504.0,
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            6904.0,
+            7232.0,
+            7560.0,
+            7960.0,
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 24,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "a3d45f0b2cb0",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            775,
+            818,
+            863,
+            904,
+            945,
+            995,
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425733744.0,
+            1425734088.0,
+            1425734448.0,
+            1425734776.0,
+            1425735104.0,
+            1425735504.0,
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            6200.0,
+            6544.0,
+            6904.0,
+            7232.0,
+            7560.0,
+            7960.0,
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 25,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "5d89f79344a0",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            93,
+            203,
+            267,
+            336,
+            380,
+            462,
+            687,
+            733,
+            775,
+            818,
+            863,
+            904,
+            945,
+            995,
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425728288.0,
+            1425729168.0,
+            1425729680.0,
+            1425730232.0,
+            1425730584.0,
+            1425731240.0,
+            1425733040.0,
+            1425733408.0,
+            1425733744.0,
+            1425734088.0,
+            1425734448.0,
+            1425734776.0,
+            1425735104.0,
+            1425735504.0,
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            744.0,
+            1624.0,
+            2136.0,
+            2688.0,
+            3040.0,
+            3696.0,
+            5496.0,
+            5864.0,
+            6200.0,
+            6544.0,
+            6904.0,
+            7232.0,
+            7560.0,
+            7960.0,
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 16,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 26,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "deb3b67b746f",
+          "params": {
+            "window": 8,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            93,
+            133,
+            203,
+            267,
+            336,
+            380,
+            420,
+            462,
+            507,
+            558,
+            614,
+            687,
+            733,
+            775,
+            818,
+            863,
+            904,
+            945,
+            995,
+            1036,
+            1076
+          ],
+          "cut_timestamps": [
+            1425727880.0,
+            1425728288.0,
+            1425728608.0,
+            1425729168.0,
+            1425729680.0,
+            1425730232.0,
+            1425730584.0,
+            1425730904.0,
+            1425731240.0,
+            1425731600.0,
+            1425732008.0,
+            1425732456.0,
+            1425733040.0,
+            1425733408.0,
+            1425733744.0,
+            1425734088.0,
+            1425734448.0,
+            1425734776.0,
+            1425735104.0,
+            1425735504.0,
+            1425735832.0,
+            1425736152.0
+          ],
+          "cut_elapsed_seconds": [
+            336.0,
+            744.0,
+            1064.0,
+            1624.0,
+            2136.0,
+            2688.0,
+            3040.0,
+            3360.0,
+            3696.0,
+            4056.0,
+            4464.0,
+            4912.0,
+            5496.0,
+            5864.0,
+            6200.0,
+            6544.0,
+            6904.0,
+            7232.0,
+            7560.0,
+            7960.0,
+            8288.0,
+            8608.0
+          ],
+          "drawn_cut_lines": 22,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 27,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 8,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2028524002033157,
+            "matrix_profile_subsequences": 1153
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "e09433233ba5",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            1036
+          ],
+          "cut_timestamps": [
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            8288.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 28,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "38a3f9a1de3b",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            1036
+          ],
+          "cut_timestamps": [
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            8288.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 29,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "d31f6ea4f79a",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            956,
+            1036
+          ],
+          "cut_timestamps": [
+            1425735192.0,
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            7648.0,
+            8288.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 30,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "2494eefce1c2",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            767,
+            880,
+            956,
+            1036
+          ],
+          "cut_timestamps": [
+            1425733680.0,
+            1425734584.0,
+            1425735192.0,
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            6136.0,
+            7040.0,
+            7648.0,
+            8288.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 31,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "a1e5ad346298",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            691,
+            767,
+            880,
+            956,
+            1036
+          ],
+          "cut_timestamps": [
+            1425733072.0,
+            1425733680.0,
+            1425734584.0,
+            1425735192.0,
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            5528.0,
+            6136.0,
+            7040.0,
+            7648.0,
+            8288.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 32,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "ed914c6e044b",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            539,
+            615,
+            691,
+            767,
+            880,
+            956,
+            1036
+          ],
+          "cut_timestamps": [
+            1425731856.0,
+            1425732464.0,
+            1425733072.0,
+            1425733680.0,
+            1425734584.0,
+            1425735192.0,
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            4312.0,
+            4920.0,
+            5528.0,
+            6136.0,
+            7040.0,
+            7648.0,
+            8288.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 33,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "a0feca2cb416",
+          "params": {
+            "window": 15,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            194,
+            406,
+            539,
+            615,
+            691,
+            767,
+            880,
+            956,
+            1036
+          ],
+          "cut_timestamps": [
+            1425729096.0,
+            1425730792.0,
+            1425731856.0,
+            1425732464.0,
+            1425733072.0,
+            1425733680.0,
+            1425734584.0,
+            1425735192.0,
+            1425735832.0
+          ],
+          "cut_elapsed_seconds": [
+            1552.0,
+            3248.0,
+            4312.0,
+            4920.0,
+            5528.0,
+            6136.0,
+            7040.0,
+            7648.0,
+            8288.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 34,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 15,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.18571906239790276,
+            "matrix_profile_subsequences": 1146
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "04d027d8f47f",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            1022
+          ],
+          "cut_timestamps": [
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            8176.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 35,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        },
+        {
+          "panel": 16,
+          "config_id": "ec3f7500a9ba",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            1022
+          ],
+          "cut_timestamps": [
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            8176.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 36,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        },
+        {
+          "panel": 17,
+          "config_id": "56f9f91a64f0",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            906,
+            1022
+          ],
+          "cut_timestamps": [
+            1425734792.0,
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            7248.0,
+            8176.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 37,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        },
+        {
+          "panel": 18,
+          "config_id": "bbd184f862b1",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            776,
+            906,
+            1022
+          ],
+          "cut_timestamps": [
+            1425733752.0,
+            1425734792.0,
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            6208.0,
+            7248.0,
+            8176.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 38,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        },
+        {
+          "panel": 19,
+          "config_id": "ce06db597839",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            660,
+            776,
+            906,
+            1022
+          ],
+          "cut_timestamps": [
+            1425732824.0,
+            1425733752.0,
+            1425734792.0,
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            5280.0,
+            6208.0,
+            7248.0,
+            8176.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 39,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        },
+        {
+          "panel": 20,
+          "config_id": "6bd4a1f1e6f0",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            184,
+            399,
+            660,
+            776,
+            906,
+            1022
+          ],
+          "cut_timestamps": [
+            1425729016.0,
+            1425730736.0,
+            1425732824.0,
+            1425733752.0,
+            1425734792.0,
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            1472.0,
+            3192.0,
+            5280.0,
+            6208.0,
+            7248.0,
+            8176.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 40,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        },
+        {
+          "panel": 21,
+          "config_id": "184082efb732",
+          "params": {
+            "window": 23,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            184,
+            399,
+            529,
+            660,
+            776,
+            906,
+            1022
+          ],
+          "cut_timestamps": [
+            1425729016.0,
+            1425730736.0,
+            1425731776.0,
+            1425732824.0,
+            1425733752.0,
+            1425734792.0,
+            1425735720.0
+          ],
+          "cut_elapsed_seconds": [
+            1472.0,
+            3192.0,
+            4232.0,
+            5280.0,
+            6208.0,
+            7248.0,
+            8176.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+          "source_record_index": 41,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 23,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.2928123159379431,
+            "matrix_profile_subsequences": 1138
+          }
+        }
+      ],
+      "png": "figures/refit_h9_dishwasher/fluss_threshold/validation_00178.png",
+      "png_sha256": "d4aceef6d88f7c542862d38749e1e59917509991cfc22e1c7292ac1663b27a2b",
+      "svg": "figures/refit_h9_dishwasher/fluss_threshold/validation_00178.svg",
+      "svg_sha256": "60475093abed13ee3db8ed7cbd0381362bf56bf838f0c8f78356d810d54158c9",
+      "pdf": "figures/refit_h9_dishwasher/fluss_threshold/validation_00178.pdf",
+      "pdf_sha256": "1685d24e2cda438099dbb9fba0b31be001039f1fd3ff2cdb0d66bcacd8039f5b"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_fluss_threshold/20261017T031818Z_57529192",
+  "records_sha256": "072dfbaa442d507139419a89ef446c896dc31ffe9c145bd780a2b3fcf9d58ed8",
+  "status_counts": {
+    "success": 42,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

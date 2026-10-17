@@ -1,0 +1,677 @@
+{
+  "object": "refit_h18_bread_maker",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 105,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/activities/00105.npz",
+      "input_sha256": "f3fbf10aba147f5964faec52b8c27b988a4a0478b922daef57a8168bd4e6f0f6",
+      "n_points": 277,
+      "core_a": 7,
+      "core_b": 270,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          15,
+          19,
+          50,
+          112,
+          140,
+          195,
+          243
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            120,
+            195,
+            270
+          ],
+          "cut_timestamps": [
+            1419094640.0,
+            1419095360.0,
+            1419095960.0,
+            1419096560.0
+          ],
+          "cut_elapsed_seconds": [
+            240.0,
+            960.0,
+            1560.0,
+            2160.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.436026259281007,
+            "gamma": 0.00040200752507836004,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            120,
+            195
+          ],
+          "cut_timestamps": [
+            1419094640.0,
+            1419095360.0,
+            1419095960.0
+          ],
+          "cut_elapsed_seconds": [
+            240.0,
+            960.0,
+            1560.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.872052518562015,
+            "gamma": 0.00040200752507836004,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 33.74410503712403,
+            "gamma": 0.00040200752507836004,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 67.48821007424806,
+            "gamma": 0.00040200752507836004,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e6ece29385e3",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            120,
+            195
+          ],
+          "cut_timestamps": [
+            1419094640.0,
+            1419095360.0,
+            1419095960.0
+          ],
+          "cut_elapsed_seconds": [
+            240.0,
+            960.0,
+            1560.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.436026259281007,
+            "gamma": 0.00040200752507836004,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "eccdfa10f1ed",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            120,
+            195
+          ],
+          "cut_timestamps": [
+            1419094640.0,
+            1419095360.0,
+            1419095960.0
+          ],
+          "cut_elapsed_seconds": [
+            240.0,
+            960.0,
+            1560.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.872052518562015,
+            "gamma": 0.00040200752507836004,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "98b114b8f992",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 33.74410503712403,
+            "gamma": 0.00040200752507836004,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2682099d14af",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 67.48821007424806,
+            "gamma": 0.00040200752507836004,
+            "min_size": 8,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/refit_h18_bread_maker/pelt_rbf/development_00105.png",
+      "png_sha256": "35f1180a0d171479c25e0497f90c470e23e8215111449af7302dbb87c0c51110",
+      "svg": "figures/refit_h18_bread_maker/pelt_rbf/development_00105.svg",
+      "svg_sha256": "dceb73c5694bb5cab350bc4c1cda5ce6447e3f9af914c7d8a85861341cbd7178",
+      "pdf": "figures/refit_h18_bread_maker/pelt_rbf/development_00105.pdf",
+      "pdf_sha256": "aee1de5ed5c34d75c5a51db81497f7a9f7e81402b14e2d1e978f28baf732e984"
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 152,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_h18_bread_maker/activities/00152.npz",
+      "input_sha256": "95ba582db4071d4ca0e8eed9d2027920f81ecb98b48fc9ed94d0ad041a2c33ce",
+      "n_points": 1539,
+      "core_a": 7,
+      "core_b": 1532,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          15,
+          243,
+          258,
+          355,
+          371,
+          466,
+          489,
+          571,
+          598,
+          667,
+          702,
+          771,
+          789,
+          830,
+          949,
+          972,
+          1274,
+          1438,
+          1472,
+          1490,
+          1519
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955,
+            1280
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0,
+            1425194176.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0,
+            10240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 11.008332200758318,
+            "gamma": 0.0047562425683709865,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955,
+            1280
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0,
+            1425194176.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0,
+            10240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 22.016664401516636,
+            "gamma": 0.0047562425683709865,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955,
+            1280
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0,
+            1425194176.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0,
+            10240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 44.03332880303327,
+            "gamma": 0.0047562425683709865,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 88.06665760606654,
+            "gamma": 0.0047562425683709865,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "e6ece29385e3",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955,
+            1280
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0,
+            1425194176.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0,
+            10240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 11.008332200758318,
+            "gamma": 0.0047562425683709865,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "eccdfa10f1ed",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955,
+            1280
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0,
+            1425194176.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0,
+            10240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 22.016664401516636,
+            "gamma": 0.0047562425683709865,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "98b114b8f992",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955,
+            1280
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0,
+            1425194176.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0,
+            10240.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 44.03332880303327,
+            "gamma": 0.0047562425683709865,
+            "min_size": 8,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "2682099d14af",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 8,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            830,
+            955
+          ],
+          "cut_timestamps": [
+            1425190576.0,
+            1425191576.0
+          ],
+          "cut_elapsed_seconds": [
+            6640.0,
+            7640.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 88.06665760606654,
+            "gamma": 0.0047562425683709865,
+            "min_size": 8,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/refit_h18_bread_maker/pelt_rbf/validation_00152.png",
+      "png_sha256": "d8b3c28c95d0cebb872503ff7131851a499794eb8835231fad163cd77dc8d253",
+      "svg": "figures/refit_h18_bread_maker/pelt_rbf/validation_00152.svg",
+      "svg_sha256": "1db38afc48a2613a0f473bf50a4019890c932b4b00289533d38ad26c5d041455",
+      "pdf": "figures/refit_h18_bread_maker/pelt_rbf/validation_00152.pdf",
+      "pdf_sha256": "3f277a95a8360a42b877f271ad6e8827022c2e86ed70891bd00229b8305b666b"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_pelt_rbf/20261017T031847Z_63bb3e8e",
+  "records_sha256": "90a56b449c6f259985420e611c4f586f4c7e72e88b636d0f42cd0a46f8f36887",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

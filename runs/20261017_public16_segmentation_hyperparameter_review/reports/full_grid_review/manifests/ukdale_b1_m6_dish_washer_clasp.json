@@ -1,0 +1,927 @@
+{
+  "object": "ukdale_b1_m6_dish_washer",
+  "method": "clasp",
+  "config_count": 12,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "clasp",
+      "split": "development",
+      "activity_id": 69,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/activities/00069.npz",
+      "input_sha256": "c92e034566c4065e4d29e9adf5c84439c913dbdb1334fde0d0cdc2a7844c276a",
+      "n_points": 863,
+      "core_a": 8,
+      "core_b": 855,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          29,
+          39,
+          151,
+          180,
+          268,
+          278,
+          325,
+          380,
+          402,
+          596,
+          625,
+          712,
+          780,
+          800,
+          842
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 53,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 53,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 53,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 53,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "706c4814a905",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "acd111988e38",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "6744346691f7",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "44e8e4ddaeba",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "ab5fec1fb2eb",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "ccd5c4ab9ca6",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "c97a3a7793b5",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            268,
+            405
+          ],
+          "cut_timestamps": [
+            1400365089.0,
+            1400366075.0
+          ],
+          "cut_elapsed_seconds": [
+            1870.0,
+            2856.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "398ee06490b6",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            268,
+            405
+          ],
+          "cut_timestamps": [
+            1400365089.0,
+            1400366075.0
+          ],
+          "cut_elapsed_seconds": [
+            1870.0,
+            2856.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        }
+      ],
+      "png": "figures/ukdale_b1_m6_dish_washer/clasp/development_00069.png",
+      "png_sha256": "46feddb70b111ad2253ceb96d0e9e576ff2040f8a053eafd6a615310ca9cfab4",
+      "svg": "figures/ukdale_b1_m6_dish_washer/clasp/development_00069.svg",
+      "svg_sha256": "e73e902221cdde23a3781d0490c563c7a2cbe2d426cc6bc59861ba782d9ccccf",
+      "pdf": "figures/ukdale_b1_m6_dish_washer/clasp/development_00069.pdf",
+      "pdf_sha256": "6d01e47dff2ae73a7c59db608064bdc49aa5325348185879e4d7dab82981503c"
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "method": "clasp",
+      "split": "validation",
+      "activity_id": 140,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_b1_m6_dish_washer/activities/00140.npz",
+      "input_sha256": "3cc60f2e68a6c37fbe2664d9d230349ee45ecc4d8a3b06c02b9e35b3537a2ce5",
+      "n_points": 950,
+      "core_a": 8,
+      "core_b": 942,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          29,
+          80,
+          90,
+          232,
+          242,
+          297,
+          363,
+          422,
+          451,
+          504,
+          515,
+          664,
+          715,
+          736,
+          745,
+          756
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 48,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 48,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            313,
+            634
+          ],
+          "cut_timestamps": [
+            1461225658.0,
+            1461227863.0
+          ],
+          "cut_elapsed_seconds": [
+            2196.0,
+            4401.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 48,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            313,
+            634
+          ],
+          "cut_timestamps": [
+            1461225658.0,
+            1461227863.0
+          ],
+          "cut_elapsed_seconds": [
+            2196.0,
+            4401.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 48,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "706c4814a905",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "acd111988e38",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "6744346691f7",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "44e8e4ddaeba",
+          "params": {
+            "window_size": 10,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 10,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 10,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "ab5fec1fb2eb",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "ccd5c4ab9ca6",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "c97a3a7793b5",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "398ee06490b6",
+          "params": {
+            "window_size": 20,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 20,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 20,
+            "warnings": []
+          }
+        }
+      ],
+      "png": "figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.png",
+      "png_sha256": "c5f87935f78f3b5ed8eff531163c2a8d4352c78fba9f6db52e4953e35596029e",
+      "svg": "figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.svg",
+      "svg_sha256": "31bd81b37ebc7636ba003f6b8f52fc8cf86e89bd0a17491ef2dafed450ce8a3a",
+      "pdf": "figures/ukdale_b1_m6_dish_washer/clasp/validation_00140.pdf",
+      "pdf_sha256": "37cde9a6c86b6e1a1374d4edbf9e4b8c72b3b376eadcd41701caf4e92867ed97"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_clasp/20261017T032151Z_3f1b4cc0",
+  "records_sha256": "3fb8c4f3f3995abe71e14a0ff7d537547d29cc7bd9dcbbd8c20671fc89d8ddcf",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

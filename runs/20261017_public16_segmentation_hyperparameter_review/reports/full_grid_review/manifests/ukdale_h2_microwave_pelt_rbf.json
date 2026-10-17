@@ -1,0 +1,539 @@
+{
+  "object": "ukdale_h2_microwave",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 50,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/activities/00050.npz",
+      "input_sha256": "33ab0737e2b55d2b0673660bbb0df9c2bb2863bd7868672303e8988f0121caf5",
+      "n_points": 29,
+      "core_a": 9,
+      "core_b": 19,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          10,
+          19
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 3
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            10,
+            20
+          ],
+          "cut_timestamps": [
+            1370107050.0,
+            1370107110.0
+          ],
+          "cut_elapsed_seconds": [
+            61.0,
+            121.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 5.05094374497971,
+            "gamma": 0.0016,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.10188748995942,
+            "gamma": 0.0016,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.20377497991884,
+            "gamma": 0.0016,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 40.40754995983768,
+            "gamma": 0.0016,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "b29fb3a68500",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 5.05094374497971,
+            "gamma": 0.0016,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b4acecaf63a6",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 10.10188748995942,
+            "gamma": 0.0016,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "39461534c679",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 20.20377497991884,
+            "gamma": 0.0016,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "8c1f6d0e90ad",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 40.40754995983768,
+            "gamma": 0.0016,
+            "min_size": 10,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_microwave/pelt_rbf/development_00050.png",
+      "png_sha256": "2ffaf6e5dcc28f4b687bf0d51ec6d0e6396fb327456dd8a5271db53e233cb48e",
+      "svg": "figures/ukdale_h2_microwave/pelt_rbf/development_00050.svg",
+      "svg_sha256": "be12b383caa47e5cff284c7930b9079cbfce8118d1d24e893b616caa31425c46",
+      "pdf": "figures/ukdale_h2_microwave/pelt_rbf/development_00050.pdf",
+      "pdf_sha256": "1d951d8b7eade647ace5655d07ff411ed1453dfa40426863942dbd11d706cc53"
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 283,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_microwave/activities/00283.npz",
+      "input_sha256": "a329b95dba141c6a875d9fd8c8c96314fd44fa35a2ff166b07f94bb0aa234156",
+      "n_points": 51,
+      "core_a": 9,
+      "core_b": 41,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          10,
+          41
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 5
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            10,
+            40
+          ],
+          "cut_timestamps": [
+            1375094861.0,
+            1375095041.0
+          ],
+          "cut_elapsed_seconds": [
+            62.0,
+            242.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 5.897738449086488,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 11.795476898172977,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 23.590953796345953,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 47.18190759269191,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "b29fb3a68500",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            10,
+            40
+          ],
+          "cut_timestamps": [
+            1375094861.0,
+            1375095041.0
+          ],
+          "cut_elapsed_seconds": [
+            62.0,
+            242.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 5.897738449086488,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b4acecaf63a6",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 11.795476898172977,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "39461534c679",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 23.590953796345953,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "8c1f6d0e90ad",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 10,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 47.18190759269191,
+            "gamma": 2.3795359904818562e-05,
+            "min_size": 10,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_microwave/pelt_rbf/validation_00283.png",
+      "png_sha256": "f7c411d8f1a6f613b414ca1ba75a5f132ac17b935effcfe88da213a747d552ab",
+      "svg": "figures/ukdale_h2_microwave/pelt_rbf/validation_00283.svg",
+      "svg_sha256": "a0be9a215c68a1e8f98c3528746f48b1f14c78d37e738d13e992b6437572ec52",
+      "pdf": "figures/ukdale_h2_microwave/pelt_rbf/validation_00283.pdf",
+      "pdf_sha256": "9b55db32db9e90c790f5f062c6af4a07a8ec47b6a54628ed67b4306eff25b4a9"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_pelt_rbf/20261017T031707Z_2948cea0",
+  "records_sha256": "3df0fe181325945e71df19288c90a31591d52e95f1c0a6d354935ed5b9db1d9c",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

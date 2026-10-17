@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "figures": 160,
+  "formats": [
+    "png",
+    "svg",
+    "pdf"
+  ],
+  "panels": 1952,
+  "unique_inputs": 32,
+  "models_per_input": 5,
+  "evaluation_inputs": 0,
+  "complete_grid_coverage": true,
+  "exact_record_svg_cut_timestamps": true,
+  "exact_default_Clasp_CLaP_initializer_consistency": true,
+  "unsupported_panel_counts": {
+    "fluss-threshold": 203,
+    "clasp": 108,
+    "clap": 80,
+    "e2usd": 36
+  },
+  "parameters_frozen": false,
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "gallery_manifest_sha256": "1caf8fc7f8760ea7c4e75ae846ec7d2f11a12bd83d4e34e6b1030febc4cf862a"
+}

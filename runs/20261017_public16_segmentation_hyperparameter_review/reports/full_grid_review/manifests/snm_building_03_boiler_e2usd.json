@@ -1,0 +1,1259 @@
+{
+  "object": "snm_building_03_boiler",
+  "method": "e2usd",
+  "config_count": 4,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_03_boiler",
+      "method": "e2usd",
+      "split": "development",
+      "activity_id": 51,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00051.npz",
+      "input_sha256": "7cf0a68b302e16c67b3cb46c1600f57e4affeba880fecf644ab4bcff6aac0208",
+      "n_points": 100,
+      "core_a": 12,
+      "core_b": 88,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          88
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 10
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            81
+          ],
+          "cut_timestamps": [
+            1593146390.189,
+            1593146695.372
+          ],
+          "cut_elapsed_seconds": [
+            99.94299983978271,
+            405.12599992752075
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 69,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            77
+          ],
+          "cut_timestamps": [
+            1593146395.3470001,
+            1593146675.39
+          ],
+          "cut_elapsed_seconds": [
+            105.1010000705719,
+            385.14400005340576
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 69,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            76
+          ],
+          "cut_timestamps": [
+            1593146395.3470001,
+            1593146670.217
+          ],
+          "cut_elapsed_seconds": [
+            105.1010000705719,
+            379.970999956131
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 69,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            80
+          ],
+          "cut_timestamps": [
+            1593146390.189,
+            1593146690.276
+          ],
+          "cut_elapsed_seconds": [
+            99.94299983978271,
+            400.02999997138977
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 69,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            77
+          ],
+          "cut_timestamps": [
+            1593146395.3470001,
+            1593146675.39
+          ],
+          "cut_elapsed_seconds": [
+            105.1010000705719,
+            385.14400005340576
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 69,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            76
+          ],
+          "cut_timestamps": [
+            1593146395.3470001,
+            1593146670.217
+          ],
+          "cut_elapsed_seconds": [
+            105.1010000705719,
+            379.970999956131
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 3,
+            "embeddings": 69,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=100, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 6,
+          "metadata": {}
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=100, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 7,
+          "metadata": {}
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=100, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 8,
+          "metadata": {}
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=100, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 9,
+          "metadata": {}
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=100, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 10,
+          "metadata": {}
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "unsupported",
+          "reason": "E2USD requires n >= 2*window; n=100, window=64",
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 11,
+          "metadata": {}
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/e2usd/development_00051.png",
+      "png_sha256": "1ae892c8ee1414765ea708b778e4523f8229a4566f80969c28688cfaaec2ceb7",
+      "svg": "figures/snm_building_03_boiler/e2usd/development_00051.svg",
+      "svg_sha256": "260e75188a07276f7a701d9e7424729b888a48d9ff5c7279c05696c98280b4fc",
+      "pdf": "figures/snm_building_03_boiler/e2usd/development_00051.pdf",
+      "pdf_sha256": "98d433297b9236f05817c4d9c23513cef67a0d6e74d25abc9f66e711342dfd45"
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "e2usd",
+      "split": "validation",
+      "activity_id": 78,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00078.npz",
+      "input_sha256": "d19deb2977ee6500b51c9733e2bb5aeb503fd796713e2af3d9502bcdf791b825",
+      "n_points": 323,
+      "core_a": 11,
+      "core_b": 312,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          256
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 25
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            64,
+            160,
+            303
+          ],
+          "cut_timestamps": [
+            1597291040.504,
+            1597291255.607,
+            1597291735.463,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            105.12600016593933,
+            320.2290003299713,
+            800.0850002765656,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            32,
+            65,
+            162,
+            304
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291095.459,
+            1597291260.421,
+            1597291745.496,
+            1597292455.334
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            160.08100032806396,
+            325.04300022125244,
+            810.1180002689362,
+            1519.956000328064
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            32,
+            66,
+            160,
+            303
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291095.459,
+            1597291265.625,
+            1597291735.463,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            160.08100032806396,
+            330.24700021743774,
+            800.0850002765656,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            21,
+            65,
+            160,
+            303
+          ],
+          "cut_timestamps": [
+            1597291040.504,
+            1597291260.421,
+            1597291735.463,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            105.12600016593933,
+            325.04300022125244,
+            800.0850002765656,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            32,
+            65,
+            163,
+            303
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291095.459,
+            1597291260.421,
+            1597291751.573,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            160.08100032806396,
+            325.04300022125244,
+            816.1950001716614,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            32,
+            67,
+            89,
+            133,
+            160,
+            303
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291095.459,
+            1597291270.614,
+            1597291380.483,
+            1597291600.488,
+            1597291735.463,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            160.08100032806396,
+            335.23600029945374,
+            445.10500025749207,
+            665.1100001335144,
+            800.0850002765656,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 292,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            117,
+            303
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291520.411,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            585.0330002307892,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            117,
+            304
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291520.411,
+            1597292455.334
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            585.0330002307892,
+            1519.956000328064
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            72,
+            117,
+            304
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291295.5619998,
+            1597291520.411,
+            1597292455.334
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            360.1840000152588,
+            585.0330002307892,
+            1519.956000328064
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            117,
+            303
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291520.411,
+            1597292450.485
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            585.0330002307892,
+            1515.1070001125336
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            117,
+            304
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291520.411,
+            1597292455.334
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            585.0330002307892,
+            1519.956000328064
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            117,
+            304
+          ],
+          "cut_timestamps": [
+            1597291035.564,
+            1597291520.411,
+            1597292455.334
+          ],
+          "cut_elapsed_seconds": [
+            100.18600010871887,
+            585.0330002307892,
+            1519.956000328064
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 4,
+            "embeddings": 260,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/e2usd/validation_00078.png",
+      "png_sha256": "e32444f67b152c4cfa305e94db374a886423cefa7206c8d68333e519be5cdbbe",
+      "svg": "figures/snm_building_03_boiler/e2usd/validation_00078.svg",
+      "svg_sha256": "ef9870e114cbe174ff0e4a061c3292608cd501ee831f8631c7b99addc1de5dae",
+      "pdf": "figures/snm_building_03_boiler/e2usd/validation_00078.pdf",
+      "pdf_sha256": "716fd14bc5b6547ecea55fd468b49fd62d7fc9b110dc96e77695693fd4926e42"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_snm_building_03_boiler_e2usd/20261017T032917Z_610fb62f",
+  "records_sha256": "62b93ff114b22e294d323ae5be18c8a9db55e2b0a324389229f25f42b1cc35f3",
+  "status_counts": {
+    "success": 18,
+    "unsupported": 6,
+    "failed": 0
+  }
+}

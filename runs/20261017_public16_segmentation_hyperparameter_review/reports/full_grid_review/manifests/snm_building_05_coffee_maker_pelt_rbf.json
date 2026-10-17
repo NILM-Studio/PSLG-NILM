@@ -1,0 +1,571 @@
+{
+  "object": "snm_building_05_coffee_maker",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 150,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/00150.npz",
+      "input_sha256": "aec2878abc3f87a999ea61fc71e24b4ee6c1ffcec876ddd21d198b45ad53f4f9",
+      "n_points": 124,
+      "core_a": 12,
+      "core_b": 113,
+      "nominal_seconds": 5.033,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          34
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 12
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            100
+          ],
+          "cut_timestamps": [
+            1588662515.839,
+            1588662915.4259999
+          ],
+          "cut_elapsed_seconds": [
+            100.04899978637695,
+            499.63599967956543
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 7.230422348407556,
+            "gamma": 0.5029928072028571,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 14.460844696815112,
+            "gamma": 0.5029928072028571,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 28.921689393630224,
+            "gamma": 0.5029928072028571,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 57.84337878726045,
+            "gamma": 0.5029928072028571,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "41aa1ebd3925",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            20,
+            100
+          ],
+          "cut_timestamps": [
+            1588662515.839,
+            1588662915.4259999
+          ],
+          "cut_elapsed_seconds": [
+            100.04899978637695,
+            499.63599967956543
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 7.230422348407556,
+            "gamma": 0.5029928072028571,
+            "min_size": 12,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "18e9029156d4",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 14.460844696815112,
+            "gamma": 0.5029928072028571,
+            "min_size": 12,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "39c028b29d67",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 28.921689393630224,
+            "gamma": 0.5029928072028571,
+            "min_size": 12,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "df1ef50fee4b",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 57.84337878726045,
+            "gamma": 0.5029928072028571,
+            "min_size": 12,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.png",
+      "png_sha256": "e8efb6eb7bd272fd61afc2a8f6fb8f8f86570170fd8276831b54a1e7f1bb9d3a",
+      "svg": "figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.svg",
+      "svg_sha256": "002b57cee4ddeeb45759b896406db048dc202d8c0fff8dca2ff3cdd74f7be4a2",
+      "pdf": "figures/snm_building_05_coffee_maker/pelt_rbf/development_00150.pdf",
+      "pdf_sha256": "122b0f466cd8e80d8a099834ad7a3fe4e1ad8e4c9d6f0acb467a9436ac31559b"
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 418,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_05_coffee_maker/activities/00418.npz",
+      "input_sha256": "2e14fe405b963cb38109f2199bb855f22bd3e6dbc1cb57f951222d6d0678961b",
+      "n_points": 264,
+      "core_a": 12,
+      "core_b": 253,
+      "nominal_seconds": 5.033,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          35
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            25,
+            170,
+            255
+          ],
+          "cut_timestamps": [
+            1600400997.303,
+            1600401720.724,
+            1600402145.369
+          ],
+          "cut_elapsed_seconds": [
+            126.3989999294281,
+            849.8199999332428,
+            1274.4649999141693
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.363923654719475,
+            "gamma": 399.9999999999993,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            25,
+            165
+          ],
+          "cut_timestamps": [
+            1600400997.303,
+            1600401695.485
+          ],
+          "cut_elapsed_seconds": [
+            126.3989999294281,
+            824.5809998512268
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.72784730943895,
+            "gamma": 399.9999999999993,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 33.4556946188779,
+            "gamma": 399.9999999999993,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 66.9113892377558,
+            "gamma": 399.9999999999993,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "41aa1ebd3925",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            25,
+            170,
+            250
+          ],
+          "cut_timestamps": [
+            1600400997.303,
+            1600401720.724,
+            1600402121.1299999
+          ],
+          "cut_elapsed_seconds": [
+            126.3989999294281,
+            849.8199999332428,
+            1250.2259998321533
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.363923654719475,
+            "gamma": 399.9999999999993,
+            "min_size": 12,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "18e9029156d4",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            25,
+            165
+          ],
+          "cut_timestamps": [
+            1600400997.303,
+            1600401695.485
+          ],
+          "cut_elapsed_seconds": [
+            126.3989999294281,
+            824.5809998512268
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 16.72784730943895,
+            "gamma": 399.9999999999993,
+            "min_size": 12,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "39c028b29d67",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 33.4556946188779,
+            "gamma": 399.9999999999993,
+            "min_size": 12,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "df1ef50fee4b",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 12,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 66.9113892377558,
+            "gamma": 399.9999999999993,
+            "min_size": 12,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.png",
+      "png_sha256": "4cfc505119eb3944fa03b9d833d8ae6c7f8d2fc481125132a0d22a826180ee4b",
+      "svg": "figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.svg",
+      "svg_sha256": "6ec9bdbf2b643f447dc4bb279f6256b7eaecdd364e2ae3ca5808e508e660de2c",
+      "pdf": "figures/snm_building_05_coffee_maker/pelt_rbf/validation_00418.pdf",
+      "pdf_sha256": "d75809622f76d646b23db1aa3108bf8175ad39d7fc5c0c3c853febe3444ee0cd"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_pelt_rbf/20261017T032246Z_c16d3383",
+  "records_sha256": "935a595659db1f8742f68a6a1f577b818d2baa3a57f842ef17f2c67cabd42efa",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

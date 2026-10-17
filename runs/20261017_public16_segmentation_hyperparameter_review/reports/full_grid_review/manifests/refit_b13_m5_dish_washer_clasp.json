@@ -1,0 +1,898 @@
+{
+  "object": "refit_b13_m5_dish_washer",
+  "method": "clasp",
+  "config_count": 12,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "clasp",
+      "split": "development",
+      "activity_id": 28,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/activities/00028.npz",
+      "input_sha256": "dd60e7c1544111a83d4eaad916b3c618b1ea137d3e58e374cf2e644dc956ef39",
+      "n_points": 440,
+      "core_a": 7,
+      "core_b": 433,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          17,
+          24,
+          32,
+          190,
+          198,
+          239,
+          270,
+          278,
+          286,
+          293,
+          378
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 41,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 41,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 41,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            226
+          ],
+          "cut_timestamps": [
+            1409770656.0
+          ],
+          "cut_elapsed_seconds": [
+            1808.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 41,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "9373d0823d11",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b401e069f626",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "42af9c172b0c",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "40e81bb6b9c5",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "dff0a13bcd26",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "cad54180b77b",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "e9157b6bba9b",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "61cce5249a35",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        }
+      ],
+      "png": "figures/refit_b13_m5_dish_washer/clasp/development_00028.png",
+      "png_sha256": "922a62ecf0c70b9a3f95271a7705647a3339e603eccbbd7928b8a9a22dc17be9",
+      "svg": "figures/refit_b13_m5_dish_washer/clasp/development_00028.svg",
+      "svg_sha256": "559b1589ad786afef81e96a25e11b03efac84263a4b8c774cdb2451ef61d0f42",
+      "pdf": "figures/refit_b13_m5_dish_washer/clasp/development_00028.pdf",
+      "pdf_sha256": "8f738a6793b95bbf2c1be166389ead8ee1eef1e90ffcbf2e6f49c89f9985d800"
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "method": "clasp",
+      "split": "validation",
+      "activity_id": 73,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/refit_b13_m5_dish_washer/activities/00073.npz",
+      "input_sha256": "e071237aedeb68b6e7aa73c0ef6ad3c264632a3fda43cdf43ac9c4789c7eca95",
+      "n_points": 529,
+      "core_a": 7,
+      "core_b": 522,
+      "nominal_seconds": 8.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          16,
+          23,
+          31,
+          194,
+          202,
+          241,
+          248,
+          264,
+          280,
+          296,
+          304,
+          398,
+          406,
+          413,
+          506
+        ],
+        "params": {
+          "W": 15,
+          "min_gap": 4,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 15
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 45,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 45,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 45,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            232
+          ],
+          "cut_timestamps": [
+            1426618584.0
+          ],
+          "cut_elapsed_seconds": [
+            1856.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 45,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "9373d0823d11",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "b401e069f626",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "42af9c172b0c",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "40e81bb6b9c5",
+          "params": {
+            "window_size": 8,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 8,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 8,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "dff0a13bcd26",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "cad54180b77b",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "e9157b6bba9b",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "61cce5249a35",
+          "params": {
+            "window_size": 15,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 15,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 15,
+            "warnings": []
+          }
+        }
+      ],
+      "png": "figures/refit_b13_m5_dish_washer/clasp/validation_00073.png",
+      "png_sha256": "1a42620cf2ce2acffdca208cc2068fedf60a5175b74278f8c8f81c7148999837",
+      "svg": "figures/refit_b13_m5_dish_washer/clasp/validation_00073.svg",
+      "svg_sha256": "9ae0f82f1eeb398d2766d7cd459e51efbdd0519ac6e7f1b5f8bdad9367168c1c",
+      "pdf": "figures/refit_b13_m5_dish_washer/clasp/validation_00073.pdf",
+      "pdf_sha256": "14c3dd49604dbbe21a9ef2d3f045dc3f6161eaa3e33c10a69fb7b642898c9d69"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_clasp/20261017T031722Z_fd84d2b1",
+  "records_sha256": "03ea70a1271a07d856df7de421cb86198aa048e500ff1541b89f21c5a5bdf0ef",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

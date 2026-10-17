@@ -1,0 +1,593 @@
+{
+  "object": "snm_building_03_boiler",
+  "method": "pelt-rbf",
+  "config_count": 8,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_03_boiler",
+      "method": "pelt-rbf",
+      "split": "development",
+      "activity_id": 51,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00051.npz",
+      "input_sha256": "7cf0a68b302e16c67b3cb46c1600f57e4affeba880fecf644ab4bcff6aac0208",
+      "n_points": 100,
+      "core_a": 12,
+      "core_b": 88,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          12,
+          88
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 10
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            15,
+            40,
+            90
+          ],
+          "cut_timestamps": [
+            1593146365.4,
+            1593146490.207,
+            1593146740.349
+          ],
+          "cut_elapsed_seconds": [
+            75.15400004386902,
+            199.96099996566772,
+            450.1029999256134
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 6.907755278982137,
+            "gamma": 0.0004270333108625883,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 13.815510557964274,
+            "gamma": 0.0004270333108625883,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 27.631021115928547,
+            "gamma": 0.0004270333108625883,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 55.262042231857095,
+            "gamma": 0.0004270333108625883,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "c8a1e08489b9",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            15,
+            35,
+            85
+          ],
+          "cut_timestamps": [
+            1593146365.4,
+            1593146465.2289999,
+            1593146715.296
+          ],
+          "cut_elapsed_seconds": [
+            75.15400004386902,
+            174.98299980163574,
+            425.0499999523163
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 6.907755278982137,
+            "gamma": 0.0004270333108625883,
+            "min_size": 13,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "0059f2fbd6d6",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 13.815510557964274,
+            "gamma": 0.0004270333108625883,
+            "min_size": 13,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "fcfe61abfcfe",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 27.631021115928547,
+            "gamma": 0.0004270333108625883,
+            "min_size": 13,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "9527b21a1508",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 55.262042231857095,
+            "gamma": 0.0004270333108625883,
+            "min_size": 13,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/pelt_rbf/development_00051.png",
+      "png_sha256": "f4fe22c69f68f9b2329c89776f54c9eb174395dbbbdda8adf4366a4b6e8d88f4",
+      "svg": "figures/snm_building_03_boiler/pelt_rbf/development_00051.svg",
+      "svg_sha256": "6b487fef303ad7f3e72a8df55b4621f858a670e4f8e09a9ef03e152180231381",
+      "pdf": "figures/snm_building_03_boiler/pelt_rbf/development_00051.pdf",
+      "pdf_sha256": "2e679afb82a9c8afd8d5a3e29faa16536e6d55e2763552b8a017c9faf6294b23"
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "method": "pelt-rbf",
+      "split": "validation",
+      "activity_id": 78,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_03_boiler/activities/00078.npz",
+      "input_sha256": "d19deb2977ee6500b51c9733e2bb5aeb503fd796713e2af3d9502bcdf791b825",
+      "n_points": 323,
+      "core_a": 11,
+      "core_b": 312,
+      "nominal_seconds": 4.958,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          256
+        ],
+        "params": {
+          "W": 25,
+          "min_gap": 7,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 25
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "0502c417a53c",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            10,
+            30,
+            55,
+            100,
+            145,
+            310
+          ],
+          "cut_timestamps": [
+            1597290985.5500002,
+            1597291085.392,
+            1597291210.449,
+            1597291435.483,
+            1597291660.577,
+            1597292485.3500001
+          ],
+          "cut_elapsed_seconds": [
+            50.17200040817261,
+            150.01400017738342,
+            275.07100009918213,
+            500.10500025749207,
+            725.199000120163,
+            1549.972000360489
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.666478484833984,
+            "gamma": 0.0029303880831031788,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "422e8e8161bb",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            65,
+            145
+          ],
+          "cut_timestamps": [
+            1597291260.421,
+            1597291660.577
+          ],
+          "cut_elapsed_seconds": [
+            325.04300022125244,
+            725.199000120163
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 17.33295696966797,
+            "gamma": 0.0029303880831031788,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "83545f3506bb",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 34.66591393933594,
+            "gamma": 0.0029303880831031788,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "aa2583255fde",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 5,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 69.33182787867187,
+            "gamma": 0.0029303880831031788,
+            "min_size": 5,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "c8a1e08489b9",
+          "params": {
+            "penalty_multiplier": 1.5,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            30,
+            55,
+            100,
+            145,
+            310
+          ],
+          "cut_timestamps": [
+            1597291085.392,
+            1597291210.449,
+            1597291435.483,
+            1597291660.577,
+            1597292485.3500001
+          ],
+          "cut_elapsed_seconds": [
+            150.01400017738342,
+            275.07100009918213,
+            500.10500025749207,
+            725.199000120163,
+            1549.972000360489
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 8.666478484833984,
+            "gamma": 0.0029303880831031788,
+            "min_size": 13,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "0059f2fbd6d6",
+          "params": {
+            "penalty_multiplier": 3.0,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            65,
+            145
+          ],
+          "cut_timestamps": [
+            1597291260.421,
+            1597291660.577
+          ],
+          "cut_elapsed_seconds": [
+            325.04300022125244,
+            725.199000120163
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 17.33295696966797,
+            "gamma": 0.0029303880831031788,
+            "min_size": 13,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "fcfe61abfcfe",
+          "params": {
+            "penalty_multiplier": 6.0,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 34.66591393933594,
+            "gamma": 0.0029303880831031788,
+            "min_size": 13,
+            "jump": 5
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "9527b21a1508",
+          "params": {
+            "penalty_multiplier": 12.0,
+            "min_size": 13,
+            "jump": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "ruptures.Pelt(model='rbf')",
+            "penalty": 69.33182787867187,
+            "gamma": 0.0029303880831031788,
+            "min_size": 13,
+            "jump": 5
+          }
+        }
+      ],
+      "png": "figures/snm_building_03_boiler/pelt_rbf/validation_00078.png",
+      "png_sha256": "ba2ea4607a7dfb7216fb7d284c5d6b473e85992ebb30dd4b8f9abadb5c28c05e",
+      "svg": "figures/snm_building_03_boiler/pelt_rbf/validation_00078.svg",
+      "svg_sha256": "e03064ffc64dfca273729820b62be0d6032a1c23751a4e4c40b6bc932409fb06",
+      "pdf": "figures/snm_building_03_boiler/pelt_rbf/validation_00078.pdf",
+      "pdf_sha256": "b47775b8562c7aea365199c10f9dc6e643d6cbef7b63659c65ab56af57ee9f2d"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_pelt_rbf/20261017T032314Z_cf6b32b4",
+  "records_sha256": "f1386475f7951cc82559eca21cdc66aad34f11a56df612441b8ca2e672e1dbdf",
+  "status_counts": {
+    "success": 16,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

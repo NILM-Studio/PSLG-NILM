@@ -1,0 +1,940 @@
+{
+  "object": "snm_building_01_dishwasher",
+  "method": "clasp",
+  "config_count": 12,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "clasp",
+      "split": "development",
+      "activity_id": 10,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/activities/00010.npz",
+      "input_sha256": "6e6f791690f56ed09b2c9125abe2c104f19cc83eda0a378e292536290051543d",
+      "n_points": 932,
+      "core_a": 12,
+      "core_b": 921,
+      "nominal_seconds": 5.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          37,
+          137,
+          177,
+          190,
+          315,
+          327,
+          339,
+          440,
+          468,
+          505,
+          539,
+          550,
+          563,
+          691,
+          703,
+          715,
+          749,
+          820
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 54,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 54,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 54,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 54,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "227a9a576824",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "6221a56d0ce9",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "4e7c56bf6337",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            694,
+            756,
+            818
+          ],
+          "cut_timestamps": [
+            1536006926.013,
+            1536007235.9020002,
+            1536007546.022
+          ],
+          "cut_elapsed_seconds": [
+            3469.896000146866,
+            3779.7850003242493,
+            4089.9050002098083
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "034df0b73960",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            694,
+            756,
+            818
+          ],
+          "cut_timestamps": [
+            1536006926.013,
+            1536007235.9020002,
+            1536007546.022
+          ],
+          "cut_elapsed_seconds": [
+            3469.896000146866,
+            3779.7850003242493,
+            4089.9050002098083
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "befd2d1e6310",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "9306effc185e",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "3240c41f0575",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "4bf21f018d52",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            689
+          ],
+          "cut_timestamps": [
+            1536006901.029
+          ],
+          "cut_elapsed_seconds": [
+            3444.9120001792908
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        }
+      ],
+      "png": "figures/snm_building_01_dishwasher/clasp/development_00010.png",
+      "png_sha256": "c87bb828c981bf0268ab06ec47d73c3e255f8e62f2ebde2d52117f7b89e628df",
+      "svg": "figures/snm_building_01_dishwasher/clasp/development_00010.svg",
+      "svg_sha256": "2c54d20eb1602f18632661c1556c9a3515a8fb22d680530f27cec6a6ef232d4f",
+      "pdf": "figures/snm_building_01_dishwasher/clasp/development_00010.pdf",
+      "pdf_sha256": "f6989960b700c82e7753d44916171ad311630d22eb3077aa517e825b41832f1e"
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "method": "clasp",
+      "split": "validation",
+      "activity_id": 75,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/snm_building_01_dishwasher/activities/00075.npz",
+      "input_sha256": "c7b8361e79f727bb3021d75fcd4887d79cbe18e09055fb9529c541e126547e4e",
+      "n_points": 986,
+      "core_a": 12,
+      "core_b": 975,
+      "nominal_seconds": 5.0,
+      "timezone": null,
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          28,
+          128,
+          168,
+          181,
+          290,
+          340,
+          453,
+          482,
+          518,
+          564,
+          589,
+          746,
+          793,
+          864
+        ],
+        "params": {
+          "W": 24,
+          "min_gap": 6,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 24
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "de2961479205",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 55,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "975330479a00",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 55,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "b67b4084ebf2",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 55,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "ce9ab7b92e61",
+          "params": {
+            "window_size": "suss",
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": "suss",
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 55,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "227a9a576824",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "6221a56d0ce9",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "4e7c56bf6337",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "034df0b73960",
+          "params": {
+            "window_size": 12,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 12,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 12,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "befd2d1e6310",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": "default"
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": "default"
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "9306effc185e",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": 1e-08
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            503
+          ],
+          "cut_timestamps": [
+            1579642130.885
+          ],
+          "cut_elapsed_seconds": [
+            2514.9370000362396
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": 1e-08
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "3240c41f0575",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": 0.0001
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            503
+          ],
+          "cut_timestamps": [
+            1579642130.885
+          ],
+          "cut_elapsed_seconds": [
+            2514.9370000362396
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": 0.0001
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "4bf21f018d52",
+          "params": {
+            "window_size": 24,
+            "validation": "significance_test",
+            "threshold": 0.01
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            503
+          ],
+          "cut_timestamps": [
+            1579642130.885
+          ],
+          "cut_elapsed_seconds": [
+            2514.9370000362396
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official claspy.BinaryClaSPSegmentation",
+            "package": "claspy",
+            "parameters": {
+              "n_jobs": 1,
+              "random_state": 0,
+              "window_size": 24,
+              "validation": "significance_test",
+              "threshold": 0.01
+            },
+            "effective_window": 24,
+            "warnings": []
+          }
+        }
+      ],
+      "png": "figures/snm_building_01_dishwasher/clasp/validation_00075.png",
+      "png_sha256": "d79ed5c6fffa8b5f5912c4898a9f1ab61d426e60f748c87cca0e057b054bd0aa",
+      "svg": "figures/snm_building_01_dishwasher/clasp/validation_00075.svg",
+      "svg_sha256": "d485545b74939f103190995e9e53f9dc33ac9d4adc9907996f500f5cb8399105",
+      "pdf": "figures/snm_building_01_dishwasher/clasp/validation_00075.pdf",
+      "pdf_sha256": "b8c9b2aefce630bade1da315836d757ba9a8bd53c9f6cb17613cd5b399b6660c"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_clasp/20261017T032221Z_370c589c",
+  "records_sha256": "5f645466045c02bf88e48066a91492bf61c9abd796eb5a9bc2fc55fd7431acc9",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

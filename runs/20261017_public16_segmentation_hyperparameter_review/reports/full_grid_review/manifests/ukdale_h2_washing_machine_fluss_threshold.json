@@ -1,0 +1,1551 @@
+{
+  "object": "ukdale_h2_washing_machine",
+  "method": "fluss-threshold",
+  "config_count": 21,
+  "seeds": [
+    0
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "fluss-threshold",
+      "split": "development",
+      "activity_id": 1,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/00001.npz",
+      "input_sha256": "8d72e6c53303b8425d9b5a5a766aff7153697c65e57098bd77807080a981f7c3",
+      "n_points": 384,
+      "core_a": 10,
+      "core_b": 375,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          84,
+          118,
+          255,
+          275,
+          305,
+          327,
+          358
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "f155ca345847",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "fdbfdc701fa6",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "1151f9fea728",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "40600f0e3934",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            76
+          ],
+          "cut_timestamps": [
+            1369568672.0
+          ],
+          "cut_elapsed_seconds": [
+            455.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "ae59447a1884",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            76
+          ],
+          "cut_timestamps": [
+            1369568672.0
+          ],
+          "cut_elapsed_seconds": [
+            455.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "de1348be16aa",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            76,
+            251
+          ],
+          "cut_timestamps": [
+            1369568672.0,
+            1369569746.0
+          ],
+          "cut_elapsed_seconds": [
+            455.0,
+            1529.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "f564e271efec",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            76,
+            126,
+            251,
+            321
+          ],
+          "cut_timestamps": [
+            1369568672.0,
+            1369568972.0,
+            1369569746.0,
+            1369570181.0
+          ],
+          "cut_elapsed_seconds": [
+            455.0,
+            755.0,
+            1529.0,
+            1964.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5593555255824841,
+            "matrix_profile_subsequences": 375
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "51f3f98cd2b7",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "24fa78b71a44",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "8ec2028842e8",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "dbd2ab626c36",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "afe93eb0bd53",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            100
+          ],
+          "cut_timestamps": [
+            1369568816.0
+          ],
+          "cut_elapsed_seconds": [
+            599.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "9678ea17d61d",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            100
+          ],
+          "cut_timestamps": [
+            1369568816.0
+          ],
+          "cut_elapsed_seconds": [
+            599.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "d0cedb59add8",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            100
+          ],
+          "cut_timestamps": [
+            1369568816.0
+          ],
+          "cut_elapsed_seconds": [
+            599.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6834689670311531,
+            "matrix_profile_subsequences": 365
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "6bb8d4531823",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        },
+        {
+          "panel": 16,
+          "config_id": "d3ab4162ea12",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        },
+        {
+          "panel": 17,
+          "config_id": "571d066337c6",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        },
+        {
+          "panel": 18,
+          "config_id": "038129b1c5f3",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        },
+        {
+          "panel": 19,
+          "config_id": "2528928fdc32",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        },
+        {
+          "panel": 20,
+          "config_id": "6167806e4af0",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        },
+        {
+          "panel": 21,
+          "config_id": "8018b6d4ea4d",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            150
+          ],
+          "cut_timestamps": [
+            1369569120.0
+          ],
+          "cut_elapsed_seconds": [
+            903.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.9332818875067951,
+            "matrix_profile_subsequences": 355
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.png",
+      "png_sha256": "040a123221d2925948fc948b66f1f760da06e97465b576fe8ce185ca67d261f2",
+      "svg": "figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.svg",
+      "svg_sha256": "93b6f96f5a024647dae021c19d7fd57d6bfc0785f613b7b4e36f64b69cea0071",
+      "pdf": "figures/ukdale_h2_washing_machine/fluss_threshold/development_00001.pdf",
+      "pdf_sha256": "76b9b59c75d3e61f9d8977d92370a161b900f62d5fcff07267fa2e6aee12f2e6"
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "fluss-threshold",
+      "split": "validation",
+      "activity_id": 40,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/00040.npz",
+      "input_sha256": "36671be912d1ee9100a784cd0a9ce9e2e38c76218ca00f552a332049beaa3e40",
+      "n_points": 435,
+      "core_a": 9,
+      "core_b": 426,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          131,
+          141,
+          330,
+          377,
+          407
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "f155ca345847",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "fdbfdc701fa6",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "1151f9fea728",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "40600f0e3934",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            52,
+            366
+          ],
+          "cut_timestamps": [
+            1377934466.0,
+            1377936383.0
+          ],
+          "cut_elapsed_seconds": [
+            317.0,
+            2234.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 24,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "ae59447a1884",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            52,
+            312,
+            366
+          ],
+          "cut_timestamps": [
+            1377934466.0,
+            1377936054.0,
+            1377936383.0
+          ],
+          "cut_elapsed_seconds": [
+            317.0,
+            1905.0,
+            2234.0
+          ],
+          "drawn_cut_lines": 3,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 25,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "de1348be16aa",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            52,
+            256,
+            312,
+            366
+          ],
+          "cut_timestamps": [
+            1377934466.0,
+            1377935712.0,
+            1377936054.0,
+            1377936383.0
+          ],
+          "cut_elapsed_seconds": [
+            317.0,
+            1563.0,
+            1905.0,
+            2234.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 26,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "f564e271efec",
+          "params": {
+            "window": 10,
+            "window_seconds_target": 60,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            52,
+            256,
+            312,
+            366
+          ],
+          "cut_timestamps": [
+            1377934466.0,
+            1377935712.0,
+            1377936054.0,
+            1377936383.0
+          ],
+          "cut_elapsed_seconds": [
+            317.0,
+            1563.0,
+            1905.0,
+            2234.0
+          ],
+          "drawn_cut_lines": 4,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 27,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 10,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.5591351522929612,
+            "matrix_profile_subsequences": 426
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "51f3f98cd2b7",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 28,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "24fa78b71a44",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 29,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "8ec2028842e8",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 30,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "dbd2ab626c36",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 31,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "afe93eb0bd53",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            312
+          ],
+          "cut_timestamps": [
+            1377936054.0
+          ],
+          "cut_elapsed_seconds": [
+            1905.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 32,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 13,
+          "config_id": "9678ea17d61d",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            312
+          ],
+          "cut_timestamps": [
+            1377936054.0
+          ],
+          "cut_elapsed_seconds": [
+            1905.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 33,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 14,
+          "config_id": "d0cedb59add8",
+          "params": {
+            "window": 20,
+            "window_seconds_target": 120,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            111,
+            312
+          ],
+          "cut_timestamps": [
+            1377934827.0,
+            1377936054.0
+          ],
+          "cut_elapsed_seconds": [
+            678.0,
+            1905.0
+          ],
+          "drawn_cut_lines": 2,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 34,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 20,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.6725739997780905,
+            "matrix_profile_subsequences": 416
+          }
+        },
+        {
+          "panel": 15,
+          "config_id": "6bb8d4531823",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.35,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 35,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.35,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        },
+        {
+          "panel": 16,
+          "config_id": "d3ab4162ea12",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.45,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 36,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.45,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        },
+        {
+          "panel": 17,
+          "config_id": "571d066337c6",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.55,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 37,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.55,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        },
+        {
+          "panel": 18,
+          "config_id": "038129b1c5f3",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.65,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 38,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.65,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        },
+        {
+          "panel": 19,
+          "config_id": "2528928fdc32",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.75,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [],
+          "cut_timestamps": [],
+          "cut_elapsed_seconds": [],
+          "drawn_cut_lines": 0,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 39,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.75,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        },
+        {
+          "panel": 20,
+          "config_id": "6167806e4af0",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.85,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            243
+          ],
+          "cut_timestamps": [
+            1377935632.0
+          ],
+          "cut_elapsed_seconds": [
+            1483.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 40,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.85,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        },
+        {
+          "panel": 21,
+          "config_id": "8018b6d4ea4d",
+          "params": {
+            "window": 30,
+            "window_seconds_target": 180,
+            "threshold": 0.95,
+            "excl_factor": 5
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            243
+          ],
+          "cut_timestamps": [
+            1377935632.0
+          ],
+          "cut_elapsed_seconds": [
+            1483.0
+          ],
+          "drawn_cut_lines": 1,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+          "source_record_index": 41,
+          "metadata": {
+            "source": "official stumpy.stump + stumpy.fluss corrected arc curve",
+            "adaptation": "project CAC threshold and exclusion-zone local minima",
+            "window": 30,
+            "threshold": 0.95,
+            "excl_factor": 5,
+            "n_regimes_for_cac": 2,
+            "cut_coordinate": "subsequence start index",
+            "cac_min": 0.7923898817132194,
+            "matrix_profile_subsequences": 406
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.png",
+      "png_sha256": "123fab612fe364f4e76d2e2f4416496e1130fbebecce9fa3d329884e118071a0",
+      "svg": "figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.svg",
+      "svg_sha256": "d8f5064292ef30c52eb7c1dde6bd5d50d98f1123e03a7c50545b5d2b8aadcdcd",
+      "pdf": "figures/ukdale_h2_washing_machine/fluss_threshold/validation_00040.pdf",
+      "pdf_sha256": "0669d4fd2a92669a9e367033cf05b998f113a1d8c99fcc961dbe082f216b61c0"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_fluss_threshold/20261017T031643Z_3acf60b8",
+  "records_sha256": "a3fb0119a12d4024fc85166c0a22637c54466389b3ffb4632b4653ee3afde811",
+  "status_counts": {
+    "success": 42,
+    "unsupported": 0,
+    "failed": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "exact_existing_results": 250,
+  "total_conditions": 256,
+  "max_cost_abs_error": 1.385046743962448e-09,
+  "elapsed_seconds": 77.28472960786894
+}

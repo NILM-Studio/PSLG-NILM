@@ -1,0 +1,1757 @@
+{
+  "object": "ukdale_h2_washing_machine",
+  "method": "e2usd",
+  "config_count": 4,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "plan_sha256": "6793ebd63e281261ec2f7677fdc48cdabae0059da4f2eab860c6b8dc51ceb811",
+  "figures": [
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "e2usd",
+      "split": "development",
+      "activity_id": 1,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/00001.npz",
+      "input_sha256": "8d72e6c53303b8425d9b5a5a766aff7153697c65e57098bd77807080a981f7c3",
+      "n_points": 384,
+      "core_a": 10,
+      "core_b": 375,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          84,
+          118,
+          255,
+          275,
+          305,
+          327,
+          358
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            34,
+            61,
+            90,
+            103,
+            132,
+            250,
+            279,
+            299,
+            340
+          ],
+          "cut_timestamps": [
+            1369568420.0,
+            1369568582.0,
+            1369568756.0,
+            1369568834.0,
+            1369569008.0,
+            1369569740.0,
+            1369569920.0,
+            1369570044.0,
+            1369570299.0
+          ],
+          "cut_elapsed_seconds": [
+            203.0,
+            365.0,
+            539.0,
+            617.0,
+            791.0,
+            1523.0,
+            1703.0,
+            1827.0,
+            2082.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 0,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 353,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            61,
+            90,
+            103,
+            132,
+            249,
+            279,
+            299,
+            342
+          ],
+          "cut_timestamps": [
+            1369568439.0,
+            1369568582.0,
+            1369568756.0,
+            1369568834.0,
+            1369569008.0,
+            1369569734.0,
+            1369569920.0,
+            1369570044.0,
+            1369570312.0
+          ],
+          "cut_elapsed_seconds": [
+            222.0,
+            365.0,
+            539.0,
+            617.0,
+            791.0,
+            1517.0,
+            1703.0,
+            1827.0,
+            2095.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 1,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 353,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            35,
+            61,
+            90,
+            103,
+            132,
+            250,
+            280,
+            300,
+            348
+          ],
+          "cut_timestamps": [
+            1369568426.0,
+            1369568582.0,
+            1369568756.0,
+            1369568834.0,
+            1369569008.0,
+            1369569740.0,
+            1369569926.0,
+            1369570051.0,
+            1369570349.0
+          ],
+          "cut_elapsed_seconds": [
+            209.0,
+            365.0,
+            539.0,
+            617.0,
+            791.0,
+            1523.0,
+            1709.0,
+            1834.0,
+            2132.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 2,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 353,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            34,
+            61,
+            90,
+            103,
+            132,
+            250,
+            279,
+            299,
+            340
+          ],
+          "cut_timestamps": [
+            1369568420.0,
+            1369568582.0,
+            1369568756.0,
+            1369568834.0,
+            1369569008.0,
+            1369569740.0,
+            1369569920.0,
+            1369570044.0,
+            1369570299.0
+          ],
+          "cut_elapsed_seconds": [
+            203.0,
+            365.0,
+            539.0,
+            617.0,
+            791.0,
+            1523.0,
+            1703.0,
+            1827.0,
+            2082.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 3,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 353,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            61,
+            90,
+            103,
+            132,
+            249,
+            279,
+            299,
+            342
+          ],
+          "cut_timestamps": [
+            1369568439.0,
+            1369568582.0,
+            1369568756.0,
+            1369568834.0,
+            1369569008.0,
+            1369569734.0,
+            1369569920.0,
+            1369570044.0,
+            1369570312.0
+          ],
+          "cut_elapsed_seconds": [
+            222.0,
+            365.0,
+            539.0,
+            617.0,
+            791.0,
+            1517.0,
+            1703.0,
+            1827.0,
+            2095.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 4,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 353,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            35,
+            61,
+            90,
+            103,
+            132,
+            250,
+            280,
+            300,
+            348
+          ],
+          "cut_timestamps": [
+            1369568426.0,
+            1369568582.0,
+            1369568756.0,
+            1369568834.0,
+            1369569008.0,
+            1369569740.0,
+            1369569926.0,
+            1369570051.0,
+            1369570349.0
+          ],
+          "cut_elapsed_seconds": [
+            209.0,
+            365.0,
+            539.0,
+            617.0,
+            791.0,
+            1523.0,
+            1709.0,
+            1834.0,
+            2132.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 5,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 353,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            39,
+            93,
+            148,
+            233,
+            295
+          ],
+          "cut_timestamps": [
+            1369568450.0,
+            1369568774.0,
+            1369569107.0,
+            1369569634.0,
+            1369570020.0
+          ],
+          "cut_elapsed_seconds": [
+            233.0,
+            557.0,
+            890.0,
+            1417.0,
+            1803.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 6,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 5,
+            "embeddings": 321,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            36,
+            94,
+            148,
+            234,
+            290
+          ],
+          "cut_timestamps": [
+            1369568433.0,
+            1369568780.0,
+            1369569107.0,
+            1369569641.0,
+            1369569988.0
+          ],
+          "cut_elapsed_seconds": [
+            216.0,
+            563.0,
+            890.0,
+            1424.0,
+            1771.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 7,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 321,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            95,
+            148,
+            234,
+            290
+          ],
+          "cut_timestamps": [
+            1369568469.0,
+            1369568786.0,
+            1369569107.0,
+            1369569641.0,
+            1369569988.0
+          ],
+          "cut_elapsed_seconds": [
+            252.0,
+            569.0,
+            890.0,
+            1424.0,
+            1771.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 8,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 321,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            62,
+            72,
+            92,
+            148,
+            234,
+            289
+          ],
+          "cut_timestamps": [
+            1369568469.0,
+            1369568588.0,
+            1369568648.0,
+            1369568768.0,
+            1369569107.0,
+            1369569641.0,
+            1369569982.0
+          ],
+          "cut_elapsed_seconds": [
+            252.0,
+            371.0,
+            431.0,
+            551.0,
+            890.0,
+            1424.0,
+            1765.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 9,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 321,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            36,
+            93,
+            148,
+            234,
+            290
+          ],
+          "cut_timestamps": [
+            1369568433.0,
+            1369568774.0,
+            1369569107.0,
+            1369569641.0,
+            1369569988.0
+          ],
+          "cut_elapsed_seconds": [
+            216.0,
+            557.0,
+            890.0,
+            1424.0,
+            1771.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 10,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 321,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            38,
+            92,
+            148,
+            234,
+            290
+          ],
+          "cut_timestamps": [
+            1369568445.0,
+            1369568768.0,
+            1369569107.0,
+            1369569641.0,
+            1369569988.0
+          ],
+          "cut_elapsed_seconds": [
+            228.0,
+            551.0,
+            890.0,
+            1424.0,
+            1771.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 11,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 321,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_washing_machine/e2usd/development_00001.png",
+      "png_sha256": "4ec30f07a99324942adb1515cca36577bc41016122a0428743d10ad1a008b354",
+      "svg": "figures/ukdale_h2_washing_machine/e2usd/development_00001.svg",
+      "svg_sha256": "84886270179d8e885160edc47b8d2b78c5f3f67ceb8e7ad7343053b1d133d3d2",
+      "pdf": "figures/ukdale_h2_washing_machine/e2usd/development_00001.pdf",
+      "pdf_sha256": "1cc99d6e7535a3859e312f22d267bfa7c32cfee01e1c9bf6930b030e1a2599e1"
+    },
+    {
+      "object": "ukdale_h2_washing_machine",
+      "method": "e2usd",
+      "split": "validation",
+      "activity_id": 40,
+      "input_path": "/home/avis/pslg-nilm/datasets/public16_activity_states_20261017_v2/ukdale_h2_washing_machine/activities/00040.npz",
+      "input_sha256": "36671be912d1ee9100a784cd0a9ce9e2e38c76218ca00f552a332049beaa3e40",
+      "n_points": 435,
+      "core_a": 9,
+      "core_b": 426,
+      "nominal_seconds": 6.0,
+      "timezone": "Europe/London",
+      "left_censored": false,
+      "right_censored": false,
+      "primglr_reference": {
+        "full_context_cuts": [
+          66,
+          131,
+          141,
+          330,
+          377,
+          407
+        ],
+        "params": {
+          "W": 20,
+          "min_gap": 5,
+          "alpha": 0.9,
+          "dur_sigma": 0.35,
+          "g_wf": 16,
+          "g_env": 8,
+          "n_clusters": null
+        },
+        "effective_W_points": 20
+      },
+      "panels": [
+        {
+          "panel": 1,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            2,
+            36,
+            67,
+            117,
+            145,
+            324,
+            358,
+            362,
+            393
+          ],
+          "cut_timestamps": [
+            1377934161.0,
+            1377934369.0,
+            1377934558.0,
+            1377934864.0,
+            1377935035.0,
+            1377936127.0,
+            1377936335.0,
+            1377936359.0,
+            1377936548.0
+          ],
+          "cut_elapsed_seconds": [
+            12.0,
+            220.0,
+            409.0,
+            715.0,
+            886.0,
+            1978.0,
+            2186.0,
+            2210.0,
+            2399.0
+          ],
+          "drawn_cut_lines": 9,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 12,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 8,
+            "embeddings": 404,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 2,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            38,
+            68,
+            117,
+            145,
+            325,
+            358,
+            363,
+            393
+          ],
+          "cut_timestamps": [
+            1377934381.0,
+            1377934564.0,
+            1377934864.0,
+            1377935035.0,
+            1377936133.0,
+            1377936335.0,
+            1377936365.0,
+            1377936548.0
+          ],
+          "cut_elapsed_seconds": [
+            232.0,
+            415.0,
+            715.0,
+            886.0,
+            1984.0,
+            2186.0,
+            2216.0,
+            2399.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 13,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 404,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 3,
+          "config_id": "9619c8beba7c",
+          "params": {
+            "window": 32,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            67,
+            117,
+            146,
+            325,
+            354
+          ],
+          "cut_timestamps": [
+            1377934375.0,
+            1377934558.0,
+            1377934864.0,
+            1377935041.0,
+            1377936133.0,
+            1377936310.0
+          ],
+          "cut_elapsed_seconds": [
+            226.0,
+            409.0,
+            715.0,
+            892.0,
+            1984.0,
+            2161.0
+          ],
+          "drawn_cut_lines": 6,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 14,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 404,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 4,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            67,
+            117,
+            145,
+            324,
+            357,
+            365,
+            393
+          ],
+          "cut_timestamps": [
+            1377934375.0,
+            1377934558.0,
+            1377934864.0,
+            1377935035.0,
+            1377936127.0,
+            1377936329.0,
+            1377936377.0,
+            1377936548.0
+          ],
+          "cut_elapsed_seconds": [
+            226.0,
+            409.0,
+            715.0,
+            886.0,
+            1978.0,
+            2180.0,
+            2228.0,
+            2399.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 15,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 8,
+            "embeddings": 404,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 5,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            70,
+            117,
+            145,
+            325,
+            358,
+            363,
+            393
+          ],
+          "cut_timestamps": [
+            1377934375.0,
+            1377934577.0,
+            1377934864.0,
+            1377935035.0,
+            1377936133.0,
+            1377936335.0,
+            1377936365.0,
+            1377936548.0
+          ],
+          "cut_elapsed_seconds": [
+            226.0,
+            428.0,
+            715.0,
+            886.0,
+            1984.0,
+            2186.0,
+            2216.0,
+            2399.0
+          ],
+          "drawn_cut_lines": 8,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 16,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 9,
+            "embeddings": 404,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 6,
+          "config_id": "912749cc69af",
+          "params": {
+            "window": 32,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            37,
+            67,
+            117,
+            145,
+            325,
+            354,
+            393
+          ],
+          "cut_timestamps": [
+            1377934375.0,
+            1377934558.0,
+            1377934864.0,
+            1377935035.0,
+            1377936133.0,
+            1377936310.0,
+            1377936548.0
+          ],
+          "cut_elapsed_seconds": [
+            226.0,
+            409.0,
+            715.0,
+            886.0,
+            1984.0,
+            2161.0,
+            2399.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 17,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 32,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 32,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 404,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 7,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 0,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            65,
+            88,
+            161,
+            315,
+            370
+          ],
+          "cut_timestamps": [
+            1377934546.0,
+            1377934686.0,
+            1377935133.0,
+            1377936072.0,
+            1377936408.0
+          ],
+          "cut_elapsed_seconds": [
+            397.0,
+            537.0,
+            984.0,
+            1923.0,
+            2259.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 18,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 372,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 8,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 1,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            90,
+            161,
+            309,
+            370
+          ],
+          "cut_timestamps": [
+            1377934405.0,
+            1377934699.0,
+            1377935133.0,
+            1377936036.0,
+            1377936408.0
+          ],
+          "cut_elapsed_seconds": [
+            256.0,
+            550.0,
+            984.0,
+            1887.0,
+            2259.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 19,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 372,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 9,
+          "config_id": "b2303ab509cd",
+          "params": {
+            "window": 64,
+            "steps": 20
+          },
+          "seed": 2,
+          "is_baseline": true,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            89,
+            161,
+            216,
+            278,
+            309,
+            370
+          ],
+          "cut_timestamps": [
+            1377934405.0,
+            1377934693.0,
+            1377935133.0,
+            1377935468.0,
+            1377935846.0,
+            1377936036.0,
+            1377936408.0
+          ],
+          "cut_elapsed_seconds": [
+            256.0,
+            544.0,
+            984.0,
+            1319.0,
+            1697.0,
+            1887.0,
+            2259.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 20,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 20,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 20,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 7,
+            "embeddings": 372,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 10,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 0,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            90,
+            161,
+            315,
+            370
+          ],
+          "cut_timestamps": [
+            1377934405.0,
+            1377934699.0,
+            1377935133.0,
+            1377936072.0,
+            1377936408.0
+          ],
+          "cut_elapsed_seconds": [
+            256.0,
+            550.0,
+            984.0,
+            1923.0,
+            2259.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 21,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 372,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 11,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 1,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            90,
+            161,
+            309,
+            370
+          ],
+          "cut_timestamps": [
+            1377934405.0,
+            1377934699.0,
+            1377935133.0,
+            1377936036.0,
+            1377936408.0
+          ],
+          "cut_elapsed_seconds": [
+            256.0,
+            550.0,
+            984.0,
+            1887.0,
+            2259.0
+          ],
+          "drawn_cut_lines": 5,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 22,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 372,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        },
+        {
+          "panel": 12,
+          "config_id": "18629cc406f1",
+          "params": {
+            "window": 64,
+            "steps": 40
+          },
+          "seed": 2,
+          "is_baseline": false,
+          "status": "success",
+          "reason": null,
+          "cuts": [
+            42,
+            91,
+            161,
+            216,
+            278,
+            309,
+            374
+          ],
+          "cut_timestamps": [
+            1377934405.0,
+            1377934705.0,
+            1377935133.0,
+            1377935468.0,
+            1377935846.0,
+            1377936036.0,
+            1377936432.0
+          ],
+          "cut_elapsed_seconds": [
+            256.0,
+            556.0,
+            984.0,
+            1319.0,
+            1697.0,
+            1887.0,
+            2283.0
+          ],
+          "drawn_cut_lines": 7,
+          "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+          "source_record_index": 23,
+          "metadata": {
+            "source": "/home/avis/pslg-nilm/runs/20261013_multidomain_generation/executions/legacy/imported/code/vendor/segmentation_e2usd",
+            "source_e2usd_py_sha256": "7ec85ca1f4606be961cf646a301b6babd4728f3cefba149b11232ff701af8445",
+            "window": 64,
+            "steps": 40,
+            "network": {
+              "batch_size": 1,
+              "channels": 30,
+              "win_size": 64,
+              "win_type": "rect",
+              "depth": 1,
+              "nb_steps": 40,
+              "in_channels": 1,
+              "kernel_size": 3,
+              "lr": 0.003,
+              "out_channels": 4,
+              "reduced_size": 80,
+              "cuda": false,
+              "gpu": 0,
+              "M": 20,
+              "N": 4
+            },
+            "state_count": 6,
+            "embeddings": 372,
+            "device": "cpu",
+            "gpu_name": null
+          }
+        }
+      ],
+      "png": "figures/ukdale_h2_washing_machine/e2usd/validation_00040.png",
+      "png_sha256": "653ca2b07fadb0631a7b6b2e6f231b8febace7bb55037d2967b5d02c6b231292",
+      "svg": "figures/ukdale_h2_washing_machine/e2usd/validation_00040.svg",
+      "svg_sha256": "b20922ee642df386e575c9233c407baaec1ab63b6d4b7eadd32eb45a46501666",
+      "pdf": "figures/ukdale_h2_washing_machine/e2usd/validation_00040.pdf",
+      "pdf_sha256": "fa3cbfedcced3aeca580109d1dca95dcb6cedefc303b0abc643ba63e05279348"
+    }
+  ],
+  "source_execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_cpu_ukdale_h2_washing_machine_e2usd/20261017T032622Z_3937245d",
+  "records_sha256": "caedfa683005c40020b6e7d6fec1c3d0d3c92ac23eba61735ebeec98c863b44f",
+  "status_counts": {
+    "success": 24,
+    "unsupported": 0,
+    "failed": 0
+  }
+}
