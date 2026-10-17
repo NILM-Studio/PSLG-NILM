@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "archive": "/tmp/public16_prim_glr_increment_20261017.tar.gz",
+  "archive_sha256": "b4d979f3e2cc3d35ed8c3cf9d08e0c6937d5f8b6dcd6f91fed6fe6cd16bfeca8",
+  "bytes": 99910499,
+  "added_figures": 32,
+  "total_figures": 192,
+  "total_panels": 6752,
+  "qa": {
+    "status": "passed",
+    "new_figures": 32,
+    "new_panels": 4800,
+    "original_figures_byte_identical": 160,
+    "original_activity_hashes_matched": true,
+    "direct_source_checks": 96,
+    "selected_reference_matches": 32,
+    "combined_figures": 192
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "new_figures": 32,
+  "new_panels": 4800,
+  "original_figures_byte_identical": 160,
+  "original_activity_hashes_matched": true,
+  "direct_source_checks": 96,
+  "selected_reference_matches": 32,
+  "combined_figures": 192
+}

@@ -518,3 +518,5 @@ Three P adapters passed CPU 512-phase forward/backward/sample/reload checks; Tim
 - 2026-10-17T03:26:21.935429+00:00 `20261017_public16_segmentation_hyperparameter_review`：用户指定CPU；已停止E2USD GPU工作进程并归档旧图，全部E2USD改用作者cuda=False路径重算。真实数据CPU两次重放切点一致，作者源码与除cuda外网络/训练配置同原GPU配置核验通过；其余四方法既有CPU结果复用。六个单线程CPU进程推进160图，候选/输入/划分哈希不变，参数仍待人审。
 
 - 2026-10-17T03:42:24.973307+00:00 `20261017_public16_segmentation_hyperparameter_review`：CPU完整参数图库完成，16对象×5模型×开发/验证各1图=160张，1952格；32条public16 v2既有活动，不重新提取或重跑PrimGLR。三格式、全网格、源记录/SVG切点、Clasp/CLaP初始化一致性和E2USD CPU核验通过。人工审核pending，未冻结其他模型或运行正式实验一。
+
+- 2026-10-17T04:57:59.793736+00:00 `20261017_public16_segmentation_hyperparameter_review`：按用户要求在原MD报告增量加入PrimGLR，复用同32活动；普通对象144组、H20 240组完整W/gap/alpha/sigma笛卡尔积，新增32图4800格，总计192图6752格。原160图逐文件哈希不变，96个直接调用与缓存调用切点一致，32个已选参考与已有边界一致。仅CPU；不自动改选配置。

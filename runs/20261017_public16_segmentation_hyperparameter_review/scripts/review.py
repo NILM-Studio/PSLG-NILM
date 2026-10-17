@@ -163,6 +163,9 @@ def prepare():
 
 
 def label(method, p, dt):
+    if method == "prim-glr":
+        return (f"W={p['W_seconds_target']}s/{p['W']}pt, gap={p['min_gap_seconds_target']}s/{p['min_gap']}pt\n"
+                f"alpha={p['alpha']:g}, sigma={p['dur_sigma']:g}")
     if method == "pelt-rbf":
         return f"penalty x{p['penalty_multiplier']:g}, min={p['min_size']}pt (~{p['min_size']*dt:g}s), jump=5"
     if method == "fluss-threshold":
@@ -227,7 +230,7 @@ def draw(obj, method, activity, configs, rows):
     a, b = activity["core_a"], activity["core_b"]
     seeds = [0, 1, 2] if method == "e2usd" else [0]
     panels = [(c, seed) for c in configs for seed in seeds]
-    cols = {"pelt-rbf": 4, "fluss-threshold": 7, "clasp": 4, "clap": 4, "e2usd": 3}[method]
+    cols = {"prim-glr": 12, "pelt-rbf": 4, "fluss-threshold": 7, "clasp": 4, "clap": 4, "e2usd": 3}[method]
     height = math.ceil(len(panels) / cols)
     fig, axes = plt.subplots(height, cols, figsize=(4.6*cols, 2.8*height + .8), squeeze=False,
                              layout="constrained")
@@ -252,10 +255,18 @@ def draw(obj, method, activity, configs, rows):
         ax.set_ylim(*ylim)
         status = (f"{r['core_cuts']} core cuts / {len(lines)} total cuts"
                   if r["status"] == "success" else r["status"].upper())
-        name = f"{i+1}. {config['config_id']}" + (" [BASE]" if config["is_baseline"] else "")
+        marker = " [SELECTED]" if method == "prim-glr" else " [BASE]"
+        name = f"{i+1}. {config['config_id']}" + (marker if config["is_baseline"] else "")
         if method == "e2usd":
             name += f" seed={seed}"
-        ax.set_title(name + "\n" + label(method, config["params"], obj["nominal_seconds"]) + "\n" + status, fontsize=7.5)
+        description = label(method, config["params"], obj["nominal_seconds"])
+        if method == "prim-glr":
+            description += f", effective W={r['metadata']['effective_W_points']}pt"
+            if config["is_baseline"]:
+                for spine in ax.spines.values():
+                    spine.set_color("#1565c0")
+                    spine.set_linewidth(2)
+        ax.set_title(name + "\n" + description + "\n" + status, fontsize=7.5)
         if r.get("reason"):
             ax.text(.02, .95, r["reason"][:120], transform=ax.transAxes, fontsize=6.5, color="#b71c1c", va="top", wrap=True)
         ax.set_xlabel("Elapsed seconds", fontsize=7)
@@ -270,15 +281,17 @@ def draw(obj, method, activity, configs, rows):
                         "metadata": r.get("metadata", {})})
     assert len(entries) == len(panels)
     dependency = " | provisional DEFAULT Clasp initializer" if method == "clap" else ""
+    legend = ("columns: alpha x sigma; rows: W x gap | SELECTED = provided W120s/gap30s"
+              if method == "prim-glr" else "BASE = registered baseline")
     fig.suptitle(f"{obj['object']} | {method} | {activity['split']} activity {activity['activity_id']}{dependency}\n"
-                 f"ALL {len(configs)} configurations | same waveform/axes | red = method cuts | grey = context | BASE = registered baseline",
+                 f"ALL {len(configs)} configurations | same waveform/axes | red = method cuts | grey = context | {legend}",
                  fontsize=10)
     stem = REPORT / "figures" / obj["object"] / method.replace("-", "_") / f"{activity['split']}_{activity['activity_id']:05d}"
     stem.parent.mkdir(parents=True, exist_ok=True)
     artifacts = {}
     for suffix in ("png", "svg", "pdf"):
         target = stem.with_suffix("." + suffix)
-        fig.savefig(target, dpi=140)
+        fig.savefig(target, dpi=100 if method == "prim-glr" else 140)
         artifacts[suffix] = str(target.relative_to(REPORT))
         artifacts[suffix + "_sha256"] = sha(target)
     plt.close(fig)

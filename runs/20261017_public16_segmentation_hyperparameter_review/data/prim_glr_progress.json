@@ -1,0 +1,87 @@
+{
+  "completed": 16,
+  "total": 16,
+  "jobs": [
+    {
+      "object": "ukdale_h2_washing_machine",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_washing_machine_prim_glr_complete_grid/20261017T045311Z_aceeae96",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h2_microwave",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h2_microwave_prim_glr_complete_grid/20261017T045311Z_6d4ca419",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h7_dishwasher",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h7_dishwasher_prim_glr_complete_grid/20261017T045311Z_74609621",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h18_bread_maker",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h18_bread_maker_prim_glr_complete_grid/20261017T045311Z_a8ae4796",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h9_dishwasher",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h9_dishwasher_prim_glr_complete_grid/20261017T045311Z_f83fc798",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_b13_m5_dish_washer",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_b13_m5_dish_washer_prim_glr_complete_grid/20261017T045311Z_98f5816a",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_hotpoint",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_hotpoint_prim_glr_complete_grid/20261017T045413Z_83f5edc3",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_h1_washing_machine_samsung",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_h1_washing_machine_samsung_prim_glr_complete_grid/20261017T045414Z_9d474300",
+      "exit_code": 0
+    },
+    {
+      "object": "ukdale_b1_m6_dish_washer",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_ukdale_b1_m6_dish_washer_prim_glr_complete_grid/20261017T045416Z_4c13dc5c",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_05_coffee_maker",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_05_coffee_maker_prim_glr_complete_grid/20261017T045421Z_35ade907",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_01_dishwasher",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_01_dishwasher_prim_glr_complete_grid/20261017T045421Z_95b5a19b",
+      "exit_code": 0
+    },
+    {
+      "object": "refit_h20_tumble_dryer",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_refit_h20_tumble_dryer_prim_glr_complete_grid/20261017T045408Z_b958eed8",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_kettle",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_kettle_prim_glr_complete_grid/20261017T045519Z_c7aa7be2",
+      "exit_code": 0
+    },
+    {
+      "object": "snm_building_03_boiler",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_snm_building_03_boiler_prim_glr_complete_grid/20261017T045518Z_976d1f04",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_sherlockhairdryer",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_sherlockhairdryer_prim_glr_complete_grid/20261017T045519Z_188c2bed",
+      "exit_code": 0
+    },
+    {
+      "object": "darck_fridge",
+      "execution": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/review_darck_fridge_prim_glr_complete_grid/20261017T045523Z_c0ef8056",
+      "exit_code": 0
+    }
+  ],
+  "status": "passed"
+}

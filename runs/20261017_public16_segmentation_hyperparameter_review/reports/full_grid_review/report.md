@@ -1,12 +1,24 @@
 # 切分模型参数图审
 
-数据：`public16_activity_states_20261017_v2`。16个对象、5种方法，每组开发/验证各1张，共160张总图，全部采用CPU结果。
+数据：`public16_activity_states_20261017_v2`。16个对象、6种方法，每组开发/验证各1张，共192张总图，全部采用CPU结果。
 
 每张总图包含全部候选参数组合。黑线为原始功率，红虚线为切点，灰区为上下文；不适用组合在图内说明。点击总图可打开SVG放大查看。
 
 审核时反馈“对象＋方法＋图中参数或配置编号”即可。CLaP暂用默认Clasp初始化，改选Clasp后需复核对应CLaP结果。
 
+PrimGLR完整展开W、gap、α、σ：普通对象144组，H20为240组。蓝框SELECTED标出已选W120s/gap30s、α=.90、σ=.35参考配置；图内effective W为短活动适配后的实际窗口。
+
 ## ukdale_h2_washing_machine
+
+### PrimGLR（144组参数）
+
+**开发活动 #1**
+
+[![ukdale_h2_washing_machine PrimGLR 开发活动 1 完整参数总图](figures/ukdale_h2_washing_machine/prim_glr/development_00001.png)](figures/ukdale_h2_washing_machine/prim_glr/development_00001.svg)
+
+**验证活动 #40**
+
+[![ukdale_h2_washing_machine PrimGLR 验证活动 40 完整参数总图](figures/ukdale_h2_washing_machine/prim_glr/validation_00040.png)](figures/ukdale_h2_washing_machine/prim_glr/validation_00040.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -60,6 +72,16 @@
 
 ## ukdale_h2_microwave
 
+### PrimGLR（144组参数）
+
+**开发活动 #50**
+
+[![ukdale_h2_microwave PrimGLR 开发活动 50 完整参数总图](figures/ukdale_h2_microwave/prim_glr/development_00050.png)](figures/ukdale_h2_microwave/prim_glr/development_00050.svg)
+
+**验证活动 #283**
+
+[![ukdale_h2_microwave PrimGLR 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/prim_glr/validation_00283.png)](figures/ukdale_h2_microwave/prim_glr/validation_00283.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #50**
@@ -111,6 +133,16 @@
 [![ukdale_h2_microwave E2USD 验证活动 283 完整参数总图](figures/ukdale_h2_microwave/e2usd/validation_00283.png)](figures/ukdale_h2_microwave/e2usd/validation_00283.svg)
 
 ## refit_b13_m5_dish_washer
+
+### PrimGLR（144组参数）
+
+**开发活动 #28**
+
+[![refit_b13_m5_dish_washer PrimGLR 开发活动 28 完整参数总图](figures/refit_b13_m5_dish_washer/prim_glr/development_00028.png)](figures/refit_b13_m5_dish_washer/prim_glr/development_00028.svg)
+
+**验证活动 #73**
+
+[![refit_b13_m5_dish_washer PrimGLR 验证活动 73 完整参数总图](figures/refit_b13_m5_dish_washer/prim_glr/validation_00073.png)](figures/refit_b13_m5_dish_washer/prim_glr/validation_00073.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -164,6 +196,16 @@
 
 ## refit_h7_dishwasher
 
+### PrimGLR（144组参数）
+
+**开发活动 #171**
+
+[![refit_h7_dishwasher PrimGLR 开发活动 171 完整参数总图](figures/refit_h7_dishwasher/prim_glr/development_00171.png)](figures/refit_h7_dishwasher/prim_glr/development_00171.svg)
+
+**验证活动 #391**
+
+[![refit_h7_dishwasher PrimGLR 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/prim_glr/validation_00391.png)](figures/refit_h7_dishwasher/prim_glr/validation_00391.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #171**
@@ -215,6 +257,16 @@
 [![refit_h7_dishwasher E2USD 验证活动 391 完整参数总图](figures/refit_h7_dishwasher/e2usd/validation_00391.png)](figures/refit_h7_dishwasher/e2usd/validation_00391.svg)
 
 ## refit_h9_dishwasher
+
+### PrimGLR（144组参数）
+
+**开发活动 #122**
+
+[![refit_h9_dishwasher PrimGLR 开发活动 122 完整参数总图](figures/refit_h9_dishwasher/prim_glr/development_00122.png)](figures/refit_h9_dishwasher/prim_glr/development_00122.svg)
+
+**验证活动 #178**
+
+[![refit_h9_dishwasher PrimGLR 验证活动 178 完整参数总图](figures/refit_h9_dishwasher/prim_glr/validation_00178.png)](figures/refit_h9_dishwasher/prim_glr/validation_00178.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -268,6 +320,16 @@
 
 ## refit_h18_bread_maker
 
+### PrimGLR（144组参数）
+
+**开发活动 #105**
+
+[![refit_h18_bread_maker PrimGLR 开发活动 105 完整参数总图](figures/refit_h18_bread_maker/prim_glr/development_00105.png)](figures/refit_h18_bread_maker/prim_glr/development_00105.svg)
+
+**验证活动 #152**
+
+[![refit_h18_bread_maker PrimGLR 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/prim_glr/validation_00152.png)](figures/refit_h18_bread_maker/prim_glr/validation_00152.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #105**
@@ -319,6 +381,16 @@
 [![refit_h18_bread_maker E2USD 验证活动 152 完整参数总图](figures/refit_h18_bread_maker/e2usd/validation_00152.png)](figures/refit_h18_bread_maker/e2usd/validation_00152.svg)
 
 ## refit_h20_tumble_dryer
+
+### PrimGLR（240组参数）
+
+**开发活动 #21**
+
+[![refit_h20_tumble_dryer PrimGLR 开发活动 21 完整参数总图](figures/refit_h20_tumble_dryer/prim_glr/development_00021.png)](figures/refit_h20_tumble_dryer/prim_glr/development_00021.svg)
+
+**验证活动 #69**
+
+[![refit_h20_tumble_dryer PrimGLR 验证活动 69 完整参数总图](figures/refit_h20_tumble_dryer/prim_glr/validation_00069.png)](figures/refit_h20_tumble_dryer/prim_glr/validation_00069.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -372,6 +444,16 @@
 
 ## ukdale_h1_washing_machine_hotpoint
 
+### PrimGLR（144组参数）
+
+**开发活动 #74**
+
+[![ukdale_h1_washing_machine_hotpoint PrimGLR 开发活动 74 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/prim_glr/development_00074.png)](figures/ukdale_h1_washing_machine_hotpoint/prim_glr/development_00074.svg)
+
+**验证活动 #139**
+
+[![ukdale_h1_washing_machine_hotpoint PrimGLR 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/prim_glr/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/prim_glr/validation_00139.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #74**
@@ -423,6 +505,16 @@
 [![ukdale_h1_washing_machine_hotpoint E2USD 验证活动 139 完整参数总图](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.png)](figures/ukdale_h1_washing_machine_hotpoint/e2usd/validation_00139.svg)
 
 ## ukdale_h1_washing_machine_samsung
+
+### PrimGLR（144组参数）
+
+**开发活动 #85**
+
+[![ukdale_h1_washing_machine_samsung PrimGLR 开发活动 85 完整参数总图](figures/ukdale_h1_washing_machine_samsung/prim_glr/development_00085.png)](figures/ukdale_h1_washing_machine_samsung/prim_glr/development_00085.svg)
+
+**验证活动 #244**
+
+[![ukdale_h1_washing_machine_samsung PrimGLR 验证活动 244 完整参数总图](figures/ukdale_h1_washing_machine_samsung/prim_glr/validation_00244.png)](figures/ukdale_h1_washing_machine_samsung/prim_glr/validation_00244.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -476,6 +568,16 @@
 
 ## ukdale_b1_m6_dish_washer
 
+### PrimGLR（144组参数）
+
+**开发活动 #69**
+
+[![ukdale_b1_m6_dish_washer PrimGLR 开发活动 69 完整参数总图](figures/ukdale_b1_m6_dish_washer/prim_glr/development_00069.png)](figures/ukdale_b1_m6_dish_washer/prim_glr/development_00069.svg)
+
+**验证活动 #140**
+
+[![ukdale_b1_m6_dish_washer PrimGLR 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/prim_glr/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/prim_glr/validation_00140.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #69**
@@ -527,6 +629,16 @@
 [![ukdale_b1_m6_dish_washer E2USD 验证活动 140 完整参数总图](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.png)](figures/ukdale_b1_m6_dish_washer/e2usd/validation_00140.svg)
 
 ## snm_building_01_dishwasher
+
+### PrimGLR（144组参数）
+
+**开发活动 #10**
+
+[![snm_building_01_dishwasher PrimGLR 开发活动 10 完整参数总图](figures/snm_building_01_dishwasher/prim_glr/development_00010.png)](figures/snm_building_01_dishwasher/prim_glr/development_00010.svg)
+
+**验证活动 #75**
+
+[![snm_building_01_dishwasher PrimGLR 验证活动 75 完整参数总图](figures/snm_building_01_dishwasher/prim_glr/validation_00075.png)](figures/snm_building_01_dishwasher/prim_glr/validation_00075.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -580,6 +692,16 @@
 
 ## snm_building_05_coffee_maker
 
+### PrimGLR（144组参数）
+
+**开发活动 #150**
+
+[![snm_building_05_coffee_maker PrimGLR 开发活动 150 完整参数总图](figures/snm_building_05_coffee_maker/prim_glr/development_00150.png)](figures/snm_building_05_coffee_maker/prim_glr/development_00150.svg)
+
+**验证活动 #418**
+
+[![snm_building_05_coffee_maker PrimGLR 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/prim_glr/validation_00418.png)](figures/snm_building_05_coffee_maker/prim_glr/validation_00418.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #150**
@@ -631,6 +753,16 @@
 [![snm_building_05_coffee_maker E2USD 验证活动 418 完整参数总图](figures/snm_building_05_coffee_maker/e2usd/validation_00418.png)](figures/snm_building_05_coffee_maker/e2usd/validation_00418.svg)
 
 ## snm_building_03_boiler
+
+### PrimGLR（144组参数）
+
+**开发活动 #51**
+
+[![snm_building_03_boiler PrimGLR 开发活动 51 完整参数总图](figures/snm_building_03_boiler/prim_glr/development_00051.png)](figures/snm_building_03_boiler/prim_glr/development_00051.svg)
+
+**验证活动 #78**
+
+[![snm_building_03_boiler PrimGLR 验证活动 78 完整参数总图](figures/snm_building_03_boiler/prim_glr/validation_00078.png)](figures/snm_building_03_boiler/prim_glr/validation_00078.svg)
 
 ### PELT-RBF（8组参数）
 
@@ -684,6 +816,16 @@
 
 ## darck_kettle
 
+### PrimGLR（144组参数）
+
+**开发活动 #132**
+
+[![darck_kettle PrimGLR 开发活动 132 完整参数总图](figures/darck_kettle/prim_glr/development_00132.png)](figures/darck_kettle/prim_glr/development_00132.svg)
+
+**验证活动 #157**
+
+[![darck_kettle PrimGLR 验证活动 157 完整参数总图](figures/darck_kettle/prim_glr/validation_00157.png)](figures/darck_kettle/prim_glr/validation_00157.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #132**
@@ -736,6 +878,16 @@
 
 ## darck_sherlockhairdryer
 
+### PrimGLR（144组参数）
+
+**开发活动 #68**
+
+[![darck_sherlockhairdryer PrimGLR 开发活动 68 完整参数总图](figures/darck_sherlockhairdryer/prim_glr/development_00068.png)](figures/darck_sherlockhairdryer/prim_glr/development_00068.svg)
+
+**验证活动 #91**
+
+[![darck_sherlockhairdryer PrimGLR 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/prim_glr/validation_00091.png)](figures/darck_sherlockhairdryer/prim_glr/validation_00091.svg)
+
 ### PELT-RBF（8组参数）
 
 **开发活动 #68**
@@ -787,6 +939,16 @@
 [![darck_sherlockhairdryer E2USD 验证活动 91 完整参数总图](figures/darck_sherlockhairdryer/e2usd/validation_00091.png)](figures/darck_sherlockhairdryer/e2usd/validation_00091.svg)
 
 ## darck_fridge
+
+### PrimGLR（144组参数）
+
+**开发活动 #11**
+
+[![darck_fridge PrimGLR 开发活动 11 完整参数总图](figures/darck_fridge/prim_glr/development_00011.png)](figures/darck_fridge/prim_glr/development_00011.svg)
+
+**验证活动 #378**
+
+[![darck_fridge PrimGLR 验证活动 378 完整参数总图](figures/darck_fridge/prim_glr/validation_00378.png)](figures/darck_fridge/prim_glr/validation_00378.svg)
 
 ### PELT-RBF（8组参数）
 
