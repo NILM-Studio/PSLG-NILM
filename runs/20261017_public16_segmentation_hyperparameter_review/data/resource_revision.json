@@ -1,0 +1,8 @@
+{
+  "time": "2026-10-17T03:19:55.374300+00:00",
+  "old_coordinator": "/home/avis/pslg-nilm/runs/20261017_public16_segmentation_hyperparameter_review/executions/full_grid_coordinator/20261017T031642Z_b6ce1968",
+  "stopped_dispatcher_pid": 258965,
+  "worker_processes_preserved": true,
+  "reason": "GPU2 fully utilized in pilot; GPU6 has >5GB free and idle compute. Add two GPU6 workers, preserve existing jobs and input/grid plan.",
+  "resource_snapshot": "0, 4134, 0\n1, 961, 0\n2, 3544, 67\n3, 6849, 62\n4, 16729, 75\n5, 4128, 0\n6, 7056, 0\n"
+}
