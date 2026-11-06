@@ -41,3 +41,10 @@ __pycache__/
 !/checkpoints/**/*.pth
 !/checkpoints/**/*.index
 !/checkpoints/**/*.data-*
+
+# Keep the explicitly restored notification workflow.
+!/.github/
+/.github/*
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/feishu-notify.yml
