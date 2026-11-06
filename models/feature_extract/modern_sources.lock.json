@@ -1,0 +1,23 @@
+{
+  "retrieved_at": "2026-10-16",
+  "ts2vec": {
+    "url": "https://github.com/zhihanyue/ts2vec",
+    "commit": "b0088e14a99706c05451316dc6db8d3da9351163",
+    "status": "author_official_snapshot"
+  },
+  "timesurl": {
+    "url": "https://github.com/Alrash/TimesURL",
+    "commit": "d3533e45cb28efe8c986f13ce8d80926d0e9254e",
+    "status": "author_official_snapshot"
+  },
+  "timedart": {
+    "url": "https://github.com/ustc-time-series/TimeDART",
+    "commit": "e658a648cf6b04612ca643d10a634b45e136194c",
+    "status": "author_official_snapshot_original_TimeDART_not_v2"
+  },
+  "timemae": {
+    "url": "https://github.com/ustc-time-series/TimeMAE",
+    "commit": "31690745c2149f41c33afd5879ab57da8894e5cc",
+    "status": "author_official_snapshot"
+  }
+}

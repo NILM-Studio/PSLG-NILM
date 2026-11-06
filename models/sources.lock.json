@@ -60,12 +60,35 @@
       "commit": "e2a918f10c6e198064d4d7efacf1217cc0907fd7",
       "package": "claspy==0.2.8",
       "algorithm": "AgglomerativeCLaPDetection with shared official Clasp initialization",
-      "classifier_dependencies": ["aeon==1.1.0", "daproli==0.22"]
+      "classifier_dependencies": [
+        "aeon==1.1.0",
+        "daproli==0.22"
+      ]
     },
     "e2usd": {
       "url": "https://github.com/AI4CTS/E2Usd",
       "commit": "7fc34e4521a0392f429a988afd0421ad97443464",
       "source": "unchanged E2USD Python tree; newline-normalized match with historical vendor"
     }
+  },
+  "WGAN-GP": {
+    "name": "WGAN-GP",
+    "paper": "https://arxiv.org/abs/1704.00028",
+    "repo": "https://github.com/igul222/improved_wgan_training.git",
+    "reference_commit": "fa66c574a54c4916d27c55441d33753dcc78f6bc",
+    "reference_status": "author_reference_TensorFlow_preserved_not_executed",
+    "source_archive_url": "https://codeload.github.com/igul222/improved_wgan_training/tar.gz/fa66c574a54c4916d27c55441d33753dcc78f6bc",
+    "source_archive_sha256": "ffdfa288eab951be253dcc44ed7361e1991292e48fa44fab313fe5cada0f3364",
+    "implementation": "project_PyTorch_1D_adaptation_not_exact_author_architecture",
+    "adapter": "/home/avis/pslg-nilm/models/downstream_generation_models/vendor/WGAN-GP/wgangp.py",
+    "adapter_sha256": "97b7a5cf8378273ba0a04c4059fc19117854e6de50e0a4297983e7cd7b9d7f6f",
+    "license_path": "/home/avis/pslg-nilm/models/downstream_generation_models/vendor/WGAN-GP/upstream_reference/LICENSE",
+    "license_sha256": "694db39c700865d3126af9fd72c3a9e48ecf9dbb081fa4ffde0971a3f8549763",
+    "runtime": "torch-shared-plus-overlay",
+    "status": "deployed-implementation-checks-passed",
+    "deployment_execution": "/home/avis/pslg-nilm/runs/20261017_v3_selected_k_state_condition_generation/executions/p3_deploy_wgangp/20261018T040720Z_e8307b80",
+    "validation_execution": "/home/avis/pslg-nilm/runs/20261017_v3_selected_k_state_condition_generation/executions/p3_implementation_check/20261018T040720Z_26f40c02",
+    "source_audit_execution": "/home/avis/pslg-nilm/runs/20261017_v3_selected_k_state_condition_generation/executions/p3_source_audit/20261018T040723Z_92b559bf",
+    "phase3_report_index": "/home/avis/pslg-nilm/runs/20261017_v3_selected_k_state_condition_generation/phase3/reports/README.md"
   }
 }

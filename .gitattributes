@@ -1,0 +1,2 @@
+* text=auto eol=lf
+checkpoints/** filter=lfs diff=lfs merge=lfs -text
